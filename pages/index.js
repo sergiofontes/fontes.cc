@@ -1,209 +1,200 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Link from "next/link";
+import Layout, { siteTitle } from "../components/layout";
 
 export default function Home() {
   return (
-    <div className="container">
+    <Layout home>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{siteTitle}</title>
       </Head>
+      <nav>
+        <ol>
+          <li>
+            <Link href="#experience">
+              <a>Experience</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#traits">
+              <a>Traits</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#contact">
+              <a>Contact</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#Work">
+              <a>Work</a>
+            </Link>
+          </li>
+        </ol>
+      </nav>
+      <header>
+        <section>
+          <h1>
+            <span>Sérgio Fontes: </span>Product Designer
+          </h1>
+        </section>
+        <section id="intro">
+          <h2>Intro</h2>
+          <p>
+            Hi, I‘m<i></i> Sérgio Fontes.
+          </p>
+          <p>I‘m a Brazilian digital designer with 12+ years of experience.</p>
+          <p>I help companies design, build, and validate digital products.</p>
+        </section>
+      </header>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <section id="experience">
+          <h2>Experience</h2>
+          <p>
+            I'm Sérgio, a daydreamer, designer &amp; enthusiast about great
+            products. Currently, I'm <em>Staff Product Designer</em> at{" "}
+            <a href="https://vtex.com" target="_blank">
+              VTEX
+            </a>
+            , helping shape the present and future of worldwide commerce by
+            building a cutting-edge framework for stores and developers.
+          </p>
+          <p>
+            Previously, as{" "}
+            <a href="https://guava.software" target="_blank">
+              Guava
+            </a>
+            's Lead Designer, I've helped to envision and execute a design
+            strategy; fostered the design culture; and grew and trained the
+            designers' squad—from an army of one to a diverse and tightly-knit
+            team of six people.
+          </p>
+          <p>
+            During my{" "}
+            <a href="https://guava.software" target="_blank">
+              Guava
+            </a>{" "}
+            years, as a Consultant Designer, I've collaborated with more than 18
+            clients—small and mid companies from the USA and Brazil—to transform
+            their business by revamping their digital products' user experience.
+          </p>
+        </section>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
+        <figure id="testimonial">
+          <blockquote>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+              I have been working with Sergio for the past two years, and it's
+              been a great opportunity to see his leadership and product design
+              expertise in action. He's responsible for guiding the design team
+              without compromising any natural talent from his peers, not to
+              mention his vast experience in the design spectrum, always looking
+              forward to improving the company's design process and strategy.
+              His natural skills go from CSS mastery (inspiring every designer
+              to be a better coder), architectural thinking, user's best friend,
+              and meme hunter. He's a loose laugher as well, has great humor
+              sense, and won't miss the chance to pet your cat.
             </p>
-          </a>
-        </div>
+          </blockquote>
+          <figcaption>
+            Filipe Soares
+            <br />
+            <small>Staff Product Designer @ VTEX</small>
+          </figcaption>
+        </figure>
+
+        <section id="traits">
+          <h2>Traits</h2>
+          <section>
+            <h3>Multidisciplinary</h3>
+            <p>
+              I love researching. I love prototyping. I love visual design. And
+              I love HTML/CSS. This mixture put me in a particular situation of
+              being a product's designer from day one. And, guess what, I love
+              them all.
+            </p>
+          </section>
+        </section>
+        <section>
+          <h3>Craftsman</h3>
+          <p>
+            I have a keen eye to details and can sometimes be obsessive about
+            pursuing the best possible solution. But it's not only about pixels:
+            it also matters to me the overall use experience and its
+            subjectivities.
+          </p>
+        </section>
+        <section>
+          <h3>Energetic</h3>
+          <p>
+            I'm an optimistic and energetic person. I always try to bring in my
+            enthusiasm and motivation to teammates, and can elevate the people's
+            spirit when needed. I can fearlessly go down the rabbit hole to
+            overcome any challenge.
+          </p>
+        </section>
+
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>
+            <em>Email:</em>
+            <a href="mailto:sergio@fontes.cc">sergio@fontes.cc</a>
+          </p>
+          <p>I usually reply emails in no more than one business day.</p>
+          <p>
+            Alternatively, you can find me on{" "}
+            <a href="" target="_blank">
+              LinkedIn
+            </a>{" "}
+            and{" "}
+            <a href="" target="_blank">
+              LinkedIn
+            </a>
+          </p>
+        </section>
+
+        <section id="work">
+          <h2>(Some) Work</h2>
+          <section id="petplate">
+            <h3>PetPlate</h3>
+            <small>2020–2021</small>
+            <p>
+              <ul>
+                <li>Design system development;</li>
+                <li>Requirements gathering;</li>
+                <li>Low &amp; hi-fi prototyping;</li>
+                <li>Usability testing;</li>
+                <li>HTML/CSS coding.</li>
+              </ul>
+            </p>
+            <a href="https://petplate.com" target="_blank">
+              PetPlate
+            </a>
+          </section>
+          <section id="tropicalruby">
+            <h3>TropicalRuby</h3>
+            <small>2015</small>
+            <p>
+              <ul>
+                <li>Visual identity;</li>
+                <li>Website design;</li>
+                <li>HTML/CSS coding;</li>
+                <li>Conference organization.</li>
+              </ul>
+            </p>
+            <a href="https://tropicalrb.com" target="_blank">
+              PetPlate
+            </a>
+          </section>
+        </section>
       </main>
-
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
-        </a>
+        <p>Sérgio Fontes, 2022. Copy, design &amp; code by me.</p>
+        <p>
+          No cookies, no tracking, just the beauty of HTML &amp; CSS (shh,
+          there's some JS too).
+        </p>
       </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+    </Layout>
+  );
 }
