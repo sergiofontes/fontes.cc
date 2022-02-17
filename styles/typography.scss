@@ -1,0 +1,54 @@
+///////////////////////////////////////////////////////////////////////////////
+// Typography                                                                //
+///////////////////////////////////////////////////////////////////////////////
+
+// Font system ////////////////////////////////////////////////////////////////
+
+body {
+  --font-body:     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-title:    SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-size:     16px;
+  --line-height:   1.3;
+  font-family: var(--font-body);
+  font-size:   var(--font-size);
+  line-height: var(--line-height);
+}
+
+// Title
+h1 {}
+h2 {}
+h3 {}
+h4 {}
+h5 {}
+
+// Paragraph
+p {}
+em {}
+label {}
+strong {}
+blockquote {}
+::selection {}
+
+// Link
+a {
+  &:visited {}
+  &:focus {}
+  &:hover {}
+}
+
+// Code
+code {}
+pre {}
+kbd {}
+
+// Small texts
+small {}
+legend {}
+figcaption {}
+
+// List
+ul {}
+ol {}
+li {}
+dl {}
+dl {}
