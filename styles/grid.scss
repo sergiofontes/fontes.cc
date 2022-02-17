@@ -1,0 +1,59 @@
+///////////////////////////////////////////////////////////////////////////////
+// Grid                                                                      //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "vendor/include-media";
+
+// Mobile
+$columns-mob:     4;      // Columns number
+$gap-mob:         20px;   // Gutter width
+$gap-mob-out:     30px;   // External gutter width
+
+// Desktop
+$columns:         12;     // Columns number
+$gap:             25px;   // Gutter width
+$gap-out:         35px;   // External gutter width
+
+$max-width:       1230px; // Maximum container's width
+
+$max-column:      math.div($max-width - ($gap * ($columns - 1)), $columns);
+$max-screen:      $max-width + ($gap-out * 2);
+
+// stylelint-disable
+@mixin grid(
+    $columns-mob: $columns-mob,
+    $gap-mob:     $gap-mob,
+    $gap-mob-out: $gap-mob-out,
+
+    $columns:     $columns,
+    $gap:         $gap,
+    $gap-out:     $gap-out,
+
+    $max-width:   $max-width,
+
+    $justify:     false, // Overwrite if justify value is different from default
+    $align:       false, // Overwrite if align values are different from default
+    $rows:        false, // Overwrite if grid has rows
+    $gap-row:     false, // Overwrite if row gap is different from columns'
+  ){
+
+  $gap-delta-mob: $gap-mob-out - $gap-mob;
+  $gap-delta:     $gap-out - $gap;
+// stylelint-enable
+
+  position: relative;
+  display: grid;
+  grid-template-rows: if($rows, repeat(#{$rows}, 1fr), auto);
+  grid-template-columns: 0 repeat(#{$columns-mob}, 1fr) 0;
+  grid-gap: if($gap-row, $gap-row, $gap-mob) $gap-mob;
+  place-items: if($align, $align, stretch) if($justify, $justify, center);
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  @include media(">phonelarge") { grid-template-columns: $gap-delta-mob repeat(#{$columns-mob}, 1fr) $gap-delta-mob; }
+  @include media(">notebook") {
+    grid-template-columns: $gap-delta repeat(#{$columns}, 1fr) $gap-delta;
+    grid-gap: if($gap-row, $gap-row, $gap) $gap;
+  }
+  @include media(">#{$max-screen}") { grid-template-columns: 1fr repeat(#{$columns}, #{$max-column}) 1fr; }
+}
