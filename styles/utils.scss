@@ -2,14 +2,14 @@
 // Mixins & functions utilities                               (Global block) //
 ///////////////////////////////////////////////////////////////////////////////
 
-// Px to rem.
+// Px to rem
 $base: 16px !default;
 @function rem($size) {
   $rem: math.div($size, $base);
   @return #{$rem}rem;
 }
 
-// Clear fix wizardry.
+// Clear fix wizardry
 @mixin clearfix {
   &::after {
     display: block;
@@ -18,13 +18,13 @@ $base: 16px !default;
   }
 }
 
-// Ease dimensioning.
+// Ease dimensioning
 @mixin size($width, $height: $width) {
   width: $width;
   height: $height;
 }
 
-// Text overflow.
+// Text overflow
 @mixin text-overflow($max-width: 100%) {
   max-width: $max-width;
   overflow: hidden;
@@ -32,25 +32,36 @@ $base: 16px !default;
   white-space: nowrap;
 }
 
-// Hide typography, to be seen with screen readers only.
+// Hide typography, to be seen with screen readers only
 @mixin fontless {
   position: absolute;
+  width: 1px;
+	height: 1px;
   padding: 0;
-  margin: 0;
-  overflow: hidden;
-  line-height: 0;
-  border: 0;
-  clip-path: inset(0 0 0 0);
+	margin: -1px;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+	overflow: hidden;
+	white-space: nowrap;
 }
 
-// Show hidden typography.
+// Show hidden typography
 @mixin fontful {
   position: static;
+  width: auto;
+  height: auto;
+  padding: unset;
+  margin: unset;
+  overflow: inherit;
+  clip: none;
+  -webkit-clip-path: none;
   clip-path: none;
   white-space: normal;
 }
 
-// Remove default button appearance.
+// Remove default button appearance
 @mixin buttonless(
   $background: transparent,
   $border:     0,
@@ -65,7 +76,7 @@ $base: 16px !default;
   box-shadow: $shadow;
 }
 
-// Fancy underline. All native.
+// Fancy underline, all native
 @mixin underline(
   $color:     black,
   $thickness: 2px,
