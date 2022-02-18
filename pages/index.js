@@ -54,8 +54,10 @@ export default function Home() {
           <p>
             Hi, I‘m<i></i> Sérgio Fontes.
           </p>
-          <p>I‘m a Brazilian digital designer with 12+ years of experience.</p>
-          <p>I help companies design, build, and validate digital products.</p>
+          <div>
+            <p>I‘m a Brazilian digital designer with 12+ years of experience.</p>
+            <p>I help companies design, build, and validate digital products.</p>
+          </div>
         </section>
       </header>
 
@@ -196,11 +198,11 @@ export default function Home() {
         </section>
       </main>
       <footer>
-        <p>Sérgio Fontes, 2022. Copy, design &amp; code by me.</p>
-        <p>
+        <small>Sérgio Fontes, 2022. Copy, design &amp; code by me.</small>
+        <small>
           No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there's some
           JS too).
-        </p>
+        </small>
       </footer>
     </Layout>
   );
