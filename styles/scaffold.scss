@@ -1,0 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+// Scaffold                                               (Global Component) //
+///////////////////////////////////////////////////////////////////////////////
+
+// All kinds of mixins, functions, and global variables
+@charset "utf-8";
+
+@import "utils";                 // Mixins & functions utilities
+@import "vendor/include-media"; // Media queries with superpowers
+
+$base: 15px;                     // 1rem
