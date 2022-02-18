@@ -1,0 +1,15 @@
+///////////////////////////////////////////////////////////////////////////////
+// Colors                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+:root {
+  --black           : #211d1d;
+  --white           : #fbfbfb;
+  --gray            : #787575;
+
+  --color-primary   : var(--black);
+
+  --color-text      : var(--black);
+  --color-subtitle  : var(--gray);
+  --color-background: var(--white);
+}
