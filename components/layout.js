@@ -1,9 +1,6 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import Head from 'next/head';
 
-const name = "Sérgio";
-export const siteTitle = "Sérgio Fontes: Product Designer";
+export const siteTitle = 'Sérgio Fontes—Product Designer';
 
 export default function Layout({ children, home }) {
   return (
@@ -12,7 +9,7 @@ export default function Layout({ children, home }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="Brazilian digital designer. I help companies design, build, and validate digital products."
         />
         <meta property="og:image" content="" />
         <meta name="og:title" content={siteTitle} />

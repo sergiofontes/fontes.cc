@@ -1,12 +1,22 @@
-import Head from "next/head";
-import Link from "next/link";
-import Layout, { siteTitle } from "../components/layout";
+import Head from 'next/head';
+import Link from 'next/link';
+import cn from 'classnames';
+import Image from 'next/image';
+import Layout, { siteTitle } from '../components/layout';
+
+import Symbol from '../public/images/symbol.svg';
+
+import style from './index.module.scss';
 
 export default function Home() {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Sans:ital@0;1&family=Playfair+Display:wght@900&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <nav>
         <ol>
@@ -33,6 +43,7 @@ export default function Home() {
         </ol>
       </nav>
       <header>
+        <Symbol className={style.logo} />
         <section>
           <h1>
             <span>Sérgio Fontes: </span>Product Designer
@@ -52,48 +63,46 @@ export default function Home() {
         <section id="experience">
           <h2>Experience</h2>
           <p>
-            I'm Sérgio, a daydreamer, designer &amp; enthusiast about great
-            products. Currently, I'm <em>Staff Product Designer</em> at{" "}
+            I'm Sérgio, a daydreamer, designer &amp; enthusiast about great products.
+            Currently, I'm <em>Staff Product Designer</em> at{' '}
             <a href="https://vtex.com" target="_blank">
               VTEX
             </a>
-            , helping shape the present and future of worldwide commerce by
-            building a cutting-edge framework for stores and developers.
+            , helping shape the present and future of worldwide commerce by building a
+            cutting-edge framework for stores and developers.
           </p>
           <p>
-            Previously, as{" "}
+            Previously, as{' '}
             <a href="https://guava.software" target="_blank">
               Guava
             </a>
-            's Lead Designer, I've helped to envision and execute a design
-            strategy; fostered the design culture; and grew and trained the
-            designers' squad—from an army of one to a diverse and tightly-knit
-            team of six people.
+            's Lead Designer, I've helped to envision and execute a design strategy;
+            fostered the design culture; and grew and trained the designers' squad—from
+            an army of one to a diverse and tightly-knit team of six people.
           </p>
           <p>
-            During my{" "}
+            During my{' '}
             <a href="https://guava.software" target="_blank">
               Guava
-            </a>{" "}
+            </a>{' '}
             years, as a Consultant Designer, I've collaborated with more than 18
-            clients—small and mid companies from the USA and Brazil—to transform
-            their business by revamping their digital products' user experience.
+            clients—small and mid companies from the USA and Brazil—to transform their
+            business by revamping their digital products' user experience.
           </p>
         </section>
 
         <figure id="testimonial">
           <blockquote>
             <p>
-              I have been working with Sergio for the past two years, and it's
-              been a great opportunity to see his leadership and product design
-              expertise in action. He's responsible for guiding the design team
-              without compromising any natural talent from his peers, not to
-              mention his vast experience in the design spectrum, always looking
-              forward to improving the company's design process and strategy.
-              His natural skills go from CSS mastery (inspiring every designer
-              to be a better coder), architectural thinking, user's best friend,
-              and meme hunter. He's a loose laugher as well, has great humor
-              sense, and won't miss the chance to pet your cat.
+              I have been working with Sergio for the past two years, and it's been a
+              great opportunity to see his leadership and product design expertise in
+              action. He's responsible for guiding the design team without compromising
+              any natural talent from his peers, not to mention his vast experience in
+              the design spectrum, always looking forward to improving the company's
+              design process and strategy. His natural skills go from CSS mastery
+              (inspiring every designer to be a better coder), architectural thinking,
+              user's best friend, and meme hunter. He's a loose laugher as well, has
+              great humor sense, and won't miss the chance to pet your cat.
             </p>
           </blockquote>
           <figcaption>
@@ -108,30 +117,28 @@ export default function Home() {
           <section>
             <h3>Multidisciplinary</h3>
             <p>
-              I love researching. I love prototyping. I love visual design. And
-              I love HTML/CSS. This mixture put me in a particular situation of
-              being a product's designer from day one. And, guess what, I love
-              them all.
+              I love researching. I love prototyping. I love visual design. And I love
+              HTML/CSS. This mixture put me in a particular situation of being a
+              product's designer from day one. And, guess what, I love them all.
             </p>
           </section>
-        </section>
-        <section>
-          <h3>Craftsman</h3>
-          <p>
-            I have a keen eye to details and can sometimes be obsessive about
-            pursuing the best possible solution. But it's not only about pixels:
-            it also matters to me the overall use experience and its
-            subjectivities.
-          </p>
-        </section>
-        <section>
-          <h3>Energetic</h3>
-          <p>
-            I'm an optimistic and energetic person. I always try to bring in my
-            enthusiasm and motivation to teammates, and can elevate the people's
-            spirit when needed. I can fearlessly go down the rabbit hole to
-            overcome any challenge.
-          </p>
+          <section>
+            <h3>Craftsman</h3>
+            <p>
+              I have a keen eye to details and can sometimes be obsessive about
+              pursuing the best possible solution. But it's not only about pixels: it
+              also matters to me the overall use experience and its subjectivities.
+            </p>
+          </section>
+          <section>
+            <h3>Energetic</h3>
+            <p>
+              I'm an optimistic and energetic person. I always try to bring in my
+              enthusiasm and motivation to teammates, and can elevate the people's
+              spirit when needed. I can fearlessly go down the rabbit hole to overcome
+              any challenge.
+            </p>
+          </section>
         </section>
 
         <section id="contact">
@@ -142,13 +149,13 @@ export default function Home() {
           </p>
           <p>I usually reply emails in no more than one business day.</p>
           <p>
-            Alternatively, you can find me on{" "}
+            Alternatively, you can find me on{' '}
             <a href="" target="_blank">
               LinkedIn
-            </a>{" "}
-            and{" "}
+            </a>{' '}
+            and{' '}
             <a href="" target="_blank">
-              LinkedIn
+              GitHub
             </a>
           </p>
         </section>
@@ -191,8 +198,8 @@ export default function Home() {
       <footer>
         <p>Sérgio Fontes, 2022. Copy, design &amp; code by me.</p>
         <p>
-          No cookies, no tracking, just the beauty of HTML &amp; CSS (shh,
-          there's some JS too).
+          No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there's some
+          JS too).
         </p>
       </footer>
     </Layout>
