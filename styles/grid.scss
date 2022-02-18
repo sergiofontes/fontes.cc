@@ -5,23 +5,23 @@
 @use "sass:math";
 @import "scaffold";
 
+// stylelint-disable
 
 // Mobile
-$columns-mob:     4;      // Columns number
-$gap-mob:         20px;   // Gutter width
-$gap-mob-out:     30px;   // External gutter width
+$columns-mob:     4;                // Columns number
+$gap-mob:         1rem;             // Gutter width
+$gap-mob-out:     1.3333333333rem;  // External gutter width
 
 // Desktop
-$columns:         12;     // Columns number
-$gap:             25px;   // Gutter width
-$gap-out:         35px;   // External gutter width
+$columns:         12;               // Columns number
+$gap:             2rem;             // Gutter width
+$gap-out:         2rem;             // External gutter width
 
-$max-width:       1230px; // Maximum container's width
+$max-width:       81.3333333333rem; // Maximum container's width
 
 $max-column:      math.div($max-width - ($gap * ($columns - 1)), $columns);
 $max-screen:      $max-width + ($gap-out * 2);
 
-// stylelint-disable
 @mixin grid(
     $columns-mob: $columns-mob,
     $gap-mob:     $gap-mob,
@@ -59,3 +59,5 @@ $max-screen:      $max-width + ($gap-out * 2);
   }
   @include media(">#{$max-screen}") { grid-template-columns: 1fr repeat(#{$columns}, #{$max-column}) 1fr; }
 }
+
+.grid { @include grid; }
