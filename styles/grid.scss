@@ -8,56 +8,51 @@
 // stylelint-disable
 
 // Mobile
-$columns-mob:     4;                // Columns number
-$gap-mob:         1rem;             // Gutter width
-$gap-mob-out:     1.3333333333rem;  // External gutter width
+$columns-mob  : 4;                // Columns number
+$gap-mob      : 1rem;             // Gutter width
+$gap-mob-out  : 1.3333333333rem;  // External gutter width
 
 // Desktop
-$columns:         12;               // Columns number
-$gap:             2rem;             // Gutter width
-$gap-out:         2rem;             // External gutter width
+$columns      : 12;               // Columns number
+$gap          : 2rem;             // Gutter width
+$gap-out      : 2rem;             // External gutter width
 
-$max-width:       81.3333333333rem; // Maximum container's width
+$max-width    : 81.3333333333rem; // Maximum container's width
 
-$max-column:      math.div($max-width - ($gap * ($columns - 1)), $columns);
-$max-screen:      $max-width + ($gap-out * 2);
+:root {
+  --columns   : #{$columns-mob};
+  --gap       : #{$gap-mob};
+  --gap-out   : #{$gap-mob-out};
+  --gap-delta : calc(var(--gap-out) - var(--gap));
+  
+  @include media(">desktop") {
+    --columns : #{$columns};
+    --gap     : #{$gap};
+    --gap-out : #{$gap-out};
+  }
+}
 
-@mixin grid(
-    $columns-mob: $columns-mob,
-    $gap-mob:     $gap-mob,
-    $gap-mob-out: $gap-mob-out,
-
-    $columns:     $columns,
-    $gap:         $gap,
-    $gap-out:     $gap-out,
-
-    $max-width:   $max-width,
-
-    $justify:     false, // Overwrite if justify value is different from default
-    $align:       false, // Overwrite if align values are different from default
-    $rows:        false, // Overwrite if grid has rows
-    $gap-row:     false, // Overwrite if row gap is different from columns'
-  ){
-
-  $gap-delta-mob: $gap-mob-out - $gap-mob;
-  $gap-delta:     $gap-out - $gap;
-// stylelint-enable
-
+.grid {
+  // Oddly, the `repeat()` function doesn't support `calc()`;
+  // thus the use of Sass variables and math to set a max width to
+  // the grid's container.
+  $max-column   : math.div($max-width - ($gap * ($columns - 1)), $columns);
+  $max-screen   : $max-width + ($gap-out * 2);
+  // stylelint-enable
+  
   position: relative;
   display: grid;
-  grid-template-rows: if($rows, repeat(#{$rows}, 1fr), auto);
-  grid-template-columns: 0 repeat(#{$columns-mob}, 1fr) 0;
-  grid-gap: if($gap-row, $gap-row, $gap-mob) $gap-mob;
-  place-items: if($align, $align, stretch) if($justify, $justify, center);
+  grid-template-rows: auto;
+  grid-template-columns: 0 repeat(var(--columns), 1fr) 0;
+  gap: var(--gap);
+  place-items: stretch start;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  @include media(">phonelarge") { grid-template-columns: $gap-delta-mob repeat(#{$columns-mob}, 1fr) $gap-delta-mob; }
-  @include media(">notebook") {
-    grid-template-columns: $gap-delta repeat(#{$columns}, 1fr) $gap-delta;
-    grid-gap: if($gap-row, $gap-row, $gap) $gap;
+  @include media(">phonelarge") {
+    grid-template-columns: var(--gap-delta) repeat(var(--columns), 1fr) var(--gap-delta);
   }
-  @include media(">#{$max-screen}") { grid-template-columns: 1fr repeat(#{$columns}, #{$max-column}) 1fr; }
+  @include media(">#{$max-screen}") {
+    grid-template-columns: 1fr repeat(var(--columns), #{$max-column}) 1fr;
+  }
 }
-
-.grid { @include grid; }
