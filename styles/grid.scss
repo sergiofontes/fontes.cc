@@ -8,16 +8,16 @@
 // stylelint-disable
 
 // Mobile
-$columns-mob  : 4;                // Columns number
-$gap-mob      : 1rem;             // Gutter width
-$gap-mob-out  : 1.3333333333rem;  // External gutter width
+$columns-mob  : $columns-mob; // Columns number
+$gap-mob      : $gap-mob;     // Gutter width
+$gap-mob-out  : $gap-mob-out; // External gutter width
 
 // Desktop
-$columns      : 12;               // Columns number
-$gap          : 2rem;             // Gutter width
-$gap-out      : 2rem;             // External gutter width
+$columns      : $columns;     // Columns number
+$gap          : $gap;         // Gutter width
+$gap-out      : $gap-out;     // External gutter width
 
-$max-width    : 81.3333333333rem; // Maximum container's width
+$max-width    : $max-width;   // Maximum container's width
 
 :root {
   --columns   : #{$columns-mob};
@@ -49,9 +49,11 @@ $max-width    : 81.3333333333rem; // Maximum container's width
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+
   @include media(">phonelarge") {
     grid-template-columns: var(--gap-delta) repeat(var(--columns), 1fr) var(--gap-delta);
   }
+  
   @include media(">#{$max-screen}") {
     grid-template-columns: 1fr repeat(var(--columns), #{$max-column}) 1fr;
   }
