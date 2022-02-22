@@ -91,19 +91,19 @@ export default function Home() {
               <a href="https://guava.software" target="_blank">
                 Guava
               </a>
-              's Lead Designer, I've helped to envision and execute a design strategy;
-              fostered the design culture; and grew and trained the designers'
-              squad—from an army of one to a diverse and tightly-knit team of six
-              people.
+              's <em>Lead Designer</em>, I've helped envision and execute a design
+              strategy; fostered the design culture; and grew and trained the
+              designers' squad—from an army of one to a diverse and tightly-knit team
+              of six people.
             </p>
             <p>
               During my{' '}
               <a href="https://guava.software" target="_blank">
                 Guava
               </a>{' '}
-              years, as a Consultant Designer, I've collaborated with more than 18
-              clients—small and mid companies from the USA and Brazil—to transform
-              their business by revamping their digital products' user experience.
+              years, as a <em>Consultant Designer</em>, I've collaborated with more
+              than 18 clients—small and mid companies from the USA and Brazil—revamping
+              their digital products' user experience to transform their business.
             </p>
           </div>
           <span className={cn(style.divisors, style.last)}></span>

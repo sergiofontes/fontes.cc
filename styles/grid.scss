@@ -25,12 +25,18 @@ $max-width    : $max-width;   // Maximum container's width
   --gap-out   : #{$gap-mob-out};
   --gap-delta : calc(var(--gap-out) - var(--gap));
   
+  @include media(">tablet") {
+    --columns : #{$columns-tab};
+    --gap     : #{$gap-tab};
+    --gap-out : #{$gap-tab-out};
+  }
+  
   @include media(">desktop") {
     --columns : #{$columns};
     --gap     : #{$gap};
     --gap-out : #{$gap-out};
   }
-  
+
   @include media(">desktoplarge") {
     --columns : #{$columns-large};
   }
