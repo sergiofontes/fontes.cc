@@ -3,13 +3,20 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 :root {
-  --black           : #211d1d;
-  --white           : #fbfbfb;
-  --gray            : #787575;
+  --black             : #211d1d;
+  --white             : #fbfbfb;
+  --gray              : #787575;
+  --gray-light        : #b0aeae;
 
-  --color-primary   : var(--black);
+  --color-primary     : var(--black);
 
-  --color-text      : var(--black);
-  --color-subtitle  : var(--gray);
-  --color-background: var(--white);
+  --color-text        : var(--black);
+  --color-text-inverse: var(--white);
+  --color-subtitle    : var(--gray);
+  --color-cover       : var(--black);
+  --color-background  : var(--white);
+  --color-subtle      : var(--gray-light);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
