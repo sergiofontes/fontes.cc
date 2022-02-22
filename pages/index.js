@@ -14,11 +14,12 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Sans:ital@0;1&family=Playfair+Display:wght@900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=IBM+Plex+Sans:ital@0;1&family=Playfair+Display:wght@900&display=swap"
           rel="stylesheet"
         />
       </Head>
-      <nav>
+
+      <nav className={style.nav}>
         <ol>
           <li>
             <Link href="#experience">
@@ -42,69 +43,82 @@ export default function Home() {
           </li>
         </ol>
       </nav>
-      <header>
+
+      <header className={style.header}>
         <Symbol className={style.logo} />
-        <section>
+        <section className={cn(style.title, style.container, 'grid')}>
           <h1>
             <span>Sérgio Fontes: </span>Product Designer
           </h1>
         </section>
-        <section id="intro">
+        <section id="intro" className={cn(style.intro, style.container, 'grid')}>
           <h2>Intro</h2>
-          <p>
-            Hi, I‘m<i></i> Sérgio Fontes.
-          </p>
-          <div>
-            <p>I‘m a Brazilian digital designer with 12+ years of experience.</p>
+          <div className={style.column}>
+            <p className={cn(style.lead, 'lead')}>
+              Hi, I‘m<i></i> Sérgio Fontes.
+            </p>
+          </div>
+          <div className={style.columns}>
+            <p>I‘m a Brazilian digital designer with 12+ years of experience. </p>
             <p>I help companies design, build, and validate digital products.</p>
           </div>
+          <span className={cn(style.divisors, style.last)}></span>
         </section>
       </header>
 
-      <main>
-        <section id="experience">
+      <main className={style.main}>
+        <section
+          id="experience"
+          className={cn(style.experience, style.container, 'grid')}
+        >
           <h2>Experience</h2>
-          <p>
-            I'm Sérgio, a daydreamer, designer &amp; enthusiast about great products.
-            Currently, I'm <em>Staff Product Designer</em> at{' '}
-            <a href="https://vtex.com" target="_blank">
-              VTEX
-            </a>
-            , helping shape the present and future of worldwide commerce by building a
-            cutting-edge framework for stores and developers.
-          </p>
-          <p>
-            Previously, as{' '}
-            <a href="https://guava.software" target="_blank">
-              Guava
-            </a>
-            's Lead Designer, I've helped to envision and execute a design strategy;
-            fostered the design culture; and grew and trained the designers' squad—from
-            an army of one to a diverse and tightly-knit team of six people.
-          </p>
-          <p>
-            During my{' '}
-            <a href="https://guava.software" target="_blank">
-              Guava
-            </a>{' '}
-            years, as a Consultant Designer, I've collaborated with more than 18
-            clients—small and mid companies from the USA and Brazil—to transform their
-            business by revamping their digital products' user experience.
-          </p>
+          <div className={style.column}>
+            <p>
+              I'm Sérgio, a daydreamer, designer &amp; enthusiast about great products.
+              Currently, I'm <em>Staff Product Designer</em> at{' '}
+              <a href="https://vtex.com" target="_blank">
+                VTEX
+              </a>
+              , helping shape the present and future of worldwide commerce by building
+              a cutting-edge framework for stores and developers.
+            </p>
+          </div>
+          <span className={style.divisor}></span>
+          <div className={style.columns}>
+            <p>
+              Previously, as{' '}
+              <a href="https://guava.software" target="_blank">
+                Guava
+              </a>
+              's Lead Designer, I've helped to envision and execute a design strategy;
+              fostered the design culture; and grew and trained the designers'
+              squad—from an army of one to a diverse and tightly-knit team of six
+              people.
+            </p>
+            <p>
+              During my{' '}
+              <a href="https://guava.software" target="_blank">
+                Guava
+              </a>{' '}
+              years, as a Consultant Designer, I've collaborated with more than 18
+              clients—small and mid companies from the USA and Brazil—to transform
+              their business by revamping their digital products' user experience.
+            </p>
+          </div>
+          <span className={cn(style.divisors, style.last)}></span>
         </section>
 
-        <figure id="testimonial">
+        <figure id="testimonial" className={cn(style.testimonial, 'grid')}>
           <blockquote>
-            <p>
-              I have been working with Sergio for the past two years, and it's been a
+            <p className="lead">
+              I have been working with Sérgio for the past two years, and it's been a
               great opportunity to see his leadership and product design expertise in
               action. He's responsible for guiding the design team without compromising
               any natural talent from his peers, not to mention his vast experience in
               the design spectrum, always looking forward to improving the company's
               design process and strategy. His natural skills go from CSS mastery
               (inspiring every designer to be a better coder), architectural thinking,
-              user's best friend, and meme hunter. He's a loose laugher as well, has
-              great humor sense, and won't miss the chance to pet your cat.
+              user's best friend, and meme hunter.
             </p>
           </blockquote>
           <figcaption>
@@ -114,25 +128,27 @@ export default function Home() {
           </figcaption>
         </figure>
 
-        <section id="traits">
+        <section id="traits" className={cn(style.traits, style.container, 'grid')}>
           <h2>Traits</h2>
-          <section>
+          <div className={style.column}>
             <h3>Multidisciplinary</h3>
             <p>
               I love researching. I love prototyping. I love visual design. And I love
               HTML/CSS. This mixture put me in a particular situation of being a
               product's designer from day one. And, guess what, I love them all.
             </p>
-          </section>
-          <section>
+          </div>
+          <span className={style.divisor}></span>
+          <div className={style.column}>
             <h3>Craftsman</h3>
             <p>
               I have a keen eye to details and can sometimes be obsessive about
               pursuing the best possible solution. But it's not only about pixels: it
               also matters to me the overall use experience and its subjectivities.
             </p>
-          </section>
-          <section>
+          </div>
+          <span className={style.divisor}></span>
+          <div className={style.column}>
             <h3>Energetic</h3>
             <p>
               I'm an optimistic and energetic person. I always try to bring in my
@@ -140,64 +156,72 @@ export default function Home() {
               spirit when needed. I can fearlessly go down the rabbit hole to overcome
               any challenge.
             </p>
-          </section>
+          </div>
+          <span className={cn(style.divisor, style.last)}></span>
         </section>
 
-        <section id="contact">
+        <section id="contact" className={cn(style.contact, style.container, 'grid')}>
           <h2>Contact</h2>
-          <p>
-            <em>Email:</em>
-            <a href="mailto:sergio@fontes.cc">sergio@fontes.cc</a>
-          </p>
-          <p>I usually reply emails in no more than one business day.</p>
-          <p>
-            Alternatively, you can find me on{' '}
-            <a href="" target="_blank">
-              LinkedIn
-            </a>{' '}
-            and{' '}
-            <a href="" target="_blank">
-              GitHub
-            </a>
-          </p>
+          <div className={style.column}>
+            <p>
+              <em>Email:</em>
+              <a className={cn(style.lead, 'lead')} href="mailto:sergio@fontes.cc">
+                sergio@fontes.cc
+              </a>
+            </p>
+          </div>
+          <span className={style.divisor}></span>
+          <div className={style.columns}>
+            <p>I usually reply emails in no more than one business day.</p>
+            <p>
+              Alternatively, you can find me on{' '}
+              <a href="" target="_blank">
+                LinkedIn
+              </a>{' '}
+              and{' '}
+              <a href="" target="_blank">
+                GitHub
+              </a>
+            </p>
+          </div>
+          <span className={cn(style.divisors, style.last)}></span>
         </section>
 
-        <section id="work">
+        <section id="work" className={cn(style.work, style.container, 'grid')}>
           <h2>(Some) Work</h2>
-          <section id="petplate">
+          <section id="petplate" className="grid">
             <h3>PetPlate</h3>
             <small>2020–2021</small>
-            <p>
-              <ul>
-                <li>Design system development;</li>
-                <li>Requirements gathering;</li>
-                <li>Low &amp; hi-fi prototyping;</li>
-                <li>Usability testing;</li>
-                <li>HTML/CSS coding.</li>
-              </ul>
-            </p>
+            <div></div>
+            <ul>
+              <li>Design system development;</li>
+              <li>Requirements gathering;</li>
+              <li>Low &amp; hi-fi prototyping;</li>
+              <li>Usability testing;</li>
+              <li>HTML/CSS coding.</li>
+            </ul>
             <a href="https://petplate.com" target="_blank">
               PetPlate
             </a>
           </section>
-          <section id="tropicalruby">
+          <section id="tropicalruby" className="grid">
             <h3>TropicalRuby</h3>
             <small>2015</small>
-            <p>
-              <ul>
-                <li>Visual identity;</li>
-                <li>Website design;</li>
-                <li>HTML/CSS coding;</li>
-                <li>Conference organization.</li>
-              </ul>
-            </p>
+            <div></div>
+            <ul>
+              <li>Visual identity;</li>
+              <li>Website design;</li>
+              <li>HTML/CSS coding;</li>
+              <li>Conference organization.</li>
+            </ul>
             <a href="https://tropicalrb.com" target="_blank">
               PetPlate
             </a>
           </section>
         </section>
       </main>
-      <footer>
+
+      <footer className={cn(style.footer, style.container, 'grid')}>
         <small>Sérgio Fontes, 2022. Copy, design &amp; code by me.</small>
         <small>
           No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there's some
