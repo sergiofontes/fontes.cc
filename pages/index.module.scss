@@ -47,17 +47,21 @@
 }
 
 .container {
+  --heading-start: 1;
+  --content-start: 2;
+  --content-width: 4;
   align-items: start;
   row-gap: calc(var(--gap) * 1.5);
 
   h2, h3 { margin-top: .266667rem; }
 
   h2 {
+    position: sticky;
+    top: 1rem;
     align-self: start;
     justify-self: end;
-    grid-column: 1;
-    top: -1rem;
-    margin-top: .266667rem;
+    grid-column: var(--heading-start);
+    margin-top: -.6875rem;
     transform-origin: bottom right;
     transform: rotate(-90deg);
     white-space: nowrap;
@@ -69,20 +73,26 @@
   }
 
   .column, .columns, .divisor, .divisors {
-    grid-column-start: 2;
-    grid-column-end: span 4;
+    grid-column-start: var(--content-start);
+    grid-column-end: span var(--content-width);
     width: 100%;
   }
 
   .divisor, .divisors { border-bottom: 2px solid var(--color-text); }
-  .last { grid-column-end: span 5; }
+  .last { grid-column-end: span calc(var(--content-width) + 1); }
   
   @include media(">desktop") {
+    --heading-start: 4;
+    --heading-width: 2;
+    --content-start: calc(var(--heading-start) + var(--heading-width));
+    --content-width: 3;
     align-items: stretch;
-    
+    row-gap: var(--gap);
+
     h2 {
       top: unset;
-      grid-column: 5 / span 2;
+      grid-column: var(--heading-start) / span var(--heading-width);
+      margin-top: .266667rem;
       transform: unset;
       white-space: normal;
     }
@@ -93,27 +103,32 @@
     .column, .columns { grid-column-start: auto; }
     
     .column {
-      grid-column-end: span 3;
-      &:first-of-type { grid-column-start: 7; }
+      grid-column-end: span var(--content-width);
+      &:first-of-type { grid-column-start: var(--content-start); }
     }
 
     .columns {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-end: span 6;
+      grid-column-end: span calc(var(--content-width) * 2);
       gap: var(--gap);
     }
 
     .divisor, .divisors { grid-row: 2; }
 
     .divisor {
-      grid-column-end: span 3;
-      &:nth-of-type(1) { grid-column-start: 7; }
-      &:nth-of-type(2) { grid-column-start: 10; }
-      &:nth-of-type(3) { grid-column-start: 13; }
+      grid-column-end: span var(--content-width);
+      &:nth-of-type(1) { grid-column-start: var(--content-start); }
+      &:nth-of-type(2) { grid-column-start: calc(var(--content-start) + var(--content-width)); }
+      &:nth-of-type(3) { grid-column-start: calc(var(--content-start) + var(--content-width) + var(--content-width)); }
     }
 
-    .divisors { grid-column: 10 / span 6; }
+    .divisors { grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 2); }
+  }
+
+  @include media(">desktoplarge") {
+    --heading-start: 5;
+    --content-start: 7;
   }
 }
 
@@ -135,11 +150,10 @@
   h1 {
     top: 1px;
     margin: 0;
-    width: 100%;
-    overflow: hidden;
-    grid-column: 2 / span 5;
+    grid-column: 1 / span var(--columns);
   }
-  .title, .intro { grid-column: 1 / span 16; }
+
+  .title, .intro { grid-column: 1 / span calc(var(--columns) + 2); }
   .title { grid-row: 2; }
   .intro { grid-row: 1; }
   .divisors { border-color: var(--color-text-inverse); }
@@ -151,9 +165,9 @@
     max-height: 66rem;
     padding: var(--gap) 0 0;
 
-    h1 { grid-column: 7 / span 9; }
+    h1 { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
     .title { align-self: end; }
-    .divisors { grid-column: 7 / span 9; }
+    .divisors { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
   }
 }
 
@@ -169,22 +183,42 @@
 }
 
 .title {
+  width: 100%;
+  overflow: hidden;
+
+  h1 { left: -.5rem; }
+  
+  b {
+    position: relative;
+    left: .45em;
+    display: inline-block;
+  }
+
   @include media(">desktop") {
-    h1 {
-      left: -.5rem;
-    }
+    b { left: .6em; }
   }
 }
 
 .testimonial {
+  --quote-start: var(--content-start);
+  --quote-width: var(--content-width);
+
   p { margin-bottom: 0; }
   blockquote,
-  figcaption { grid-column: 2 / span 4; }
+  figcaption { grid-column: var(--quote-start) / span var(--quote-width); }
 
   @include media(">desktop") {
+    --quote-start: 4;
+    --quote-width: calc((var(--content-width) * 3) - 1);
     align-items: center;
-    blockquote { grid-column: 4 / span 9; }
-    figcaption { grid-column: 13 / span 3;   }
+
+    figcaption { grid-column: calc(var(--quote-start) + var(--quote-width)) / span var(--content-width);   }
+  }
+  
+  @include media(">desktoplarge") {
+    --quote-width: calc(var(--content-width) * 3);
+
+    blockquote { padding-right: 2rem; }
   }
 }
 
@@ -199,7 +233,7 @@
 .work {
   section {
     display: grid;
-    grid-column: 1 / span 6;
+    grid-column: 1 / span calc(var(--columns) + 2);
     column-gap: var(--gap);
     row-gap: var(--gap);
     padding-bottom: calc(var(--gap) * 2);
@@ -207,10 +241,11 @@
   
   h2 {
     @include media("<=desktop") {
+      position: relative;
       top: unset;
       align-self: start;
       justify-self: start;
-      grid-column: 2 / span 5;
+      grid-column: var(--content-start) / span calc(var(--columns) - 1);
       margin: 0;
       transform: unset;
       white-space: normal;
@@ -230,7 +265,7 @@
     position: relative;
     align-self: start;
     justify-self: end;
-    grid-column: 1;
+    grid-column: var(--heading-start);
     top: -1rem;
     margin-top: .266667rem;
     transform-origin: bottom right;
@@ -238,7 +273,7 @@
     white-space: nowrap;
   }
 
-  h3, ul, p, a { grid-column: 2 / span 4; }
+  h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
 
   @include media(">desktop") {
     justify-items: stretch;
@@ -248,9 +283,10 @@
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(3, auto) 1fr;
       row-gap: calc(var(--gap) / 2);
-      grid-column: 7 / span 9;
+      grid-column: var(--content-start) / span 9;
     }
     
+    // Out of regular grid
     div {
       grid-row: 1 / span 4;
       grid-column: 1 / span 2;
@@ -258,6 +294,7 @@
       border-radius: 1.333333rem;
     }
 
+    // Out of regular grid
     small {
       top: unset;
       justify-self: start;
@@ -265,6 +302,7 @@
       white-space: normal;
     }
 
+    // Out of regular grid
     h3, small, ul, p, a {
       grid-column-start: 3;
       grid-column-end: auto;
@@ -276,9 +314,20 @@
   row-gap: 0;
   padding-bottom: calc(var(--gap) * 1.5);
 
-  small {
-    display: block;
-    grid-column: 2 / span 4;
-    @include media(">desktop") { grid-column: 7 / span 6; }
+  small { display: inline; }
+  
+  div {
+    display: inline-block;
+    grid-column: var(--content-start) / span var(--content-width);
+    line-height: 0;
+  }
+  
+  @include media(">desktop") {
+    small { display: block; }
+
+    div {
+      display: block;
+      grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+    }
   }
 }

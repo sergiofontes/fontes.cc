@@ -48,7 +48,8 @@ export default function Home() {
         <Symbol className={style.logo} />
         <section className={cn(style.title, style.container, 'grid')}>
           <h1>
-            <span>Sérgio Fontes: </span>Product Designer
+            <span>Sérgio Fontes: </span>
+            <b>Product</b> Designer
           </h1>
         </section>
         <section id="intro" className={cn(style.intro, style.container, 'grid')}>
@@ -108,7 +109,10 @@ export default function Home() {
           <span className={cn(style.divisors, style.last)}></span>
         </section>
 
-        <figure id="testimonial" className={cn(style.testimonial, 'grid')}>
+        <figure
+          id="testimonial"
+          className={cn(style.testimonial, style.container, 'grid')}
+        >
           <blockquote>
             <p className="lead">
               I have been working with Sérgio for the past two years, and it's been a
@@ -222,11 +226,13 @@ export default function Home() {
       </main>
 
       <footer className={cn(style.footer, style.container, 'grid')}>
-        <small>Sérgio Fontes, 2022. Copy, design &amp; code by me.</small>
-        <small>
-          No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there's some
-          JS too).
-        </small>
+        <div>
+          <small>Sérgio Fontes, 2022. Copy, design &amp; code by me. </small>
+          <small>
+            No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there's
+            some JS too).
+          </small>
+        </div>
       </footer>
     </Layout>
   );

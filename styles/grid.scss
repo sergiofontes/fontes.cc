@@ -30,14 +30,18 @@ $max-width    : $max-width;   // Maximum container's width
     --gap     : #{$gap};
     --gap-out : #{$gap-out};
   }
+  
+  @include media(">desktoplarge") {
+    --columns : #{$columns-large};
+  }
 }
 
 .grid {
   // Oddly, the `repeat()` function doesn't support `calc()`;
   // thus the use of Sass variables and math to set a max width to
   // the grid's container.
-  $max-column   : math.div($max-width - ($gap * ($columns - 1)), $columns);
-  $max-screen   : $max-width + ($gap-out * 2);
+  $max-column   : #{$max-column};
+  $max-screen   : #{$max-screen};
   // stylelint-enable
   
   position: relative;
@@ -50,7 +54,7 @@ $max-width    : $max-width;   // Maximum container's width
   margin-right: auto;
   margin-left: auto;
 
-  @include media(">phonelarge") {
+  @include media(">phonemid") {
     grid-template-columns: var(--gap-delta) repeat(var(--columns), 1fr) var(--gap-delta);
   }
   

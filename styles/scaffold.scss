@@ -22,11 +22,12 @@ $gap-mob      : $base-mob;        // Gutter width
 $gap-mob-out  : $base-mob * 3;    // External gutter width
 
 // Desktop
-$columns      : 14;               // Columns number
+$columns      : 13;               // Columns number
+$columns-large: 14;               // Columns number
 $gap          : $base * 2;        // Gutter width
 $gap-out      : $base * 3;        // External gutter width
 
 $max-width    : 1400px;           // Maximum container's width
 
-$max-column   : math.div($max-width - ($gap * ($columns - 1)), $columns);
+$max-column   : math.div($max-width - ($gap * ($columns-large - 1)), $columns-large);
 $max-screen   : $max-width + ($gap-out * 2);
