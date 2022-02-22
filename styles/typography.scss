@@ -21,6 +21,8 @@
   line-height: var(--line-height);
 }
 
+* { box-sizing: border-box; }
+
 // Title
 h1 {
   font-family: var(--font-hero);
