@@ -121,7 +121,7 @@ figcaption {
 a {
   position: relative;
   display: inline-block;
-  transition: all .2s ease-in-out;
+  transition: all .15s ease-in-out;
   &, &:visited {
     color: var(--color-text);
     @include underline($color: #{var(--color-text)}, $thickness: 1px);

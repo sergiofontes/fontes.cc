@@ -4,6 +4,12 @@
 
 @import "../styles/scaffold";
 
+.index {
+  --header-max-height: 900px;
+  --logo-height: 2.75rem;;
+  @include media(">desktop") { --logo-height: 2.9333333333rem; }
+}
+
 .main {
   > * {
     --spacing-multiplier: 8;
@@ -29,10 +35,13 @@
 
   ol { list-style: none; }
   li:not(:last-child) { margin-bottom: 1rem; }
+
   a {
     color: var(--color-text-inverse);
     text-decoration-color: var(--color-text-inverse);
   }
+
+  .arrow { display: none; }
   
   @include media(">desktop") {
     display: block;
@@ -40,9 +49,19 @@
     left: var(--gap);
     align-self: end;
     transform: translateY(-100%);
+
+    .arrow {
+      display: block;
+      width: 1.6rem;
+      margin-top: var(--gap);
+      transform: rotate(90deg);
+      path { stroke: var(--color-text-inverse); }
+    }
     
-    @include media("height>=900px") {
-      top: calc(60rem - var(--gap));
+    @include media("height>=1000px") {}
+
+    @include media("height>=1000px") {
+      top: calc(var(--header-max-height) - var(--gap));
       bottom: auto;
     }
   }
@@ -61,7 +80,7 @@
 
   h2 {
     position: sticky;
-    top: 1rem;
+    top: calc(var(--logo-height) + var(--gap) + 1rem);
     align-self: start;
     justify-self: end;
     grid-column: var(--heading-start);
@@ -126,7 +145,7 @@
     .columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
 
     h2 {
-      top: unset;
+      top: var(--gap);
       grid-column: var(--heading-start) / span var(--heading-width);
       margin-top: .266667rem;
       transform: unset;
@@ -166,7 +185,7 @@
     left: var(--gap);
     width: 2.75rem;
     height: auto;
-    transition: all .2s ease-in-out;
+    transition: all .15s ease-in-out;
     path { fill: var(--color-background); }
 
     &:hover  { transform: translateY(-2px); }
@@ -198,7 +217,7 @@
   @include media(">desktop") {
     min-height: 40rem;
     height: 90vh;
-    max-height: 60rem;
+    max-height: var(--header-max-height);
     padding-top: var(--gap);
 
     h1 { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
@@ -311,6 +330,25 @@
 }
 
 .contact {
+  a {
+    display: inline-block;
+    align-items: baseline;
+    svg {
+      position: relative;
+      display: inline-block;
+      width: 1rem;
+      margin-right: .2rem;
+      vertical-align: middle;
+      path { fill: var(--color-subtitle); }
+    }
+
+    &:hover, &:active {
+      svg path { fill: var(--color-text); }
+    }
+  }
+
+  .linkedin svg { top: -3px; }
+
   .lead {
     top: -3px;
     display: block;
@@ -346,9 +384,7 @@
     }
   }
 
-  h3 {
-    margin: 0;
-  }
+  h3 { margin: 0; }
   
   div {
     grid-column: 1 / span 6;
@@ -372,6 +408,18 @@
   }
 
   h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
+
+  a {
+    display: inline-block;
+
+    svg {
+      width: 1rem;
+      margin-left: calc(var(--gap) / 4);
+      transition: all .15s ease-in-out;
+    }
+
+    &:hover svg { margin-left: calc(var(--gap) / 3); }
+  }
 
   .petplate { --scale-factor: 1; }
   .tropical { --scale-factor: 1.1; }
@@ -410,6 +458,7 @@
     // Out of regular grid
     h3 { margin-top: 1rem; }
     a  { margin-bottom: 1rem; }
+
     h3, ul, p, a {
       grid-column-start: 3;
       grid-column-end: auto;
