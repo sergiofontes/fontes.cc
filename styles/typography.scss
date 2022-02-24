@@ -15,6 +15,10 @@
     --font-size:   #{$base};
     --line-height: 1.6;
   }
+
+  @include media(">desktoplarge") {
+    --font-size:   #{$base-large};
+  }
   
   font-family: var(--font-body);
   font-size:   var(--font-size);
@@ -117,6 +121,7 @@ figcaption {
 a {
   position: relative;
   display: inline-block;
+  transition: all .2s ease-in-out;
   &, &:visited {
     color: var(--color-text);
     @include underline($color: #{var(--color-text)}, $thickness: 1px);

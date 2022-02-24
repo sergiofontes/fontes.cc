@@ -139,11 +139,6 @@
     
     h2, h3 { margin-top: .266667rem; }
   }
-
-  @include media(">desktoplarge") {
-    --heading-start: 5;
-    --content-start: 7;
-  }
 }
 
 .header {
@@ -238,12 +233,6 @@
     align-items: center;
 
     figcaption { grid-column: calc(var(--quote-start) + var(--quote-width)) / span var(--content-width);   }
-  }
-  
-  @include media(">desktoplarge") {
-    --quote-width: calc(var(--content-width) * 3);
-
-    blockquote { padding-right: 2rem; }
   }
 }
 

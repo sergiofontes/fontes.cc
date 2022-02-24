@@ -36,10 +36,6 @@ $max-width    : $max-width;   // Maximum container's width
     --gap     : #{$gap};
     --gap-out : #{$gap-out};
   }
-
-  @include media(">desktoplarge") {
-    --columns : #{$columns-large};
-  }
 }
 
 .grid {
