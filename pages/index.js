@@ -5,6 +5,13 @@ import Image from 'next/image';
 import Layout, { siteTitle } from '../components/layout';
 
 import Symbol from '../public/images/symbol.svg';
+import LogoClearworks from '../public/images/logos/clearworks.svg';
+import LogoGuava from '../public/images/logos/guava.svg';
+import LogoPetPlate from '../public/images/logos/petplate.svg';
+import LogoStorenvy from '../public/images/logos/storenvy.svg';
+import LogoTropical from '../public/images/logos/tropical.svg';
+import LogoTrue from '../public/images/logos/true.svg';
+import LogoVtex from '../public/images/logos/vtex.svg';
 
 import style from './index.module.scss';
 
@@ -37,7 +44,7 @@ export default function Home() {
             </Link>
           </li>
           <li>
-            <Link href="#Work">
+            <Link href="#work">
               <a>Work</a>
             </Link>
           </li>
@@ -45,7 +52,11 @@ export default function Home() {
       </nav>
 
       <header className={style.header}>
-        <Symbol className={style.logo} />
+        <Link href="/">
+          <a className={style.symbol} aria-label="Go to homepage">
+            <Symbol />
+          </a>
+        </Link>
         <section className={cn(style.title, style.container, 'grid')}>
           <h1>
             <span>Sérgio Fontes: </span>
@@ -84,6 +95,12 @@ export default function Home() {
               a cutting-edge framework for stores and developers.
             </p>
           </div>
+          <ul className={style.logo}>
+            <li className={style.vtex}>
+              <span>VTEX</span>
+              <LogoVtex />
+            </li>
+          </ul>
           <span className={style.divisor}></span>
           <div className={style.columns}>
             <p>
@@ -106,6 +123,28 @@ export default function Home() {
               their digital products' user experience to transform their business.
             </p>
           </div>
+          <ul className={style.logos} aria-label="Companies I've collaborated with">
+            <li className={style.guava}>
+              <span>Guava</span>
+              <LogoGuava />
+            </li>
+            <li className={style.petplate}>
+              <span>PetPlate</span>
+              <LogoPetPlate />
+            </li>
+            <li className={style.clearworks}>
+              <span>Clearworks</span>
+              <LogoClearworks />
+            </li>
+            <li className={style.storenvy}>
+              <span>Storenvy</span>
+              <LogoStorenvy />
+            </li>
+            <li className={style.true}>
+              <span>True</span>
+              <LogoTrue />
+            </li>
+          </ul>
           <span className={cn(style.divisors, style.last)}></span>
         </section>
 
@@ -129,6 +168,9 @@ export default function Home() {
             Filipe Soares
             <br />
             <small>Staff Product Designer @ VTEX</small>
+            <div className={style.logo}>
+              <LogoVtex />
+            </div>
           </figcaption>
         </figure>
 
@@ -194,7 +236,10 @@ export default function Home() {
         <section id="work" className={cn(style.work, style.container, 'grid')}>
           <h2>(Some) Work</h2>
           <section id="petplate" className="grid">
-            <h3>PetPlate</h3>
+            <h3 className={cn(style.logo, style.petplate)}>
+              <span>PetPlate</span>
+              <LogoPetPlate />
+            </h3>
             <small>2020–2021</small>
             <div></div>
             <ul>
@@ -209,7 +254,10 @@ export default function Home() {
             </a>
           </section>
           <section id="tropicalruby" className="grid">
-            <h3>TropicalRuby</h3>
+            <h3 className={cn(style.logo, style.tropical)}>
+              <span>TropicalRuby</span>
+              <LogoTropical />
+            </h3>
             <small>2015</small>
             <div></div>
             <ul>
