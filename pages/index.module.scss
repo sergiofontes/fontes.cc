@@ -155,7 +155,8 @@
   h1 {
     top: 1px;
     margin: 0;
-    grid-column: 1 / span var(--columns);
+    grid-column: 1 / span calc(var(--columns) + 2);
+    text-align: center;
   }
 
   .symbol {
@@ -175,15 +176,23 @@
   }
 
   .title, .intro { grid-column: 1 / span calc(var(--columns) + 2); }
-  .title { grid-row: 2; }
   .intro { grid-row: 1; }
+  .title { grid-row: 2; }
   .divisors { border-color: var(--color-text-inverse); }
 
   @include media(">tablet") {
     grid-template-rows: auto 1fr;
     padding-top: calc(var(--gap) * 6);
 
-    h1 { grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 3); }
+    h1 {
+      grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 3);
+      text-align: left;
+    }
+
+    @include media("<=desktop") {
+      .columns { display: block; }
+      .intro { grid-column-end: span calc(var(--columns) + 1); }
+    }
   }
   
   @include media(">desktop") {
@@ -203,7 +212,7 @@
   p { display: inline; }
   .lead { line-height: 1; }
   
-  @include media(">tablet") {
+  @include media(">desktop") {
     align-items: end;
     p { display: block; }
   }
