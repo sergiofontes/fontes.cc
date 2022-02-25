@@ -9,13 +9,6 @@
   z-index: 10;
   overflow: hidden;
 
-  li:not(:last-child) { margin-bottom: 1.5rem; }
-  
-  ol {
-    grid-column: 2 / span var(--columns);
-    list-style: none;
-  }
-  
   a {
     color: var(--color-text-inverse);
     text-decoration-color: var(--color-text-inverse);
@@ -27,7 +20,14 @@
     align-self: end;
     grid-column: 2 / span var(--columns);
   }
+
+    .link:not(:last-child) { margin-bottom: 1.5rem; }
   
+  .links {
+    grid-column: 2 / span var(--columns);
+    list-style: none;
+  }
+
   .divisor {
     display: block;
     grid-column: 2 / span calc(var(--columns) + 1);
@@ -53,6 +53,11 @@
     path { stroke: var(--color-text-inverse); }
   }
   
+  @include media(">tablet") {
+    .links, small { grid-column: 3 / span calc(var(--columns) - 1); }
+    .divisor  { grid-column: 3 / span var(--columns); }
+  }
+
   @include media(">desktop") {
     display: block;
     top: calc(90vh - var(--gap));
@@ -61,10 +66,10 @@
     transform: translateY(-100%);
     
     a { font-size: 1rem; }
-    li:not(:last-child) { margin-bottom: 1rem; }
-    ol, .arrow { grid-column: unset; }
+    .link:not(:last-child) { margin-bottom: 1rem; }
+    .links, .arrow { grid-column: unset; }
     .arrow { display: block; }
-    .button { display: none; }
+    .button, .divisor { display: none; }
     
     .grid {
       display: block;
@@ -85,7 +90,7 @@
 
 .symbol {
   position: fixed;
-  z-index: 10;
+  z-index: 12;
   top: var(--gap);
   left: var(--gap);
   width: var(--logo-size);
@@ -101,14 +106,49 @@
 
 .button {
   position: fixed;
-  z-index: 12;
   top: var(--gap);
   right: var(--gap);
+  z-index: 12;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: .5rem;
+  flex-direction: column;
   width: var(--button-size);
   height: var(--button-size);
-  background-color: var(--color-background);
+  padding: calc(var(--button-size) / 6);
+  background-color: transparent;
   appearance: none;
-  border: 0;
+  border: transparent;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+
+  span { @include fontless; }
+
+  &:hover { gap: .75rem; }
+
+  i {
+    display: block;
+    width: 70%;
+    border-bottom: 3px solid var(--color-background);
+    transition: all .15s ease-in-out;
+
+    &:last-of-type { width: 100%; }
+  }
+
+  @at-root {
+    .open .button {
+      align-items: center;
+
+      &:hover { gap: .5rem; }
+
+      i {
+        width: 100%;
+        &:first-of-type { transform: rotate(45deg) translateX(15%) translateY(100%); }
+        &:last-of-type { transform: rotate(-45deg) translateX(15%) translateY(-120%); }
+      }
+    }
+  }
 }
 
 .open {
@@ -119,6 +159,4 @@
 
   small { display: block; }
   .grid { display: grid; }
-  
-  + .symbol { z-index: 12; }
 }

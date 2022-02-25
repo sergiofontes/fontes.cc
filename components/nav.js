@@ -26,26 +26,28 @@ export default function Nav({ onClick }) {
       <nav className={cn({ [style.nav]: true, [style.open]: isOpen })}>
         <button className={style.button} open={isOpen} onClick={handleOpenCloseClick}>
           <span>Toggle menu</span>
+          <i></i>
+          <i></i>
         </button>
         <div className={cn(style.grid, 'grid')}>
           <span className={style.divisor}></span>
-          <ol>
-            <li>
+          <ol className={style.links}>
+            <li className={style.link}>
               <Link href="#experience">
                 <a onClick={handleOpenCloseClick}>Experience</a>
               </Link>
             </li>
-            <li>
+            <li className={style.link}>
               <Link href="#traits">
                 <a onClick={handleOpenCloseClick}>Traits</a>
               </Link>
             </li>
-            <li>
+            <li className={style.link}>
               <Link href="#contact">
                 <a onClick={handleOpenCloseClick}>Contact</a>
               </Link>
             </li>
-            <li>
+            <li className={style.link}>
               <Link href="#work">
                 <a onClick={handleOpenCloseClick}>Work</a>
               </Link>
@@ -53,7 +55,7 @@ export default function Nav({ onClick }) {
           </ol>
 
           <IconArrow className={style.arrow} />
-          <small>Sérgio Fontes, 2022.</small>
+          <small aria-hidden="hidden">Sérgio Fontes, 2022.</small>
         </div>
       </nav>
 
