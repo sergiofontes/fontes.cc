@@ -4,12 +4,6 @@
 
 @import "../styles/scaffold";
 
-.index {
-  --header-max-height: 900px;
-  --logo-height: 2.75rem;;
-  @include media(">desktop") { --logo-height: 2.9333333333rem; }
-}
-
 .main {
   > * {
     --spacing-multiplier: 8;
@@ -28,47 +22,6 @@
   }
 }
 
-.nav {
-  position: fixed;
-  z-index: 2;
-  display: none;
-
-  ol { list-style: none; }
-  li:not(:last-child) { margin-bottom: 1rem; }
-
-  a {
-    color: var(--color-text-inverse);
-    text-decoration-color: var(--color-text-inverse);
-  }
-
-  .arrow { display: none; }
-  
-  @include media(">desktop") {
-    display: block;
-    top: calc(90vh - var(--gap));
-    left: var(--gap);
-    align-self: end;
-    transform: translateY(-100%);
-
-    .arrow {
-      display: block;
-      width: 1.6rem;
-      margin-top: var(--gap);
-      transform: rotate(90deg);
-      path { stroke: var(--color-text-inverse); }
-    }
-    
-    @include media("height>=1000px") {}
-
-    @include media("height>=1000px") {
-      top: calc(var(--header-max-height) - var(--gap));
-      bottom: auto;
-    }
-  }
-
-  @include media(">#{$max-screen}") { left: calc((100vw - #{$max-width}) / 2); }
-}
-
 .container {
   --heading-start: 1;
   --content-start: 2;
@@ -80,7 +33,7 @@
 
   h2 {
     position: sticky;
-    top: calc(var(--logo-height) + var(--gap) + 1rem);
+    top: calc(var(--logo-size) + var(--gap) + 1rem);
     align-self: start;
     justify-self: end;
     grid-column: var(--heading-start);
@@ -176,22 +129,6 @@
     margin: 0;
     grid-column: 1 / span calc(var(--columns) + 2);
     text-align: center;
-  }
-
-  .symbol {
-    position: fixed;
-    z-index: 2;
-    top: var(--gap);
-    left: var(--gap);
-    width: 2.75rem;
-    height: auto;
-    transition: all .15s ease-in-out;
-    path { fill: var(--color-background); }
-
-    &:hover  { transform: translateY(-2px); }
-    &:active { transform: translateY(2px); }
-
-    @include media(">#{$max-screen}") { left: calc((100vw - #{$max-width}) / 2); }
   }
 
   .title, .intro { grid-column: 1 / span calc(var(--columns) + 2); }

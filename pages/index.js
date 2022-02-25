@@ -3,8 +3,8 @@ import Link from 'next/link';
 import cn from 'classnames';
 import Image from 'next/image';
 import Layout, { siteTitle } from '../components/layout';
+import Nav from '../components/nav';
 
-import Symbol from '../public/images/symbol.svg';
 import IconArrow from '../public/images/arrow.svg';
 import LogoClearworks from '../public/images/logos/clearworks.svg';
 import LogoGuava from '../public/images/logos/guava.svg';
@@ -30,38 +30,9 @@ export default function Home() {
       </Head>
 
       <div className={style.index}>
-        <nav className={style.nav}>
-          <ol>
-            <li>
-              <Link href="#experience">
-                <a>Experience</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#traits">
-                <a>Traits</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#contact">
-                <a>Contact</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#work">
-                <a>Work</a>
-              </Link>
-            </li>
-          </ol>
-          <IconArrow className={style.arrow} />
-        </nav>
+        <Nav />
 
         <header className={style.header}>
-          <Link href="#">
-            <a className={style.symbol} aria-label="Go to homepage">
-              <Symbol />
-            </a>
-          </Link>
           <section className={cn(style.title, style.container, 'grid')}>
             <h1>
               <span>Sérgio Fontes: </span>
