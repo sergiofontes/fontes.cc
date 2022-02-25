@@ -34,13 +34,13 @@
   h2 {
     position: sticky;
     top: calc(var(--logo-size) + var(--gap) + 1rem);
+    z-index: 2;
     align-self: start;
     justify-self: end;
     grid-column: var(--heading-start);
     margin-top: -.6875rem;
     transform-origin: bottom right;
     transform: rotate(-90deg);
-    white-space: nowrap;
   }
 
   p { 
@@ -301,34 +301,24 @@
 .work {
   section {
     display: grid;
-    grid-column: 1 / span calc(var(--columns) + 2);
+    grid-column: var(--heading-start) / span calc(var(--columns) + 2);
+    grid-row: auto;
     column-gap: var(--gap);
     row-gap: var(--gap);
     &:not(:last-child) { padding-bottom: calc(var(--gap) * 2); }
+    &:nth-of-type(1) { grid-row: 1 / span 2; }
   }
+
+  h2 { grid-row: 1; }
   
-  h2 {
-    white-space: normal;
-
-    @include media("<=tablet") {
-      position: relative;
-      top: unset;
-      align-self: start;
-      justify-self: start;
-      grid-column: var(--content-start) / span calc(var(--columns) - 1);
-      margin: 0;
-      transform: unset;
-    }
-  }
-
-  h3 { margin: 0; }
+  h3 { margin: 1rem 0 0; }
   
   div {
     grid-column: 1 / span 6;
-    grid-row: 1;
+    grid-row: 2;
     align-self: stretch;
     width: 100%;
-    padding-top: 70%;
+    padding-top: 120%;
     background-color: red;
   }
   
@@ -370,6 +360,7 @@
       grid-template-rows: auto auto 1fr;
       row-gap: var(--gap);
       grid-column: var(--content-start) / span 9;
+      &:nth-of-type(1) { grid-row: auto; }
     }
     
     // Out of regular grid

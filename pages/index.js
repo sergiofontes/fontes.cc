@@ -217,7 +217,7 @@ export default function Home() {
           </section>
 
           <section id="work" className={cn(style.work, style.container, 'grid')}>
-            <h2>(Some) Work</h2>
+            <h2>Work</h2>
             <section id="petplate" className="grid">
               <h3 className={cn(style.logo, style.petplate)}>
                 <span>PetPlate</span>
