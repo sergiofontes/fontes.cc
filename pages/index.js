@@ -218,13 +218,14 @@ export default function Home() {
 
           <section id="work" className={cn(style.work, style.container, 'grid')}>
             <h2>Work</h2>
-            <section id="petplate" className="grid">
+
+            <section id="petplate" className={cn(style.case, 'grid')}>
               <h3 className={cn(style.logo, style.petplate)}>
                 <span>PetPlate</span>
                 <LogoPetPlate />
               </h3>
-              <small>2020–2021</small>
-              <div></div>
+              <small className={style.date}>2020–2021</small>
+              <div className={style.image}></div>
               <ul>
                 <li>Design system development;</li>
                 <li>Requirements gathering;</li>
@@ -237,13 +238,14 @@ export default function Home() {
                 <IconArrow />
               </a>
             </section>
-            <section id="tropicalruby" className="grid">
+
+            <section id="tropicalruby" className={cn(style.case, 'grid')}>
               <h3 className={cn(style.logo, style.tropical)}>
                 <span>TropicalRuby</span>
                 <LogoTropical />
               </h3>
-              <small>2015</small>
-              <div></div>
+              <small className={style.date}>2015</small>
+              <div className={style.image}></div>
               <ul>
                 <li>Visual identity;</li>
                 <li>Website design;</li>
