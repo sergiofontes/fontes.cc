@@ -330,13 +330,13 @@
     grid-row: 2;
     align-self: stretch;
     width: 100%;
-    aspect-ratio: 10 / 11;
+    aspect-ratio: 1 / 1;
     background-color: red;
 
-    @supports not (aspect-ratio: 10 / 11) {
+    @supports not (aspect-ratio: 1 / 1) {
       &::before {
         float: left;
-        padding-top: 110%;
+        padding-top: 100%;
         content: "";
       }
 
