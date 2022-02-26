@@ -153,7 +153,12 @@
 
 .open {
   width: 100vw;
-  height: 100vh;
+  // Ensure page is minimum 1 screen high to put menu at bottom in mobile
+  height: 100vh; 
+  // When supported, use env vars to avoid UI Chrome
+  height: calc(100vh - env(safe-area-inset-bottom)); 
+  // When supported, use dvh instead of env vars
+  height: 100dvh;
   z-index: 11;
   background-color: var(--color-cover);
 
