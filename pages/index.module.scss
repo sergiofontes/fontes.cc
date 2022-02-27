@@ -299,22 +299,22 @@
 }
 
 .work {
-    h2 { grid-row: 1; }
-    h3 { margin: 1rem 0 0; }
-    h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
-    h2, small { mix-blend-mode: harden; }
-  
-    a {
-      display: inline-block;
-  
-      svg {
-        width: 1rem;
-        margin-left: calc(var(--gap) / 4);
-        transition: all .15s ease-in-out;
-      }
-  
-      &:hover svg { margin-left: calc(var(--gap) / 3); }
+  h2 { grid-row: 1; }
+  h3 { margin: 1rem 0 0; }
+  h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
+  h2, small { mix-blend-mode: harden; }
+
+  a {
+    display: inline-block;
+
+    svg {
+      width: 1rem;
+      margin-left: calc(var(--gap) / 4);
+      transition: all .15s ease-in-out;
     }
+
+    &:hover svg { margin-left: calc(var(--gap) / 3); }
+  }
 
   .case {
     display: grid;

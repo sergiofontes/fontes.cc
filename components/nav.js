@@ -9,6 +9,7 @@ import style from './nav.module.scss';
 
 export default function Nav({ onClick }) {
   const [isOpen, setIsOpen] = useState(false);
+
   const handleOpenCloseClick = () => {
     setIsOpen((value) => {
       if (!value) {
@@ -18,6 +19,16 @@ export default function Nav({ onClick }) {
       }
 
       return !value;
+    });
+  };
+
+  const handleCloseClick = () => {
+    setIsOpen((value) => {
+      if (value) {
+        document.body.style.overflow = null;
+      } else {
+        return value;
+      }
     });
   };
 
@@ -34,22 +45,22 @@ export default function Nav({ onClick }) {
           <ol className={style.links}>
             <li className={style.link}>
               <Link href="#experience">
-                <a onClick={handleOpenCloseClick}>Experience</a>
+                <a onClick={handleCloseClick}>Experience</a>
               </Link>
             </li>
             <li className={style.link}>
               <Link href="#traits">
-                <a onClick={handleOpenCloseClick}>Traits</a>
+                <a onClick={handleCloseClick}>Traits</a>
               </Link>
             </li>
             <li className={style.link}>
               <Link href="#contact">
-                <a onClick={handleOpenCloseClick}>Contact</a>
+                <a onClick={handleCloseClick}>Contact</a>
               </Link>
             </li>
             <li className={style.link}>
               <Link href="#work">
-                <a onClick={handleOpenCloseClick}>Work</a>
+                <a onClick={handleCloseClick}>Work</a>
               </Link>
             </li>
           </ol>
