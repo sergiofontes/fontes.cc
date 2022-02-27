@@ -8,6 +8,7 @@
   position: fixed;
   z-index: 10;
   overflow: hidden;
+  mix-blend-mode: difference;
 
   a {
     color: var(--color-text-inverse);
@@ -95,7 +96,9 @@
   left: var(--gap);
   width: var(--logo-size);
   height: auto;
+  mix-blend-mode: difference;
   transition: all .15s ease-in-out;
+
   path { fill: var(--color-background); }
   
   &:hover  { transform: translateY(-2px); }
@@ -138,14 +141,16 @@
 
   @at-root {
     .open .button {
-      align-items: center;
+      @include media("<=desktop") {
+        align-items: center;
 
-      &:hover { gap: .5rem; }
+        &:hover { gap: .5rem; }
 
-      i {
-        width: 100%;
-        &:first-of-type { transform: rotate(45deg) translateX(15%) translateY(100%); }
-        &:last-of-type { transform: rotate(-45deg) translateX(15%) translateY(-120%); }
+        i {
+          width: 100%;
+          &:first-of-type { transform: rotate(45deg) translateX(15%) translateY(100%); }
+          &:last-of-type { transform: rotate(-45deg) translateX(15%) translateY(-120%); }
+        }
       }
     }
   }

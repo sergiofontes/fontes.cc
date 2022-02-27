@@ -40,8 +40,8 @@ $max-width    : $max-width;   // Maximum container's width
 
 .grid {
   // Oddly, the `repeat()` function doesn't support `calc()`;
-  // thus the use of Sass variables and math to set a max width to
-  // the grid's container.
+  // thus the use of Sass variables and some math to set a 
+  // max width to the grid's container.
   $max-column   : #{$max-column};
   $max-screen   : #{$max-screen};
   // stylelint-enable
