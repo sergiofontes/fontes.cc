@@ -13,6 +13,7 @@
   a {
     color: var(--color-text-inverse);
     text-decoration-color: var(--color-text-inverse);
+    font-family: var(--font-title);
     font-size: 1.75rem;
   }
 
@@ -61,10 +62,10 @@
 
   @include media(">desktop") {
     display: block;
-    top: calc(90vh - var(--gap));
+    top: 90vh;
     left: var(--gap);
     align-self: end;
-    transform: translateY(-100%);
+    transform: translateY(calc(-100% + 2.25rem));
     
     a { font-size: 1rem; }
     .link:not(:last-child) { margin-bottom: 1rem; }
@@ -77,11 +78,12 @@
       grid-template-rows: unset;
       grid-template-columns: unset;
       margin: 0;
+      padding: 0;
       width: auto;
     }
 
     @include media("height>=1000px") {
-      top: calc(var(--header-max-height) - var(--gap));
+      top: var(--header-max-height);
       bottom: auto;
     }
   }
@@ -167,6 +169,7 @@
     height: 100dvh;
     z-index: 11;
     background-color: var(--color-cover);
+    mix-blend-mode: unset;
   
     small { display: block; }
     .grid { display: grid; }
