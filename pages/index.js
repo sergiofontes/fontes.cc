@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import cn from 'classnames';
 import Image from 'next/image';
+import Typewriter from 'typewriter-effect';
 import Layout, { siteTitle } from '../components/layout';
 import Nav from '../components/nav';
 
@@ -34,9 +34,18 @@ export default function Home() {
 
         <header className={style.header}>
           <section className={cn(style.title, style.container, 'grid')}>
-            <h1>
-              <span>Sérgio Fontes: </span>
-              <b>Product</b> Designer
+            <h1 aria-label="Product, U.X., Digital Designer">
+              <b>
+                <Typewriter
+                  options={{
+                    strings: ['Product', 'U.X.', 'Digital', 'CSS'],
+                    autoStart: true,
+                    loop: true,
+                    pauseFor: 1750,
+                  }}
+                />
+              </b>
+              Designer
             </h1>
           </section>
           <section id="intro" className={cn(style.intro, style.container, 'grid')}>

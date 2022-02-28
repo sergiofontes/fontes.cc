@@ -34,7 +34,7 @@ h1 {
   letter-spacing: -.41rem;
   line-height: .81;
   text-transform: lowercase;
-  
+
   > span { @include fontless; }
 
   @include media(">tablet") {

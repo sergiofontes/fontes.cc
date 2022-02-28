@@ -128,7 +128,6 @@
     top: 1px;
     margin: 0;
     grid-column: 1 / span calc(var(--columns) + 2);
-    text-align: center;
   }
 
   .title, .intro { grid-column: 1 / span calc(var(--columns) + 2); }
@@ -176,6 +175,7 @@
 
 .title {
   width: 100%;
+  justify-content: start;
   overflow: hidden;
 
   h1 { left: -.5rem; }
@@ -183,7 +183,7 @@
   b {
     position: relative;
     left: .45em;
-    display: inline-block;
+    display: block;
   }
 
   @include media(">desktop") {
