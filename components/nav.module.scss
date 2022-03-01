@@ -9,12 +9,16 @@
   z-index: 10;
   overflow: hidden;
   mix-blend-mode: difference;
-
+  
   a {
+    @include focus-ring-visible;
+    padding: 0 2px;
     color: var(--color-text-inverse);
     text-decoration-color: var(--color-text-inverse);
     font-family: var(--font-title);
     font-size: 1.75rem;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
   }
 
   small {
@@ -65,6 +69,7 @@
     top: 90vh;
     left: var(--gap);
     align-self: end;
+    overflow: visible;
     transform: translateY(calc(-100% + 2.25rem));
     
     a { font-size: 1rem; }
@@ -92,10 +97,13 @@
 }
 
 .symbol {
+  @include focus-ring-visible;
   position: fixed;
-  z-index: 12;
   top: var(--gap);
   left: var(--gap);
+  z-index: 12;
+  display: flex;
+  align-items: center;
   width: var(--logo-size);
   height: auto;
   mix-blend-mode: difference;
@@ -110,6 +118,7 @@
 }
 
 .button {
+  @include focus-ring-visible;
   position: fixed;
   top: var(--gap);
   right: var(--gap);

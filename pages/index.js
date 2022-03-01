@@ -38,7 +38,7 @@ export default function Home() {
               <b>
                 <Typewriter
                   options={{
-                    strings: ['Product', 'U.X.', 'Digital', 'CSS'],
+                    strings: ['Product', 'U.X.', 'Digital'],
                     autoStart: true,
                     loop: true,
                     pauseFor: 1750,

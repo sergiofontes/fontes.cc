@@ -96,3 +96,24 @@ $base: 16px !default;
 @mixin dashed-line($color: black, $direction: 0deg) {
   background-image: linear-gradient($direction, transparent 25%, $color 25%, $color 50%, transparent 50%, transparent 75%, $color 75%, $color 100%);
 }
+
+// Focus ring techniques
+@mixin focus-ring-outline($border: 2px, $offset: 2px) {
+  outline: $border solid var(--color-focus-ring);
+  outline-offset: $offset;
+}
+
+@mixin focus-ring($border: 2px, $offset: 2px) {
+  outline: none;
+  box-shadow: 0 0 0 $offset var(--color-focus-bkg), 0 0 0 ($border + $offset) var(--color-focus-ring);
+}
+
+// Focus ring with Safari fallback
+@mixin focus-ring-visible {
+  @media not all and (min-resolution: .001dpcm) { // Target only Safari browsers
+    @supports (-webkit-appearance: none) {        // Use `focus` instead of `focus-visible`
+      &:focus { @include focus-ring-outline; }           // due to Safari's lack of support
+    }
+  }
+  &:focus-visible { @include focus-ring-outline; }
+}
