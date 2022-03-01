@@ -270,26 +270,7 @@
 }
 
 .contact {
-  a {
-    display: inline-block;
-    align-items: baseline;
-    svg {
-      position: relative;
-      display: inline-block;
-      width: 1rem;
-      margin-right: .2rem;
-      vertical-align: middle;
-      path { fill: var(--color-subtitle); }
-    }
-
-    &:hover, &:active, &:focus {
-      svg path { fill: var(--color-text); }
-    }
-  }
-
   em { display: block; }
-
-  .linkedin svg { top: -3px; }
 
   .lead {
     display: inline-block;
@@ -304,18 +285,6 @@
   h3 { margin: 1rem 0 0; }
   h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
   h2, small { mix-blend-mode: harden; }
-
-  a {
-    display: inline-block;
-
-    svg {
-      width: 1rem;
-      margin-left: calc(var(--gap) / 4);
-      transition: all .15s ease-in-out;
-    }
-
-    &:hover svg { margin-left: calc(var(--gap) / 3); }
-  }
 
   .case {
     display: grid;

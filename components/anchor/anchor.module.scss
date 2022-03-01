@@ -1,0 +1,36 @@
+///////////////////////////////////////////////////////////////////////////////
+// Anchor                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+.anchor {
+  display: inline-block;
+
+  svg {
+    position: relative;
+    display: inline-block;
+    width: 1rem;
+    vertical-align: middle;
+    transition: all .15s ease-in-out;
+  }
+}
+
+.external {
+  svg { margin-left: calc(var(--gap) / 4); }
+
+  &:hover, &:active, &:focus {
+    svg { margin-left: calc(var(--gap) / 3); }
+  } 
+}
+
+.social {
+  svg {
+    margin-right: .2rem;
+    path { fill: var(--color-subtitle); }
+  }
+
+  &:hover, &:active, &:focus {
+    svg path { fill: var(--color-text); }
+  }
+}
+
+.linkedin svg { top: -3px; }

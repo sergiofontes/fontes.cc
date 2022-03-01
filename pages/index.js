@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Typewriter from 'typewriter-effect';
 import Layout, { siteTitle } from '../components/layout';
 import Nav from '../components/nav';
+import Anchor from '../components/anchor';
 
-import IconArrow from '../public/images/arrow.svg';
 import LogoClearworks from '../public/images/logos/clearworks.svg';
 import LogoGuava from '../public/images/logos/guava.svg';
 import LogoPetPlate from '../public/images/logos/petplate.svg';
@@ -13,8 +13,6 @@ import LogoStorenvy from '../public/images/logos/storenvy.svg';
 import LogoTropical from '../public/images/logos/tropical.svg';
 import LogoTrue from '../public/images/logos/true.svg';
 import LogoVtex from '../public/images/logos/vtex.svg';
-import LogoGithub from '../public/images/logos/github.svg';
-import LogoLinkedin from '../public/images/logos/linkedin.svg';
 
 import style from './index.module.scss';
 
@@ -207,19 +205,21 @@ export default function Home() {
               <p>I usually reply emails in no more than one business day.</p>
               <p>
                 Alternatively, you can find me on{' '}
-                <a
-                  className={style.linkedin}
+                <Anchor
+                  type="linkedin"
                   href="https://www.linkedin.com/in/osergiofontes/"
                   target="_blank"
                 >
-                  <LogoLinkedin />
                   LinkedIn
-                </a>{' '}
+                </Anchor>{' '}
                 and{' '}
-                <a href="https://github.com/sergiofontes" target="_blank">
-                  <LogoGithub />
+                <Anchor
+                  type="github"
+                  href="https://github.com/sergiofontes"
+                  target="_blank"
+                >
                   GitHub
-                </a>
+                </Anchor>
               </p>
             </div>
             <span className={cn(style.divisors, style.last)}></span>
@@ -242,10 +242,9 @@ export default function Home() {
                 <li>Usability testing;</li>
                 <li>HTML/CSS coding.</li>
               </ul>
-              <a href="https://petplate.com" target="_blank">
+              <Anchor href="https://petplate.com" target="_blank">
                 PetPlate
-                <IconArrow />
-              </a>
+              </Anchor>
             </section>
 
             <section id="tropicalruby" className={cn(style.case, 'grid')}>
@@ -261,10 +260,9 @@ export default function Home() {
                 <li>HTML/CSS coding;</li>
                 <li>Conference organization.</li>
               </ul>
-              <a href="https://tropicalrb.com" target="_blank">
+              <Anchor href="https://tropicalrb.com" target="_blank">
                 TropicalRuby
-                <IconArrow />
-              </a>
+              </Anchor>
             </section>
           </section>
         </main>
