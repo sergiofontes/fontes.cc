@@ -21,10 +21,6 @@ export default function Home() {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=IBM+Plex+Sans:ital@0;1&family=Playfair+Display:wght@900&display=swap"
-          rel="stylesheet"
-        />
       </Head>
 
       <div className={style.index}>
