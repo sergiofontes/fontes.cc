@@ -2,8 +2,8 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import Symbol from '../public/images/symbol.svg';
-import IconArrow from '../public/images/arrow.svg';
+import Symbol from '../../public/images/symbol.svg';
+import IconArrow from '../../public/images/arrow.svg';
 
 import style from './nav.module.scss';
 
