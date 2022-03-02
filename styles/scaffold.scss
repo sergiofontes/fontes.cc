@@ -24,7 +24,7 @@ $gap-mob-out  : $base-mob * 3;    // External gutter width
 
 // Tablet
 $columns-tab  : 10;               // Columns number
-$gap-tab      : $base;            // Gutter width
+$gap-tab      : $base * 2;        // Gutter width
 $gap-tab-out  : $base * 4;        // External gutter width
 
 // Desktop

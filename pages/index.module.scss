@@ -27,6 +27,7 @@
 
 .container {
   --heading-start: 1;
+  --heading-width: 1;
   --content-start: 2;
   --content-width: 4;
   align-items: start;
@@ -40,7 +41,7 @@
     z-index: 2;
     align-self: start;
     justify-self: end;
-    grid-column: var(--heading-start);
+    grid-column: var(--heading-start) / span var(--heading-width);
     margin-top: -.6875rem;
     transform-origin: bottom right;
     transform: rotate(-90deg);
@@ -61,11 +62,12 @@
   .last { grid-column-end: span calc(var(--content-width) + 1); }
   
   @include media(">tablet") {
-    --heading-start: 2;
-    --heading-width: 1;
+    --heading-start: 1;
+    --heading-width: 2;
     --content-start: calc(var(--heading-start) + var(--heading-width));
     --content-width: 3;
     align-items: start;
+    row-gap: var(--gap);
 
     p + p { margin-top: 0; }
     .column, .columns { grid-row: 1; }
@@ -96,7 +98,6 @@
     --heading-width: 2;
     --content-width: 3;
     align-items: stretch;
-    row-gap: var(--gap);
 
     .columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
 
@@ -143,7 +144,7 @@
     padding-top: calc(var(--gap) * 6);
 
     h1 {
-      grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 3);
+      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
       text-align: left;
     }
 
@@ -284,7 +285,7 @@
   h2 { grid-row: 1; }
   h3 { margin: 1rem 0 0; }
   h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
-  h2, small { mix-blend-mode: harden; }
+  h2, small { mix-blend-mode: difference; }
 
   .case {
     display: grid;

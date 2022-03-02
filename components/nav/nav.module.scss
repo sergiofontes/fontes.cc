@@ -15,6 +15,7 @@
     padding: 0 2px;
     color: var(--color-text-inverse);
     text-decoration-color: var(--color-text-inverse);
+    font-weight: 700;
     font-family: var(--font-title);
     font-size: 1.75rem;
     -moz-osx-font-smoothing: grayscale;
@@ -172,7 +173,7 @@
     width: 100vw;
     // Ensure page is minimum 1 screen high to put menu at bottom in mobile
     height: 100vh; 
-    // When supported, use env vars to avoid UI Chrome
+    // When supported, use env vars to avoid UI chrome
     height: calc(100vh - env(safe-area-inset-bottom)); 
     // When supported, use dvh instead of env vars
     height: 100dvh;
