@@ -296,12 +296,22 @@
   }
   
   .image {
+    position: relative;
     grid-column: 1 / span 6;
     grid-row: 2;
     align-self: stretch;
     width: 100%;
+    overflow: hidden;
     aspect-ratio: 1 / 1;
-    background-color: red;
+    box-shadow:
+      0px 0.7px 2.2px rgba(0, 0, 0, 0.02),
+      0px 1.6px 5.3px rgba(0, 0, 0, 0.028),
+      0px 3px 10px rgba(0, 0, 0, 0.035),
+      0px 5.4px 17.9px rgba(0, 0, 0, 0.042),
+      0px 10px 33.4px rgba(0, 0, 0, 0.05),
+      0px 24px 80px rgba(0, 0, 0, 0.07);
+
+    > span { position: unset !important; }
 
     @supports not (aspect-ratio: 1 / 1) {
       &::before {
@@ -316,6 +326,18 @@
         clear: both;
       }
     }
+
+    &:hover {
+      .image_work { transform: scale(1.1); }
+    }
+  }
+
+  .image_work {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    pointer-events: none;
+    transition: all .4s ease-in-out;
   }
   
   .date {
@@ -359,6 +381,13 @@
       grid-row: 1 / span 3;
       grid-column: 1 / span 2;
       border-radius: 1.333333rem;
+      box-shadow:
+        0.5px 0.9px 2.2px rgba(0, 0, 0, 0.02),
+        1.2px 2.1px 5.3px rgba(0, 0, 0, 0.028),
+        2.3px 4px 10px rgba(0, 0, 0, 0.035),
+        4px 7.1px 17.9px rgba(0, 0, 0, 0.042),
+        7.5px 13.4px 33.4px rgba(0, 0, 0, 0.05),
+        18px 32px 80px rgba(0, 0, 0, 0.07);
     }
 
     // Out of regular grid

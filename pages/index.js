@@ -230,7 +230,14 @@ export default function Home() {
                 <LogoPetPlate />
               </h3>
               <small className={style.date}>2020–2021</small>
-              <div className={style.image}></div>
+              <div className={style.image}>
+                <Image
+                  src="/images/work/petplate_10-7.jpg"
+                  className={style.image_work}
+                  layout="fill"
+                  alt="PetPlate's treats screen"
+                />
+              </div>
               <ul>
                 <li>Design system development;</li>
                 <li>Requirements gathering;</li>
@@ -249,7 +256,14 @@ export default function Home() {
                 <LogoTropical />
               </h3>
               <small className={style.date}>2015</small>
-              <div className={style.image}></div>
+              <div className={style.image}>
+                <Image
+                  src="/images/work/tropical_10-7.jpg"
+                  className={style.image_work}
+                  layout="fill"
+                  alt="Tropical Ruby's home screen"
+                />
+              </div>
               <ul>
                 <li>Visual identity;</li>
                 <li>Website design;</li>
