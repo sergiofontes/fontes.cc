@@ -21,6 +21,19 @@ export default function Home() {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <meta
+          name="description"
+          content="Brazilian digital designer. I help companies design, build, and validate digital products."
+          key="desc"
+        />
+        <meta property="og:title" content={siteTitle} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fontes.cc" />
+        <meta property="og:image" content="https://fontes.cc/images/preview.png" />
+        <meta
+          property="og:description"
+          content="Brazilian digital designer. I help companies design, build, and validate digital products."
+        />
       </Head>
 
       <div className={style.index}>
@@ -32,7 +45,7 @@ export default function Home() {
               <b>
                 <Typewriter
                   options={{
-                    strings: ['Product', 'U.X.', 'Digital'],
+                    strings: ['Product', 'U.X.', 'Digital', 'Interaction'],
                     autoStart: true,
                     loop: true,
                     pauseFor: 1750,
