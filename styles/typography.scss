@@ -63,6 +63,10 @@ h2 {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-subtitle);
+  span { @include fontless; }
+  @include media(">tablet") {
+    span { @include fontful; }
+  }
 }
 
 h4 {}

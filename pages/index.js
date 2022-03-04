@@ -235,7 +235,9 @@ export default function Home() {
           </section>
 
           <section id="work" className={cn(style.work, style.container, 'grid')}>
-            <h2>Work</h2>
+            <h2>
+              <span>(Some) </span>Work
+            </h2>
 
             <section id="petplate" className={cn(style.case, 'grid')}>
               <h3 className={cn(style.logo, style.petplate)}>
