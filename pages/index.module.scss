@@ -194,6 +194,8 @@
   @include media(">desktop") {
     b { left: .6em; }
   }
+
+  [class*="Typewriter__cursor"] { animation-timing-function: cubic-bezier(0.75, 0, 0.04, 1.01); }
 }
 
 .experience {

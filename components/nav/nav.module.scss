@@ -61,13 +61,12 @@
     height: 1.6rem;
     margin-top: var(--gap);
     transform: rotate(90deg);
-    transition: all .25s ease-in-out;
-    opacity: 1;
+    transition: all .75s cubic-bezier(0.75, 0, 0.04, 1.01);
     path { stroke: var(--color-text-inverse); }
   }
 
   .active {
-    + .arrow { opacity: 0; }
+    + .arrow { transform: rotate(-90deg); }
   }
   
   @include media(">tablet") {
