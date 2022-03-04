@@ -68,7 +68,7 @@
     --content-width: 3;
     align-items: start;
     row-gap: var(--gap);
-
+    
     p + p { margin-top: 0; }
     .column, .columns { grid-row: 1; }
     .divisor, .divisors { grid-row: 2; }
@@ -148,6 +148,8 @@
       text-align: left;
     }
 
+    .divisors { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
+
     @include media("<=desktop") {
       .columns { display: block; }
       .intro { grid-column-end: span calc(var(--columns) + 1); }
@@ -162,7 +164,6 @@
 
     h1 { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
     .title { align-self: end; }
-    .divisors { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
   }
 }
 
@@ -367,6 +368,8 @@
       grid-column-start: 3;
       grid-column-end: auto;
     }
+
+    h2, small { mix-blend-mode: normal; }
 
     .case {
       align-items: end;
