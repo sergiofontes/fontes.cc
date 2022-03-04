@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import Link from 'next/link';
+import { Link, animateScroll as scroll } from 'react-scroll';
 import { useEffect, useState } from 'react';
 
 import Symbol from '../../public/images/symbol.svg';
@@ -44,37 +44,74 @@ export default function Nav({ onClick }) {
           <span className={style.divisor}></span>
           <ol className={style.links}>
             <li className={style.link}>
-              <Link href="#experience">
-                <a onClick={handleCloseClick}>Experience</a>
+              <Link
+                to="experience"
+                smooth={`easeInOutCirc`}
+                offset={-100}
+                spy={true}
+                duration={300}
+                onClick={handleCloseClick}
+              >
+                Experience
               </Link>
             </li>
             <li className={style.link}>
-              <Link href="#traits">
-                <a onClick={handleCloseClick}>Traits</a>
+              <Link
+                to="traits"
+                smooth={`easeInOutCirc`}
+                offset={-100}
+                spy={true}
+                duration={300}
+                onClick={handleCloseClick}
+              >
+                Traits
               </Link>
             </li>
             <li className={style.link}>
-              <Link href="#contact">
-                <a onClick={handleCloseClick}>Contact</a>
+              <Link
+                to="contact"
+                smooth={`easeInOutCirc`}
+                offset={-100}
+                spy={true}
+                duration={300}
+                onClick={handleCloseClick}
+              >
+                Contact
               </Link>
             </li>
             <li className={style.link}>
-              <Link href="#work">
-                <a onClick={handleCloseClick}>Work</a>
+              <Link
+                activeClass={style.active}
+                to="work"
+                smooth={`easeInOutCirc`}
+                offset={-100}
+                spy={true}
+                duration={300}
+                onClick={handleCloseClick}
+              >
+                Work
               </Link>
+              <span className={style.arrow}>
+                <IconArrow />
+              </span>
             </li>
           </ol>
 
-          <IconArrow className={style.arrow} />
           <small aria-hidden="hidden">Sérgio Fontes, 2022.</small>
         </div>
       </nav>
 
-      <Link href="#">
-        <a className={style.symbol} aria-label="Go to homepage">
-          <Symbol />
-        </a>
-      </Link>
+      <div className={style.symbol}>
+        <Link
+          to="hi"
+          smooth={`easeInOutCirc`}
+          offset={0}
+          duration={300}
+          onClick={handleCloseClick}
+        >
+          <Symbol aria-label="Go to homepage" />
+        </Link>
+      </div>
     </>
   );
 }

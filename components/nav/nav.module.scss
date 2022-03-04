@@ -12,6 +12,8 @@
   
   a {
     @include focus-ring-visible;
+    display: inline-flex;
+    align-items: center;
     padding: 0 2px;
     color: var(--color-text-inverse);
     text-decoration-color: var(--color-text-inverse);
@@ -20,6 +22,7 @@
     font-size: 1.75rem;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    cursor: pointer;
   }
 
   small {
@@ -55,9 +58,16 @@
     display: none;
     grid-column: 2 / span 2;
     width: 1.6rem;
+    height: 1.6rem;
     margin-top: var(--gap);
     transform: rotate(90deg);
+    transition: all .25s ease-in-out;
+    opacity: 1;
     path { stroke: var(--color-text-inverse); }
+  }
+
+  .active {
+    + .arrow { opacity: 0; }
   }
   
   @include media(">tablet") {
@@ -106,11 +116,17 @@
   display: flex;
   align-items: center;
   width: var(--logo-size);
-  height: auto;
+  height: var(--logo-size);
   mix-blend-mode: difference;
   transition: all .15s ease-in-out;
 
-  path { fill: var(--color-background); }
+  a {
+    display: block;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    cursor: pointer;
+  }
+  svg path { fill: var(--color-background); }
   
   &:hover  { transform: translateY(-2px); }
   &:active { transform: translateY(2px); }

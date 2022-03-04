@@ -39,7 +39,7 @@ export default function Home() {
       <div className={style.index}>
         <Nav />
 
-        <header className={style.header}>
+        <header id="hi" className={style.header}>
           <section className={cn(style.title, style.container, 'grid')}>
             <h1 aria-label="Product, U.X., Digital Designer">
               <b>
