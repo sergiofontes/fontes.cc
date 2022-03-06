@@ -253,14 +253,17 @@ export default function Home() {
                   alt="PetPlate's treats screen"
                 />
               </div>
-              <ul>
-                <li>Design system development;</li>
-                <li>Requirements gathering;</li>
-                <li>Low &amp; hi-fi prototyping;</li>
-                <li>Usability testing;</li>
-                <li>HTML/CSS coding.</li>
-              </ul>
-              <Anchor href="https://petplate.com" target="_blank">
+              <p>
+                PetPlate is an online delivery service that sells healthy food for dogs
+                through personalized meal plans. Guava team and I helped rebrand their
+                website and designed a new subscription flow, user profile, and order
+                management. We also delivered a new one-off ordering flow for their
+                functional foods. I articulated requirements with stakeholders,
+                conducted usability tests with users, and produced new PDPs + a fast
+                checkout system. Now, customers can fulfill an order with only three
+                steps and less than a minute.
+              </p>
+              <Anchor href="https://petplate.com" target="_blank" external>
                 PetPlate
               </Anchor>
             </section>
@@ -279,13 +282,15 @@ export default function Home() {
                   alt="Tropical Ruby's home screen"
                 />
               </div>
-              <ul>
-                <li>Visual identity;</li>
-                <li>Website design;</li>
-                <li>HTML/CSS coding;</li>
-                <li>Conference organization.</li>
-              </ul>
-              <Anchor href="https://tropicalrb.com" target="_blank">
+              <p>
+                TropicalRuby was an original international tech conference hosted in a
+                Brazilian tropical paradise. It blended outdoor activities with
+                keynotes and workshops. I designed and developed all communication &
+                visual materials: a comprehensive branding system, a complete website,
+                emails templates, and print assets like shirts, backdrop panels, and
+                badges.
+              </p>
+              <Anchor href="https://tropicalrb.com" target="_blank" external>
                 TropicalRuby
               </Anchor>
             </section>
@@ -298,6 +303,54 @@ export default function Home() {
             <small>
               No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there's
               some JS too).
+            </small>
+          </div>
+          <div>
+            <small>
+              Designed with{' '}
+              <Anchor href="https://figma.com" target="_blank">
+                Figma
+              </Anchor>{' '}
+              using{' '}
+              <Anchor href="https://fonts.google.com/specimen/DM+Sans" target="_blank">
+                DM Sans
+              </Anchor>
+              ,{' '}
+              <Anchor
+                href="https://fonts.google.com/specimen/IBM+Plex+Sans"
+                target="_blank"
+              >
+                IBM Plex Sans
+              </Anchor>
+              , and{' '}
+              <Anchor
+                href="https://fonts.google.com/specimen/Playfair+Display"
+                target="_blank"
+              >
+                Playfair Display
+              </Anchor>
+              .
+            </small>
+            <small>
+              Built with{' '}
+              <Anchor href="https://nextjs.org/" target="_blank">
+                Next.js
+              </Anchor>{' '}
+              and hosted at{' '}
+              <Anchor href="https://vercel.com/" target="_blank">
+                Vercel
+              </Anchor>
+              .
+            </small>
+            <small>
+              See the code at{' '}
+              <Anchor
+                href="https://github.com/sergiofontes/fontes.cc/"
+                target="_blank"
+              >
+                GitHub
+              </Anchor>
+              .
             </small>
           </div>
         </footer>

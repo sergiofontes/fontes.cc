@@ -341,7 +341,7 @@
     height: 100% !important;
     object-fit: cover !important;
     pointer-events: none;
-    transition: all .4s ease-in-out;
+    transition: all .75s cubic-bezier(0.75, 0, 0.04, 1.01);
   }
   
   .date {
@@ -374,7 +374,6 @@
     h2, small { mix-blend-mode: normal; }
 
     .case {
-      align-items: end;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto auto 1fr;
       row-gap: var(--gap);
@@ -434,6 +433,12 @@
     display: inline-block;
     grid-column: var(--content-start) / span var(--content-width);
     line-height: 0;
+    + div { margin-top: 1rem; }
+    a {
+      color: inherit;
+      text-transform: uppercase;
+      font-size: .9em;
+    }
   }
   
   @include media(">tablet") {

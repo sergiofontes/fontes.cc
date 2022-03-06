@@ -8,7 +8,7 @@ import IconLinkedin from '../../public/images/logos/linkedin.svg';
 import style from './anchor.module.scss';
 
 Anchor.propTypes = {
-  type: PropTypes.oneOf(['external', 'github', 'linkedin']),
+  type: PropTypes.oneOf(['default', 'external', 'github', 'linkedin']),
   inline: PropTypes.bool,
   classes: PropTypes.string,
   href: PropTypes.string,
@@ -17,7 +17,7 @@ Anchor.propTypes = {
 };
 
 Anchor.defaultProps = {
-  type: 'external',
+  type: 'default',
   inline: false,
   classes: '',
   href: '',
