@@ -46,6 +46,7 @@ export default function Nav({ onClick }) {
             <li className={style.link}>
               <Link
                 to="experience"
+                href="#experience"
                 smooth={`easeInOutCirc`}
                 offset={-100}
                 spy={true}
@@ -58,6 +59,7 @@ export default function Nav({ onClick }) {
             <li className={style.link}>
               <Link
                 to="traits"
+                href="#traits"
                 smooth={`easeInOutCirc`}
                 offset={-100}
                 spy={true}
@@ -70,6 +72,7 @@ export default function Nav({ onClick }) {
             <li className={style.link}>
               <Link
                 to="contact"
+                href="#contact"
                 smooth={`easeInOutCirc`}
                 offset={-100}
                 spy={true}
@@ -83,6 +86,7 @@ export default function Nav({ onClick }) {
               <Link
                 activeClass={style.active}
                 to="work"
+                href="#work"
                 smooth={`easeInOutCirc`}
                 offset={-100}
                 spy={true}
@@ -104,6 +108,7 @@ export default function Nav({ onClick }) {
       <div className={style.symbol}>
         <Link
           to="hi"
+          href="#hi"
           smooth={`easeInOutCirc`}
           offset={0}
           duration={300}
