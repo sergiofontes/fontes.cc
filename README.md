@@ -1,6 +1,6 @@
 <img src="/public/images/symbol.svg" width="45">
 
-Hi, I‘m Sérgio Fontes. I‘m a Brazilian digital designer, and this is my website.
+Hi, I‘m Sérgio Fontes, a Brazilian digital designer.
 
 Feel free to check out how I built it, and drop me a line if you have any question or suggestion.
 
