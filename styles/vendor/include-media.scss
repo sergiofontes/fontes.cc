@@ -2,7 +2,7 @@
 // Include Media                                                             //
 ///////////////////////////////////////////////////////////////////////////////
 
-@import "~./node_modules/include-media/dist/_include-media";
+@import "node_modules/include-media/dist/_include-media";
 
 $breakpoints: (
   "phone":         319px,
