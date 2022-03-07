@@ -1,0 +1,66 @@
+///////////////////////////////////////////////////////////////////////////////
+// Grid                                                                      //
+///////////////////////////////////////////////////////////////////////////////
+
+@use "sass:math";
+@import "scaffold";
+
+// stylelint-disable
+
+// Mobile
+$columns-mob  : $columns-mob; // Columns number
+$gap-mob      : $gap-mob;     // Gutter width
+$gap-mob-out  : $gap-mob-out; // External gutter width
+
+// Desktop
+$columns      : $columns;     // Columns number
+$gap          : $gap;         // Gutter width
+$gap-out      : $gap-out;     // External gutter width
+
+$max-width    : $max-width;   // Maximum container's width
+
+:root {
+  --columns   : #{$columns-mob};
+  --gap       : #{$gap-mob};
+  --gap-out   : #{$gap-mob-out};
+  --gap-delta : calc(var(--gap-out) - var(--gap));
+  
+  @include media(">tablet") {
+    --columns : #{$columns-tab};
+    --gap     : #{$gap-tab};
+    --gap-out : #{$gap-tab-out};
+  }
+  
+  @include media(">desktop") {
+    --columns : #{$columns};
+    --gap     : #{$gap};
+    --gap-out : #{$gap-out};
+  }
+}
+
+.grid {
+  // Oddly, the `repeat()` function doesn't support `calc()`;
+  // thus the use of Sass variables and some math to set a 
+  // max width to the grid's container.
+  $max-column   : #{$max-column};
+  $max-screen   : #{$max-screen};
+  // stylelint-enable
+  
+  position: relative;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 0 repeat(var(--columns), 1fr) 0;
+  gap: var(--gap);
+  place-items: stretch start;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include media(">phonemid") {
+    grid-template-columns: var(--gap-delta) repeat(var(--columns), 1fr) var(--gap-delta);
+  }
+  
+  @include media(">#{$max-screen}") {
+    grid-template-columns: 1fr repeat(var(--columns), #{$max-column}) 1fr;
+  }
+}

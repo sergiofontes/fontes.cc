@@ -2,14 +2,14 @@
 // Mixins & functions utilities                               (Global block) //
 ///////////////////////////////////////////////////////////////////////////////
 
-// Px to rem.
+// Px to rem
 $base: 16px !default;
 @function rem($size) {
   $rem: math.div($size, $base);
   @return #{$rem}rem;
 }
 
-// Clear fix wizardry.
+// Clear fix wizardry
 @mixin clearfix {
   &::after {
     display: block;
@@ -18,13 +18,13 @@ $base: 16px !default;
   }
 }
 
-// Ease dimensioning.
+// Ease dimensioning
 @mixin size($width, $height: $width) {
   width: $width;
   height: $height;
 }
 
-// Text overflow.
+// Text overflow
 @mixin text-overflow($max-width: 100%) {
   max-width: $max-width;
   overflow: hidden;
@@ -32,25 +32,36 @@ $base: 16px !default;
   white-space: nowrap;
 }
 
-// Hide typography, to be seen with screen readers only.
+// Hide typography, to be seen with screen readers only
 @mixin fontless {
   position: absolute;
+  width: 1px;
+	height: 1px;
   padding: 0;
-  margin: 0;
-  overflow: hidden;
-  line-height: 0;
-  border: 0;
-  clip-path: inset(0 0 0 0);
+	margin: -1px;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+	overflow: hidden;
+	white-space: nowrap;
 }
 
-// Show hidden typography.
+// Show hidden typography
 @mixin fontful {
   position: static;
+  width: auto;
+  height: auto;
+  padding: unset;
+  margin: unset;
+  overflow: visible;
+  clip: auto;
+  -webkit-clip-path: none;
   clip-path: none;
   white-space: normal;
 }
 
-// Remove default button appearance.
+// Remove default button appearance
 @mixin buttonless(
   $background: transparent,
   $border:     0,
@@ -65,7 +76,7 @@ $base: 16px !default;
   box-shadow: $shadow;
 }
 
-// Fancy underline. All native.
+// Fancy underline, all native
 @mixin underline(
   $color:     black,
   $thickness: 2px,
@@ -84,4 +95,25 @@ $base: 16px !default;
 // Dashed line as background
 @mixin dashed-line($color: black, $direction: 0deg) {
   background-image: linear-gradient($direction, transparent 25%, $color 25%, $color 50%, transparent 50%, transparent 75%, $color 75%, $color 100%);
+}
+
+// Focus ring techniques
+@mixin focus-ring-outline($border: 2px, $offset: 2px) {
+  outline: $border solid var(--color-focus-ring);
+  outline-offset: $offset;
+}
+
+@mixin focus-ring($border: 2px, $offset: 2px) {
+  outline: none;
+  box-shadow: 0 0 0 $offset var(--color-focus-bkg), 0 0 0 ($border + $offset) var(--color-focus-ring);
+}
+
+// Focus ring with Safari fallback
+@mixin focus-ring-visible {
+  @media not all and (min-resolution: .001dpcm) { // Target only Safari browsers
+    @supports (-webkit-appearance: none) {        // Use `focus` instead of `focus-visible`
+      &:focus { @include focus-ring-outline; }           // due to Safari's lack of support
+    }
+  }
+  &:focus-visible { @include focus-ring-outline; }
 }

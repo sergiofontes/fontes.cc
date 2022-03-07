@@ -1,0 +1,16 @@
+///////////////////////////////////////////////////////////////////////////////
+// Include Media                                                             //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "~./node_modules/include-media/dist/_include-media";
+
+$breakpoints: (
+  "phone":         319px,
+  "phonemid":      374px,
+  "phonelarge":    413px,
+  "tablet":        767px,
+  "desktop":       1200px,
+  "notebook":      1200px,
+  "desktoplarge":  1439px,
+  "notebooklarge": 1439px,
+);

@@ -1,0 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////
+// Typography                                                                //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "scaffold";
+
+:root {
+  --header-max-height: 900px;
+  --button-size: 2.75rem;
+  --logo-size: var(--button-size);
+
+  @include media(">desktop") { --button-size: 2.9333333333rem; }
+}

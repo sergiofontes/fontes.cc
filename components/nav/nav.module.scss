@@ -1,0 +1,202 @@
+///////////////////////////////////////////////////////////////////////////////
+// Nav Component                                                             //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "../../styles/scaffold";
+
+.nav {
+  position: fixed;
+  z-index: 10;
+  overflow: hidden;
+  mix-blend-mode: difference;
+  
+  a {
+    @include focus-ring-visible;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 2px;
+    color: var(--color-text-inverse);
+    text-decoration-color: var(--color-text-inverse);
+    font-weight: 700;
+    font-family: var(--font-title);
+    font-size: 1.75rem;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+  }
+
+  small {
+    display: none;
+    align-self: end;
+    grid-column: 2 / span var(--columns);
+  }
+
+    .link:not(:last-child) { margin-bottom: 1.5rem; }
+  
+  .links {
+    grid-column: 2 / span var(--columns);
+    list-style: none;
+  }
+
+  .divisor {
+    display: block;
+    grid-column: 2 / span calc(var(--columns) + 1);
+    width: 100%;
+    border-bottom: 2px solid var(--color-text-inverse);
+  }
+
+  .grid {
+    display: none;
+    z-index: 11;
+    grid-template-rows: auto auto 1fr;
+    padding-top: calc(var(--logo-size) + (var(--gap) * 4));
+    padding-bottom: calc(var(--gap) * 1.5);
+    height: 100%;
+  }
+  
+  .arrow {
+    display: none;
+    grid-column: 2 / span 2;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-top: var(--gap);
+    transform: rotate(90deg);
+    transition: all .75s cubic-bezier(0.75, 0, 0.04, 1.01);
+    path { stroke: var(--color-text-inverse); }
+  }
+
+  .active {
+    + .arrow { transform: rotate(-90deg); }
+  }
+  
+  @include media(">tablet") {
+    .links, small { grid-column: 3 / span calc(var(--columns) - 1); }
+    .divisor  { grid-column: 3 / span var(--columns); }
+  }
+
+  @include media(">desktop") {
+    display: block;
+    top: 90vh;
+    left: var(--gap);
+    align-self: end;
+    overflow: visible;
+    transform: translateY(calc(-100% + 2.25rem));
+    
+    a { font-size: 1rem; }
+    .link:not(:last-child) { margin-bottom: 1rem; }
+    .links, .arrow { grid-column: unset; }
+    .arrow { display: block; }
+    .button, .divisor { display: none; }
+    
+    .grid {
+      display: block;
+      grid-template-rows: unset;
+      grid-template-columns: unset;
+      margin: 0;
+      padding: 0;
+      width: auto;
+    }
+
+    @include media("height>=1000px") {
+      top: var(--header-max-height);
+      bottom: auto;
+    }
+  }
+
+  @include media(">#{$max-screen}") { left: calc((100vw - #{$max-width}) / 2); }
+}
+
+.symbol {
+  @include focus-ring-visible;
+  position: fixed;
+  top: var(--gap);
+  left: var(--gap);
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  mix-blend-mode: difference;
+  transition: all .15s ease-in-out;
+
+  a {
+    display: block;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    cursor: pointer;
+  }
+  svg path { fill: var(--color-background); }
+  
+  &:hover  { transform: translateY(-2px); }
+  &:active { transform: translateY(2px); }
+  
+  @include media(">#{$max-screen}") { left: calc((100vw - #{$max-width}) / 2); }
+}
+
+.button {
+  @include focus-ring-visible;
+  position: fixed;
+  top: var(--gap);
+  right: var(--gap);
+  z-index: 12;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: .5rem;
+  flex-direction: column;
+  width: var(--button-size);
+  height: var(--button-size);
+  padding: calc(var(--button-size) / 6);
+  background-color: transparent;
+  appearance: none;
+  border: transparent;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+
+  span { @include fontless; }
+
+  &:hover { gap: .75rem; }
+
+  i {
+    display: block;
+    width: 70%;
+    border-bottom: 3px solid var(--color-background);
+    transition: all .15s ease-in-out;
+
+    &:last-of-type { width: 100%; }
+  }
+
+  @at-root {
+    .open .button {
+      @include media("<=desktop") {
+        align-items: center;
+
+        &:hover { gap: .5rem; }
+
+        i {
+          width: 100%;
+          &:first-of-type { transform: rotate(45deg) translateX(15%) translateY(100%); }
+          &:last-of-type { transform: rotate(-45deg) translateX(15%) translateY(-120%); }
+        }
+      }
+    }
+  }
+}
+
+.open {
+  @include media("<=desktop") {
+    width: 100vw;
+    // Ensure page is minimum 1 screen high to put menu at bottom in mobile
+    height: 100vh; 
+    // When supported, use env vars to avoid UI chrome
+    height: calc(100vh - env(safe-area-inset-bottom)); 
+    // When supported, use dvh instead of env vars
+    height: 100dvh;
+    z-index: 11;
+    background-color: var(--color-cover);
+    mix-blend-mode: unset;
+  
+    small { display: block; }
+    .grid { display: grid; }
+  }
+}

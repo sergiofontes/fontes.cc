@@ -1,0 +1,24 @@
+///////////////////////////////////////////////////////////////////////////////
+// Colors                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+:root {
+  --black             : #211d1d;
+  --white             : #fbfbfb;
+  --gray              : #787575;
+  --gray-light        : #b0aeae;
+
+  --color-primary     : var(--black);
+
+  --color-text        : var(--black);
+  --color-text-inverse: var(--white);
+  --color-subtitle    : var(--gray);
+  --color-cover       : var(--black);
+  --color-background  : var(--white);
+  --color-subtle      : var(--gray-light);
+  --color-focus-ring  : var(--white);
+  --color-focus-bkg   : var(--black);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
