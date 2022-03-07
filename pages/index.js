@@ -263,7 +263,7 @@ export default function Home() {
                 checkout system. Now, customers can fulfill an order with only three
                 steps and less than a minute.
               </p>
-              <Anchor href="https://petplate.com" target="_blank" external>
+              <Anchor href="https://petplate.com" target="_blank" type="external">
                 PetPlate
               </Anchor>
             </section>
@@ -286,11 +286,11 @@ export default function Home() {
                 TropicalRuby was an original international tech conference hosted in a
                 Brazilian tropical paradise. It blended outdoor activities with
                 keynotes and workshops. I designed and developed all communication &
-                visual materials: a comprehensive branding system, a complete website,
-                emails templates, and print assets like shirts, backdrop panels, and
-                badges.
+                visual materials: a branding system, a website with schedule &amp;
+                venue info, emails templates, and print assets like shirts, backdrop
+                panels, and badges.
               </p>
-              <Anchor href="https://tropicalrb.com" target="_blank" external>
+              <Anchor href="https://tropicalrb.com" target="_blank" type="external">
                 TropicalRuby
               </Anchor>
             </section>
@@ -343,7 +343,7 @@ export default function Home() {
               .
             </small>
             <small>
-              See the code at{' '}
+              Check the source at{' '}
               <Anchor
                 href="https://github.com/sergiofontes/fontes.cc/"
                 target="_blank"
