@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { Link, animateScroll as scroll } from 'react-scroll';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Symbol from '../../public/images/symbol.svg';
 import IconArrow from '../../public/images/arrow.svg';
