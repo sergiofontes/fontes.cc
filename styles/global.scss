@@ -11,3 +11,5 @@
 
   @include media(">desktop") { --button-size: 2.9333333333rem; }
 }
+
+body { background-color: var(--color-cover); }

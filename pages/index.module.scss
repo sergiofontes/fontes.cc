@@ -6,14 +6,16 @@
 
 .main {
   --color-focus-ring: var(--black);
+  background-color: var(--color-background);
+
   > * {
     --spacing-multiplier: 8;
     --spacing: calc(var(--gap) * var(--spacing-multiplier));
-    margin-bottom: var(--spacing);
+    padding-bottom: var(--spacing);
 
     &:first-child {
       --spacing-multiplier: 7;
-      margin-top: var(--spacing);
+      padding-top: var(--spacing);
     }
 
     @include media(">desktop") {
@@ -119,7 +121,12 @@
   row-gap: calc(var(--gap) * 2);
   grid-template-rows: 1fr auto;
   grid-auto-flow: column;
-  height: 90vh;
+  // Ensure page is minimum 1 screen high to put menu at bottom in mobile
+  height: 85vh; 
+  // When supported, use env vars to avoid UI chrome
+  height: calc(85vh - env(safe-area-inset-bottom)); 
+  // When supported, use dvh instead of env vars
+  height: 85dvh;
   background-color: var(--color-cover);
 
   * {
@@ -426,6 +433,7 @@
 .footer {
   row-gap: 0;
   padding-bottom: calc(var(--gap) * 1.5);
+  background-color: var(--color-background);
 
   small { display: inline; }
 
@@ -436,8 +444,10 @@
     + div { margin-top: 1rem; }
     a {
       color: inherit;
-      text-transform: uppercase;
       font-size: .9em;
+      text-transform: uppercase;
+      text-decoration-color: inherit;
+      text-underline-position: auto;
     }
   }
   

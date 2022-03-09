@@ -9,7 +9,8 @@
   z-index: 10;
   overflow: hidden;
   mix-blend-mode: difference;
-  
+  transition: background-color .2s ease-in-out;
+
   a {
     @include focus-ring-visible;
     display: inline-flex;
@@ -28,9 +29,12 @@
     display: none;
     align-self: end;
     grid-column: 2 / span var(--columns);
+    padding-bottom: 4rem;
   }
 
-    .link:not(:last-child) { margin-bottom: 1.5rem; }
+  ~ *:not(.symbol) { transition: opacity .2s ease-in-out; }
+
+  .link:not(:last-child) { margin-bottom: 1.5rem; }
   
   .links {
     grid-column: 2 / span var(--columns);
@@ -194,8 +198,11 @@
     z-index: 11;
     background-color: var(--color-cover);
     mix-blend-mode: unset;
+    overflow: hidden;
   
     small { display: block; }
     .grid { display: grid; }
+
+    ~ *:not(.symbol) { opacity: 0; }
   }
 }
