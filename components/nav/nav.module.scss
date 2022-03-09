@@ -198,6 +198,7 @@
     z-index: 11;
     background-color: var(--color-cover);
     mix-blend-mode: unset;
+    overflow: hidden;
   
     small { display: block; }
     .grid { display: grid; }
