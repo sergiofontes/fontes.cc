@@ -1,12 +1,11 @@
 module.exports = {
   extends: [
     'stylelint-config-standard-scss',
-    'stylelint-config-rational-order',
+    'stylelint-config-recess-order',
   ],
   plugins: [
     'stylelint-scss',
     'stylelint-order',
-    'stylelint-config-rational-order/plugin',
   ],
   rules: {
     'color-hex-length': null,
@@ -71,6 +70,7 @@ module.exports = {
         ignore: ['after-comment'],
       },
     ],
+    'declaration-empty-line-before': 'never',
     'scss/dollar-variable-colon-space-after': 'always',
     'scss/dollar-variable-colon-space-before': 'never',
     'scss/dollar-variable-pattern': /^[a-z-0-9]+$/,
