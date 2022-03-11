@@ -3,6 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 :root {
+  // stylelint-disable
   --black             : #211d1d;
   --white             : #fbfbfb;
   --gray              : #787575;
@@ -18,7 +19,7 @@
   --color-subtle      : var(--gray-light);
   --color-focus-ring  : var(--white);
   --color-focus-bkg   : var(--black);
-
-  background-color: var(--color-background);
+  // stylelint-enable
   color: var(--color-text);
+  background-color: var(--color-background);
 }
