@@ -4,8 +4,10 @@
 
 // Px to rem
 $base: 16px !default;
+
 @function rem($size) {
   $rem: math.div($size, $base);
+
   @return #{$rem}rem;
 }
 
@@ -36,15 +38,15 @@ $base: 16px !default;
 @mixin fontless {
   position: absolute;
   width: 1px;
-	height: 1px;
+  height: 1px;
   padding: 0;
-	margin: -1px;
-	border: 0;
-	clip: rect(1px, 1px, 1px, 1px);
-	-webkit-clip-path: inset(50%);
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
-	overflow: hidden;
-	white-space: nowrap;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 // Show hidden typography
@@ -56,7 +58,7 @@ $base: 16px !default;
   margin: unset;
   overflow: visible;
   clip: auto;
-  -webkit-clip-path: none;
+  clip-path: none;
   clip-path: none;
   white-space: normal;
 }
@@ -84,12 +86,12 @@ $base: 16px !default;
   $position:  under,
 ) {
   text-decoration: underline;
-  text-decoration-color: $color;
   text-decoration-thickness: $thickness;
+  text-decoration-color: $color;
+  text-underline-position: $position;
   text-decoration-width: $thickness;
   text-decoration-skip-ink: if($skip, auto, none);
   text-decoration-skip: if($skip, skip, none);
-  text-underline-position: $position;
 }
 
 // Dashed line as background
@@ -112,7 +114,7 @@ $base: 16px !default;
 @mixin focus-ring-visible {
   @media not all and (min-resolution: .001dpcm) { // Target only Safari browsers
     @supports (-webkit-appearance: none) {        // Use `focus` instead of `focus-visible`
-      &:focus { @include focus-ring-outline; }           // due to Safari's lack of support
+      &:focus { @include focus-ring-outline; }    // due to Safari's lack of support
     }
   }
   &:focus-visible { @include focus-ring-outline; }

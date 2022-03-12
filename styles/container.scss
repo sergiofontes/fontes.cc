@@ -1,0 +1,102 @@
+///////////////////////////////////////////////////////////////////////////////
+// Content Container                                                         //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "scaffold";
+
+:root {
+  --heading-start: 1;
+  --heading-width: 1;
+  --content-start: 2;
+  --content-width: 4;
+
+  @include media(">tablet") {
+    --heading-start: 1;
+    --heading-width: 2;
+    --content-start: calc(var(--heading-start) + var(--heading-width));
+    --content-width: 3;
+  }
+
+  @include media(">desktop") {
+    --heading-start: 4;
+    --heading-width: 2;
+    --content-width: 3;
+  }
+}
+
+.container {
+  row-gap: calc(var(--gap) * 1.5);
+  align-items: start;
+
+  h2, h3 { margin-top: .266667rem; }
+
+  h2 {
+    position: sticky;
+    top: calc(var(--logo-size) + var(--gap) + 1rem);
+    z-index: 2;
+    grid-column: var(--heading-start) / span var(--heading-width);
+    align-self: start;
+    justify-self: end;
+    margin-top: -.6875rem;
+    transform: rotate(-90deg);
+    transform-origin: bottom right;
+  }
+
+  p {
+    margin-bottom: 0;
+    + p { margin-top: 1.5rem; }
+  }
+
+  .column, .columns, .divisor, .divisors {
+    grid-column-start: var(--content-start);
+    grid-column-end: span var(--content-width);
+    width: 100%;
+  }
+
+  .divisor, .divisors { border-bottom: 2px solid var(--color-text); }
+  .last { grid-column-end: span calc(var(--content-width) + 1); }
+
+  @include media(">tablet") {
+    row-gap: var(--gap);
+    align-items: start;
+
+    p + p { margin-top: 0; }
+    .column, .columns { grid-row: 1; }
+    .divisor, .divisors { grid-row: 2; }
+    .column { grid-column-start: auto; }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-start: auto;
+      grid-column-end: span calc(var(--content-width) * 2);
+      grid-auto-flow: column;
+      gap: var(--gap);
+    }
+
+    .column, .divisor {
+      grid-column-end: span var(--content-width);
+      &:nth-of-type(1) { grid-column-start: var(--content-start); }
+      &:nth-of-type(2) { grid-column-start: calc(var(--content-start) + var(--content-width)); }
+      &:nth-of-type(3) { grid-column-start: calc(var(--content-start) + var(--content-width) + var(--content-width)); }
+    }
+
+    .divisors { grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 2); }
+  }
+
+  @include media(">desktop") {
+    align-items: stretch;
+
+    .columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
+
+    h2 {
+      top: var(--gap);
+      grid-column: var(--heading-start) / span var(--heading-width);
+      margin-top: .266667rem;
+      white-space: normal;
+      transform: unset;
+    }
+
+    h2, h3 { margin-top: .266667rem; }
+  }
+}

@@ -1,0 +1,141 @@
+///////////////////////////////////////////////////////////////////////////////
+// Work Section                                                              //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "../../styles/scaffold";
+
+.work {
+  h2 { grid-row: 1; }
+  h3 { margin: 1rem 0 0; }
+  h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
+  h2, small { mix-blend-mode: difference; }
+
+  @include media(">tablet") {
+    h2 { text-align: right; }
+
+    // Out of regular grid
+    h3 { margin-top: 1rem; }
+    a { margin-bottom: 1rem; }
+
+    h3, ul, p, a {
+      grid-column-start: 3;
+      grid-column-end: auto;
+    }
+
+    h2, small { mix-blend-mode: normal; }
+  }
+
+  @include media(">desktop") {
+    justify-items: stretch;
+
+    h2 { white-space: nowrap; }
+  }
+}
+
+.case {
+  display: grid;
+  grid-row: auto;
+  grid-column: var(--heading-start) / span calc(var(--columns) + 2);
+  gap: var(--gap);
+  &:not(:last-child) { padding-bottom: calc(var(--gap) * 2); }
+  &:nth-of-type(1) { grid-row: 1 / span 2; }
+
+  @include media(">tablet") {
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: var(--content-start) / span 9;
+    row-gap: var(--gap);
+    &:nth-of-type(1) { grid-row: auto; }
+  }
+}
+
+.image {
+  position: relative;
+  grid-row: 2;
+  grid-column: 1 / span 6;
+  align-self: stretch;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  box-shadow:
+    0 .7px 2.2px rgb(0 0 0 / 2%),
+    0 1.6px 5.3px rgb(0 0 0 / 2.8%),
+    0 3px 10px rgb(0 0 0 / 3.5%),
+    0 5.4px 17.9px rgb(0 0 0 / 4.2%),
+    0 10px 33.4px rgb(0 0 0 / 5%),
+    0 24px 80px rgb(0 0 0 / 7%);
+
+  > span { position: unset !important; }
+
+  @supports not (aspect-ratio: 1 / 1) {
+    &::before {
+      float: left;
+      padding-top: 100%;
+      content: "";
+    }
+
+    &::after {
+      display: block;
+      clear: both;
+      content: "";
+    }
+  }
+
+  &:hover {
+    .display { transform: scale(1.1); }
+  }
+
+  @include media(">tablet") {
+    // Out of regular grid
+    grid-row: 1 / span 3;
+    grid-column: 1 / span 2;
+    border-radius: 1.333333rem;
+    box-shadow:
+      .5px .9px 2.2px rgb(0 0 0 / 2%),
+      1.2px 2.1px 5.3px rgb(0 0 0 / 2.8%),
+      2.3px 4px 10px rgb(0 0 0 / 3.5%),
+      4px 7.1px 17.9px rgb(0 0 0 / 4.2%),
+      7.5px 13.4px 33.4px rgb(0 0 0 / 5%),
+      18px 32px 80px rgb(0 0 0 / 7%);
+  }
+
+  @include media(">desktop") {
+    aspect-ratio: 10 / 7;
+
+    @supports not (aspect-ratio: 10 / 7) {
+      &::before { padding-top: 70%; }
+    }
+  }
+}
+
+.display {
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  transition: all .75s cubic-bezier(.75, 0, .04, 1.01);
+  object-fit: cover !important;
+}
+
+.date {
+  position: relative;
+  top: -1rem;
+  grid-column: var(--heading-start);
+  align-self: start;
+  justify-self: end;
+  margin-top: .266667rem;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: bottom right;
+
+  @include media(">tablet") {
+    // Out of regular grid
+    left: -1rem;
+    grid-row: 3;
+    grid-column: 1;
+    align-self: end;
+    justify-self: start;
+    margin: 0;
+    text-align: left;
+    transform-origin: bottom left;
+  }
+}

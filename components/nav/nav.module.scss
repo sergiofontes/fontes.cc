@@ -13,29 +13,30 @@
 
   a {
     @include focus-ring-visible;
+
     display: inline-flex;
     align-items: center;
     padding: 0 2px;
-    color: var(--color-text-inverse);
-    text-decoration-color: var(--color-text-inverse);
     font-family: var(--font-title);
     font-size: 1.75rem;
+    color: var(--color-text-inverse);
+    text-decoration-color: var(--color-text-inverse);
+    cursor: pointer;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    cursor: pointer;
   }
 
   small {
     display: none;
-    align-self: end;
     grid-column: 2 / span var(--columns);
+    align-self: end;
     padding-bottom: 4rem;
   }
 
   ~ *:not(.symbol) { transition: opacity .2s ease-in-out; }
 
   .link:not(:last-child) { margin-bottom: 1.5rem; }
-  
+
   .links {
     grid-column: 2 / span var(--columns);
     list-style: none;
@@ -49,55 +50,55 @@
   }
 
   .grid {
-    display: none;
     z-index: 11;
+    display: none;
     grid-template-rows: auto auto 1fr;
+    height: 100%;
     padding-top: calc(var(--logo-size) + (var(--gap) * 4));
     padding-bottom: calc(var(--gap) * 1.5);
-    height: 100%;
   }
-  
+
   .arrow {
     display: none;
     grid-column: 2 / span 2;
     width: 1.6rem;
     height: 1.6rem;
     margin-top: var(--gap);
-    transform: rotate(90deg);
     transition: all .75s cubic-bezier(0.75, 0, 0.04, 1.01);
+    transform: rotate(90deg);
     path { stroke: var(--color-text-inverse); }
   }
 
   .active {
     + .arrow { transform: rotate(-90deg); }
   }
-  
+
   @include media(">tablet") {
     .links, small { grid-column: 3 / span calc(var(--columns) - 1); }
-    .divisor  { grid-column: 3 / span var(--columns); }
+    .divisor { grid-column: 3 / span var(--columns); }
   }
 
   @include media(">desktop") {
-    display: block;
     top: 90vh;
     left: var(--gap);
+    display: block;
     align-self: end;
     overflow: visible;
     transform: translateY(calc(-100% + 2.25rem));
-    
+
     a { font-size: 1rem; }
     .link:not(:last-child) { margin-bottom: 1rem; }
     .links, .arrow { grid-column: unset; }
     .arrow { display: block; }
     .button, .divisor { display: none; }
-    
+
     .grid {
       display: block;
       grid-template-rows: unset;
       grid-template-columns: unset;
-      margin: 0;
-      padding: 0;
       width: auto;
+      padding: 0;
+      margin: 0;
     }
 
     @include media("height>=1000px") {
@@ -111,6 +112,7 @@
 
 .symbol {
   @include focus-ring-visible;
+
   position: fixed;
   top: var(--gap);
   left: var(--gap);
@@ -129,32 +131,33 @@
     cursor: pointer;
   }
   svg path { fill: var(--color-background); }
-  
-  &:hover  { transform: translateY(-2px); }
+
+  &:hover { transform: translateY(-2px); }
   &:active { transform: translateY(2px); }
-  
+
   @include media(">#{$max-screen}") { left: calc((100vw - #{$max-width}) / 2); }
 }
 
 .button {
   @include focus-ring-visible;
+
   position: fixed;
   top: var(--gap);
   right: var(--gap);
   z-index: 12;
   display: flex;
+  flex-direction: column;
+  gap: .5rem;
   align-items: flex-end;
   justify-content: center;
-  gap: .5rem;
-  flex-direction: column;
   width: var(--button-size);
   height: var(--button-size);
   padding: calc(var(--button-size) / 6);
-  background-color: transparent;
-  appearance: none;
-  border: transparent;
   cursor: pointer;
+  background-color: transparent;
+  border: transparent;
   transition: all .15s ease-in-out;
+  appearance: none;
 
   span { @include fontless; }
 
@@ -188,18 +191,21 @@
 
 .open {
   @include media("<=desktop") {
+    z-index: 11;
     width: 100vw;
+
     // Ensure page is minimum 1 screen high to put menu at bottom in mobile
-    height: 100vh; 
+    height: 100vh;
+
     // When supported, use env vars to avoid UI chrome
-    height: calc(100vh - env(safe-area-inset-bottom)); 
+    height: calc(100vh - env(safe-area-inset-bottom));
+
     // When supported, use dvh instead of env vars
     height: 100dvh;
-    z-index: 11;
+    overflow: hidden;
     background-color: var(--color-cover);
     mix-blend-mode: unset;
-    overflow: hidden;
-  
+
     small { display: block; }
     .grid { display: grid; }
 

@@ -45,7 +45,6 @@ $max-width    : $max-width;   // Maximum container's width
   $max-column   : #{$max-column};
   $max-screen   : #{$max-screen};
   // stylelint-enable
-  
   position: relative;
   display: grid;
   grid-template-rows: auto;
