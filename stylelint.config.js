@@ -24,7 +24,6 @@ module.exports = {
     'string-no-newline': true,
     'unit-no-unknown': true,
     'custom-property-no-missing-var-function': true,
-    'keyframe-declaration-no-important': true,
     'declaration-block-no-duplicate-custom-properties': true,
     'declaration-block-no-shorthand-property-overrides': true,
     'block-no-empty': true,
@@ -38,7 +37,6 @@ module.exports = {
     'no-extra-semicolons': true,
     'no-invalid-double-slash-comments': true,
     'shorthand-property-no-redundant-values': true,
-    'declaration-no-important': true,
     'declaration-block-single-line-max-declarations': 1,
     'selector-max-empty-lines': 0,
     'selector-max-universal': 1,
@@ -47,6 +45,8 @@ module.exports = {
     'function-max-empty-lines': 0,
     'function-name-case': 'lower',
     'number-no-trailing-zeros': true,
+    'number-max-precision': 6,
+    'number-leading-zero': 'never',
     'unit-case': 'lower',
     'property-case': 'lower',
     'value-list-max-empty-lines': 0,
@@ -80,7 +80,5 @@ module.exports = {
     'scss/selector-no-redundant-nesting-selector': true,
     'scss/at-rule-no-unknown': true,
     'scss/at-import-partial-extension': null,
-    'selector-class-pattern':
-      '^(?:(?:o|c|u|t|s|is|has|_|js|qa)-)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:\\[.+\\])?$',
   },
 }
