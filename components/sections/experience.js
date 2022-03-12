@@ -10,12 +10,12 @@ export default function Experience() {
       <h2>Experience</h2>
       <div className={cn(style.column, 'column')}>
         <p>
-          I'm Sérgio, a daydreamer, designer &amp; enthusiast about great products.
+          I'm a daydreamer, designer &amp; enthusiast about great products.
           Currently, I'm <em>Staff Product Designer</em> at{' '}
           <a href="https://vtex.com" target="_blank">
             VTEX
           </a>
-          , helping shape the present and future of worldwide commerce by building a
+          , helping shape the present &amp; future of worldwide commerce by building a
           cutting-edge framework for stores and developers.
         </p>
       </div>
@@ -32,7 +32,7 @@ export default function Experience() {
             Guava
           </a>
           's <em>Lead Designer</em>, I've helped envision and execute a design
-          strategy; fostered the design culture; and grew and trained the designers'
+          strategy; fostered the design culture; and hired and grew the designers'
           squad—from an army of one to a diverse and tightly-knit team of six people.
         </p>
         <p>
@@ -40,9 +40,10 @@ export default function Experience() {
           <a href="https://guava.software" target="_blank">
             Guava
           </a>{' '}
-          years, as a <em>Consultant Designer</em>, I've collaborated with more than 18
-          clients—small and mid companies from the USA and Brazil—revamping their
-          digital products' user experience to transform their business.
+          years, I've collaborated with more than 18
+          clients—small and mid companies from the USA and Brazil, in all kinds of
+          industries—revamping their digital products' user experience to transform
+          their business.
         </p>
       </div>
       <ul className={style.logos} aria-label="Companies I've collaborated with">

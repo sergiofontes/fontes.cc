@@ -23,14 +23,14 @@ export default function WorkPetPlate() {
       </div>
       <p>
         TropicalRuby was an original international tech conference hosted in a
-        Brazilian tropical paradise. It blended outdoor activities with keynotes and
+        Brazilian tropical paradise. Its schedule mixed outdoor activities with keynotes and
         workshops. I designed and developed all communication & visual materials: a
         branding system, a website with schedule &amp; venue info, emails templates,
         and print assets like shirts, backdrop panels, and badges.
       </p>
-      <Anchor href="https://tropicalrb.com" target="_blank" type="external">
+      {/* <Anchor href="https://tropicalrb.com" target="_blank" type="external">
         TropicalRuby
-      </Anchor>
+      </Anchor> */}
     </section>
   );
 }

@@ -10,8 +10,8 @@ export default function Traits() {
         <h3>Multidisciplinary</h3>
         <p>
           I love researching. I love prototyping. I love visual design. And I love
-          HTML/CSS. This mixture put me in a particular situation of being a product's
-          designer from day one. And, guess what, I love them all.
+          HTML/CSS. This mixture put me in a particular situation of being an active
+          designer in all process phases. And, guess what, I love them all.
         </p>
       </div>
       <span className={cn(style.divisor, 'divisor')}></span>
@@ -29,8 +29,8 @@ export default function Traits() {
         <p>
           I'm an optimistic and energetic person. I always try to bring in my
           enthusiasm and motivation to teammates, and can elevate the people's spirit
-          when needed. I can fearlessly go down the rabbit hole to overcome any
-          challenge.
+          when needed. I can fearlessly go down the rabbit hole to overcome hard
+          challenges.
         </p>
       </div>
       <span className={cn(style.divisor, style.last, 'last divisor')}></span>
