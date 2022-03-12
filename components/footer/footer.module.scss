@@ -12,10 +12,23 @@
   small { display: inline; }
 
   div {
+    position: relative;
     display: inline-block;
     grid-column: var(--content-start) / span var(--content-width);
     line-height: 0;
-    + div { margin-top: 1rem; }
+
+    + div {
+      margin-top: 1rem;
+
+      &::before {
+        display: block;
+        width: 3rem;
+        height: 1px;
+        margin-bottom: 1rem;
+        content: "";
+        background-color: var(--color-subtle);
+      }
+    }
 
     a {
       font-size: .9em;
