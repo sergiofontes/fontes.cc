@@ -1,0 +1,17 @@
+///////////////////////////////////////////////////////////////////////////////
+// Traits Section                                                            //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "../../styles/scaffold";
+
+.contact {
+  em { display: block; }
+
+  .lead {
+    display: inline-block;
+    margin-top: -7px;
+    line-height: 1.3;
+
+    @include media(">tablet", "<=desktop") { @include text-overflow; }
+  }
+}

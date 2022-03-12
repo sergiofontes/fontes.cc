@@ -1,0 +1,37 @@
+///////////////////////////////////////////////////////////////////////////////
+// Header Component                                                          //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "../../styles/scaffold";
+
+.footer {
+  row-gap: 0;
+  padding-bottom: calc(var(--gap) * 1.5);
+  background-color: var(--color-background);
+
+  small { display: inline; }
+
+  div {
+    display: inline-block;
+    grid-column: var(--content-start) / span var(--content-width);
+    line-height: 0;
+    + div { margin-top: 1rem; }
+
+    a {
+      font-size: .9em;
+      color: inherit;
+      text-decoration-color: inherit;
+      text-underline-position: auto;
+      text-transform: uppercase;
+    }
+  }
+
+  @include media(">tablet") {
+    small { display: block; }
+
+    div {
+      display: block;
+      grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+    }
+  }
+}

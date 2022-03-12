@@ -1,0 +1,42 @@
+///////////////////////////////////////////////////////////////////////////////
+// Testimonial Section                                                       //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "../../styles/scaffold";
+
+.testimonial {
+  --quote-start: var(--content-start);
+  --quote-width: var(--content-width);
+
+  p { margin-bottom: 0; }
+  figcaption { color: var(--color-subtitle); }
+  blockquote, figcaption { grid-column: var(--quote-start) / span var(--quote-width); }
+
+  .logo {
+    margin-top: calc(var(--gap) / 3);
+    path { fill: var(--color-subtle); }
+  }
+
+  @include media(">tablet") {
+    --quote-start: 2;
+    --quote-width: calc((var(--content-width) * 3) + 1);
+    figcaption { grid-column: var(--content-start) / span var(--content-width); }
+  }
+
+  @include media(">desktop") {
+    --quote-start: 4;
+    --quote-width: calc((var(--content-width) * 3) - 1);
+    align-items: center;
+
+    figcaption { grid-column: calc(var(--quote-start) + var(--quote-width)) / span var(--content-width); }
+  }
+}
+
+.logo, .logos {
+  --scale-factor: 1;
+
+  svg {
+    width: calc(6rem * var(--scale-factor));
+    height: auto;
+  }
+}
