@@ -8,6 +8,7 @@ export default function Work({ children }) {
       <h2>
         <span>(Some) </span>Work
       </h2>
+      
       {children}
     </section>
   );
