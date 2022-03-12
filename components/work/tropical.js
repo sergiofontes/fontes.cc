@@ -2,7 +2,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 
 import Anchor from '../../components/anchor';
-import LogoTropical from '../../public/images/logos/tropical.svg';
+import Logo from '../logos/';
 
 import style from './work.module.scss';
 
@@ -10,7 +10,7 @@ export default function WorkPetPlate() {
   return (
     <section id="tropicalruby" className={cn(style.case, 'grid')}>
       <h3 className={cn(style.logo, style.tropical)} aria-label="TropicalRuby">
-        <LogoTropical />
+        <Logo type="tropical" />
       </h3>
       <small className={style.date}>2015</small>
       <div className={style.image}>

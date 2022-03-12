@@ -2,7 +2,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 
 import Anchor from '../../components/anchor';
-import LogoPetPlate from '../../public/images/logos/petplate.svg';
+import Logo from '../logos/';
 
 import style from './work.module.scss';
 
@@ -10,7 +10,7 @@ export default function WorkPetPlate() {
   return (
     <section id="petplate" className={cn(style.case, 'grid')}>
       <h3 className={cn(style.logo, style.petplate)} aria-label="PetPlate">
-        <LogoPetPlate />
+        <Logo type="petplate" />
       </h3>
       <small className={style.date}>2020–2021</small>
       <div className={style.image}>
