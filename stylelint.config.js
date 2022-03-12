@@ -27,6 +27,7 @@ module.exports = {
     'declaration-block-no-duplicate-custom-properties': true,
     'declaration-block-no-shorthand-property-overrides': true,
     'block-no-empty': true,
+    'declaration-block-no-redundant-longhand-properties': null,
     'selector-type-no-unknown': true,
     'selector-pseudo-class-no-unknown': true,
     'selector-pseudo-element-no-unknown': true,
