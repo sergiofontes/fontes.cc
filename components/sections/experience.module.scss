@@ -34,18 +34,3 @@
     }
   }
 }
-
-.logo, .logos {
-  --scale-factor: 1;
-
-  svg {
-    width: calc(6rem * var(--scale-factor));
-    height: auto;
-  }
-}
-
-.guava { --scale-factor: .88; }
-.petplate { --scale-factor: .85; }
-.storenvy { --scale-factor: .95; }
-.clearworks { --scale-factor: 1.1; }
-.true { --scale-factor: .75; }

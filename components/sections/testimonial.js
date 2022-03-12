@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import LogoVtex from '../../public/images/logos/vtex.svg';
+import Logo from '../logos/';
 
 import style from './testimonial.module.scss';
 
@@ -24,7 +24,7 @@ export default function Experience() {
         <br />
         <small>Staff Product Designer @ VTEX</small>
         <div className={style.logo}>
-          <LogoVtex />
+          <Logo type="vtex" />
         </div>
       </figcaption>
     </figure>

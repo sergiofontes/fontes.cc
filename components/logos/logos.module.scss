@@ -1,0 +1,19 @@
+///////////////////////////////////////////////////////////////////////////////
+// Logo   Component                                                          //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "../../styles/scaffold";
+
+.logo {
+  --scale-factor: 1;
+  width: calc(6rem * var(--scale-factor));
+  height: auto;
+}
+
+// stylelint-disable
+.guava      { --scale-factor: .88; }
+.petplate   { --scale-factor: .85; }
+.storenvy   { --scale-factor: .95; }
+.clearworks { --scale-factor: 1.1; }
+.true       { --scale-factor: .75; }
+.tropical   { --scale-factor: 1.1; }

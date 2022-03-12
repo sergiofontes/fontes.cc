@@ -139,15 +139,3 @@
     transform-origin: bottom left;
   }
 }
-
-.logo, .logos {
-  --scale-factor: 1;
-
-  svg {
-    width: calc(6rem * var(--scale-factor));
-    height: auto;
-  }
-}
-
-.petplate { --scale-factor: 1; }
-.tropical { --scale-factor: 1.1; }

@@ -31,12 +31,3 @@
     figcaption { grid-column: calc(var(--quote-start) + var(--quote-width)) / span var(--content-width); }
   }
 }
-
-.logo, .logos {
-  --scale-factor: 1;
-
-  svg {
-    width: calc(6rem * var(--scale-factor));
-    height: auto;
-  }
-}

@@ -1,11 +1,6 @@
 import cn from 'classnames';
 
-import LogoClearworks from '../../public/images/logos/clearworks.svg';
-import LogoGuava from '../../public/images/logos/guava.svg';
-import LogoPetPlate from '../../public/images/logos/petplate.svg';
-import LogoStorenvy from '../../public/images/logos/storenvy.svg';
-import LogoTrue from '../../public/images/logos/true.svg';
-import LogoVtex from '../../public/images/logos/vtex.svg';
+import Logo from '../logos/';
 
 import style from './experience.module.scss';
 
@@ -26,7 +21,7 @@ export default function Experience() {
       </div>
       <ul className={style.logo}>
         <li className={style.vtex} aria-label="VTEX">
-          <LogoVtex />
+          <Logo type="vtex" />
         </li>
       </ul>
       <span className={cn(style.divisor, 'divisor')}></span>
@@ -52,19 +47,19 @@ export default function Experience() {
       </div>
       <ul className={style.logos} aria-label="Companies I've collaborated with">
         <li className={style.guava} aria-label="Guava">
-          <LogoGuava />
+          <Logo type="guava" />
         </li>
         <li className={style.petplate} aria-label="PetPlate">
-          <LogoPetPlate />
+          <Logo type="petplate" />
         </li>
         <li className={style.clearworks} aria-label="Clearworks">
-          <LogoClearworks />
+          <Logo type="clearworks" />
         </li>
         <li className={style.storenvy} aria-label="Storenvy">
-          <LogoStorenvy />
+          <Logo type="storenvy" />
         </li>
         <li className={style.true} aria-label="True">
-          <LogoTrue />
+          <Logo type="true" />
         </li>
       </ul>
       <span className={cn(style.divisors, style.last, 'last divisors')}></span>
