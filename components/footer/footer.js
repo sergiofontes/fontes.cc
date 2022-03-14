@@ -38,7 +38,7 @@ export default function Footer() {
           >
             Playfair Display
           </Anchor>
-          .
+          .{' '}
         </small>
         <small>
           Built with{' '}
@@ -49,7 +49,7 @@ export default function Footer() {
           <Anchor href="https://vercel.com/" target="_blank">
             Vercel
           </Anchor>
-          .
+          .{' '}
         </small>
         <small>
           Check the source at{' '}
