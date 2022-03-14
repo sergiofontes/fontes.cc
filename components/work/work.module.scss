@@ -56,16 +56,18 @@
   align-self: stretch;
   width: 100%;
   aspect-ratio: 1 / 1;
-  overflow: hidden;
   box-shadow:
     0 .7px 2.2px rgb(0 0 0 / 2%),
     0 1.6px 5.3px rgb(0 0 0 / 2.8%),
     0 3px 10px rgb(0 0 0 / 3.5%),
     0 5.4px 17.9px rgb(0 0 0 / 4.2%),
-    0 10px 33.4px rgb(0 0 0 / 5%),
-    0 24px 80px rgb(0 0 0 / 7%);
-
-  > span { position: unset !important; }
+      0 10px 33.4px rgb(0 0 0 / 5%),
+      0 24px 80px rgb(0 0 0 / 7%);
+    
+  > span {
+    overflow: hidden;
+    -webkit-clip-path: content-box; // stylelint-disable-line
+  }
 
   @supports not (aspect-ratio: 1 / 1) {
     &::before {
@@ -89,7 +91,6 @@
     // Out of regular grid
     grid-row: 1 / span 3;
     grid-column: 1 / span 2;
-    border-radius: 1.333333rem;
     box-shadow:
       .5px .9px 2.2px rgb(0 0 0 / 2%),
       1.2px 2.1px 5.3px rgb(0 0 0 / 2.8%),
@@ -97,6 +98,8 @@
       4px 7.1px 17.9px rgb(0 0 0 / 4.2%),
       7.5px 13.4px 33.4px rgb(0 0 0 / 5%),
       18px 32px 80px rgb(0 0 0 / 7%);
+    
+    &, > span { border-radius: 1.333333rem; }
   }
 
   @include media(">desktop") {
