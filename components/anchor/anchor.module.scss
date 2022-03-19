@@ -41,10 +41,12 @@
 }
 
 .offline {
+  cursor: not-allowed;
+
   span {
     display: inline-block;
-    padding: 3px 2px 2px;
-    margin-left: .35rem;
+    padding: 2px 2px 3px;
+    margin-left: calc(var(--gap) / 4);
     font-size: .7em;
     line-height: 1;
     color: var(--color-subtitle);
@@ -52,4 +54,6 @@
     border: 1px solid var(--color-subtle);
     border-radius: 2px;
   }
+
+  svg { display: none; }
 }
