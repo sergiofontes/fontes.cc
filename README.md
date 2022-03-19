@@ -2,7 +2,7 @@
 
 Hi, I‘m Sérgio Fontes, a Brazilian digital designer.
 
-Feel free to check out this website's source and how I built it. Drop me a line if you have any questions or suggestions.
+This repository is the source of my portfolio. Feel free to check it out and learn how I built it. Drop me a line if you have any questions or suggestions.
 
 ### Setup
 
