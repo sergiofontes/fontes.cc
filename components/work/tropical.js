@@ -35,10 +35,9 @@ export default function WorkPetPlate() {
         <aside className={style.details}>
           <h4>Activities:</h4>
           <ul>
-            <li>Conference Branding</li>
+            <li>Conference Branding &amp; Communication</li>
             <li>Website</li>
             <li>Email Templates</li>
-            <li>Communication</li>
             <li>
               <abbr title="Hypertext Markup Language">HTML</abbr>/
               <abbr title="Cascading Style Sheets">CSS</abbr>
