@@ -20,7 +20,7 @@
   @include media(">tablet") {
     --quote-start: 2;
     --quote-width: calc((var(--content-width) * 3) + 1);
-    figcaption { grid-column: var(--content-start) / span var(--content-width); }
+    figcaption { grid-column: var(--content-start) / span calc(var(--content-width) * 2); }
   }
 
   @include media(">desktop") {
