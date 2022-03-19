@@ -10,7 +10,7 @@ export default function Footer() {
       <div>
         <small>Sérgio Fontes, 2022. Copy, design &amp; code by me. </small>
         <small>
-          No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there's some
+          No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there’s some
           JS too).
         </small>
       </div>

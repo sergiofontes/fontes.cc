@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import style from './testimonial.module.scss';
+import style from './traits.module.scss';
 
 export default function Traits() {
   return (
@@ -9,9 +9,11 @@ export default function Traits() {
       <div className={cn(style.column, 'column')}>
         <h3>Multidisciplinary</h3>
         <p>
-          I love researching. I love prototyping. I love visual design. And I love
-          HTML/CSS. This mixture put me in a particular situation of being an active
-          designer in all process phases. And, guess what, I love them all.
+          I’m a multifaceted designer who loves having full ownership across the
+          product experience: from researching &amp; problem framing, passing through
+          prototyping &amp; validation, to visual design—even{' '}
+          <abbr title="Hypertext Markup Language">HTML</abbr>/
+          <abbr title="Cascading Style Sheets">CSS</abbr>.
         </p>
       </div>
       <span className={cn(style.divisor, 'divisor')}></span>
@@ -19,7 +21,7 @@ export default function Traits() {
         <h3>Craftsman</h3>
         <p>
           I have a keen eye to details and can sometimes be obsessive about pursuing
-          the best possible solution. But it's not only about pixels: it also matters
+          the best possible solution. But it’s not only about pixels: it also matters
           to me the overall use experience and its subjectivities.
         </p>
       </div>
@@ -28,7 +30,7 @@ export default function Traits() {
         <h3>Energetic</h3>
         <p>
           I'm an optimistic and energetic person. I always try to bring in my
-          enthusiasm and motivation to teammates, and can elevate the people's spirit
+          enthusiasm and motivation to teammates, and can elevate the people’s spirit
           when needed. I can fearlessly go down the rabbit hole to overcome hard
           challenges.
         </p>
