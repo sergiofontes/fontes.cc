@@ -57,7 +57,7 @@ export default function WorkPetPlate() {
           </ul>
         </aside>
         <aside className={style.details}>
-          <h4>Links</h4>
+          <h4>Links:</h4>
           <Anchor href="https://petplate.com" target="_blank" type="external">
             PetPlate
           </Anchor>
