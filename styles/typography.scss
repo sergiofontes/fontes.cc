@@ -78,8 +78,6 @@ p {
   margin-bottom: 1.875rem;
 }
 
-em {}
-
 label,
 .label {
   line-height: 1;
@@ -93,8 +91,6 @@ small {
 
   @include media(">desktop") { font-size: .8rem; }
 }
-
-strong {}
 
 .lead {
   font-family: var(--font-title);
@@ -143,13 +139,10 @@ a {
 }
 
 // Code
+abbr[title] { text-decoration: none; }
 code {}
 pre {}
 kbd {}
-
-// Small texts
-legend {}
-figcaption {}
 
 // List
 ul, ol {
