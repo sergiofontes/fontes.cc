@@ -9,7 +9,7 @@ export default function Traits() {
       <div className={cn(style.column, 'column')}>
         <h3>Multidisciplinary</h3>
         <p>
-          I’m a multifaceted designer who loves having full ownership across the
+          I’m a multifaceted designer who loves having ownership across the
           product experience: from researching &amp; problem framing, passing through
           prototyping &amp; validation, to visual design—even{' '}
           <abbr title="Hypertext Markup Language">HTML</abbr>/
