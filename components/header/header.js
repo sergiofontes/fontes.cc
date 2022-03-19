@@ -25,11 +25,11 @@ export default function Header() {
         <h2>Intro</h2>
         <div className={cn(style.column, 'column')}>
           <p className={cn(style.lead, 'lead')}>
-            Hi, I‘m<i></i> Sérgio Fontes.
+            Hi, I’m<i></i> Sérgio Fontes.
           </p>
         </div>
         <div className={cn(style.columns, 'columns')}>
-          <p>I‘m a Brazilian digital designer with 12+ years of experience. </p>
+          <p>I’m a Brazilian digital designer with 12+ years of experience. </p>
           <p>I help companies design, build, and validate digital products.</p>
         </div>
         <span className={cn(style.divisors, style.last, 'last divisors')}></span>
