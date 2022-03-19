@@ -5,24 +5,46 @@
 @import "../../styles/scaffold";
 
 .work {
-  h2 { grid-row: 1; }
-  h3 { margin: 1rem 0 0; }
-  h3, ul, p, a { grid-column: var(--content-start) / span var(--content-width); }
+  h2, h3 { grid-row: 1; }
   h2, small { mix-blend-mode: difference; }
+
+  p {
+    grid-column: var(--content-start) / span var(--content-width);
+    margin-top: 1rem;
+  }
+
+  h3 {
+    grid-column: 2 / span 2;
+    margin: .5rem 0 1rem;
+  }
+
+  .divisors {
+    grid-row: 5;
+    margin-top: var(--gap);
+  }
 
   @include media(">tablet") {
     h2 { text-align: right; }
 
     // Out of regular grid
-    h3 { margin-top: 1rem; }
     a { margin-bottom: 1rem; }
+    h2, small { mix-blend-mode: normal; }
 
-    h3, ul, p, a {
+    h3 {
+      grid-column: 1 / span 3;
+      margin-bottom: 0;
+    }
+
+    p {
       grid-column-start: 3;
       grid-column-end: auto;
     }
 
-    h2, small { mix-blend-mode: normal; }
+    .divisors {
+      grid-row: 4;
+      grid-column: 1 / span 3;
+      margin-top: 0;
+    }
   }
 
   @include media(">desktop") {
@@ -33,11 +55,11 @@
 }
 
 .case {
-  display: grid;
+  display: grid; // TODO: Should I use `display: contents` here instead?
   grid-row: auto;
   grid-column: var(--heading-start) / span calc(var(--columns) + 2);
   gap: var(--gap);
-  &:not(:last-child) { padding-bottom: calc(var(--gap) * 2); }
+  &:not(:last-child) { padding-bottom: var(--gap); }
   &:nth-of-type(1) { grid-row: 1 / span 2; }
 
   @include media(">tablet") {
@@ -46,6 +68,52 @@
     grid-column: var(--content-start) / span 9;
     row-gap: var(--gap);
     &:nth-of-type(1) { grid-row: auto; }
+  }
+}
+
+.datasheet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row: 4;
+  grid-column: 2 / span 4;
+  gap: var(--gap);
+  
+  @include media(">tablet") {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1 / span 3;
+    grid-row: 3;
+    row-gap: calc(var(--gap) / 2);
+  }
+}
+
+.details {
+  font-size: .8125rem;
+  line-height: 1.4;
+  color: var(--color-subtitle);
+  grid-column-end: span 1;
+
+  &:first-of-type { grid-column-start: 1; }
+  
+  @include media(">tablet") {
+    &:first-of-type { grid-column-start: 1; }
+  }
+  
+  @include media(">desktop") { font-size: .866667rem; }
+
+  h4 {
+    margin: 0 0 .25rem;
+    font-size: .92em;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  a { font-size: 1rem; }
+
+  li {
+    display: inline;
+    &::after { content: ", "; }
+    &:last-child::after { content: "."; }
   }
 }
 
@@ -89,7 +157,7 @@
 
   @include media(">tablet") {
     // Out of regular grid
-    grid-row: 1 / span 3;
+    grid-row: 2;
     grid-column: 1 / span 2;
     box-shadow:
       .5px .9px 2.2px rgb(0 0 0 / 2%),
@@ -121,24 +189,23 @@
 
 .date {
   position: relative;
-  top: -1rem;
-  grid-column: var(--heading-start);
-  align-self: start;
+  grid-column: 4 / span 2;
+  align-self: center;
   justify-self: end;
   margin-top: .266667rem;
   white-space: nowrap;
-  transform: rotate(-90deg);
-  transform-origin: bottom right;
 
   @include media(">tablet") {
     // Out of regular grid
+    top: -1rem;
     left: -1rem;
-    grid-row: 3;
+    grid-row: 2;
     grid-column: 1;
     align-self: end;
     justify-self: start;
     margin: 0;
     text-align: left;
+    transform: rotate(-90deg);
     transform-origin: bottom left;
   }
 }
