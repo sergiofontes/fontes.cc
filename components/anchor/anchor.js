@@ -10,6 +10,7 @@ import style from './anchor.module.scss';
 Anchor.propTypes = {
   type: PropTypes.oneOf(['default', 'external', 'github', 'linkedin']),
   inline: PropTypes.bool,
+  offline: PropTypes.bool,
   classes: PropTypes.string,
   href: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -19,13 +20,14 @@ Anchor.propTypes = {
 Anchor.defaultProps = {
   type: 'default',
   inline: false,
+  offline: false,
   classes: '',
   href: '',
   children: '',
   onClick: undefined,
 };
 
-export default function Anchor({ type, inline, classes, href, children, ...props }) {
+export default function Anchor({ type, inline, offline, classes, href, children, ...props }) {
   return (
     <a
       className={cn(
@@ -36,6 +38,7 @@ export default function Anchor({ type, inline, classes, href, children, ...props
           [style.github]: type === 'github',
           [style.linkedin]: type === 'linkedin',
           [style.inline]: inline,
+          [style.offline]: offline,
         },
         classes
       )}
@@ -45,6 +48,7 @@ export default function Anchor({ type, inline, classes, href, children, ...props
       {type === 'github' && <IconGithub />}
       {type === 'linkedin' && <IconLinkedin />}
       {children}
+      <span>Offline</span>
       {type === 'external' && <IconArrow />}
     </a>
   );
