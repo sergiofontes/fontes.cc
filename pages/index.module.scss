@@ -18,6 +18,11 @@
       padding-top: var(--spacing);
     }
 
+    @include media(">tablet") {
+      --spacing-multiplier: 5;
+      &:first-child { --spacing-multiplier: 5; }
+    }
+
     @include media(">desktop") {
       --spacing-multiplier: 3.5;
       &:first-child { --spacing-multiplier: 3.5; }
