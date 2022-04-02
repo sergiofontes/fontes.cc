@@ -50,14 +50,14 @@ export default function WorkPetPlate() {
           <h4>Designers:</h4>
           <ul>
             <li>Sérgio Fontes</li>
-            <li>Filipe Soares</li>
             <li>Renata Motta</li>
-            <li>Fanny Chien</li>
             <li>Nathália Moura</li>
+            <li>Filipe Soares</li>
+            <li>Fanny Chien</li>
           </ul>
         </aside>
         <aside className={style.details}>
-          <h4>Links:</h4>
+          <h4>Link:</h4>
           <Anchor href="https://petplate.com" target="_blank" type="external">
             PetPlate
           </Anchor>

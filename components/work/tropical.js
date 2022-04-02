@@ -45,15 +45,7 @@ export default function WorkPetPlate() {
           </ul>
         </aside>
         <aside className={style.details}>
-          <h4>Organizers:</h4>
-          <ul>
-            <li>Guava Software</li>
-            <li>Eloquent Studio</li>
-            <li>Frevo on Rails &amp; Ruby Community</li>
-          </ul>
-        </aside>
-        <aside className={style.details}>
-          <h4>Links:</h4>
+          <h4>Link:</h4>
           <Anchor
             href="https://tropicalrb.com"
             target="_blank"
