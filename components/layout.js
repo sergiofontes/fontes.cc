@@ -6,8 +6,6 @@ export default function Layout({ children, home }) {
   return (
     <>
       <Head>
-        <meta property="og:image" content="" />
-        <meta name="twitter:card" content="summary_large_image" />
         <meta name="msapplication-TileColor" content="#211d1d" />
         <meta name="theme-color" content="#211d1d" />
         <link rel="icon" href="favicons/favicon.ico" />
