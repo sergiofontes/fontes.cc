@@ -18,7 +18,7 @@ export default function Contact() {
       </div>
       <span className={cn(style.divisor, 'divisor')}></span>
       <div className={cn(style.columns, 'columns')}>
-        <p>I usually reply emails in no more than one business day.</p>
+        <p>I usually reply emails in no more than one business day. Say hello!</p>
         <p>
           Alternatively, you can find me on{' '}
           <Anchor
