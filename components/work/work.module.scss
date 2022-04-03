@@ -14,6 +14,7 @@
   }
 
   h3 {
+    z-index: 2;
     grid-column: 2 / span 2;
     margin: .5rem 0 1rem;
   }
@@ -130,24 +131,13 @@
   grid-row: 2;
   grid-column: 1 / span calc(var(--columns) + 2);
   align-self: stretch;
-  width: calc(100% - var(--gap));
+  width: calc(100% - (var(--gap) * 2));
   aspect-ratio: 1 / 1;
-  margin: 0 calc(var(--gap) / 2);
-  box-shadow:
-    0 .7px 2.2px rgb(0 0 0 / 2%),
-    0 1.6px 5.3px rgb(0 0 0 / 2.8%),
-    0 3px 10px rgb(0 0 0 / 3.5%),
-    0 5.4px 17.9px rgb(0 0 0 / 4.2%),
-    0 10px 33.4px rgb(0 0 0 / 5%),
-    0 24px 80px rgb(0 0 0 / 7%);
+  margin: 0 var(--gap);
     
   > span {
     overflow: hidden;
     -webkit-clip-path: content-box; // stylelint-disable-line
-  }
-
-  &, >span {
-    border-radius: 1.333333rem;
   }
 
   @supports not (aspect-ratio: 1 / 1) {
@@ -164,28 +154,15 @@
     }
   }
 
-  &:hover {
-    .display { transform: scale(1.1); }
-  }
-
   @include media(">tablet") {
-    // Out of regular grid
     grid-row: 2;
-    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+    grid-column: var(--content-start) / span calc((var(--content-width) * 3) - 1);
     width: 100%;
     margin: 0;
-    box-shadow:
-      .5px .9px 2.2px rgb(0 0 0 / 2%),
-      1.2px 2.1px 5.3px rgb(0 0 0 / 2.8%),
-      2.3px 4px 10px rgb(0 0 0 / 3.5%),
-      4px 7.1px 17.9px rgb(0 0 0 / 4.2%),
-      7.5px 13.4px 33.4px rgb(0 0 0 / 5%),
-      18px 32px 80px rgb(0 0 0 / 7%);
   }
   
   @include media(">desktop") {
     aspect-ratio: 10 / 7;
-
     grid-row: 1 / span 2;
 
     @supports not (aspect-ratio: 10 / 7) {
@@ -209,7 +186,6 @@
   white-space: nowrap;
 
   @include media(">tablet") {
-    // Out of regular grid
     top: -1rem;
     left: -1rem;
     grid-row: 2;
@@ -220,5 +196,46 @@
     text-align: left;
     transform: rotate(-90deg);
     transform-origin: bottom left;
+  }
+}
+
+.gallery {
+  perspective: 700px;
+  height: 100%;
+  
+  @include media(">tablet") {
+    perspective: 800px;
+  }
+
+  .swiper {
+    overflow: hidden;
+    -webkit-clip-path: content-box; // stylelint-disable-line
+    background-color: var(--color-background);
+    transition: all .2s cubic-bezier(0.75, 0, 0.04, 1.01);
+    box-shadow: 0 .4px 1.1px rgb(0 0 0 / 2%),
+      0 1px 2.8px rgb(0 0 0 / 2.8%),
+      0 2px 6px rgb(0 0 0 / 3.5%),
+      0 5.4px 11.9px rgb(0 0 0 / 4.2%),
+      0 10px 23.4px rgb(0 0 0 / 5%),
+      0 24px 48px rgb(0 0 0 / 7%);
+
+    &, > span {
+      border-radius: 1.333333rem;
+    }
+  }
+
+  [class*="swiper-slide-active"] {
+    box-shadow:
+      .5px .9px 2.2px rgb(0 0 0 / 2%),
+      1.2px 2.1px 5.3px rgb(0 0 0 / 2.8%),
+      2.3px 4px 10px rgb(0 0 0 / 3.5%),
+      4px 7.1px 17.9px rgb(0 0 0 / 4.2%),
+      7.5px 13.4px 33.4px rgb(0 0 0 / 5%),
+      18px 32px 80px rgb(0 0 0 / 7%);
+    &:hover {
+      .display {
+        transform: scale(1.1);
+      }
+    }
   }
 }

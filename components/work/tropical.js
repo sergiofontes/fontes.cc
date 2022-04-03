@@ -1,5 +1,9 @@
+import React from 'react';
 import cn from 'classnames';
 import Image from 'next/image';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCards } from 'swiper';
 
 import Anchor from '../../components/anchor';
 import Logo from '../logos/';
@@ -15,12 +19,40 @@ export default function WorkPetPlate() {
       <small className={style.date}>2015</small>
 
       <div className={style.image}>
-        <Image
-          src="/images/work/tropical_10-7.jpg"
-          className={style.display}
-          layout="fill"
-          alt="Tropical Ruby's home screen"
-        />
+        <Swiper
+          effect={'cards'}
+          cardsEffect={{
+            slideShadows: false,
+          }}
+          grabCursor={true}
+          modules={[EffectCards]}
+          className={style.gallery}
+        >
+          <SwiperSlide className={style.swiper}>
+            <Image
+              src="/images/work/tropical_10-7.jpg"
+              className={style.display}
+              layout="fill"
+              alt="Tropical Ruby's home screen"
+            />
+          </SwiperSlide>
+          <SwiperSlide className={style.swiper}>
+            <Image
+              src="/images/work/tropical_10-7.jpg"
+              className={style.display}
+              layout="fill"
+              alt="Tropical Ruby's home screen"
+            />
+          </SwiperSlide>
+          <SwiperSlide className={style.swiper}>
+            <Image
+              src="/images/work/tropical_10-7.jpg"
+              className={style.display}
+              layout="fill"
+              alt="Tropical Ruby's home screen"
+            />
+          </SwiperSlide>
+        </Swiper>
       </div>
 
       <p>
