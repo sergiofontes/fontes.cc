@@ -86,7 +86,7 @@ label,
 small {
   display: block;
   font-size: .8125rem;
-  line-height: 1.4;
+  line-height: 1.5;
   color: var(--color-subtitle);
 
   @include media(">desktop") { font-size: .8rem; }

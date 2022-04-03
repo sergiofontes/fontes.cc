@@ -110,8 +110,8 @@
   @include media(">desktop") { font-size: .866667rem; }
 
   h4 {
-    margin: 0 0 .25rem;
-    font-size: .92em;
+    margin: 0 0 1px;
+    font-size: .843333em;
     font-weight: normal;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -187,7 +187,7 @@
 
   @include media(">tablet") {
     top: -1rem;
-    left: -1rem;
+    left: -.5rem;
     grid-row: 2;
     grid-column: var(--content-start);
     align-self: end;
