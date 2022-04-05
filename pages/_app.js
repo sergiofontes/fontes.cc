@@ -7,6 +7,7 @@ import '../styles/container.scss';
 
 import 'swiper/scss';
 import 'swiper/scss/keyboard';
+import 'swiper/scss/pagination';
 import 'swiper/scss/effect-cards';
 
 export default function App({ Component, pageProps }) {

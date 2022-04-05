@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper';
+import { EffectCards, Pagination } from 'swiper';
 
 import Anchor from '../../components/anchor';
 import Logo from '../logos/';
@@ -21,12 +21,15 @@ export default function WorkPetPlate() {
       <div className={style.image}>
         <Swiper
           effect={'cards'}
+          className={style.gallery}
+          modules={[EffectCards, Pagination]}
           cardsEffect={{
             slideShadows: false,
           }}
+          pagination={{
+            dynamicBullets: true,
+          }}
           grabCursor={true}
-          modules={[EffectCards]}
-          className={style.gallery}
         >
           <SwiperSlide className={style.swiper}>
             <Image

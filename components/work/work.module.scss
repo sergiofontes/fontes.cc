@@ -8,10 +8,7 @@
   h2, h3 { grid-row: 1; }
   h2, small { mix-blend-mode: difference; }
 
-  p {
-    grid-column: var(--content-start) / span var(--content-width);
-    margin-top: 1rem;
-  }
+  p { grid-column: var(--content-start) / span var(--content-width); }
 
   h3 {
     z-index: 2;
@@ -132,9 +129,9 @@
   grid-column: 1 / span calc(var(--columns) + 2);
   align-self: stretch;
   width: calc(100% - (var(--gap) * 2));
-  aspect-ratio: 1 / 1;
   margin: 0 var(--gap);
-    
+  aspect-ratio: 1 / 1;
+
   > span {
     overflow: hidden;
     -webkit-clip-path: content-box; // stylelint-disable-line
@@ -186,7 +183,7 @@
   white-space: nowrap;
 
   @include media(">tablet") {
-    top: -1rem;
+    top: calc(-1rem - var(--gap));
     left: -.5rem;
     grid-row: 2;
     grid-column: var(--content-start);
@@ -200,10 +197,12 @@
 }
 
 .gallery {
-  perspective: 700px;
   height: 100%;
-  
+  padding-bottom: calc(var(--gap) * 2);
+  perspective: 700px;
+
   @include media(">tablet") {
+    padding-bottom: var(--gap);
     perspective: 800px;
   }
 
@@ -211,18 +210,22 @@
     overflow: hidden;
     -webkit-clip-path: content-box; // stylelint-disable-line
     background-color: var(--color-background);
-    transition: all .2s cubic-bezier(0.75, 0, 0.04, 1.01);
-    box-shadow: 0 .4px 1.1px rgb(0 0 0 / 2%),
+    box-shadow:
+      0 .4px 1.1px rgb(0 0 0 / 2%),
       0 1px 2.8px rgb(0 0 0 / 2.8%),
       0 2px 6px rgb(0 0 0 / 3.5%),
       0 5.4px 11.9px rgb(0 0 0 / 4.2%),
       0 10px 23.4px rgb(0 0 0 / 5%),
       0 24px 48px rgb(0 0 0 / 7%);
+    transition: all .2s cubic-bezier(0.75, 0, 0.04, 1.01);
 
     &, > span {
       border-radius: 1.333333rem;
     }
   }
+
+  [class*="swiper-pagination-bullets"] { bottom: 0; }
+  [class*="swiper-pagination-bullet-active"] { --swiper-pagination-color: var(--color-primary); }
 
   [class*="swiper-slide-active"] {
     box-shadow:
