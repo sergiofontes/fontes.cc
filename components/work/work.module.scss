@@ -231,8 +231,13 @@
     }
   }
 
-  [class*="swiper-pagination-bullets"] { bottom: 0; }
-  [class*="swiper-pagination-bullet-active"] { --swiper-pagination-color: var(--color-primary); }
+  [class*="swiper-pagination-bullets"] {
+    --swiper-pagination-bullet-inactive-color: var(--color-subtle);
+    --swiper-pagination-bullet-inactive-opacity: 1;
+    --swiper-pagination-color: var(--color-primary);
+
+    bottom: 0;
+  }
 
   [class*="swiper-slide-active"] {
     box-shadow:
