@@ -16,3 +16,11 @@
     @include media(">tablet", "<=desktop") { @include text-overflow; }
   }
 }
+
+.columns {
+  p { display: inline; }
+
+  @include media(">tablet") {
+    p { display: block; }
+  }
+}
