@@ -8,6 +8,10 @@ import { EffectCards, Pagination, Keyboard } from 'swiper';
 import Anchor from '../../components/anchor';
 import Logo from '../logos/';
 
+import Tropical1 from '../../public/images/work/tropical_1.png';
+import Tropical2 from '../../public/images/work/tropical_2.png';
+import Tropical3 from '../../public/images/work/tropical_3.png';
+
 import style from './work.module.scss';
 
 export default function WorkPetPlate() {
@@ -36,25 +40,28 @@ export default function WorkPetPlate() {
         >
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/tropical_1.png"
+              src={Tropical1}
               className={style.display}
               layout="fill"
+              placeholder="blur"
               alt="Tropical Ruby's home screen"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/tropical_2.png"
+              src={Tropical2}
               className={style.display}
               layout="fill"
+              placeholder="blur"
               alt="Schedule page with outdoor activities highlighted"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/tropical_3.png"
+              src={Tropical3}
               className={style.display}
               layout="fill"
+              placeholder="blur"
               alt="Page with the venue info"
             />
           </SwiperSlide>

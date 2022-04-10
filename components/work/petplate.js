@@ -8,6 +8,11 @@ import { EffectCards, Pagination, Keyboard } from 'swiper';
 import Anchor from '../../components/anchor';
 import Logo from '../logos/';
 
+import PetPlate1 from '../../public/images/work/petplate_1.png'
+import PetPlate2 from '../../public/images/work/petplate_2.png'
+import PetPlate3 from '../../public/images/work/petplate_3.png'
+import PetPlate4 from '../../public/images/work/petplate_4.png'
+
 import style from './work.module.scss';
 
 export default function WorkPetPlate() {
@@ -36,33 +41,37 @@ export default function WorkPetPlate() {
         >
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/petplate_1.png"
+              src={PetPlate1}
               className={style.display}
               layout="fill"
+              placeholder="blur"
               alt="Product display page of the 4-pack treats"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/petplate_2.png"
+              src={PetPlate2}
               className={style.display}
               layout="fill"
+              placeholder="blur"
               alt="Overlay with mere three inputs for signing in, showcasing a seamless checkout process"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/petplate_3.png"
+              src={PetPlate3}
               className={style.display}
               layout="fill"
+              placeholder="blur"
               alt="Overlay with two payment options: Apple Pay or credit card; a user can add/remove treats at this process if they want to"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/petplate_4.png"
+              src={PetPlate4}
               className={style.display}
               layout="fill"
+              placeholder="blur"
               alt="Final overlay with order confirmation info"
             />
           </SwiperSlide>
