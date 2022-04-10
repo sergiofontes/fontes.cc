@@ -60,6 +60,7 @@
     row-gap: var(--gap);
     align-items: start;
 
+    h2 { top: 1rem; }
     p + p { margin-top: 0; }
     .column, .columns { grid-row: 1; }
     .divisor, .divisors { grid-row: 2; }

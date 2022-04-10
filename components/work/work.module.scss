@@ -8,12 +8,10 @@
   h2, h3 { grid-row: 1; }
   h2, small { mix-blend-mode: difference; }
 
-  p {
-    grid-column: var(--content-start) / span var(--content-width);
-    margin-top: 1rem;
-  }
+  p { grid-column: var(--content-start) / span var(--content-width); }
 
   h3 {
+    z-index: 2;
     grid-column: 2 / span 2;
     margin: .5rem 0 1rem;
   }
@@ -25,24 +23,27 @@
 
   @include media(">tablet") {
     h2 { text-align: right; }
-
-    // Out of regular grid
-    a { margin-bottom: 1rem; }
     h2, small { mix-blend-mode: normal; }
+    a { margin-bottom: 1rem; }
 
     h3 {
-      grid-column: 1 / span 3;
-      margin-bottom: 0;
+      grid-row: 1;
+      grid-column: var(--content-start) / span var(--content-width);
+      align-self: start;
+      justify-self: start;
+      margin: .5rem 0 0;
     }
 
     p {
-      grid-column-start: 3;
-      grid-column-end: auto;
+      grid-row: 3;
+      grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+      columns: 200px 2;
+      column-gap: var(--gap);
     }
 
     .divisors {
       grid-row: 4;
-      grid-column: 1 / span 3;
+      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
       margin-top: 0;
     }
   }
@@ -51,58 +52,65 @@
     justify-items: stretch;
 
     h2 { white-space: nowrap; }
+
+    h3 {
+      position: sticky;
+      top: calc(var(--gap) + 3rem);
+      grid-row: 1 / span 2;
+      grid-column: var(--heading-start) / span 2;
+      justify-self: end;
+      margin: 3rem 0 0;
+    }
   }
 }
 
 .case {
-  display: grid; // TODO: Should I use `display: contents` here instead?
   grid-row: auto;
-  grid-column: var(--heading-start) / span calc(var(--columns) + 2);
+  grid-column: 1 / span calc(var(--columns) + 2);
   gap: var(--gap);
+  overflow: hidden;
   &:not(:last-child) { padding-bottom: var(--gap); }
   &:nth-of-type(1) { grid-row: 1 / span 2; }
 
   @include media(">tablet") {
-    grid-template-rows: auto auto 1fr;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column: var(--content-start) / span 9;
-    row-gap: var(--gap);
-    &:nth-of-type(1) { grid-row: auto; }
+    &:nth-of-type(1) { grid-row: 1; }
   }
+
+  @include media(">desktop") { overflow: visible; }
 }
 
 .datasheet {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-row: 4;
-  grid-column: 2 / span 4;
+  grid-column: var(--content-start) / span var(--content-width);
   gap: var(--gap);
-  
+
   @include media(">tablet") {
-    grid-template-columns: repeat(3, 1fr);
-    grid-column: 1 / span 3;
+    grid-template-columns: 1fr;
     grid-row: 3;
+    grid-column: calc(var(--content-start) + (var(--content-width) * 2)) / span var(--content-width);
     row-gap: calc(var(--gap) / 2);
   }
 }
 
 .details {
+  grid-column-end: span 1;
   font-size: .8125rem;
   line-height: 1.4;
   color: var(--color-subtitle);
-  grid-column-end: span 1;
 
   &:first-of-type { grid-column-start: 1; }
-  
+
   @include media(">tablet") {
     &:first-of-type { grid-column-start: 1; }
   }
-  
+
   @include media(">desktop") { font-size: .866667rem; }
 
   h4 {
-    margin: 0 0 .25rem;
-    font-size: .92em;
+    margin: 0 0 1px;
+    font-size: .843333em;
     font-weight: normal;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -117,21 +125,37 @@
   }
 }
 
+.date {
+  position: relative;
+  grid-column: 4 / span 2;
+  align-self: center;
+  justify-self: end;
+  margin-top: .266667rem;
+  white-space: nowrap;
+
+  @include media(">tablet") {
+    top: calc(-1rem - var(--gap));
+    left: -.5rem;
+    grid-row: 2;
+    grid-column: var(--content-start);
+    align-self: end;
+    justify-self: start;
+    margin: 0;
+    text-align: left;
+    transform: rotate(-90deg);
+    transform-origin: bottom left;
+  }
+}
+
 .image {
   position: relative;
   grid-row: 2;
-  grid-column: 1 / span 6;
+  grid-column: 1 / span calc(var(--columns) + 2);
   align-self: stretch;
   width: 100%;
   aspect-ratio: 1 / 1;
-  box-shadow:
-    0 .7px 2.2px rgb(0 0 0 / 2%),
-    0 1.6px 5.3px rgb(0 0 0 / 2.8%),
-    0 3px 10px rgb(0 0 0 / 3.5%),
-    0 5.4px 17.9px rgb(0 0 0 / 4.2%),
-      0 10px 33.4px rgb(0 0 0 / 5%),
-      0 24px 80px rgb(0 0 0 / 7%);
-    
+  padding: 0 var(--gap);
+
   > span {
     overflow: hidden;
     -webkit-clip-path: content-box; // stylelint-disable-line
@@ -151,26 +175,19 @@
     }
   }
 
-  &:hover {
-    .display { transform: scale(1.1); }
+  @include media(">tablet") {
+    grid-row: 2;
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+    width: 100%;
+    padding: 0;
   }
 
-  @include media(">tablet") {
-    // Out of regular grid
-    grid-row: 2;
-    grid-column: 1 / span 2;
-    box-shadow:
-      .5px .9px 2.2px rgb(0 0 0 / 2%),
-      1.2px 2.1px 5.3px rgb(0 0 0 / 2.8%),
-      2.3px 4px 10px rgb(0 0 0 / 3.5%),
-      4px 7.1px 17.9px rgb(0 0 0 / 4.2%),
-      7.5px 13.4px 33.4px rgb(0 0 0 / 5%),
-      18px 32px 80px rgb(0 0 0 / 7%);
-    
-    &, > span { border-radius: 1.333333rem; }
+  @include media(">900px") {
+    grid-column: var(--content-start) / span calc((var(--content-width) * 3) - 1);
   }
 
   @include media(">desktop") {
+    grid-row: 1 / span 2;
     aspect-ratio: 10 / 7;
 
     @supports not (aspect-ratio: 10 / 7) {
@@ -180,32 +197,59 @@
 }
 
 .display {
-  width: 100% !important;
-  height: 100% !important;
   pointer-events: none;
   transition: all .75s cubic-bezier(.75, 0, .04, 1.01);
   object-fit: cover !important;
 }
 
-.date {
-  position: relative;
-  grid-column: 4 / span 2;
-  align-self: center;
-  justify-self: end;
-  margin-top: .266667rem;
-  white-space: nowrap;
+.gallery {
+  height: 100%;
+  padding-bottom: calc(var(--gap) * 2);
+  perspective: 700px;
 
   @include media(">tablet") {
-    // Out of regular grid
-    top: -1rem;
-    left: -1rem;
-    grid-row: 2;
-    grid-column: 1;
-    align-self: end;
-    justify-self: start;
-    margin: 0;
-    text-align: left;
-    transform: rotate(-90deg);
-    transform-origin: bottom left;
+    padding-bottom: var(--gap);
+    perspective: 800px;
+  }
+
+  .swiper {
+    overflow: hidden;
+    -webkit-clip-path: content-box; // stylelint-disable-line
+    background-color: var(--color-background);
+    box-shadow:
+      0 .4px 1.1px rgb(0 0 0 / 2%),
+      0 1px 2.8px rgb(0 0 0 / 2.8%),
+      0 2px 6px rgb(0 0 0 / 3.5%),
+      0 5.4px 11.9px rgb(0 0 0 / 4.2%),
+      0 10px 23.4px rgb(0 0 0 / 5%),
+      0 24px 48px rgb(0 0 0 / 7%);
+    transition: all .2s cubic-bezier(.75, 0, .04, 1.01);
+
+    &, > span {
+      border-radius: 1.333333rem;
+    }
+  }
+
+  [class*="swiper-pagination-bullets"] {
+    --swiper-pagination-bullet-inactive-color: var(--color-subtle);
+    --swiper-pagination-bullet-inactive-opacity: 1;
+    --swiper-pagination-color: var(--color-primary);
+    bottom: 0;
+  }
+
+  [class*="swiper-slide-active"] {
+    box-shadow:
+      .5px .9px 2.2px rgb(0 0 0 / 2%),
+      1.2px 2.1px 5.3px rgb(0 0 0 / 2.8%),
+      2.3px 4px 10px rgb(0 0 0 / 3.5%),
+      4px 7.1px 17.9px rgb(0 0 0 / 4.2%),
+      7.5px 13.4px 33.4px rgb(0 0 0 / 5%),
+      18px 32px 80px rgb(0 0 0 / 7%);
+
+    &:hover {
+      .display {
+        transform: scale(1.1);
+      }
+    }
   }
 }

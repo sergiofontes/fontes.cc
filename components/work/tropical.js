@@ -1,5 +1,9 @@
+import React from 'react';
 import cn from 'classnames';
 import Image from 'next/image';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCards, Pagination, Keyboard } from 'swiper';
 
 import Anchor from '../../components/anchor';
 import Logo from '../logos/';
@@ -15,12 +19,46 @@ export default function WorkPetPlate() {
       <small className={style.date}>2015</small>
 
       <div className={style.image}>
-        <Image
-          src="/images/work/tropical_10-7.jpg"
-          className={style.display}
-          layout="fill"
-          alt="Tropical Ruby's home screen"
-        />
+        <Swiper
+          effect={'cards'}
+          className={style.gallery}
+          modules={[EffectCards, Pagination, Keyboard]}
+          keyboard={{
+            enabled: true
+          }}
+          cardsEffect={{
+            slideShadows: false
+          }}
+          pagination={{
+            dynamicBullets: true
+          }}
+          grabCursor={true}
+        >
+          <SwiperSlide className={style.swiper}>
+            <Image
+              src="/images/work/tropical_1.png"
+              className={style.display}
+              layout="fill"
+              alt="Tropical Ruby's home screen"
+            />
+          </SwiperSlide>
+          <SwiperSlide className={style.swiper}>
+            <Image
+              src="/images/work/tropical_2.png"
+              className={style.display}
+              layout="fill"
+              alt="Schedule page with outdoor activities highlighted"
+            />
+          </SwiperSlide>
+          <SwiperSlide className={style.swiper}>
+            <Image
+              src="/images/work/tropical_3.png"
+              className={style.display}
+              layout="fill"
+              alt="Page with the venue info"
+            />
+          </SwiperSlide>
+        </Swiper>
       </div>
 
       <p>
@@ -45,15 +83,7 @@ export default function WorkPetPlate() {
           </ul>
         </aside>
         <aside className={style.details}>
-          <h4>Organizers:</h4>
-          <ul>
-            <li>Guava Software</li>
-            <li>Eloquent Studio</li>
-            <li>Frevo on Rails &amp; Ruby Community</li>
-          </ul>
-        </aside>
-        <aside className={style.details}>
-          <h4>Links:</h4>
+          <h4>Link:</h4>
           <Anchor
             href="https://tropicalrb.com"
             target="_blank"

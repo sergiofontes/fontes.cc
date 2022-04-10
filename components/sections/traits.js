@@ -29,10 +29,9 @@ export default function Traits() {
       <div className={cn(style.column, 'column')}>
         <h3>Energetic</h3>
         <p>
-          I'm an optimistic and energetic person. I always try to bring in my
-          enthusiasm and motivation to teammates, and can elevate the people’s spirit
-          when needed. I can fearlessly go down the rabbit hole to overcome hard
-          challenges.
+          I'm an energetic person, and always try to bring in my
+          enthusiasm and motivation to teammates. I can fearlessly go down the rabbit hole
+          whenever a challenge catches my attention.
         </p>
       </div>
       <span className={cn(style.divisor, style.last, 'last divisor')}></span>
