@@ -36,7 +36,7 @@ export default function WorkPetPlate() {
         >
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/tropical_10-7.jpg"
+              src="/images/work/tropical_1.png"
               className={style.display}
               layout="fill"
               alt="Tropical Ruby's home screen"
@@ -44,18 +44,18 @@ export default function WorkPetPlate() {
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/tropical_10-7.jpg"
+              src="/images/work/tropical_2.png"
               className={style.display}
               layout="fill"
-              alt="Tropical Ruby's home screen"
+              alt="Schedule page with outdoor activities highlighted"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/tropical_10-7.jpg"
+              src="/images/work/tropical_3.png"
               className={style.display}
               layout="fill"
-              alt="Tropical Ruby's home screen"
+              alt="Page with the venue info"
             />
           </SwiperSlide>
         </Swiper>

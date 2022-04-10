@@ -36,26 +36,34 @@ export default function WorkPetPlate() {
         >
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/petplate_10-7.jpg"
+              src="/images/work/petplate_1.png"
               className={style.display}
               layout="fill"
-              alt="PetPlate's treats screen"
+              alt="Product display page of the 4-pack treats"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/petplate_10-7.jpg"
+              src="/images/work/petplate_2.png"
               className={style.display}
               layout="fill"
-              alt="PetPlate's treats screen"
+              alt="Overlay with mere three inputs for signing in, showcasing a seamless checkout process"
             />
           </SwiperSlide>
           <SwiperSlide className={style.swiper}>
             <Image
-              src="/images/work/petplate_10-7.jpg"
+              src="/images/work/petplate_3.png"
               className={style.display}
               layout="fill"
-              alt="PetPlate's treats screen"
+              alt="Overlay with two payment options: Apple Pay or credit card; a user can add/remove treats at this process if they want to"
+            />
+          </SwiperSlide>
+          <SwiperSlide className={style.swiper}>
+            <Image
+              src="/images/work/petplate_4.png"
+              className={style.display}
+              layout="fill"
+              alt="Final overlay with order confirmation info"
             />
           </SwiperSlide>
         </Swiper>
@@ -65,10 +73,11 @@ export default function WorkPetPlate() {
         PetPlate is an online delivery service that sells healthy food for dogs through
         personalized meal plans. Guava team and I helped rebrand their website and
         designed a new subscription flow, user profile, and order management. We also
-        delivered a new one-off ordering flow for their functional foods. I articulated
-        requirements with stakeholders, conducted usability tests with users, and
-        produced new PDPs &amp; a fast checkout system. Now, customers can fulfill an
-        order with only three steps and less than a minute.
+        delivered a new one-off ordering flow for their functional foods. I designed
+        and produced new PDPs &amp; a fast checkout system by articulating requirements
+        with stakeholders, prototyping ideas, conducting usability tests with users, and
+        coding the front-end components. Now, customers can fulfill an order with only three
+        steps and in less than a minute.
       </p>
 
       <section className={style.datasheet}>
