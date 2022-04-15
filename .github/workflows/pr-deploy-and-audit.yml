@@ -35,7 +35,7 @@ jobs:
             #           ⏱ Running budget checks...
             - name: Audit URLs using Lighthouse
               id: lighthouse_audit
-              uses: treosh/lighthouse-ci-action@v7
+              uses: treosh/lighthouse-ci-action@v9
               with:
                   # add as many urls here as you wish to audit
                   # prefixed by the preview-url
