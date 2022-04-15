@@ -214,8 +214,8 @@
 
   .swiper {
     overflow: hidden;
-    -webkit-clip-path: content-box; // stylelint-disable-line
     background-color: var(--color-background);
+    border-radius: 1.333333rem;
     box-shadow:
       0 .4px 1.1px rgb(0 0 0 / 2%),
       0 1px 2.8px rgb(0 0 0 / 2.8%),
@@ -224,9 +224,10 @@
       0 10px 23.4px rgb(0 0 0 / 5%),
       0 24px 48px rgb(0 0 0 / 7%);
     transition: all .2s cubic-bezier(.75, 0, .04, 1.01);
-
-    &, > span {
+    
+    > span {
       border-radius: 1.333333rem;
+      -webkit-clip-path: content-box; // stylelint-disable-line
     }
   }
 
