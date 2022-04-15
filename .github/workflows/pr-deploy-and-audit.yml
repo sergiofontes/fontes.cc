@@ -1,4 +1,4 @@
-name: PR Deploy and Audit
+L_name: PR Deploy and Audit
 on: [pull_request]
 jobs:
     deploy_and_audit:
@@ -11,8 +11,8 @@ jobs:
               with:
                   vercel-token: ${{ secrets.VERCEL_TOKEN }}
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  vercel-org-id: ${{ secrets.ORG_ID}}
-                  vercel-project-id: ${{ secrets.PROJECT_ID}}
+                  vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+                  vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
                   # comment this out if not using vercel teams
                   # scope: ${{ secrets.VERCEL_SCOPE }}
             - name: Add comment to PR
