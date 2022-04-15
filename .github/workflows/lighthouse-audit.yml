@@ -1,7 +1,8 @@
-L_name: PR Deploy and Audit
+name: Lighthouse Audit
+
 on: [pull_request]
 jobs:
-    deploy_and_audit:
+    audit:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -45,7 +46,7 @@ jobs:
                   uploadArtifacts: true
                   temporaryPublicStorage: true
                   runs: 3
-            - name: Format lighthouse result
+            - name: Format Lighthouse result
               id: lighthouse_result
               if: ${{ always() }}
               uses: actions/github-script@v4
