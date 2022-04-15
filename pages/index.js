@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import dynamic from 'next/dynamic'
 
 import Layout, { siteTitle } from '../components/layout';
 import Nav from '../components/nav';
@@ -8,9 +9,10 @@ import SectionExperience from '../components/sections/experience';
 import SectionTestimonial from '../components/sections/testimonial';
 import SectionTraits from '../components/sections/traits';
 import SectionContact from '../components/sections/contact';
-import SectionWork from '../components/work';
-import WorkPetPlate from '../components/work/petplate';
-import WorkTropical from '../components/work/tropical';
+
+const SectionWork = dynamic(() => import('../components/work'));
+const WorkPetPlate = dynamic(() => import('../components/work/petplate'));
+const WorkTropical = dynamic(() => import('../components/work/tropical'));
 
 import style from './index.module.scss';
 
