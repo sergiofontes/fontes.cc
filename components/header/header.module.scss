@@ -12,7 +12,7 @@
   align-items: end;
   height: 85vh; // Ensure page is minimum 1 screen high to put menu at bottom in mobile
   height: calc(85vh - env(safe-area-inset-bottom)); // When supported, use env vars to avoid UI chrome
-  height: 85svh; // When supported, use dvh instead of env vars
+  height: 85svh; // When supported, use svh instead of env vars
   min-height: 31rem;
   padding-top: calc(var(--gap) * 4);
   background-color: var(--color-cover);
