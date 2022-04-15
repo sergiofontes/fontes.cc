@@ -3,7 +3,7 @@ import '../styles/typography.scss';
 import '../styles/global.scss';
 import '../styles/colors.scss';
 import '../styles/grid.scss';
-import '../styles/container.scss';
+import '../styles/content.scss';
 
 import 'swiper/scss';
 import 'swiper/scss/keyboard';

@@ -4,7 +4,7 @@ import style from './traits.module.scss';
 
 export default function Traits() {
   return (
-    <section id="traits" className={cn(style.traits, 'grid container')}>
+    <section id="traits" className={cn(style.traits, 'grid content')}>
       <h2>Traits</h2>
       <div className={cn(style.column, 'column')}>
         <h3>Multidisciplinary</h3>

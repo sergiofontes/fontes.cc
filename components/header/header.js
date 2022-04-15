@@ -6,7 +6,7 @@ import style from './header.module.scss';
 export default function Header() {
   return (
     <header id="hi" className={style.header}>
-      <section className={cn(style.title, 'grid container')}>
+      <section className={cn(style.title, 'grid content')}>
         <h1 aria-label="Product, U.X., Digital Designer">
           <b>
             <Typewriter
@@ -21,7 +21,7 @@ export default function Header() {
           Designer
         </h1>
       </section>
-      <section id="intro" className={cn(style.intro, 'grid container')}>
+      <section id="intro" className={cn(style.intro, 'grid content')}>
         <h2>Intro</h2>
         <div className={cn(style.column, 'column')}>
           <p className={cn(style.lead, 'lead')}>
