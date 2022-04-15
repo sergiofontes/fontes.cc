@@ -6,7 +6,7 @@ import style from './contact.module.scss';
 
 export default function Contact() {
   return (
-    <section id="contact" className={cn(style.contact, 'grid container')}>
+    <section id="contact" className={cn(style.contact, 'grid content')}>
       <h2>Contact</h2>
       <div className={cn(style.column, 'column')}>
         <p>

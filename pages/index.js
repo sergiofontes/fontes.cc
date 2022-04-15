@@ -4,11 +4,11 @@ import Layout, { siteTitle } from '../components/layout';
 import Nav from '../components/nav';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import SectionExperience from '../components/sections/experience';
-import SectionTestimonial from '../components/sections/testimonial';
-import SectionTraits from '../components/sections/traits';
-import SectionContact from '../components/sections/contact';
-import SectionWork from '../components/work';
+import AboutExperience from '../components/about/experience';
+import AboutTestimonial from '../components/about/testimonial';
+import AboutTraits from '../components/about/traits';
+import AboutContact from '../components/about/contact';
+import Work from '../components/work';
 import WorkPetPlate from '../components/work/petplate';
 import WorkTropical from '../components/work/tropical';
 
@@ -40,15 +40,15 @@ export default function Home() {
 
         <main className={style.main}>
 
-          <SectionExperience />
-          <SectionTestimonial />
-          <SectionTraits />
-          <SectionContact />
+          <AboutExperience />
+          <AboutTestimonial />
+          <AboutTraits />
+          <AboutContact />
 
-          <SectionWork>
+          <Work>
             <WorkPetPlate />
             <WorkTropical />
-          </SectionWork>
+          </Work>
         </main>
 
         <Footer />

@@ -6,7 +6,7 @@ import style from './testimonial.module.scss';
 
 export default function Experience() {
   return (
-    <figure id="testimonial" className={cn(style.testimonial, 'grid container')}>
+    <figure id="testimonial" className={cn(style.testimonial, 'grid content')}>
       <blockquote>
         <p className="lead">
           I have been working with Sérgio for the past two years, and it’s been a great

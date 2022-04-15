@@ -6,7 +6,7 @@ import style from './experience.module.scss';
 
 export default function Experience() {
   return (
-    <section id="experience" className={cn(style.experience, 'grid container')}>
+    <section id="experience" className={cn(style.experience, 'grid content')}>
       <h2>Experience</h2>
       <div className={cn(style.column, 'column')}>
         <p>

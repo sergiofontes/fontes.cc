@@ -6,7 +6,7 @@ import style from './footer.module.scss';
 
 export default function Footer() {
   return (
-    <footer className={cn(style.footer, 'grid container')}>
+    <footer className={cn(style.footer, 'grid content')}>
       <div>
         <small>Sérgio Fontes, 2022. Copy, design &amp; code by me. </small>
         <small>
