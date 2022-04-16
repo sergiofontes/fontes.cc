@@ -8,17 +8,13 @@
   --font-body: "IBM Plex Sans", sans-serif;
   --font-title: "DM Sans", sans-serif;
   --font-hero: "Playfair Display", serif;
-  --font-size: #{$base-mob};
+  --font-size: var(--base);
   --line-height: 1.6;
 
   @include media(">tablet") {
-    --font-size: #{$base};
     --line-height: 1.5;
   }
 
-  @include media(">desktoplarge") {
-    --font-size: #{$base-large};
-  }
   font-family: var(--font-body);
   font-size: var(--font-size);
   line-height: var(--line-height);

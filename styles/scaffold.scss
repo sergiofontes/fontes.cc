@@ -2,8 +2,6 @@
 // Scaffold                                               (Global Component) //
 ///////////////////////////////////////////////////////////////////////////////
 
-// stylelint-disable
-
 // Set default charset.
 @charset "utf-8";
 
@@ -12,10 +10,3 @@
 
 // Media queries with superpowers.
 @import "vendor/include-media";
-
-// Set default values for `1rem`; they also affect the grid system.
-$base-mob:   16px;
-$base:       15px;
-$base-large: 16px;
-
-// stylelint-enable

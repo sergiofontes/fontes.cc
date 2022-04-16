@@ -7,56 +7,68 @@
 @use "sass:math";
 @import "scaffold";
 
-// Mobile /////////////////////////////////////////////////////////////////////
-$columns-mob     : 4;             // Columns number.
-$gap-mob         : $base-mob;     // Gutter width.
-$gap-mob-out     : $base-mob * 3; // External gutter width.
+// Grid Properties ////////////////////////////////////////////////////////////
 
-// Tablet /////////////////////////////////////////////////////////////////////
-$columns-tab     : 10;            // Columns number.
-$gap-tab         : $base * 2;     // Gutter width.
-$gap-tab-out     : $base * 4;     // External gutter width.
+// Base value (1rem)
+$base-mob         : 16px;
+$base             : 15px;
+$base-large       : 16px;
 
-// Desktop ////////////////////////////////////////////////////////////////////
-$columns         : 13;            // Columns number.
-$gap             : $base * 2;     // Gutter width.
-$gap-out         : $base * 3;     // External gutter width.
+// Mobile
+$columns-mob      : 4;             // Columns number.
+$gap-mob          : $base-mob;     // Gutter width.
+$gap-mob-out      : $base-mob * 3; // External gutter width.
+
+// Tablet
+$columns-tab      : 10;            // Columns number.
+$gap-tab          : $base * 2;     // Gutter width.
+$gap-tab-out      : $base * 4;     // External gutter width.
+
+// Desktop
+$columns          : 13;            // Columns number.
+$gap              : $base * 2;     // Gutter width.
+$gap-out          : $base * 3;     // External gutter width.
 
 // Set a max width to the grid‘s container, based on
 // the wider breakpoint minus the external gutters.
-$container-max   : map-get($breakpoints, "max") - ($gap-out * 2);
+$container-max    : map-get($breakpoints, "max") - ($gap-out * 2);
 
 // Calculate the max width of each grid‘s column.
-$column-max      : math.div($container-max - ($gap * ($columns - 1)), $columns);
+$column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns);
 
-// Set all Sass variables into CSS ones.
+// Set all Sass variables as CSS properties.
 :root {
-  --columns      : #{$columns-mob};
-  --columns-total: calc(var(--columns) + 2);
-
-  --column-max   : #{$column-max};
-  --container-max: #{$container-max};
-
-  --gap          : #{$gap-mob};
-  --gap-out      : #{$gap-mob-out};
-  --gap-delta    : calc(var(--gap-out) - var(--gap));
+  --base          : #{$base-mob};
+  --column-max    : #{$column-max};
+  --container-max : #{$container-max};
+  --columns       : #{$columns-mob};
+  --columns-total : calc(var(--columns) + 2);
+  --gap           : #{$gap-mob};
+  --gap-out       : #{$gap-mob-out};
+  --gap-delta     : calc(var(--gap-out) - var(--gap));
   
   @include media(">tablet") {
-    --columns    : #{$columns-tab};
-    --gap        : #{$gap-tab};
-    --gap-out    : #{$gap-tab-out};
+    --base        : #{$base};
+    --columns     : #{$columns-tab};
+    --gap         : #{$gap-tab};
+    --gap-out     : #{$gap-tab-out};
   }
   
   @include media(">desktop") {
-    --columns    : #{$columns};
-    --gap        : #{$gap};
-    --gap-out    : #{$gap-out};
+    --columns     : #{$columns};
+    --gap         : #{$gap};
+    --gap-out     : #{$gap-out};
+  }
+
+  @include media(">desktoplarge") {
+    --base        : #{$base-large};
   }
 }
 
 // stylelint-enable
 
-// Create grid system.
+// Grid System ////////////////////////////////////////////////////////////////
+
 .grid {
   position: relative;
   display: grid;
