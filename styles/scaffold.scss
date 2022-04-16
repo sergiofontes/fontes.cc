@@ -4,18 +4,18 @@
 
 // stylelint-disable
 
-// All kinds of mixins, functions, and global variables.
-@use "sass:math";
-
+// Set default charset.
 @charset "utf-8";
 
-@import "utils";                // Mixins & functions utilities.
-@import "vendor/include-media"; // Media queries with superpowers.
+// Load all mixins & functions utilities.
+@import "utils";
 
-// Typography /////////////////////////////////////////////////////////////////
+// Media queries with superpowers.
+@import "vendor/include-media";
 
-$base-mob:   16px;              // 1rem
-$base:       15px;              // 1rem
-$base-large: 16px;              // 1rem
+// Set default values for `1rem`; they also affect the grid system.
+$base-mob:   16px;
+$base:       15px;
+$base-large: 16px;
 
 // stylelint-enable
