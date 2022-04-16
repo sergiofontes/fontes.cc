@@ -66,7 +66,7 @@
 
 .case {
   grid-row: auto;
-  grid-column: 1 / span calc(var(--columns) + 2);
+  grid-column: 1 / span var(--columns-total);
   gap: var(--gap);
   overflow: hidden;
   &:not(:last-child) { padding-bottom: var(--gap); }
@@ -150,7 +150,7 @@
 .image {
   position: relative;
   grid-row: 2;
-  grid-column: 1 / span calc(var(--columns) + 2);
+  grid-column: 1 / span var(--columns-total);
   align-self: stretch;
   width: 100%;
   aspect-ratio: 1 / 1;

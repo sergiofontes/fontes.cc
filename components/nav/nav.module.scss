@@ -79,7 +79,7 @@
 
   @include media(">desktop") {
     top: 90vh;
-    left: var(--gap);
+    left: var(--gap-out);
     display: block;
     align-self: end;
     overflow: visible;
@@ -106,7 +106,7 @@
     }
   }
 
-  @include media(">#{$max-screen}") { left: calc((100vw - #{$max-width}) / 2); }
+  @include media(">max") { left: calc((100vw - var(--container-max)) / 2); }
 }
 
 .symbol {
@@ -133,7 +133,9 @@
   &:hover { transform: translateY(-2px); }
   &:active { transform: translateY(2px); }
 
-  @include media(">#{$max-screen}") { left: calc((100vw - #{$max-width}) / 2); }
+  @include media(">desktop") { left: var(--gap-out); }
+
+  @include media(">max") { left: calc((100vw - var(--container-max)) / 2); }
 }
 
 .button {
