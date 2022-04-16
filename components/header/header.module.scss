@@ -25,11 +25,11 @@
 
   h1 {
     top: 1px;
-    grid-column: 1 / span calc(var(--columns) + 2);
+    grid-column: 1 / span var(--columns-total);
     margin: 0;
   }
 
-  .title, .intro { grid-column: 1 / span calc(var(--columns) + 2); }
+  .title, .intro { grid-column: 1 / span var(--columns-total); }
   .intro { grid-row: 1; }
   .title { grid-row: 2; }
   .divisors { border-color: var(--color-text-inverse); }
