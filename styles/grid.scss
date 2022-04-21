@@ -3,7 +3,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // stylelint-disable
-
 @use "sass:math";
 @import "scaffold";
 
@@ -64,7 +63,6 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
     --base        : #{$base-large};
   }
 }
-
 // stylelint-enable
 
 // Grid System ////////////////////////////////////////////////////////////////

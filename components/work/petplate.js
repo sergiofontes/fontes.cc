@@ -80,7 +80,7 @@ export default function WorkPetPlate() {
 
       <p>
         PetPlate is an online delivery service that sells healthy food for dogs through
-        personalized meal plans. Guava team and I helped rebrand their website and
+        personalized meal plans. The Guava team and I helped rebrand their website and 
         designed a new subscription flow, user profile, and order management. We also
         delivered a new one-off ordering flow for their functional foods. I designed
         and produced new PDPs &amp; a fast checkout system by articulating requirements

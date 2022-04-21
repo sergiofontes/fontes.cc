@@ -32,17 +32,17 @@ export default function Experience() {
             Guava
           </a>
           ’s <em>Lead Designer</em>, I’ve helped envision and execute a design
-          strategy; fostered the design culture; and hired and grew the designers’
-          squad—from an army of one to a diverse and tightly-knit team of six people.
+          strategy; fostered a design culture; as well as hiring and nurturing the designers’
+          squad—from an army of one to a diverse and tight-knit team of six people.
         </p>
         <p>
           During my{' '}
           <a href="https://guava.software" target="_blank">
             Guava
           </a>{' '}
-          years, I’ve collaborated with more than 18 clients—small and mid companies
+          years, I collaborated with more than 18 clients—small and mid companies
           from the USA and Brazil, in all kinds of industries—revamping their digital
-          products’ user experience to transform their business.
+          products’ user experience to transform their businesses.
         </p>
       </div>
       <ul className={style.logos} aria-label="Companies I've collaborated with">
