@@ -17,6 +17,7 @@
 
 # misc
 .DS_Store
+.stylelint-fix.*.tmp
 
 # debug
 npm-debug.log*
