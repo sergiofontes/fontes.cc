@@ -4,7 +4,7 @@ This is the source for [fontes.cc](https://fontes.cc), Sérgio Fontes' personal 
 
 ## Commands
 
-- `npm install` — install dependencies (requires Node.js >= 12.22.0)
+- `npm install` — install dependencies (requires Node.js >= 20.9.0)
 - `npm run dev` — start the dev server at `http://localhost:3000`
 - `npm run build` — production build
 - `npm start` — run the production build
@@ -35,7 +35,7 @@ When building or styling a new section component, follow the existing component 
 
 ### SVGs and i18n
 
-SVGs are imported directly as React components via `@svgr/webpack` (configured in `next.config.js`). `next.config.js` also sets `i18n` to a single `en` locale (no actual translations exist).
+SVGs are imported directly as React components via `@svgr/webpack`. Under Next 16 (Turbopack by default) the loader is wired through `turbopack.rules` in `next.config.js`, with the legacy `webpack()` hook kept as a fallback. `next.config.js` also sets `i18n` to a single `en` locale (no actual translations exist).
 
 ## CI
 
