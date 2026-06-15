@@ -17,22 +17,19 @@ export default function Footer() {
             Figma
           </Anchor>{' '}
           using{' '}
+          <Anchor href="https://fonts.google.com/specimen/Schibsted+Grotesk" target="_blank">
+            Schibsted Grotesk
+          </Anchor>
+          ,{' '}
           <Anchor href="https://fonts.google.com/specimen/DM+Sans" target="_blank">
             DM Sans
           </Anchor>
-          ,{' '}
-          <Anchor
-            href="https://fonts.google.com/specimen/IBM+Plex+Sans"
-            target="_blank"
-          >
-            IBM Plex Sans
-          </Anchor>
           , and{' '}
           <Anchor
-            href="https://fonts.google.com/specimen/Playfair+Display"
+            href="https://fonts.google.com/specimen/Abril+Fatface"
             target="_blank"
           >
-            Playfair Display
+            Abril Fatface
           </Anchor>
           .{' '}
         </small>
