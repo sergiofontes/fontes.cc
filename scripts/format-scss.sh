@@ -5,7 +5,7 @@
 # Falls back to the original content if stylelint fails outright.
 
 dir="$(cd "$(dirname "$0")/.." && pwd)"
-tmp="$dir/.stylelint-fix.$$.tmp"
+tmp="$dir/.stylelint-fix.$$.scss"
 
 cat > "$tmp"
 "$dir/node_modules/.bin/stylelint" --fix "$tmp" >/dev/null 2>&1
