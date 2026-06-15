@@ -5,18 +5,14 @@
 @import "scaffold";
 
 :root {
-  --font-body: "IBM Plex Sans", sans-serif;
+  --font-body: "Schibsted Grotesk", sans-serif;
   --font-title: "DM Sans", sans-serif;
   --font-hero: "Playfair Display", serif;
   --font-size: var(--base);
-  --line-height: 1.6;
-
-  @include media(">tablet") {
-    --line-height: 1.5;
-  }
-
+  --line-height: 1.5;
   font-family: var(--font-body);
   font-size: var(--font-size);
+  font-weight: 450;
   line-height: var(--line-height);
 }
 
@@ -44,7 +40,7 @@ h1 {
 }
 
 h1, h2, h3, h4, h5 { position: relative; }
-h2, h3, h4, h5 { font-family: var(--font-title); }
+h3, h4, h5 { font-family: var(--font-title); }
 
 h2, h3 {
   margin-top: 0;
@@ -55,6 +51,8 @@ h2, h3 {
 }
 
 h2 {
+  font-family: var(--font-body);
+  font-weight: 600;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-subtitle);
@@ -65,35 +63,46 @@ h2 {
   }
 }
 
+h3 {
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .0667rem;
+}
+
 h4 {}
 h5 {}
 
 // Paragraph
 p {
   margin-top: 0;
-  margin-bottom: 1.875rem;
+  margin-bottom: 1rem;
 }
 
 label,
 .label {
+  font-family: var(--font-title);
+  font-size: .8rem;
+  font-weight: 500;
   line-height: 1;
+  letter-spacing: .0667rem;
 }
 
 small {
   display: block;
-  font-size: .8125rem;
-  line-height: 1.5;
+  font-size: .8667rem;
+  line-height: 1.4;
   color: var(--color-subtitle);
-
-  @include media(">desktop") { font-size: .8rem; }
 }
 
 .lead {
-  font-family: var(--font-title);
-  font-size: 1.5rem;
-  line-height: 1.3;
+  font-family: var(--font-body);
+  font-size: 1.4667rem;
+  line-height: 1.2;
 
-  @include media(">tablet") { font-size: 1.733333rem; }
+  @include media(">tablet") {
+    font-size: 1.7333rem;
+    line-height: 1.3;
+  }
 }
 
 blockquote,
@@ -128,8 +137,8 @@ a {
   }
 
   &:hover {
-    text-decoration-thickness: 2px;
-    text-decoration-width: 2px;
+    text-decoration-thickness: var(--border-small);
+    text-decoration-width: var(--border-small);
   }
   &:active { top: 1px; }
 }
