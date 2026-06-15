@@ -1,0 +1,38 @@
+///////////////////////////////////////////////////////////////////////////////
+// Experience Section                                                        //
+///////////////////////////////////////////////////////////////////////////////
+
+@import "../../styles/scaffold";
+
+.logo_experience, .logos_experience {
+  display: flex;
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+  padding: 0;
+  list-style: none;
+}
+
+.logos_experience {
+  flex-wrap: wrap;
+  gap: calc(var(--gap) * 1.5);
+  align-items: center;
+
+  li:not(.guava) path { fill: var(--color-subtle); }
+}
+
+@include media(">tablet") {
+  .logo_experience { grid-column: var(--content-start) / span var(--content-width); }
+
+  .logos_experience {
+    grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 2);
+  }
+
+  .logo_experience, .logos_experience { grid-row: 3; }
+}
+
+@include media(">desktop") {
+  .logos_experience {
+    gap: 0;
+    justify-content: space-between;
+  }
+}

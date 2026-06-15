@@ -5,8 +5,6 @@ import IconArrow from '../../public/images/arrow.svg';
 import IconGithub from '../../public/images/logos/github.svg';
 import IconLinkedin from '../../public/images/logos/linkedin.svg';
 
-import style from './anchor.module.scss';
-
 Anchor.propTypes = {
   type: PropTypes.oneOf(['default', 'external', 'github', 'linkedin']),
   inline: PropTypes.bool,
@@ -31,14 +29,14 @@ export default function Anchor({ type, inline, offline, classes, href, children,
   return (
     <a
       className={cn(
-        style.anchor,
+        'anchor',
         {
-          [style.external]: type === 'external',
-          [style.social]: type === 'github' || 'linkedin',
-          [style.github]: type === 'github',
-          [style.linkedin]: type === 'linkedin',
-          [style.inline]: inline,
-          [style.offline]: offline,
+          external: type === 'external',
+          social: type === 'github' || 'linkedin',
+          github: type === 'github',
+          linkedin: type === 'linkedin',
+          inline: inline,
+          offline: offline,
         },
         classes
       )}

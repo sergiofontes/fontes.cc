@@ -5,8 +5,6 @@ import { useState } from 'react';
 import Symbol from '../../public/images/symbol.svg';
 import IconArrow from '../../public/images/arrow.svg';
 
-import style from './nav.module.scss';
-
 export default function Nav({ onClick }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,16 +32,16 @@ export default function Nav({ onClick }) {
 
   return (
     <>
-      <nav className={cn({ [style.nav]: true, [style.open]: isOpen })}>
-        <button className={style.button} open={isOpen} onClick={handleOpenCloseClick}>
+      <nav className={cn('nav', { open: isOpen })}>
+        <button className="button" open={isOpen} onClick={handleOpenCloseClick}>
           <span>Toggle menu</span>
           <i></i>
           <i></i>
         </button>
-        <div className={cn(style.grid, 'grid')}>
-          <span className={style.divisor}></span>
-          <ol className={style.links}>
-            <li className={style.link}>
+        <div className="grid">
+          <span className="divisor"></span>
+          <ol className="links">
+            <li className="link">
               <Link
                 to="experience"
                 href="#experience"
@@ -56,7 +54,7 @@ export default function Nav({ onClick }) {
                 Experience
               </Link>
             </li>
-            <li className={style.link}>
+            <li className="link">
               <Link
                 to="traits"
                 href="#traits"
@@ -69,7 +67,7 @@ export default function Nav({ onClick }) {
                 Traits
               </Link>
             </li>
-            <li className={style.link}>
+            <li className="link">
               <Link
                 to="contact"
                 href="#contact"
@@ -82,9 +80,9 @@ export default function Nav({ onClick }) {
                 Contact
               </Link>
             </li>
-            <li className={style.link}>
+            <li className="link">
               <Link
-                activeClass={style.active}
+                activeClass="active"
                 to="work"
                 href="#work"
                 smooth={`easeInOutCirc`}
@@ -95,7 +93,7 @@ export default function Nav({ onClick }) {
               >
                 Work
               </Link>
-              <span className={style.arrow}>
+              <span className="arrow">
                 <IconArrow />
               </span>
             </li>
@@ -105,7 +103,7 @@ export default function Nav({ onClick }) {
         </div>
       </nav>
 
-      <div className={style.symbol}>
+      <div className="symbol">
         <Link
           to="hi"
           href="#hi"

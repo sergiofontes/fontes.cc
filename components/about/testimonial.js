@@ -1,12 +1,8 @@
-import cn from 'classnames';
-
 import Logo from '../logos/';
-
-import style from './testimonial.module.scss';
 
 export default function Experience() {
   return (
-    <figure id="testimonial" className={cn(style.testimonial, 'grid content')}>
+    <figure id="testimonial" className="testimonial grid content">
       <blockquote>
         <p className="lead">
           I have been working with Sérgio for the past two years, and it’s been a great
@@ -23,7 +19,7 @@ export default function Experience() {
         Filipe Soares
         <br />
         <small>Staff Product Designer @ VTEX</small>
-        <div className={style.logo}>
+        <div className="logo_testimonial">
           <Logo type="vtex" />
         </div>
       </figcaption>

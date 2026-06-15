@@ -47,48 +47,16 @@
     + p { margin-top: 1.5rem; }
   }
 
-  .column, .columns, .divisor, .divisors {
-    grid-column-start: var(--content-start);
-    grid-column-end: span var(--content-width);
-    width: 100%;
-  }
-
-  .divisor, .divisors { border-bottom: 2px solid var(--color-text); }
-  .last { grid-column-end: span calc(var(--content-width) + 1); }
-
   @include media(">tablet") {
     row-gap: var(--gap);
     align-items: start;
 
     h2 { top: 1rem; }
     p + p { margin-top: 0; }
-    .column, .columns { grid-row: 1; }
-    .divisor, .divisors { grid-row: 2; }
-    .column { grid-column-start: auto; }
-
-    .columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column-start: auto;
-      grid-column-end: span calc(var(--content-width) * 2);
-      grid-auto-flow: column;
-      gap: var(--gap);
-    }
-
-    .column, .divisor {
-      grid-column-end: span var(--content-width);
-      &:nth-of-type(1) { grid-column-start: var(--content-start); }
-      &:nth-of-type(2) { grid-column-start: calc(var(--content-start) + var(--content-width)); }
-      &:nth-of-type(3) { grid-column-start: calc(var(--content-start) + var(--content-width) + var(--content-width)); }
-    }
-
-    .divisors { grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 2); }
   }
 
   @include media(">desktop") {
     align-items: stretch;
-
-    .columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
 
     h2 {
       top: var(--gap);
@@ -100,4 +68,49 @@
 
     h2, h3 { margin-top: .266667rem; }
   }
+}
+
+.content_column,
+.content_columns,
+.content_divisor,
+.content_divisors {
+  grid-column-start: var(--content-start);
+  grid-column-end: span var(--content-width);
+  width: 100%;
+}
+
+.content_divisor,
+.content_divisors { border-bottom: 2px solid var(--color-text); }
+
+// Standalone modifier (kept low specificity so the responsive rules below win)
+.-last { grid-column-end: span calc(var(--content-width) + 1); }
+
+@include media(">tablet") {
+  .content_column, .content_columns { grid-row: 1; }
+  .content_divisor, .content_divisors { grid-row: 2; }
+  .content_column { grid-column-start: auto; }
+
+  .content_columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-start: auto;
+    grid-column-end: span calc(var(--content-width) * 2);
+    grid-auto-flow: column;
+    gap: var(--gap);
+  }
+
+  .content_column, .content_divisor {
+    grid-column-end: span var(--content-width);
+    &:nth-of-type(1) { grid-column-start: var(--content-start); }
+    &:nth-of-type(2) { grid-column-start: calc(var(--content-start) + var(--content-width)); }
+    &:nth-of-type(3) { grid-column-start: calc(var(--content-start) + var(--content-width) + var(--content-width)); }
+  }
+
+  .content_divisors {
+    grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 2);
+  }
+}
+
+@include media(">desktop") {
+  .content_columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
 }

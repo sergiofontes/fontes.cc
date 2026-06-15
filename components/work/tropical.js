@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,20 +11,18 @@ import Tropical1 from '../../public/images/work/tropical_1.png';
 import Tropical2 from '../../public/images/work/tropical_2.png';
 import Tropical3 from '../../public/images/work/tropical_3.png';
 
-import style from './work.module.scss';
-
 export default function WorkPetPlate() {
   return (
-    <section id="tropicalruby" className={cn(style.case, 'grid')}>
-      <h3 className={cn(style.logo, style.tropical)} aria-label="TropicalRuby">
+    <section id="tropicalruby" className="case grid">
+      <h3 className="logo tropical" aria-label="TropicalRuby">
         <Logo type="tropical" />
       </h3>
-      <small className={style.date}>2015</small>
+      <small className="date">2015</small>
 
-      <div className={style.image}>
+      <div className="image">
         <Swiper
           effect={'cards'}
-          className={style.gallery}
+          className="gallery"
           modules={[EffectCards, Pagination, Keyboard]}
           keyboard={{
             enabled: true
@@ -38,30 +35,30 @@ export default function WorkPetPlate() {
           }}
           grabCursor={true}
         >
-          <SwiperSlide className={style.swiper}>
+          <SwiperSlide className="swiper">
             <Image
               src={Tropical1}
-              className={style.display}
+              className="display"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Tropical Ruby's home screen"
             />
           </SwiperSlide>
-          <SwiperSlide className={style.swiper}>
+          <SwiperSlide className="swiper">
             <Image
               src={Tropical2}
-              className={style.display}
+              className="display"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Schedule page with outdoor activities highlighted"
             />
           </SwiperSlide>
-          <SwiperSlide className={style.swiper}>
+          <SwiperSlide className="swiper">
             <Image
               src={Tropical3}
-              className={style.display}
+              className="display"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
@@ -79,8 +76,8 @@ export default function WorkPetPlate() {
         templates, and print assets like shirts, backdrop panels, and badges.
       </p>
 
-      <section className={style.datasheet}>
-        <aside className={style.details}>
+      <section className="datasheet">
+        <aside className="details">
           <h4>Activities:</h4>
           <ul>
             <li>Conference Branding &amp; Communication</li>
@@ -92,7 +89,7 @@ export default function WorkPetPlate() {
             </li>
           </ul>
         </aside>
-        <aside className={style.details}>
+        <aside className="details">
           <h4>Link:</h4>
           <Anchor
             href="https://tropicalrb.com"
@@ -105,7 +102,7 @@ export default function WorkPetPlate() {
         </aside>
       </section>
 
-      <span className={cn(style.divisors, style.last, 'last divisors')}></span>
+      <span className="content_divisors -last"></span>
     </section>
   );
 }

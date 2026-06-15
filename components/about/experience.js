@@ -1,14 +1,10 @@
-import cn from 'classnames';
-
 import Logo from '../logos/';
-
-import style from './experience.module.scss';
 
 export default function Experience() {
   return (
-    <section id="experience" className={cn(style.experience, 'grid content')}>
+    <section id="experience" className="grid content">
       <h2>Experience</h2>
-      <div className={cn(style.column, 'column')}>
+      <div className="content_column">
         <p>
           I’m a daydreamer, designer &amp; enthusiast about great products. Currently,
           I’m <em>Staff Product Designer</em> at{' '}
@@ -19,13 +15,13 @@ export default function Experience() {
           cutting-edge framework for stores and developers.
         </p>
       </div>
-      <ul className={style.logo}>
-        <li className={style.vtex} aria-label="VTEX">
+      <ul className="logo_experience">
+        <li className="vtex" aria-label="VTEX">
           <Logo type="vtex" />
         </li>
       </ul>
-      <span className={cn(style.divisor, 'divisor')}></span>
-      <div className={cn(style.columns, 'columns')}>
+      <span className="content_divisor"></span>
+      <div className="content_columns">
         <p>
           Previously, as{' '}
           <a href="https://guava.software" target="_blank">
@@ -45,24 +41,24 @@ export default function Experience() {
           products’ user experience to transform their businesses.
         </p>
       </div>
-      <ul className={style.logos} aria-label="Companies I've collaborated with">
-        <li className={style.guava} aria-label="Guava">
+      <ul className="logos_experience" aria-label="Companies I've collaborated with">
+        <li className="guava" aria-label="Guava">
           <Logo type="guava" />
         </li>
-        <li className={style.petplate} aria-label="PetPlate">
+        <li className="petplate" aria-label="PetPlate">
           <Logo type="petplate" />
         </li>
-        <li className={style.clearworks} aria-label="Clearworks">
+        <li className="clearworks" aria-label="Clearworks">
           <Logo type="clearworks" />
         </li>
-        <li className={style.storenvy} aria-label="Storenvy">
+        <li className="storenvy" aria-label="Storenvy">
           <Logo type="storenvy" />
         </li>
-        <li className={style.true} aria-label="True">
+        <li className="true" aria-label="True">
           <Logo type="true" />
         </li>
       </ul>
-      <span className={cn(style.divisors, style.last, 'last divisors')}></span>
+      <span className="content_divisors -last"></span>
     </section>
   );
 }

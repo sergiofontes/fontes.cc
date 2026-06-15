@@ -12,8 +12,6 @@ import Work from '../components/work';
 import WorkPetPlate from '../components/work/petplate';
 import WorkTropical from '../components/work/tropical';
 
-import style from './index.module.scss';
-
 export default function Home() {
   return (
     <Layout home>
@@ -34,11 +32,11 @@ export default function Home() {
         />
       </Head>
 
-      <div className={style.index}>
+      <div className="index">
         <Nav />
         <Header />
 
-        <main className={style.main}>
+        <main className="main">
 
           <AboutExperience />
           <AboutTestimonial />

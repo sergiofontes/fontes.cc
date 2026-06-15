@@ -1,12 +1,8 @@
-import cn from 'classnames';
-
-import style from './traits.module.scss';
-
 export default function Traits() {
   return (
-    <section id="traits" className={cn(style.traits, 'grid content')}>
+    <section id="traits" className="grid content">
       <h2>Traits</h2>
-      <div className={cn(style.column, 'column')}>
+      <div className="content_column">
         <h3>Multidisciplinary</h3>
         <p>
           I’m a multifaceted designer who loves having ownership across the product
@@ -16,8 +12,8 @@ export default function Traits() {
           <abbr title="Cascading Style Sheets">CSS</abbr>.
         </p>
       </div>
-      <span className={cn(style.divisor, 'divisor')}></span>
-      <div className={cn(style.column, 'column')}>
+      <span className="content_divisor"></span>
+      <div className="content_column">
         <h3>Craftsman</h3>
         <p>
           I have a keen eye for detail and can sometimes be obsessive about pursuing
@@ -25,8 +21,8 @@ export default function Traits() {
           experience and its subjectivities also matter to me.
         </p>
       </div>
-      <span className={cn(style.divisor, 'divisor')}></span>
-      <div className={cn(style.column, 'column')}>
+      <span className="content_divisor"></span>
+      <div className="content_column">
         <h3>Energetic</h3>
         <p>
           I'm an energetic person, and always hope that my enthusiasm and motivation
@@ -34,7 +30,7 @@ export default function Traits() {
           a challenge catches my attention.
         </p>
       </div>
-      <span className={cn(style.divisor, style.last, 'last divisor')}></span>
+      <span className="content_divisor -last"></span>
     </section>
   );
 }

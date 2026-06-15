@@ -5,6 +5,18 @@ import '../styles/colors.scss';
 import '../styles/grid.scss';
 import '../styles/content.scss';
 
+import './index.scss';
+
+import '../components/anchor/anchor.scss';
+import '../components/nav/nav.scss';
+import '../components/header/header.scss';
+import '../components/about/experience.scss';
+import '../components/about/testimonial.scss';
+import '../components/about/contact.scss';
+import '../components/work/work.scss';
+import '../components/logos/logos.scss';
+import '../components/footer/footer.scss';
+
 import 'swiper/css';
 import 'swiper/css/keyboard';
 import 'swiper/css/pagination';

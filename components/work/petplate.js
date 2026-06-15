@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,20 +12,18 @@ import PetPlate2 from '../../public/images/work/petplate_2.png'
 import PetPlate3 from '../../public/images/work/petplate_3.png'
 import PetPlate4 from '../../public/images/work/petplate_4.png'
 
-import style from './work.module.scss';
-
 export default function WorkPetPlate() {
   return (
-    <section id="petplate" className={cn(style.case, 'grid')}>
-      <h3 className={cn(style.logo, style.petplate)} aria-label="PetPlate">
+    <section id="petplate" className="case grid">
+      <h3 className="logo petplate" aria-label="PetPlate">
         <Logo type="petplate" />
       </h3>
-      <small className={style.date}>2020–2021</small>
+      <small className="date">2020–2021</small>
 
-      <div className={style.image}>
+      <div className="image">
         <Swiper
           effect={'cards'}
-          className={style.gallery}
+          className="gallery"
           modules={[EffectCards, Pagination, Keyboard]}
           keyboard={{
             enabled: true,
@@ -39,40 +36,40 @@ export default function WorkPetPlate() {
           }}
           grabCursor={true}
         >
-          <SwiperSlide className={style.swiper}>
+          <SwiperSlide className="swiper">
             <Image
               src={PetPlate1}
-              className={style.display}
+              className="display"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Product display page of the 4-pack treats"
             />
           </SwiperSlide>
-          <SwiperSlide className={style.swiper}>
+          <SwiperSlide className="swiper">
             <Image
               src={PetPlate2}
-              className={style.display}
+              className="display"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Overlay with mere three inputs for signing in, showcasing a seamless checkout process"
             />
           </SwiperSlide>
-          <SwiperSlide className={style.swiper}>
+          <SwiperSlide className="swiper">
             <Image
               src={PetPlate3}
-              className={style.display}
+              className="display"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Overlay with two payment options: Apple Pay or credit card; a user can add/remove treats at this process if they want to"
             />
           </SwiperSlide>
-          <SwiperSlide className={style.swiper}>
+          <SwiperSlide className="swiper">
             <Image
               src={PetPlate4}
-              className={style.display}
+              className="display"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
@@ -93,8 +90,8 @@ export default function WorkPetPlate() {
         steps and in less than a minute.
       </p>
 
-      <section className={style.datasheet}>
-        <aside className={style.details}>
+      <section className="datasheet">
+        <aside className="details">
           <h4>Activities:</h4>
           <ul>
             <li>Design System Development</li>
@@ -106,7 +103,7 @@ export default function WorkPetPlate() {
             </li>
           </ul>
         </aside>
-        <aside className={style.details}>
+        <aside className="details">
           <h4>Designers:</h4>
           <ul>
             <li>Sérgio Fontes</li>
@@ -116,7 +113,7 @@ export default function WorkPetPlate() {
             <li>Fanny Chien</li>
           </ul>
         </aside>
-        <aside className={style.details}>
+        <aside className="details">
           <h4>Link:</h4>
           <Anchor href="https://petplate.com" target="_blank" type="external">
             PetPlate
@@ -124,7 +121,7 @@ export default function WorkPetPlate() {
         </aside>
       </section>
 
-      <span className={cn(style.divisors, style.last, 'last divisors')}></span>
+      <span className="content_divisors -last"></span>
     </section>
   );
 }

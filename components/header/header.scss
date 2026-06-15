@@ -32,7 +32,7 @@
   .title, .intro { grid-column: 1 / span var(--columns-total); }
   .intro { grid-row: 1; }
   .title { grid-row: 2; }
-  .divisors { border-color: var(--color-text-inverse); }
+  .content_divisors { border-color: var(--color-text-inverse); }
 
   @include media(">tablet") {
     grid-template-rows: auto 1fr;
@@ -44,10 +44,10 @@
       text-align: left;
     }
 
-    .divisors { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
+    .content_divisors { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
 
     @include media("<=desktop") {
-      .columns { display: block; }
+      .content_columns { display: block; }
       .intro { grid-column-end: span calc(var(--columns) + 1); }
     }
   }

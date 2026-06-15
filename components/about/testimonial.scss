@@ -12,11 +12,6 @@
   figcaption { color: var(--color-subtitle); }
   blockquote, figcaption { grid-column: var(--quote-start) / span var(--quote-width); }
 
-  .logo {
-    margin-top: calc(var(--gap) / 3);
-    path { fill: var(--color-subtle); }
-  }
-
   @include media(">tablet") {
     --quote-start: 2;
     --quote-width: calc((var(--content-width) * 3) + 1);
@@ -30,4 +25,9 @@
 
     figcaption { grid-column: calc(var(--quote-start) + var(--quote-width)) / span var(--content-width); }
   }
+}
+
+.logo_testimonial {
+  margin-top: calc(var(--gap) / 3);
+  path { fill: var(--color-subtle); }
 }

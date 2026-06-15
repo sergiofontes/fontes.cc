@@ -21,5 +21,5 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Styling
 
-- NEVER use Tailwind (or any utility-class framework). Write CSS in each component's own `*.module.scss`, plus the shared partials in `styles/`.
-- Name all classes with the **Lean BEM** convention via the `lean-bem` skill. Invoke that skill whenever writing, refactoring, or reviewing class names.
+- NEVER use Tailwind (or any utility-class framework). Write CSS in each component’s own **global** `*.scss` (NOT a CSS Module), plus the shared partials in `styles/`. Reference classes as plain strings (`className="logo_experience"`), and import every stylesheet once in `pages/_app.js` — Next.js only allows global CSS to be imported there, never inside a component.
+- Name all classes with the **Lean BEM** convention via the `lean-bem` skill. Invoke that skill whenever writing, refactoring, or reviewing class names. Since the styles are global, class names MUST be globally unique — rely on Lean BEM (`block_element`, `-modifier`) instead of module scoping to avoid collisions, and never leave a class in the markup or CSS that the other side doesn’t reference.

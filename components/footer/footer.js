@@ -1,12 +1,8 @@
-import cn from 'classnames';
-
 import Anchor from '../../components/anchor';
-
-import style from './footer.module.scss';
 
 export default function Footer() {
   return (
-    <footer className={cn(style.footer, 'grid content')}>
+    <footer className="footer grid content">
       <div>
         <small>Sérgio Fontes, 2022. Copy, design &amp; code by me. </small>
         <small>
