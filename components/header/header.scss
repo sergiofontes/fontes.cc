@@ -24,7 +24,7 @@
   }
 
   h1 {
-    top: 1px;
+    top: 3px;
     grid-column: 1 / span var(--columns-total);
     margin: 0;
   }
@@ -58,7 +58,10 @@
     max-height: var(--header-max-height);
     padding-top: var(--gap);
 
-    h1 { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
+    h1 {
+      top: 5px;
+      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+    }
     .title { align-self: end; }
   }
 }

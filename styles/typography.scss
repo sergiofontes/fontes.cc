@@ -24,18 +24,18 @@ h1 {
   font-size: 6.75rem;
   line-height: .81;
   text-transform: lowercase;
-  letter-spacing: -.41rem;
+  letter-spacing: -2%;
+  &, b { font-weight: 400; }
 
   > span { @include fontless; }
 
   @include media(">tablet") {
     font-size: 9rem;
-    letter-spacing: -.57rem;
+    letter-spacing: -4%;
   }
 
   @include media(">desktop") {
     font-size: 13.2rem;
-    letter-spacing: -.57rem;
   }
 }
 
@@ -66,8 +66,8 @@ h2 {
 h3 {
   font-size: .8rem;
   font-weight: 800;
-  letter-spacing: .0667rem;
   text-transform: uppercase;
+  letter-spacing: .0667rem;
 }
 
 h4 {}
