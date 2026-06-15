@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards, Pagination, Keyboard } from 'swiper';
+import { EffectCards, Pagination, Keyboard } from 'swiper/modules';
 
 import Anchor from '../../components/anchor';
 import Logo from '../logos/';
@@ -43,7 +43,8 @@ export default function WorkPetPlate() {
             <Image
               src={PetPlate1}
               className={style.display}
-              layout="fill"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Product display page of the 4-pack treats"
             />
@@ -52,7 +53,8 @@ export default function WorkPetPlate() {
             <Image
               src={PetPlate2}
               className={style.display}
-              layout="fill"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Overlay with mere three inputs for signing in, showcasing a seamless checkout process"
             />
@@ -61,7 +63,8 @@ export default function WorkPetPlate() {
             <Image
               src={PetPlate3}
               className={style.display}
-              layout="fill"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Overlay with two payment options: Apple Pay or credit card; a user can add/remove treats at this process if they want to"
             />
@@ -70,7 +73,8 @@ export default function WorkPetPlate() {
             <Image
               src={PetPlate4}
               className={style.display}
-              layout="fill"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Final overlay with order confirmation info"
             />

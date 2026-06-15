@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards, Pagination, Keyboard } from 'swiper';
+import { EffectCards, Pagination, Keyboard } from 'swiper/modules';
 
 import Anchor from '../../components/anchor';
 import Logo from '../logos/';
@@ -42,7 +42,8 @@ export default function WorkPetPlate() {
             <Image
               src={Tropical1}
               className={style.display}
-              layout="fill"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Tropical Ruby's home screen"
             />
@@ -51,7 +52,8 @@ export default function WorkPetPlate() {
             <Image
               src={Tropical2}
               className={style.display}
-              layout="fill"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Schedule page with outdoor activities highlighted"
             />
@@ -60,7 +62,8 @@ export default function WorkPetPlate() {
             <Image
               src={Tropical3}
               className={style.display}
-              layout="fill"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
               placeholder="blur"
               alt="Page with the venue info"
             />
