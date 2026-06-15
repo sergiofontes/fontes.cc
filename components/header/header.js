@@ -26,7 +26,7 @@ export default function Header() {
           </p>
         </div>
         <div className="content_columns">
-          <p>I’m a Brazilian digital designer with 12+ years of experience. </p>
+          <p>I’m a Brazilian digital designer with 15+ years of experience.</p>
           <p>I help companies design, build, and validate digital products.</p>
         </div>
         <span className="content_divisors -last"></span>

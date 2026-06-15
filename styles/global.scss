@@ -32,4 +32,5 @@
   @include media(">desktop") { --button-size: 2.9333333333rem; }
 }
 
+html { overflow-x: clip; }
 body { background-color: var(--color-cover); }

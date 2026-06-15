@@ -13,7 +13,7 @@
   height: 85vh; // Ensure page is minimum 1 screen high to put menu at bottom in mobile
   height: calc(85vh - env(safe-area-inset-bottom)); // When supported, use env vars to avoid UI chrome
   height: 85svh; // When supported, use svh instead of env vars
-  min-height: 31rem;
+  min-height: 40rem;
   padding-top: calc(var(--gap) * 4);
   background-color: var(--color-cover);
 
@@ -22,6 +22,8 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
   }
+
+  h2 { color: var(--color-text-dim); }
 
   h1 {
     top: 3px;
@@ -35,7 +37,7 @@
   .content_divisors { border-color: var(--color-text-inverse); }
 
   @include media(">tablet") {
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr auto auto;
 
     @include media("portrait") { padding-top: calc(var(--gap) * 6); }
 
@@ -44,25 +46,38 @@
       text-align: left;
     }
 
-    .content_divisors { grid-column: var(--content-start) / span calc(var(--content-width) * 3); }
+    .content_divisors { grid-column: var(--content-start) / -1; }
 
     @include media("<=desktop") {
       .content_columns { display: block; }
-      .intro { grid-column-end: span calc(var(--columns) + 1); }
+
+      .intro {
+        grid-row: 2;
+        grid-column-end: span calc(var(--columns) + 1);
+      }
+
+      .title { grid-row: 3; }
     }
   }
 
   @include media(">desktop") {
+    grid-template-rows: auto 1fr;
     height: 90vh;
     min-height: 40rem;
     max-height: var(--header-max-height);
     padding-top: var(--gap);
 
+    .intro { grid-row: 1; }
+
     h1 {
       top: 5px;
       grid-column: var(--content-start) / span calc(var(--content-width) * 3);
     }
-    .title { align-self: end; }
+
+    .title {
+      grid-row: 2;
+      align-self: end;
+    }
   }
 }
 
