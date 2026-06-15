@@ -27,6 +27,7 @@ Each component lives in its own folder under `components/`:
 
 Every SCSS file starts with `@import "scaffold"`, which pulls in `utils.scss` (Sass mixins/functions: `rem()`, `clearfix`, `size`, `fontless`/`fontful`, `buttonless`, `underline`, focus-ring mixins) and the `include-media` vendor partial (copied into `styles/vendor/`) used for breakpoint queries like `@include media(">tablet")`.
 
+- `grid.scss` defines the responsive grid as CSS custom properties (`--columns`, `--gap`, `--gap-out`, `--column-max`, etc.), computed from Sass variables per breakpoint (mobile/tablet/desktop/desktoplarge/max) and consumed by the `.grid` class (a CSS grid with column count driven by `--columns`).
 - `content.scss` defines the `.content` layout container and its `.column`/`.columns`/`.divisor`/`.divisors`/`.last` helper classes, which position section content within the grid via `--heading-start/width` and `--content-start/width` custom properties (responsive per breakpoint).
 - `colors.scss`, `typography.scss`, `global.scss` provide design tokens and base/global rules; `pages/_app.js` is the single place that imports all of these plus `normalize.css` and Swiper's SCSS modules (core, keyboard, pagination, effect-cards).
 
@@ -73,7 +74,6 @@ UI rules relevant to this static, animation-heavy portfolio. MUST/SHOULD/NEVER.
 
 ### Performance
 - MUST: Prevent CLS — explicit image dimensions; preload above-fold images, lazy-load the rest
-- MUST: Preload above-fold images; lazy-load the rest
 - MUST: Profile with CPU/network throttling; avoid reflow thrash (batch layout reads/writes)
 - SHOULD: Fonts via `<link rel="preload"/preconnect">` with `font-display: swap` (Google Fonts loaded in `_document.js`)
 
