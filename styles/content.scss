@@ -80,7 +80,7 @@
 }
 
 .content_divisor,
-.content_divisors { border-bottom: 2px solid var(--color-text); }
+.content_divisors { border-bottom: 1px solid var(--color-text); }
 
 // Standalone modifier (kept low specificity so the responsive rules below win)
 .-last { grid-column-end: span calc(var(--content-width) + 1); }
