@@ -1,12 +1,12 @@
-import cn from 'classnames';
-import PropTypes from 'prop-types';
+import cn from "classnames";
+import PropTypes from "prop-types";
 
-import IconArrow from '../../public/images/arrow.svg';
-import IconGithub from '../../public/images/logos/github.svg';
-import IconLinkedin from '../../public/images/logos/linkedin.svg';
+import IconArrow from "../../public/images/icon_arrow.svg";
+import IconGithub from "../../public/images/logos/github.svg";
+import IconLinkedin from "../../public/images/logos/linkedin.svg";
 
 Anchor.propTypes = {
-  type: PropTypes.oneOf(['default', 'external', 'github', 'linkedin']),
+  type: PropTypes.oneOf(["default", "external", "github", "linkedin"]),
   inline: PropTypes.bool,
   offline: PropTypes.bool,
   classes: PropTypes.string,
@@ -16,38 +16,46 @@ Anchor.propTypes = {
 };
 
 Anchor.defaultProps = {
-  type: 'default',
+  type: "default",
   inline: false,
   offline: false,
-  classes: '',
-  href: '',
-  children: '',
+  classes: "",
+  href: "",
+  children: "",
   onClick: undefined,
 };
 
-export default function Anchor({ type, inline, offline, classes, href, children, ...props }) {
+export default function Anchor({
+  type,
+  inline,
+  offline,
+  classes,
+  href,
+  children,
+  ...props
+}) {
   return (
     <a
       className={cn(
-        'anchor',
+        "anchor",
         {
-          external: type === 'external',
-          social: type === 'github' || 'linkedin',
-          github: type === 'github',
-          linkedin: type === 'linkedin',
+          external: type === "external",
+          social: type === "github" || type === "linkedin",
+          github: type === "github",
+          linkedin: type === "linkedin",
           inline: inline,
           offline: offline,
         },
-        classes
+        classes,
       )}
       href={href}
       {...props}
     >
-      {type === 'github' && <IconGithub />}
-      {type === 'linkedin' && <IconLinkedin />}
+      {type === "github" && <IconGithub />}
+      {type === "linkedin" && <IconLinkedin />}
       {children}
       <span>Offline</span>
-      {type === 'external' && <IconArrow />}
+      {type === "external" && <IconArrow />}
     </a>
   );
 }

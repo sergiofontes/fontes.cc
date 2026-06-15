@@ -1,9 +1,9 @@
-import cn from 'classnames';
-import { Link, animateScroll as scroll } from 'react-scroll';
-import { useState } from 'react';
+import cn from "classnames";
+import { Link, animateScroll as scroll } from "react-scroll";
+import { useState } from "react";
 
-import Symbol from '../../public/images/symbol.svg';
-import IconArrow from '../../public/images/arrow.svg';
+import Symbol from "../../public/images/symbol.svg";
+import IconArrow from "../../public/images/icon_arrow.svg";
 
 export default function Nav({ onClick }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ export default function Nav({ onClick }) {
   const handleOpenCloseClick = () => {
     setIsOpen((value) => {
       if (!value) {
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
       } else {
         document.body.style.overflow = null;
       }
@@ -32,7 +32,7 @@ export default function Nav({ onClick }) {
 
   return (
     <>
-      <nav className={cn('nav', { open: isOpen })}>
+      <nav className={cn("nav", { open: isOpen })}>
         <button className="button" open={isOpen} onClick={handleOpenCloseClick}>
           <span>Toggle menu</span>
           <i></i>

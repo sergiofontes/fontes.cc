@@ -65,7 +65,7 @@
     margin-top: var(--gap);
     transition: all .75s cubic-bezier(.75, 0, .04, 1.01);
     transform: rotate(90deg);
-    path { stroke: var(--color-text-inverse); }
+    path { fill: var(--color-text-inverse); }
   }
 
   .active {
