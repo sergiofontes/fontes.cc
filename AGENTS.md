@@ -14,14 +14,14 @@ There is no test suite and no JS linter configured for this project.
 
 ## Architecture
 
-The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (wrapping `WorkPetPlate` and `WorkTropical`), then `Footer`. `pages/_app.js` imports all stylesheets — the base partials, every component’s global `*.scss`, and Swiper CSS — once for the whole app; `components/layout.js` is a thin wrapper that just exports `siteTitle` and renders children. `pages/_document.js` holds the static `<head>` (favicons, fonts, theme color) shared across pages.
+The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (wrapping `WorkPetPlate` and `WorkTropical`), then `Footer`. `components/layout.js` is a thin wrapper that exports `siteTitle` and renders children; `pages/_document.js` holds the static `<head>` (favicons, fonts, theme color) shared across pages.
 
 ### Component convention
 
 Each component lives in its own folder under `components/`:
 - `index.js` — re-exports the default from the implementation file (`export { default } from './name'`)
-- `<name>.js` — the component. Class names are plain strings written in **Lean BEM** (`className="logo_experience"`), composed with the shared utility classes (`grid`, `content`, `content_column`/`content_columns`/`content_divisor`/`content_divisors`, and the `-last` modifier). Use `classnames` (aliased `cn`) only when a class is conditional (e.g. `cn('nav', { open: isOpen })`); otherwise write the literal string.
-- `<name>.scss` — a **global** stylesheet (NOT a CSS Module). It is imported once in `pages/_app.js`, never inside the component. Keep every class globally unique via Lean BEM so it doesn’t collide across components.
+- `<name>.js` — the component. Class names are plain Lean BEM strings (`className="logo_experience"`), composed with the shared utility classes (`grid`, `content`, `content_column`/`content_columns`/`content_divisor`/`content_divisors`, and the `-last` modifier). Use `classnames` (aliased `cn`) only for conditional classes (e.g. `cn('nav', { open: isOpen })`); otherwise write the literal string.
+- `<name>.scss` — a **global** stylesheet (NOT a CSS Module), imported once in `pages/_app.js`.
 
 ### Styling system (`styles/`)
 
@@ -31,7 +31,7 @@ Every SCSS file starts with `@import "scaffold"`, which pulls in `utils.scss` (S
 - `content.scss` defines the `.content` layout container and its `.content_column`/`.content_columns`/`.content_divisor`/`.content_divisors` element classes plus the `-last` modifier, which position section content within the grid via `--heading-start/width` and `--content-start/width` custom properties (responsive per breakpoint). HTML-element targets (`h2`, `h3`, `p`) stay nested under `.content`; the element classes are written flat (`.content_column`, not `.content .column`).
 - `colors.scss`, `typography.scss`, `global.scss` provide design tokens and base/global rules; `pages/_app.js` is the single place that imports all of these plus every component stylesheet, `normalize.css`, and Swiper’s SCSS modules (core, keyboard, pagination, effect-cards).
 
-When building or styling a new section component, follow the existing component convention above, compose it with the `grid`/`content` utility classes rather than inventing new layout primitives, and import `scaffold` for access to the shared mixins and breakpoints.
+When styling a new section, compose it with the `grid`/`content` utilities rather than inventing layout primitives, and `@import "scaffold"` for the shared mixins and breakpoints.
 
 ### SVGs and i18n
 
