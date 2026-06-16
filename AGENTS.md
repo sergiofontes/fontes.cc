@@ -48,7 +48,25 @@ When styling a new section, compose it with the `grid`/`content` utilities rathe
 
 SVGs are imported directly as React components via `@svgr/webpack`. Under Next 16 (Turbopack by default) the loader is wired through `turbopack.rules` in `next.config.js`, with the legacy `webpack()` hook kept as a fallback. `next.config.js` also sets `i18n` to a single `en` locale (no actual translations exist).
 
----
+### Implementing a section from a Figma design
+
+A repeatable playbook for translating a Figma section into a faithful, code-fitting component. Followed end-to-end when rebuilding `AboutExperience`.
+
+**1 — Pull every breakpoint first.** Figma sections ship as separate frames per layout (e.g. `390` / `720` / `1280`). Use `get_design_context` on each frame; when a frame is too large to return, `get_metadata` on the parent to find the per-breakpoint child node IDs, then `get_screenshot` each. Read all three before writing anything — the responsive behavior (logos stacking vs. rowing, label rotation, divider span) only emerges from comparing frames.
+
+**2 — Map Figma frames to layout MODES, not widths.** Figma frame widths are NOT the project breakpoints. The project switches at `tablet: 767px` and `desktop: 1200px` (`styles/vendor/include-media.scss`), giving three modes: mobile `≤767`, tablet `768–1200`, desktop `>1200`. So a Figma “tablet” frame drawn at `720px` actually describes the project’s **mobile** range, and its “desktop” frame describes everything `>1200`. Treat the three frames as the three modes in order, and when verifying, screenshot at a width *inside* each project range (e.g. `390` / `980` / `1280`) — never at the literal Figma frame widths.
+
+**3 — Translate grid spans via line numbers.** Figma’s generated grid (`15px repeat(N,1fr) 15px`) and the project grid (`0/gap-delta repeat(--columns) 0/gap-delta`) share the same gutter-columns-gutter line structure, so a Figma `col-[6/span 6]` maps directly onto the project’s grid lines. Express placements with the `content.scss` custom properties where they line up (`grid-column: var(--content-start) / span calc(var(--content-width) * 2)`) and fall back to literal line numbers per breakpoint when a span has no clean token (`grid-column: 3 / span 7`). `/ -1` reaches the final line (full-bleed-to-gutter dividers).
+
+**4 — Custom grid children need `width: 100%`.** `.grid` sets `place-items: stretch start` → `justify-items: start`, so a direct grid child that only sets `grid-column` collapses to content width (an empty divider `<span>` renders as a zero-width, invisible line). Every shared `content` utility sets `width: 100%` for this reason; mirror it on any new grid child.
+
+**5 — Reuse before inventing.** Keep the shared `grid content` container and `<h2>` (they already give the rotated/sticky heading-to-body relationship across breakpoints). Reuse typography classes (`.label`), spacing tokens (`--space-lg`/`--space-xl`), and color tokens (`--color-subtitle`, `--color-text`) instead of hardcoding the px/hex values Figma emits. Name new classes in Lean BEM (`experience_logos`, `experience_logo`, `-current`).
+
+**6 — Assets.** Company/brand logos go through `components/logos` — add a `case` returning `<LogoX className="logo x" role="img" aria-label="X" />`. One-off marks/annotations (e.g. the handwritten “currently” note) are imported directly into the section component. Size logos by overriding `height` (auto width) scoped under the section, not by touching the global `.logo`.
+
+**7 — Accessibility.** Give meaningful inline SVGs `role="img"` + `aria-label` (a bare `aria-label` on an `<svg>` isn’t reliably announced without the role). Never put `aria-label` on a list item that wraps readable text — it overrides the children. Order the DOM so the screen-reader reading is correct (note → logo → period reads “currently, Stone, 2022–…”).
+
+**8 — Verify visually, then prove it.** `npx stylelint` the changed files (recess property order is enforced — vendor partials already error, ignore those). Drive the running dev server with Playwright (`npm i playwright` in a scratch dir, `chromium` already installed) to screenshot the `#section` element at the three mode widths, and assert: zero console/page errors, expected `role="img"` labels, and no NEW horizontal overflow. The page has pre-existing overflow at small widths from the hero — confirm a section isn’t the cause by `git stash`-ing the change and re-measuring `scrollWidth` on the baseline before blaming your code.
 
 ## Front-end Guidelines
 
