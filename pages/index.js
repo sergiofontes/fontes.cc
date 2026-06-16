@@ -9,8 +9,6 @@ import AboutTestimonial from '../components/about/testimonial';
 import AboutTraits from '../components/about/traits';
 import AboutContact from '../components/about/contact';
 import Work from '../components/work';
-import WorkPetPlate from '../components/work/petplate';
-import WorkTropical from '../components/work/tropical';
 
 export default function Home() {
   return (
@@ -39,14 +37,12 @@ export default function Home() {
         <main className="main">
 
           <AboutExperience />
+
+          <Work />
+
+          <AboutContact />
           <AboutTestimonial />
           <AboutTraits />
-          <AboutContact />
-
-          <Work>
-            <WorkPetPlate />
-            <WorkTropical />
-          </Work>
         </main>
 
         <Footer />

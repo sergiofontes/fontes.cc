@@ -14,7 +14,7 @@ There is no test suite and no JS linter configured for this project.
 
 ## Architecture
 
-The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (wrapping `WorkPetPlate` and `WorkTropical`), then `Footer`. `components/layout.js` is a thin wrapper that exports `siteTitle` and renders children; `pages/_document.js` holds the static `<head>` (favicons, fonts, theme color) shared across pages.
+The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that exports `siteTitle` and renders children; `pages/_document.js` holds the static `<head>` (favicons, fonts, theme color) shared across pages.
 
 ### Component convention
 
@@ -28,7 +28,7 @@ Each component lives in its own folder under `components/`:
 A small set of reusable controls lives under `components/`, each following the convention above (`index.js` + `<name>.js` + global `<name>.scss`). They take a `classes` prop (extra class names, composed via `cn`) and forward the rest of their props to the underlying element, so consumers can pass `aria-label`, `onClick`, etc. Defaults and prop shapes are declared with `PropTypes`/`defaultProps`, matching `components/anchor`.
 
 - `Button` — a link styled as a button (`<a>` with a trailing arrow icon). Props: `href`, `size` (`small` default, or `medium`), `disabled` (renders `aria-disabled` + `tabIndex={-1}` and drops `href` instead of using the non-interactive `disabled` attribute). `children` is the label.
-- `ButtonIcon` — a square 24px icon `<button type="button">` wrapping the arrow icon. Props: `disabled`; `aria-label` is **required**.
+- `ButtonIcon` — a square 24px icon `<button type="button">` wrapping an icon. Props: `icon` (`arrow` default, or `plus`), `disabled`; `aria-label` is **required**.
 - `ButtonMenu` — the hamburger/close toggle (`<button type="button">` with two `<span>` bars that cross into an X). Props: `open` (drives the `-open` modifier and `aria-expanded`), `disabled`; `aria-label` is **required**. `Nav` consumes it via `classes="nav_button"`, which owns only the fixed placement while appearance/animation come from the component.
 - `ButtonDot` — a pagination dot (`<button type="button">` with a `::before` dot that grows on hover/focus/active). Props: `active` (drives the `-active` modifier); `aria-label` is **required**.
 
@@ -40,7 +40,7 @@ Every SCSS file starts with `@import "scaffold"`, which pulls in `utils.scss` (S
 
 - `grid.scss` defines the responsive grid as CSS custom properties (`--columns`, `--gap`, `--gap-out`, `--column-max`, etc.), computed from Sass variables per breakpoint (mobile/tablet/desktop/desktoplarge/max) and consumed by the `.grid` class (a CSS grid with column count driven by `--columns`).
 - `content.scss` defines the `.content` layout container and its `.content_column`/`.content_columns`/`.content_divisor`/`.content_divisors` element classes plus the `-last` modifier, which position section content within the grid via `--heading-start/width` and `--content-start/width` custom properties (responsive per breakpoint). HTML-element targets (`h2`, `h3`, `p`) stay nested under `.content`; the element classes are written flat (`.content_column`, not `.content .column`).
-- `colors.scss`, `typography.scss`, `global.scss` provide design tokens and base/global rules; `pages/_app.js` is the single place that imports all of these plus every component stylesheet, `normalize.css`, and Swiper’s SCSS modules (core, keyboard, pagination, effect-cards).
+- `colors.scss`, `typography.scss`, `global.scss` provide design tokens and base/global rules; `pages/_app.js` is the single place that imports all of these plus every component stylesheet and `normalize.css`.
 
 When styling a new section, compose it with the `grid`/`content` utilities rather than inventing layout primitives, and `@import "scaffold"` for the shared mixins and breakpoints.
 

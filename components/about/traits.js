@@ -3,31 +3,34 @@ export default function Traits() {
     <section id="traits" className="grid content">
       <h2>Traits</h2>
       <div className="content_column">
-        <h3>Multidisciplinary</h3>
+        <h3>Generalist</h3>
         <p>
-          I’m a multifaceted designer who loves having ownership across the product
-          experience: from researching &amp; problem framing, passing through
-          prototyping &amp; validation, to visual design—even{' '}
+          I enjoy working across the entire product design process—from research and
+          problem framing to prototyping, validation, visual design, and even{' '}
           <abbr title="Hypertext Markup Language">HTML</abbr>/
-          <abbr title="Cascading Style Sheets">CSS</abbr>.
+          <abbr title="Cascading Style Sheets">CSS</abbr>. Having a broad skill set
+          helps me connect disciplines, bridge gaps, and move ideas from concept to
+          execution.
         </p>
       </div>
       <span className="content_divisor"></span>
       <div className="content_column">
         <h3>Craftsman</h3>
         <p>
-          I have a keen eye for detail and can sometimes be obsessive about pursuing
-          the best possible solution. But it’s not only about pixels: the overall user
-          experience and its subjectivities also matter to me.
+          I care deeply about quality and have a keen eye for detail, striving for
+          solutions that feel polished and intentional. Beyond pixels and interfaces,
+          I value the nuances that shape perception and trust, creating products that
+          feel thoughtful, distinctive, and genuinely well-crafted.
         </p>
       </div>
       <span className="content_divisor"></span>
       <div className="content_column">
-        <h3>Energetic</h3>
+        <h3>Systems Thinker</h3>
         <p>
-          I'm an energetic person, and always hope that my enthusiasm and motivation
-          rubs off on my teammates. I can fearlessly go down the rabbit hole whenever
-          a challenge catches my attention.
+          I’m comfortable zooming in and out—from the smallest interaction details to
+          the broader product ecosystem. This helps me understand how decisions ripple
+          across users, teams, and businesses, creating experiences that are coherent,
+          scalable, and meaningful.
         </p>
       </div>
       <span className="content_divisor -last"></span>

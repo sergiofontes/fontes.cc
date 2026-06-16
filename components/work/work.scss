@@ -5,252 +5,246 @@
 @import "../../styles/scaffold";
 
 .work {
-  h2, h3 { grid-row: 1; }
-  h2, small { mix-blend-mode: difference; }
-
-  p { grid-column: var(--content-start) / span var(--content-width); }
-
-  h3 {
-    z-index: 2;
-    grid-column: 2 / span 2;
-    margin: .5rem 0 1rem;
-  }
-
-  .content_divisors {
-    grid-row: 5;
-    margin-top: var(--gap);
-  }
-
-  @include media(">tablet") {
-    h2 { text-align: right; }
-    h2, small { mix-blend-mode: normal; }
-    a { margin-bottom: 1rem; }
-
-    h3 {
-      grid-row: 1;
-      grid-column: var(--content-start) / span var(--content-width);
-      align-self: start;
-      justify-self: start;
-      margin: .5rem 0 0;
-    }
-
-    p {
-      grid-row: 3;
-      grid-column: var(--content-start) / span calc(var(--content-width) * 2);
-      columns: 200px 2;
-      column-gap: var(--gap);
-    }
-
-    .content_divisors {
-      grid-row: 4;
-      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
-      margin-top: 0;
-    }
-  }
-
-  @include media(">desktop") {
-    justify-items: stretch;
-
-    h2 { white-space: nowrap; }
-
-    h3 {
-      position: sticky;
-      top: calc(var(--gap) + 3rem);
-      grid-row: 1 / span 2;
-      grid-column: var(--heading-start) / span 2;
-      justify-self: end;
-      margin: 3rem 0 0;
-    }
-  }
+  scroll-margin-top: var(--gap);
 }
 
-.case {
-  grid-row: auto;
-  grid-column: 1 / span var(--columns-total);
-  gap: var(--gap);
-  overflow: hidden;
-  &:not(:last-child) { padding-bottom: var(--gap); }
-  &:nth-of-type(1) { grid-row: 1 / span 2; }
-
-  @include media(">tablet") {
-    &:nth-of-type(1) { grid-row: 1; }
-  }
-
-  @include media(">desktop") { overflow: visible; }
-}
-
-.datasheet {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-row: 4;
-  grid-column: var(--content-start) / span var(--content-width);
-  gap: var(--gap);
-
-  @include media(">tablet") {
-    grid-template-columns: 1fr;
-    grid-row: 3;
-    grid-column: calc(var(--content-start) + (var(--content-width) * 2)) / span var(--content-width);
-    row-gap: calc(var(--gap) / 2);
-  }
-}
-
-.details {
-  grid-column-end: span 1;
-  font-size: .8125rem;
-  line-height: 1.4;
-  color: var(--color-subtitle);
-
-  &:first-of-type { grid-column-start: 1; }
-
-  @include media(">tablet") {
-    &:first-of-type { grid-column-start: 1; }
-  }
-
-  @include media(">desktop") { font-size: .866667rem; }
-
-  h4 {
-    margin: 0 0 1px;
-    font-size: .843333em;
-    font-weight: normal;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  a { font-size: 1rem; }
-
-  li {
-    display: inline;
-    &::after { content: ", "; }
-    &:last-child::after { content: "."; }
-  }
-}
-
-.date {
-  position: relative;
-  grid-column: 4 / span 2;
-  align-self: center;
-  justify-self: end;
-  margin-top: .266667rem;
-  white-space: nowrap;
-
-  @include media(">tablet") {
-    top: calc(-1rem - var(--gap));
-    left: -.5rem;
-    grid-row: 2;
-    grid-column: var(--content-start);
-    align-self: end;
-    justify-self: start;
-    margin: 0;
-    text-align: left;
-    transform: rotate(-90deg);
-    transform-origin: bottom left;
-  }
-}
-
-.image {
-  position: relative;
-  grid-row: 2;
-  grid-column: 1 / span var(--columns-total);
-  align-self: stretch;
+// The cases stack in a single full-width cell that the heading overlaps, so the
+// sticky “Work” heading can span the whole section instead of one case.
+.work_cases {
+  grid-row: 1;
+  grid-column: 1 / -1;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  padding: 0 var(--gap);
+}
 
-  > span {
-    overflow: hidden;
-    -webkit-clip-path: content-box; // stylelint-disable-line
-  }
+// Case ─────────────────────────────────────────────────────────────────────────
+// Each case is its own nested grid so the carousel and colophon align to the
+// shared column lines (“integrated to the grid”).
+.work_case {
+  --work-slide: 85%;
+  --work-image-h: 24rem;
+  row-gap: var(--gap);
+  align-items: start;
+  padding-bottom: var(--space-xl);
 
-  @supports not (aspect-ratio: 1 / 1) {
-    &::before {
-      float: left;
-      padding-top: 100%;
-      content: "";
-    }
-
-    &::after {
-      display: block;
-      clear: both;
-      content: "";
-    }
-  }
+  &:last-child { padding-bottom: 0; }
 
   @include media(">tablet") {
-    grid-row: 2;
-    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
-    width: 100%;
-    padding: 0;
-  }
-
-  @include media(">900px") {
-    grid-column: var(--content-start) / span calc((var(--content-width) * 3) - 1);
+    --work-slide: 72%;
+    --work-image-h: 26rem;
   }
 
   @include media(">desktop") {
-    grid-row: 1 / span 2;
-    aspect-ratio: 10 / 7;
-
-    @supports not (aspect-ratio: 10 / 7) {
-      &::before { padding-top: 70%; }
-    }
+    --work-slide: 60%;
+    --work-image-h: 27.75rem;
+    padding-bottom: var(--space-2xl);
   }
 }
 
-.display {
-  pointer-events: none;
-  transition: all .75s cubic-bezier(.75, 0, .04, 1.01);
-  object-fit: cover !important;
-}
-
-.gallery {
-  height: 100%;
-  padding-bottom: calc(var(--gap) * 2);
-  perspective: 700px;
+// Heading ───────────────────────────────────────────────────────────────────────
+// Rotated in the gutter on mobile/tablet; upright in the heading column on desktop.
+.work_title {
+  position: sticky;
+  top: calc(var(--logo-size) + var(--gap) + 1rem);
+  z-index: 2;
+  grid-row: 1;
+  grid-column: var(--heading-start) / span var(--heading-width);
+  align-self: start;
+  justify-self: end;
+  margin: 0;
+  color: var(--color-text-dim);
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: bottom right;
 
   @include media(">tablet") {
-    padding-bottom: var(--gap);
-    perspective: 800px;
+    top: 1rem;
   }
 
-  .swiper {
-    overflow: hidden;
-    background-color: var(--color-background);
-    border-radius: 1.333333rem;
-    box-shadow:
-      0 .4px 1.1px rgb(0 0 0 / 2%),
-      0 1px 2.8px rgb(0 0 0 / 2.8%),
-      0 2px 6px rgb(0 0 0 / 3.5%),
-      0 5.4px 11.9px rgb(0 0 0 / 4.2%),
-      0 10px 23.4px rgb(0 0 0 / 5%),
-      0 24px 48px rgb(0 0 0 / 7%);
-    transition: all .2s cubic-bezier(.75, 0, .04, 1.01);
+  @include media(">desktop") {
+    top: var(--gap);
+    margin-top: .266667rem;
+    transform: none;
+  }
+}
 
-    > span {
-      border-radius: 1.333333rem;
-      -webkit-clip-path: content-box; // stylelint-disable-line
+// Header (logo lockup + year + carousel controls) ───────────────────────────────
+.work_header {
+  display: flex;
+  grid-row: 1;
+  grid-column: var(--content-start) / -1;
+  gap: var(--gap);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  // Right edge aligns to the last column, like the gallery and divider.
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+  }
+}
+
+.work_lockup {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  min-width: 0;
+
+  // Per-logo widths from the Figma section specs (px ÷ 15px root; height
+  // follows each logo’s aspect).
+  // stylelint-disable
+  .logo     { height: auto; }
+  .stone    { width: 5.2667rem; } // 79px
+  .vtex     { width: 5.1333rem; } // 77px
+  .petplate { width: 4.5333rem; } // 68px
+  .guava    { width: 4.9333rem; } // 74px
+  .tropical { width: 4.8rem; }    // 72px
+  // stylelint-enable
+}
+
+.work_label {
+  font-weight: 800;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.work_plus {
+  display: none;
+
+  @include media(">tablet") {
+    display: inline-flex;
+  }
+}
+
+.work_controls {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.work_year {
+  display: none;
+  color: var(--color-subtitle);
+  text-transform: uppercase;
+
+  @include media(">tablet") {
+    display: block;
+  }
+}
+
+.work_arrows {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.work_arrow.-prev svg {
+  transform: scaleX(-1);
+}
+
+// Carousel ──────────────────────────────────────────────────────────────────────
+.work_gallery {
+  grid-row: 2;
+  grid-column: var(--content-start) / -1;
+  width: 100%;
+
+  // Stop at the last column (like the header/divider) so the final image
+  // aligns to the grid instead of bleeding into the right gutter.
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+  }
+}
+
+.work_track {
+  display: flex;
+  gap: var(--gap);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+
+  &:focus-visible {
+    outline: var(--border-focus) solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.work_slide {
+  flex: 0 0 var(--work-slide);
+  scroll-snap-align: start;
+}
+
+.work_image {
+  display: block;
+  width: 100%;
+  height: var(--work-image-h);
+  background-color: var(--color-surface-dim);
+  border-radius: var(--radius-small);
+}
+
+// Colophon (What I did / Designers) — desktop only ──────────────────────────────
+.work_colophon {
+  display: none;
+
+  @include media(">desktop") {
+    display: block;
+    grid-row: 2;
+    grid-column: var(--heading-start) / span var(--heading-width);
+    align-self: end;
+    margin: 0;
+    text-align: right;
+
+    dt {
+      margin-bottom: 1px;
+      color: var(--color-subtitle);
+      text-transform: uppercase;
+    }
+
+    dd {
+      margin: 0 0 var(--space-lg);
+      font-size: .866667rem;
+      line-height: 1.4;
+      color: var(--color-subtitle);
+
+      &:last-child { margin-bottom: 0; }
     }
   }
+}
 
-  [class*="swiper-pagination-bullets"] {
-    --swiper-pagination-bullet-inactive-color: var(--color-subtle);
-    --swiper-pagination-bullet-inactive-opacity: 1;
-    --swiper-pagination-color: var(--color-primary);
-    bottom: 0;
+// Featured call-to-action (summary + “Read the case”) ───────────────────────────
+.work_cta {
+  display: flex;
+  flex-direction: column;
+  grid-column: var(--content-start) / -1;
+  gap: var(--space-md);
+  align-items: flex-start;
+  width: 100%;
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
   }
+}
 
-  [class*="swiper-slide-active"] {
-    box-shadow:
-      .5px .9px 2.2px rgb(0 0 0 / 2%),
-      1.2px 2.1px 5.3px rgb(0 0 0 / 2.8%),
-      2.3px 4px 10px rgb(0 0 0 / 3.5%),
-      4px 7.1px 17.9px rgb(0 0 0 / 4.2%),
-      7.5px 13.4px 33.4px rgb(0 0 0 / 5%),
-      18px 32px 80px rgb(0 0 0 / 7%);
+.work_summary {
+  max-width: 33rem;
+  margin: 0;
+}
 
-    &:hover {
-      .display {
-        transform: scale(1.1);
-      }
-    }
+// Divider ───────────────────────────────────────────────────────────────────────
+.work_divisor {
+  grid-column: var(--content-start) / -1;
+  width: 100%;
+  border-bottom: 1px solid var(--color-text);
+
+  // Right edge aligns to the last column, like the header and gallery.
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
   }
 }

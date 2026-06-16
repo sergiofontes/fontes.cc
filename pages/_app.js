@@ -21,11 +21,6 @@ import '../components/work/work.scss';
 import '../components/logos/logos.scss';
 import '../components/footer/footer.scss';
 
-import 'swiper/css';
-import 'swiper/css/keyboard';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-cards';
-
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }

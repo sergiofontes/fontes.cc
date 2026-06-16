@@ -6,7 +6,7 @@ export default function Contact() {
       <h2>Contact</h2>
       <div className="content_column">
         <p>
-          <em>Email:</em>
+          <span className="label contact_label">Email:</span>
           <a className="lead" href="mailto:sergio@fontes.cc">
             sergio@fontes.cc
           </a>
