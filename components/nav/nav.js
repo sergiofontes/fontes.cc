@@ -2,6 +2,7 @@ import cn from "classnames";
 import { Link, animateScroll as scroll } from "react-scroll";
 import { useState } from "react";
 
+import ButtonMenu from "../button_menu";
 import Symbol from "../../public/images/symbol.svg";
 import IconArrow from "../../public/images/icon_arrow.svg";
 
@@ -33,11 +34,12 @@ export default function Nav({ onClick }) {
   return (
     <>
       <nav className={cn("nav", { open: isOpen })}>
-        <button className="button" open={isOpen} onClick={handleOpenCloseClick}>
-          <span>Toggle menu</span>
-          <i></i>
-          <i></i>
-        </button>
+        <ButtonMenu
+          classes="nav_button"
+          open={isOpen}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          onClick={handleOpenCloseClick}
+        />
         <div className="grid">
           <span className="divisor"></span>
           <ol className="links">

@@ -8,6 +8,10 @@ import '../styles/content.scss';
 import './index.scss';
 
 import '../components/anchor/anchor.scss';
+import '../components/button/button.scss';
+import '../components/button_icon/button_icon.scss';
+import '../components/button_menu/button_menu.scss';
+import '../components/button_dot/button_dot.scss';
 import '../components/nav/nav.scss';
 import '../components/header/header.scss';
 import '../components/about/experience.scss';

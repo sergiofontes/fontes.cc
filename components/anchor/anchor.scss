@@ -52,7 +52,7 @@
     color: var(--color-subtitle);
     text-transform: uppercase;
     border: 1px solid var(--color-subtle);
-    border-radius: 2px;
+    border-radius: var(--radius-small);
   }
 
   svg { display: none; }

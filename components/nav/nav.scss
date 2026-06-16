@@ -87,7 +87,7 @@
     .link:not(:last-child) { margin-bottom: 1rem; }
     .links, .arrow { grid-column: unset; }
     .arrow { display: block; }
-    .button, .divisor { display: none; }
+    .nav_button, .divisor { display: none; }
 
     .grid {
       display: block;
@@ -136,54 +136,13 @@
   @include media(">max") { left: calc((100vw - var(--container-max)) / 2); }
 }
 
-.button {
-  @include focus-ring-visible;
+// Appearance and open/hover behavior come from the shared `.button_menu`
+// component; the nav only owns its fixed placement.
+.nav_button {
   position: fixed;
   top: var(--gap);
   right: var(--gap);
   z-index: 12;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  align-items: flex-end;
-  justify-content: center;
-  width: var(--button-size);
-  height: var(--button-size);
-  padding: calc(var(--button-size) / 6);
-  cursor: pointer;
-  background-color: transparent;
-  border: transparent;
-  transition: all .15s ease-in-out;
-  appearance: none;
-
-  span { @include fontless; }
-
-  &:hover { gap: .75rem; }
-
-  i {
-    display: block;
-    width: 70%;
-    border-bottom: 3px solid var(--color-background);
-    transition: all .15s ease-in-out;
-
-    &:last-of-type { width: 100%; }
-  }
-
-  @at-root {
-    .open .button {
-      @include media("<=desktop") {
-        align-items: center;
-
-        &:hover { gap: .5rem; }
-
-        i {
-          width: 100%;
-          &:first-of-type { transform: rotate(45deg) translateX(15%) translateY(100%); }
-          &:last-of-type { transform: rotate(-45deg) translateX(15%) translateY(-120%); }
-        }
-      }
-    }
-  }
 }
 
 .open {
