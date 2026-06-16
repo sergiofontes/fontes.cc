@@ -53,9 +53,11 @@ h2, h3 {
 h2 {
   font-family: var(--font-body);
   font-weight: 600;
+  color: var(--color-text-inverse);
+  white-space: nowrap;
+  mix-blend-mode: difference;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: var(--color-subtitle);
   span { @include fontless; }
 
   @include media(">tablet") {
@@ -133,13 +135,11 @@ a {
 
   &, &:visited {
     color: var(--color-text);
-
-    @include underline($color: #{var(--color-text)}, $thickness: 1px);
+    text-decoration: none;
   }
 
   &:hover {
-    text-decoration-thickness: var(--border-small);
-    text-decoration-width: var(--border-small);
+    @include underline($color: #{var(--color-text)}, $thickness: 1px);
   }
   &:active { top: 1px; }
 }
