@@ -54,7 +54,7 @@ export default function CasePreview({
     const track = trackRef.current;
     if (!track) return;
 
-    const slide = track.firstElementChild;
+    const slide = track.querySelector(".work_slide");
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
     const step = (slide ? slide.offsetWidth : track.clientWidth) + gap;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -91,16 +91,16 @@ export default function CasePreview({
           <span className="work_year label">{year}</span>
           <span className="work_arrows">
             <ButtonIcon
-              classes="work_arrow -prev"
-              disabled={atStart}
-              onClick={() => scrollByStep(-1)}
-              aria-label={`Previous ${name} image`}
-            />
-            <ButtonIcon
-              classes="work_arrow"
+              classes="work_arrow -left"
               disabled={atEnd}
               onClick={() => scrollByStep(1)}
               aria-label={`Next ${name} image`}
+            />
+            <ButtonIcon
+              classes="work_arrow"
+              disabled={atStart}
+              onClick={() => scrollByStep(-1)}
+              aria-label={`Previous ${name} image`}
             />
           </span>
         </span>
@@ -112,6 +112,14 @@ export default function CasePreview({
         aria-label={`${name} gallery`}
       >
         <ul className="work_track" ref={trackRef} tabIndex={0} onScroll={sync}>
+          <li className="work_colophon">
+            <dl>
+              <dt className="label">What I did</dt>
+              <dd>{activities}</dd>
+              <dt className="label">Designers</dt>
+              <dd>{designers}</dd>
+            </dl>
+          </li>
           {Array.from({ length: slides }).map((_, index) => (
             <li className="work_slide" key={index}>
               <span className="work_image" aria-hidden="true" />
@@ -119,13 +127,6 @@ export default function CasePreview({
           ))}
         </ul>
       </div>
-
-      <dl className="work_colophon">
-        <dt className="label">What I did</dt>
-        <dd>{activities}</dd>
-        <dt className="label">Designers</dt>
-        <dd>{designers}</dd>
-      </dl>
 
       {featured && summary && (
         <div className="work_cta">
