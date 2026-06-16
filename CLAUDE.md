@@ -18,6 +18,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - NEVER run `git commit` without asking me first and getting explicit approval.
 - NEVER add Claude as a co-author. Do not append a `Co-Authored-By: Claude` trailer (or any Claude/Anthropic co-author line) to commit messages.
+- DON'T write descriptions on small commits
 
 ## Styling
 

@@ -23,6 +23,17 @@ Each component lives in its own folder under `components/`:
 - `<name>.js` — the component. Class names are plain Lean BEM strings (`className="logo_experience"`), composed with the shared utility classes (`grid`, `content`, `content_column`/`content_columns`/`content_divisor`/`content_divisors`, and the `-last` modifier). Use `classnames` (aliased `cn`) only for conditional classes (e.g. `cn('nav', { open: isOpen })`); otherwise write the literal string.
 - `<name>.scss` — a **global** stylesheet (NOT a CSS Module), imported once in `pages/_app.js`.
 
+### Interactive controls
+
+A small set of reusable controls lives under `components/`, each following the convention above (`index.js` + `<name>.js` + global `<name>.scss`). They take a `classes` prop (extra class names, composed via `cn`) and forward the rest of their props to the underlying element, so consumers can pass `aria-label`, `onClick`, etc. Defaults and prop shapes are declared with `PropTypes`/`defaultProps`, matching `components/anchor`.
+
+- `Button` — a link styled as a button (`<a>` with a trailing arrow icon). Props: `href`, `size` (`small` default, or `medium`), `disabled` (renders `aria-disabled` + `tabIndex={-1}` and drops `href` instead of using the non-interactive `disabled` attribute). `children` is the label.
+- `ButtonIcon` — a square 24px icon `<button type="button">` wrapping the arrow icon. Props: `disabled`; `aria-label` is **required**.
+- `ButtonMenu` — the hamburger/close toggle (`<button type="button">` with two `<span>` bars that cross into an X). Props: `open` (drives the `-open` modifier and `aria-expanded`), `disabled`; `aria-label` is **required**. `Nav` consumes it via `classes="nav_button"`, which owns only the fixed placement while appearance/animation come from the component.
+- `ButtonDot` — a pagination dot (`<button type="button">` with a `::before` dot that grows on hover/focus/active). Props: `active` (drives the `-active` modifier); `aria-label` is **required**.
+
+Each control owns its `:hover`/`:active`/`:focus-visible` states (focus rings via `--color-focus-ring`/`--border-focus`), animates only `transform`/`opacity`, and guards transitions behind `@media (prefers-reduced-motion: no-preference)`. Shared tokens (`--radius-small`, `--button-size`, `--color-surface-dim`, `--color-subtle`) live in `styles/global.scss` and `styles/colors.scss`.
+
 ### Styling system (`styles/`)
 
 Every SCSS file starts with `@import "scaffold"`, which pulls in `utils.scss` (Sass mixins/functions: `rem()`, `clearfix`, `size`, `fontless`/`fontful`, `buttonless`, `underline`, focus-ring mixins) and the `include-media` vendor partial (copied into `styles/vendor/`) used for breakpoint queries like `@include media(">tablet")`.
@@ -36,11 +47,6 @@ When styling a new section, compose it with the `grid`/`content` utilities rathe
 ### SVGs and i18n
 
 SVGs are imported directly as React components via `@svgr/webpack`. Under Next 16 (Turbopack by default) the loader is wired through `turbopack.rules` in `next.config.js`, with the legacy `webpack()` hook kept as a fallback. `next.config.js` also sets `i18n` to a single `en` locale (no actual translations exist).
-
-## CI
-
-- `.github/workflows/codeql-analysis.yml` runs CodeQL on pushes/PRs to `main`.
-- A Lighthouse audit workflow runs against Vercel preview deployments on PRs and posts results as a sticky PR comment.
 
 ---
 
