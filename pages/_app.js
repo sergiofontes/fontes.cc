@@ -16,6 +16,7 @@ import '../components/nav/nav.scss';
 import '../components/header/header.scss';
 import '../components/cover/cover.scss';
 import '../components/what/what.scss';
+import '../components/why/why.scss';
 import '../components/about/experience.scss';
 import '../components/about/testimonial.scss';
 import '../components/about/contact.scss';

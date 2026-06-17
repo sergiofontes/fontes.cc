@@ -4,6 +4,7 @@ import Layout from "../../components/layout";
 import Nav from "../../components/nav";
 import Cover from "../../components/cover";
 import What from "../../components/what";
+import Why from "../../components/why";
 
 // In-page section anchors for this case (the sections themselves land in later
 // passes); “Back to home” returns to the index.
@@ -47,6 +48,7 @@ export default function OnlineCatalog() {
 
         <main className="main">
           <What />
+          <Why />
         </main>
       </div>
     </Layout>
