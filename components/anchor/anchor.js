@@ -39,12 +39,12 @@ export default function Anchor({
       className={cn(
         "anchor",
         {
-          external: type === "external",
-          social: type === "github" || type === "linkedin",
-          github: type === "github",
-          linkedin: type === "linkedin",
-          inline: inline,
-          offline: offline,
+          anchor_external: type === "external",
+          anchor_social: type === "github" || type === "linkedin",
+          anchor_github: type === "github",
+          anchor_linkedin: type === "linkedin",
+          "-inline": inline,
+          "-offline": offline,
         },
         classes,
       )}

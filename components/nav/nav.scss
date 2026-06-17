@@ -30,16 +30,16 @@
     padding-bottom: var(--gap);
   }
 
-  ~ *:not(.symbol) { transition: opacity .2s ease-in-out; }
+  ~ *:not(.nav_symbol) { transition: opacity .2s ease-in-out; }
 
-  .link:not(:last-child) { margin-bottom: 1.5rem; }
+  .nav_link:not(:last-child) { margin-bottom: 1.5rem; }
 
-  .links {
+  .nav_links {
     grid-column: 2 / span var(--columns);
     list-style: none;
   }
 
-  .divisor {
+  .nav_divisor {
     display: block;
     grid-column: 2 / span calc(var(--columns) + 1);
     width: 100%;
@@ -55,7 +55,7 @@
     padding-bottom: calc(var(--gap) * 1.5);
   }
 
-  .arrow {
+  .nav_arrow {
     display: none;
     grid-column: 2 / span 2;
     width: 1.6rem;
@@ -66,13 +66,13 @@
     path { fill: var(--color-text-inverse); }
   }
 
-  .active {
-    + .arrow { transform: rotate(-90deg); }
+  .-active {
+    + .nav_arrow { transform: rotate(-90deg); }
   }
 
   @include media(">tablet") {
-    .links, small { grid-column: 3 / span calc(var(--columns) - 1); }
-    .divisor { grid-column: 3 / span var(--columns); }
+    .nav_links, small { grid-column: 3 / span calc(var(--columns) - 1); }
+    .nav_divisor { grid-column: 3 / span var(--columns); }
   }
 
   @include media(">desktop") {
@@ -84,10 +84,10 @@
     transform: translateY(calc(-100% + 2.25rem));
 
     a { font-size: 1rem; }
-    .link:not(:last-child) { margin-bottom: 1rem; }
-    .links, .arrow { grid-column: unset; }
-    .arrow { display: block; }
-    .nav_button, .divisor { display: none; }
+    .nav_link:not(:last-child) { margin-bottom: 1rem; }
+    .nav_links, .nav_arrow { grid-column: unset; }
+    .nav_arrow { display: block; }
+    .nav_button, .nav_divisor { display: none; }
 
     .grid {
       display: block;
@@ -107,7 +107,7 @@
   @include media(">max") { left: calc((100vw - var(--container-max)) / 2); }
 }
 
-.symbol {
+.nav_symbol {
   @include focus-ring-visible;
   position: fixed;
   top: var(--gap);
@@ -145,7 +145,7 @@
   z-index: 12;
 }
 
-.open {
+.nav.-open {
   @include media("<=desktop") {
     z-index: 11;
     width: 100vw;
@@ -165,6 +165,6 @@
     small { display: block; }
     .grid { display: grid; }
 
-    ~ *:not(.symbol) { opacity: 0; }
+    ~ *:not(.nav_symbol) { opacity: 0; }
   }
 }

@@ -3,7 +3,7 @@ import Typewriter from 'typewriter-effect';
 export default function Header() {
   return (
     <header id="hi" className="hero header">
-      <section className="title grid content">
+      <section className="header_title grid content">
         <h1 aria-label="Product, U.X., Digital Designer">
           <b>
             <Typewriter
@@ -18,7 +18,7 @@ export default function Header() {
           Designer
         </h1>
       </section>
-      <section id="intro" className="intro grid content">
+      <section id="intro" className="header_intro grid content">
         <h2 className="content_heading">Intro</h2>
         <div className="content_column">
           <p className="lead">

@@ -109,12 +109,12 @@
   // Per-logo widths from the Figma section specs (px ÷ 15px root; height
   // follows each logo’s aspect).
   // stylelint-disable
-  .logo     { height: auto; }
-  .stone    { width: 5.2667rem; } // 79px
-  .vtex     { width: 5.1333rem; } // 77px
-  .petplate { width: 4.5333rem; } // 68px
-  .guava    { width: 4.9333rem; } // 74px
-  .tropical { width: 4.8rem; }    // 72px
+  .logo          { height: auto; }
+  .logo_stone    { width: 5.2667rem; } // 79px
+  .logo_vtex     { width: 5.1333rem; } // 77px
+  .logo_petplate { width: 4.5333rem; } // 68px
+  .logo_guava    { width: 4.9333rem; } // 74px
+  .logo_tropical { width: 4.8rem; }    // 72px
   // stylelint-enable
 }
 

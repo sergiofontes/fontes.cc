@@ -74,15 +74,15 @@
 }
 
 // KPIs — the “First 30 days” stats inside the body column ──────────────────────
-.kpis { margin-top: var(--space-xl); }
+.what_kpis { margin-top: var(--space-xl); }
 
-.kpis_label {
+.what_kpis-label {
   display: block;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-sm);
   color: var(--color-subtitle);
 }
 
-.kpis_list {
+.what_kpis-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
@@ -93,13 +93,13 @@
   }
 }
 
-.kpis_item {
+.what_kpis-item {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 }
 
-.kpis_value {
+.what_kpis-value {
   font-family: var(--font-title);
   font-size: 2.2667rem; // 34px
   font-weight: 300;
@@ -107,10 +107,10 @@
   letter-spacing: -.02em;
 }
 
-.kpis_caption { color: var(--color-subtitle); }
+.what_kpis-caption { color: var(--color-subtitle); }
 
 // Colophon — credits column (placement via `content_aside`) ────────────────────
-.colophon {
+.what_colophon {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
@@ -121,12 +121,12 @@
   }
 }
 
-.colophon_label {
+.what_colophon-label {
   margin-bottom: var(--space-sm);
   color: var(--color-subtitle);
 }
 
-.colophon_value { margin: 0; }
+.what_colophon-value { margin: 0; }
 
 // Divider (placement via `content_rule`) ───────────────────────────────────────
 .what_divisor {

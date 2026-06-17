@@ -10,21 +10,21 @@ import LogoVtex from '../../public/images/logos/vtex.svg';
 export default function Logos({ type }) {
   switch (type) {
     case 'clearworks':
-      return <LogoClearworks className="logo clearworks" role="img" aria-label="Clearworks" />;
+      return <LogoClearworks className="logo logo_clearworks" role="img" aria-label="Clearworks" />;
     case 'guava':
-      return <LogoGuava className="logo guava" role="img" aria-label="Guava" />;
+      return <LogoGuava className="logo logo_guava" role="img" aria-label="Guava" />;
     case 'petplate':
-      return <LogoPetPlate className="logo petplate" role="img" aria-label="PetPlate" />;
+      return <LogoPetPlate className="logo logo_petplate" role="img" aria-label="PetPlate" />;
     case 'stone':
-      return <LogoStone className="logo stone" role="img" aria-label="Stone" />;
+      return <LogoStone className="logo logo_stone" role="img" aria-label="Stone" />;
     case 'storenvy':
-      return <LogoStorenvy className="logo storenvy" role="img" aria-label="Storenvy" />;
+      return <LogoStorenvy className="logo logo_storenvy" role="img" aria-label="Storenvy" />;
     case 'true':
-      return <LogoTrue className="logo true" role="img" aria-label="True" />;
+      return <LogoTrue className="logo logo_true" role="img" aria-label="True" />;
     case 'tropical':
-      return <LogoTropical className="logo tropical" role="img" aria-label="Tropical Ruby" />;
+      return <LogoTropical className="logo logo_tropical" role="img" aria-label="Tropical Ruby" />;
     case 'vtex':
-      return <LogoVtex className="logo vtex" role="img" aria-label="VTEX" />;
+      return <LogoVtex className="logo logo_vtex" role="img" aria-label="VTEX" />;
   }
 
   return null;

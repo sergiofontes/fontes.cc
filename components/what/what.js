@@ -54,31 +54,31 @@ export default function What() {
           already sell.
         </p>
 
-        <div className="kpis">
-          <span className="label kpis_label">First 30 days</span>
-          <div className="kpis_list">
-            <div className="kpis_item">
-              <span className="kpis_value">10,000+</span>
-              <span className="kpis_caption">active merchants</span>
+        <div className="what_kpis">
+          <span className="label what_kpis-label">First 30 days</span>
+          <div className="what_kpis-list">
+            <div className="what_kpis-item">
+              <span className="what_kpis-value">10,000+</span>
+              <span className="what_kpis-caption">active merchants</span>
             </div>
-            <div className="kpis_item">
-              <span className="kpis_value">26,000+</span>
-              <span className="kpis_caption">new leads to merchants</span>
+            <div className="what_kpis-item">
+              <span className="what_kpis-value">26,000+</span>
+              <span className="what_kpis-caption">new leads to merchants</span>
             </div>
           </div>
         </div>
       </div>
 
-      <dl className="colophon content_aside">
-        <div className="colophon_group">
-          <dt className="label colophon_label">What I did</dt>
-          <dd className="colophon_value">
+      <dl className="what_colophon content_aside">
+        <div className="what_colophon-group">
+          <dt className="label what_colophon-label">What I did</dt>
+          <dd className="what_colophon-value">
             Product Discovery, Product Design, Usability Testing
           </dd>
         </div>
-        <div className="colophon_group">
-          <dt className="label colophon_label">Designers</dt>
-          <dd className="colophon_value">
+        <div className="what_colophon-group">
+          <dt className="label what_colophon-label">Designers</dt>
+          <dd className="what_colophon-value">
             Sérgio Fontes, Rafaela Lopes, Vinícius Alcântara, Fausto Junior
           </dd>
         </div>

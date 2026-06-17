@@ -16,7 +16,7 @@
   span { display: none; }
 }
 
-.external {
+.anchor_external {
   svg { margin-left: calc(var(--gap) / 4); }
 
   &:hover, &:active, &:focus {
@@ -24,7 +24,7 @@
   }
 }
 
-.social {
+.anchor_social {
   svg {
     margin-right: .2rem;
     path { fill: var(--color-subtitle); }
@@ -35,12 +35,12 @@
   }
 }
 
-.linkedin svg {
+.anchor_linkedin svg {
   top: -3px;
   width: .9rem;
 }
 
-.offline {
+.anchor.-offline {
   cursor: not-allowed;
 
   span {

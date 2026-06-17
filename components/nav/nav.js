@@ -64,7 +64,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
         smooth={`easeInOutCirc`}
         offset={item.offset ?? -100}
         spy={item.spy || undefined}
-        activeClass={item.spy ? "active" : undefined}
+        activeClass={item.spy ? "-active" : undefined}
         duration={300}
         onClick={handleCloseClick}
       >
@@ -74,7 +74,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
 
   return (
     <>
-      <nav className={cn("nav", { open: isOpen })}>
+      <nav className={cn("nav", { "-open": isOpen })}>
         <ButtonMenu
           classes="nav_button"
           open={isOpen}
@@ -82,13 +82,13 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
           onClick={handleOpenCloseClick}
         />
         <div className="grid">
-          <span className="divisor"></span>
-          <ol className="links">
+          <span className="nav_divisor"></span>
+          <ol className="nav_links">
             {links.map((item, index) => (
-              <li className="link" key={item.label}>
+              <li className="nav_link" key={item.label}>
                 {renderTarget(item, item.label)}
                 {index === links.length - 1 && (
-                  <span className="arrow">
+                  <span className="nav_arrow">
                     <IconArrow />
                   </span>
                 )}
@@ -100,7 +100,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
         </div>
       </nav>
 
-      <div className="symbol">
+      <div className="nav_symbol">
         {renderTarget(symbol, <Symbol aria-label="Go to homepage" />)}
       </div>
     </>

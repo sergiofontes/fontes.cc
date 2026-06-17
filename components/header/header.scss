@@ -18,9 +18,9 @@
     margin: 0;
   }
 
-  .title, .intro { grid-column: 1 / span var(--columns-total); }
-  .intro { grid-row: 1; }
-  .title { grid-row: 2; }
+  .header_title, .header_intro { grid-column: 1 / span var(--columns-total); }
+  .header_intro { grid-row: 1; }
+  .header_title { grid-row: 2; }
   .content_divisors { border-color: var(--color-text-inverse); }
 
   @include media(">tablet") {
@@ -36,33 +36,33 @@
     @include media("<=desktop") {
       .content_columns { display: block; }
 
-      .intro {
+      .header_intro {
         grid-row: 2;
         grid-column-end: span calc(var(--columns) + 1);
       }
 
-      .title { grid-row: 3; }
+      .header_title { grid-row: 3; }
     }
   }
 
   @include media(">desktop") {
     grid-template-rows: auto 1fr;
 
-    .intro { grid-row: 1; }
+    .header_intro { grid-row: 1; }
 
     h1 {
       top: 5px;
       grid-column: var(--content-start) / span calc(var(--content-width) * 3);
     }
 
-    .title {
+    .header_title {
       grid-row: 2;
       align-self: end;
     }
   }
 }
 
-.title {
+.header_title {
   justify-content: start;
   width: 100%;
   overflow: hidden;
@@ -82,7 +82,7 @@
   [class*="Typewriter__cursor"] { animation-timing-function: cubic-bezier(.75, 0, .04, 1.01); }
 }
 
-.intro {
+.header_intro {
   i { display: block; }
   p { display: inline; }
   .lead { line-height: 1; }

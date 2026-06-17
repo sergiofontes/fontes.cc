@@ -19,7 +19,7 @@ export default function Experience() {
         Filipe Soares
         <br />
         <small>Staff Product Designer @ VTEX</small>
-        <div className="logo_testimonial">
+        <div className="testimonial_logo">
           <Logo type="vtex" />
         </div>
       </figcaption>
