@@ -1,0 +1,372 @@
+///////////////////////////////////////////////////////////////////////////////
+// Solution Section (case)                                                   //
+///////////////////////////////////////////////////////////////////////////////
+
+// Six stacked blocks that reuse the home `content` grid (rotated/sticky `<h2>`,
+// a wide body column, right-hand subtitle notes). Every mockup is a flat asset
+// framed inside a CSS mask container and shadowed entirely in CSS — no baked
+// frames or shadows. The setup block is a `ButtonDot`-paged scroll-snap carousel.
+
+@import "../../styles/scaffold";
+
+// The light-lime panel sitting behind the offset setup screenshots.
+$color-setup: #dff8c3;
+
+// Body columns place via `content_body`; right-hand notes via `content_aside -center`.
+
+// Vertical padding sets the white gap above/below the section (between the gray
+// `Why` band and the page tail) — matches the prototype’s 90 / 120 / 90 rhythm.
+.solution {
+  padding-block: var(--space-3xl); // 90 — mobile & desktop
+  scroll-margin-top: var(--gap);
+
+  @include media(">tablet") { padding-block: var(--space-4xl); } // 120
+
+  @include media(">desktop") { padding-block: var(--space-3xl); } // 90
+}
+
+// Distance between the sub-blocks (the first block needs no leading gap) ─────────
+.solution_sharing,
+.solution_templates,
+.solution_config,
+.solution_custom,
+.solution_devices {
+  margin-top: var(--space-2xl); // 45 — mobile
+
+  @include media(">tablet") { margin-top: calc(var(--space-xl) * 2); } // 60
+
+  @include media(">desktop") { margin-top: var(--space-xl); } // 30
+}
+
+// Shared note — the small subtitle copy beside / below each block ────────────────
+.solution_note {
+  width: 100%;
+  margin: 0;
+  font-size: .866667rem; // 13px
+  line-height: 1.4;
+  color: var(--color-subtitle);
+}
+
+// Shared mask frame — every mockup is clipped to a rounded container ─────────────
+.solution_frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-small);
+}
+
+.solution_media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Block 1 — lede + promotional video ────────────────────────────────────────────
+.solution_lede {
+  p + p { margin-top: 1rem; }
+
+  @include media(">tablet") { grid-row: 1; }
+}
+
+.solution_video {
+  position: relative;
+  display: block;
+
+  @include media(">tablet") { grid-row: 2; }
+
+  &:focus-visible {
+    border-radius: var(--radius-small);
+    outline: var(--border-focus) solid var(--color-focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+.solution_frame.-video { aspect-ratio: 533 / 310; }
+
+.solution_play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 48px;
+  background-color: var(--color-background);
+  border-radius: 14px;
+  box-shadow: var(--shadow-small);
+  transform: translate(-50%, -50%);
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @include media(">desktop") {
+    width: 84px;
+    height: 64px;
+    border-radius: 18px;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .solution_play { transition: transform .2s ease-in-out; }
+
+  .solution_video:hover .solution_play,
+  .solution_video:focus-visible .solution_play {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+.solution_note.-video {
+  @include media(">tablet") { grid-row: 2; }
+}
+
+// Block 2 — sharing montage (full-bleed, clipped at the viewport edges) ──────────
+.solution_sharing {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  justify-content: center;
+  padding-block: var(--space-xl); // 30 — breathing room around the full-bleed montage
+  overflow: hidden;
+
+  @include media(">tablet") { gap: var(--space-lg); }
+
+  @include media(">desktop") { gap: var(--space-xl); }
+}
+
+// The cards already ship with their own rounded corners + border baked into the
+// PNG, so a `box-shadow` on the rectangular frame would trace the frame’s square
+// corners instead of the card’s rounding. `filter: drop-shadow` follows the
+// asset’s real silhouette (matching `why`/`what`), so the shadow hugs the radius.
+.solution_frame.-share {
+  flex-shrink: 0;
+  width: 116px;
+  overflow: visible; // let the drop-shadow fall outside the card bounds
+  border-radius: 0; // rounding lives in the PNG, not the frame
+
+  @include media(">tablet") { width: 156px; }
+
+  @include media(">desktop") { width: 196px; }
+
+  .solution_media {
+    height: auto; // keep each card’s native ratio
+    filter:
+      drop-shadow(0 1px 2px rgb(0 0 0 / 7%))
+      drop-shadow(0 4px 4px rgb(0 0 0 / 6%))
+      drop-shadow(0 8px 5px rgb(0 0 0 / 4%));
+  }
+}
+
+// Block 3 — printed & social templates ──────────────────────────────────────────
+// Sits above the pair (wide) on tablet, then returns to the aside column on
+// desktop — so it stays custom rather than using `content_aside`.
+.solution_note.-templates {
+  grid-column: var(--content-start) / span var(--content-width);
+
+  @include media(">tablet") {
+    grid-row: 1;
+    grid-column: 3 / span 7;
+    align-self: center;
+  }
+
+  @include media(">desktop") {
+    grid-column: calc(var(--content-start) + var(--content-width) * 2) / span var(--content-width);
+  }
+}
+
+// Shared side-by-side media pair (templates + phones) ────────────────────────────
+.solution_pair {
+  display: flex;
+  gap: var(--gap);
+  width: 100%;
+}
+
+.solution_pair > * { flex: 1; }
+
+.solution_pair.-templates {
+  flex-direction: column;
+
+  @include media(">tablet") {
+    flex-direction: row;
+    grid-row: 2;
+  }
+
+  @include media(">desktop") { grid-row: 1; }
+
+  // Tablet mirrors the prototype’s narrower-left / wider-right split.
+  > :first-child { @include media(">tablet", "<=desktop") { flex: 168; } }
+  > :last-child { @include media(">tablet", "<=desktop") { flex: 234; } }
+}
+
+.solution_frame.-template {
+  aspect-ratio: 300 / 230; // mobile crops landscape…
+
+  @include media(">tablet") { aspect-ratio: 252 / 310; } // …portrait from tablet up
+}
+
+// Block 4 — setup carousel ───────────────────────────────────────────────────────
+.solution_config { align-items: start; }
+
+// Shared scroll/snap/scrollbar/focus-ring come from `.carousel`.
+.solution_track {
+  grid-column: 1 / -1; // full-bleed on mobile
+
+  &:focus-visible { outline-offset: 3px; }
+
+  @include media(">tablet") {
+    grid-row: 1;
+    grid-column: 3 / span 7;
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  }
+}
+
+.solution_slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.solution_frame.-setup {
+  aspect-ratio: 390 / 360;
+  background-color: $color-setup;
+
+  @include media(">tablet") { aspect-ratio: 432 / 444; }
+
+  @include media(">desktop") { aspect-ratio: 533 / 444; }
+
+  // The browser screenshot floats inside the panel, cropped on the sides and
+  // offset down so the lime panel reads at the top.
+  .solution_media {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    width: 116%;
+    height: auto;
+    border-radius: var(--radius-small);
+    transform: translateX(-50%);
+  }
+}
+
+// Placement via `content_aside -center`.
+.solution_aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+
+  @include media(">tablet") {
+    grid-row: 1;
+  }
+}
+
+.solution_dots {
+  display: flex;
+  gap: var(--space-xs);
+
+  @include media(">tablet") { flex-direction: column; }
+
+  @include media(">desktop") { flex-direction: row; }
+}
+
+// Block 5 — store customization (two phones side by side) ────────────────────────
+.solution_pair.-phones {
+  flex-direction: row;
+  grid-column: 1 / -1; // full-bleed pair on mobile
+
+  @include media(">tablet") {
+    grid-row: 1;
+    grid-column: 3 / span 7;
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  }
+
+  > :first-child { @include media(">tablet", "<=desktop") { flex: 168; } }
+  > :last-child { @include media(">tablet", "<=desktop") { flex: 234; } }
+}
+
+.solution_frame.-phone {
+  aspect-ratio: 252 / 395;
+  background-color: var(--color-surface-dim);
+
+  // The phone render sits inset on the tinted panel, cropped at the fold.
+  .solution_media {
+    position: absolute;
+    top: 6.6%;
+    left: 50%;
+    width: 79%;
+    height: auto;
+    transform: translateX(-50%);
+  }
+}
+
+.solution_note.-custom {
+  @include media(">tablet") { grid-row: 1; }
+}
+
+// Block 6 — responsive across devices ────────────────────────────────────────────
+.solution_devices {
+  row-gap: var(--space-md); // 15 — composite → caption → divider rhythm (mobile)
+  align-items: start;
+  padding-top: var(--space-xl);
+
+  @include media(">tablet") { row-gap: var(--space-xl); } // 30
+}
+
+// The composite PNG carries a soft drop-shadow with a transparent band below the
+// devices. A negative bottom margin trims that empty band from the layout box so
+// the caption and divider sit close to the artwork — as in the prototype —
+// instead of floating below the shadow. Tuned per breakpoint to the asset’s
+// scaled shadow height (it grows with the image across the tablet range).
+.solution_frame.-devices {
+  grid-column: 1 / -1; // full-bleed on mobile
+  margin-bottom: -40px;
+
+  @include media(">tablet") {
+    grid-column: 2 / -2;
+    margin-bottom: -85px;
+  }
+
+  @include media(">desktop") { margin-bottom: -75px; }
+
+  .solution_media {
+    position: static;
+    height: auto; // show the whole responsive composite
+  }
+}
+
+// Centered beneath the composite on mobile/tablet; on desktop it aligns left
+// with the divider’s start (content-start), matching the prototype.
+.solution_note.-devices {
+  grid-column: var(--content-start) / span var(--content-width);
+  text-align: center;
+
+  @include media(">tablet") {
+    grid-row: 2;
+    grid-column: 2 / -2;
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+    text-align: left;
+  }
+}
+
+// Placement via `content_rule`; narrower than the base rule on mobile.
+.solution_divisor {
+  grid-column: var(--content-start) / span var(--content-width);
+
+  @include media(">tablet") {
+    grid-row: 3;
+  }
+}

@@ -8,38 +8,17 @@
 
 @import "../../styles/scaffold";
 
+// Cover scaffold (height, inverse colours, top padding) comes from `.hero`.
 .cover {
   position: relative;
   grid-template-rows: 1fr auto auto;
   align-items: end;
-  height: 85vh;
-  height: calc(85vh - env(safe-area-inset-bottom));
-  height: 85svh;
-  min-height: 40rem;
   max-height: var(--header-max-height);
-  padding-top: calc(var(--gap) * 4);
   padding-bottom: calc(var(--gap) * 2);
   overflow: hidden;
-  background-color: var(--color-cover);
-
-  * {
-    color: var(--color-text-inverse);
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h2 { color: var(--color-text-dim); }
-
-  @include media(">tablet") {
-    @include media("portrait") { padding-top: calc(var(--gap) * 6); }
-  }
 
   @include media(">desktop") {
     grid-template-rows: auto auto 1fr;
-    height: 90vh;
-    min-height: 40rem;
-    max-height: var(--header-max-height);
-    padding-top: var(--gap);
     padding-bottom: var(--space-3xl);
   }
 }

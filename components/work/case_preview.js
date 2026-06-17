@@ -107,11 +107,11 @@ export default function CasePreview({
       </div>
 
       <div
-        className="work_gallery"
+        className="work_gallery content_media"
         role="group"
         aria-label={`${name} gallery`}
       >
-        <ul className="work_track" ref={trackRef} tabIndex={0} onScroll={sync}>
+        <ul className="work_track carousel" ref={trackRef} tabIndex={0} onScroll={sync}>
           <li className="work_colophon">
             <dl>
               <dt className="label">What I did</dt>
@@ -137,7 +137,7 @@ export default function CasePreview({
         </div>
       )}
 
-      <span className="work_divisor" />
+      <span className="work_divisor content_rule" />
     </article>
   );
 }

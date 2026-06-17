@@ -10,10 +10,9 @@
 
 // The cases stack in a single full-width cell that the heading overlaps, so the
 // sticky “Work” heading can span the whole section instead of one case.
+// (full-bleed placement via `content_media`)
 .work_cases {
   grid-row: 1;
-  grid-column: 1 / -1;
-  width: 100%;
 }
 
 // Case ─────────────────────────────────────────────────────────────────────────
@@ -168,36 +167,21 @@
 // Carousel ──────────────────────────────────────────────────────────────────────
 // Full-bleed on every breakpoint: the track spans every column (gutter to
 // gutter) so the carousel can scroll across the whole screen.
+// (full-bleed placement via `content_media`)
 .work_gallery {
   grid-row: 2;
-  grid-column: 1 / -1;
-  width: 100%;
 }
 
+// Shared scroll/snap/scrollbar/focus-ring come from `.carousel`.
 .work_track {
-  display: flex;
-  gap: var(--gap);
   align-items: flex-start;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  overflow-x: auto;
   overscroll-behavior-x: contain;
-  list-style: none;
-  scroll-snap-type: x mandatory;
 
   // Snap each image to the content column (matching the leading inset) instead
   // of the full-bleed left edge.
   scroll-padding-left: var(--work-lead);
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
 
-  &::-webkit-scrollbar { display: none; }
-
-  &:focus-visible {
-    outline: var(--border-focus) solid var(--color-focus-ring);
-    outline-offset: 2px;
-  }
+  &:focus-visible { outline-offset: 2px; }
 
   // Free scroll on desktop: snapping would pull the start past the colophon’s
   // inset (there’s no snap point at the leading edge), so the carousel scrolls
@@ -281,14 +265,12 @@
   margin: 0;
 }
 
-// Divider ───────────────────────────────────────────────────────────────────────
+// Divider (placement via `content_rule`; edge on mobile/tablet, then the base’s
+// wide span on desktop where the right edge aligns to the last column) ───────────
 .work_divisor {
   grid-column: var(--content-start) / -1;
-  width: 100%;
-  border-bottom: 1px solid var(--color-text);
 
-  // Right edge aligns to the last column, like the header and gallery.
-  @include media(">desktop") {
-    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+  @include media(">tablet") {
+    grid-column: var(--content-start) / -1;
   }
 }

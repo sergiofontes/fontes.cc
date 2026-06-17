@@ -6,7 +6,7 @@ export default function Experience() {
     <section id="experience" className="grid content">
       <h2>Experience</h2>
 
-      <div className="experience_text">
+      <div className="experience_text content_body">
         <p>
           I design products and lead design teams that turn complexity into
           simplicity. Working across industries and international markets, I’ve
@@ -21,7 +21,7 @@ export default function Experience() {
         </p>
       </div>
 
-      <ul className="experience_logos" aria-label="Companies I’ve worked at">
+      <ul className="experience_logos content_aside" aria-label="Companies I’ve worked at">
         <li className="experience_logo">
           <Logo type="guava" />
           <span className="label experience_period">2013–2021</span>
@@ -37,7 +37,7 @@ export default function Experience() {
         </li>
       </ul>
 
-      <span className="experience_divisor"></span>
+      <span className="experience_divisor content_rule -edge"></span>
     </section>
   );
 }

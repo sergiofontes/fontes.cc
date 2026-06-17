@@ -5,9 +5,11 @@ import Nav from "../../components/nav";
 import Cover from "../../components/cover";
 import What from "../../components/what";
 import Why from "../../components/why";
+import Solution from "../../components/solution";
+import Quote from "../../components/quote";
+import Footer from "../../components/footer";
 
-// In-page section anchors for this case (the sections themselves land in later
-// passes); “Back to home” returns to the index.
+// In-page section anchors for this case; “Back to home” returns to the index.
 const CASE_LINKS = [
   { label: "Back to home", href: "/" },
   { label: "What", to: "what" },
@@ -49,7 +51,11 @@ export default function OnlineCatalog() {
         <main className="main">
           <What />
           <Why />
+          <Solution />
+          <Quote />
         </main>
+
+        <Footer />
       </div>
     </Layout>
   );

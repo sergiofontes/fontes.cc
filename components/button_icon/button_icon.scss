@@ -24,14 +24,8 @@
       transform .15s ease-in-out;
   }
 
-  &:hover { background-color: var(--color-surface-dim); }
-
-  &:active { transform: translateY(1px); }
-
-  &:focus-visible {
-    outline: var(--border-focus) solid var(--color-focus-ring);
-    outline-offset: 0;
-  }
+  // Press, hover surface, and focus outline come from the shared control states.
+  &:focus-visible { outline-offset: 0; }
 
   &:disabled,
   &.-disabled {

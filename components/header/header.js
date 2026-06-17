@@ -2,7 +2,7 @@ import Typewriter from 'typewriter-effect';
 
 export default function Header() {
   return (
-    <header id="hi" className="header">
+    <header id="hi" className="hero header">
       <section className="title grid content">
         <h1 aria-label="Product, U.X., Digital Designer">
           <b>

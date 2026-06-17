@@ -114,3 +114,77 @@
 @include media(">desktop") {
   .content_columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Section composition                                                       //
+///////////////////////////////////////////////////////////////////////////////
+
+// The repeated section grid placements, lifted from the section components so any
+// `grid content` section composes from these instead of re-deriving the spans:
+// a wide body column, a narrow right-hand aside, full-bleed media, and the
+// closing hairline. Each owns its `grid-column` only — consumers keep their own
+// `grid-row`, typography, and any single-breakpoint exception.
+
+// Wide body/media column (body copy, galleries, carousels).
+.content_body {
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+
+  @include media(">tablet") {
+    grid-column: 3 / span 7;
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  }
+}
+
+// Narrow right-hand column (subtitle notes, colophon, logos). `-center` aligns it
+// to the middle of its neighbouring media instead of the top.
+.content_aside {
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+
+  @include media(">tablet") {
+    grid-column: 10 / span 2;
+    align-self: start;
+  }
+
+  @include media(">desktop") {
+    grid-column: calc(var(--content-start) + var(--content-width) * 2) / span var(--content-width);
+  }
+
+  &.-center {
+    @include media(">tablet") { align-self: center; }
+  }
+}
+
+// Full-bleed element (gutter to gutter, every breakpoint).
+.content_media {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+// Closing hairline. Base spans wide (to the last content column); `-edge` runs all
+// the way to the trailing gutter.
+.content_rule {
+  grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  width: 100%;
+  border-bottom: 1px solid var(--color-text);
+
+  @include media(">tablet") {
+    grid-column: 3 / span calc(var(--content-width) * 3);
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+  }
+
+  &.-edge {
+    grid-column: var(--content-start) / -1;
+
+    @include media(">tablet") { grid-column: 3 / -1; }
+
+    @include media(">desktop") { grid-column: var(--content-start) / -1; }
+  }
+}

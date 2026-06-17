@@ -5,7 +5,7 @@ export default function Why() {
     <section id="why-how" className="why grid content">
       <h2>Why &amp; how</h2>
 
-      <div className="why_text">
+      <div className="why_text content_body">
         <p>
           Stone identified an opportunity to support small businesses beyond
           payments. As lead designer, I helped drive discovery initiatives that
@@ -23,13 +23,13 @@ export default function Why() {
         </p>
       </div>
 
-      <p className="why_note -about">
+      <p className="why_note content_aside -about">
         Stone is a Brazilian fintech focused on small and medium-sized businesses.
       </p>
 
       {/* The discovery board screenshot with two tilted “cover” decks composed on
           top. Both decks are flat covers tilted and shadowed entirely in CSS. */}
-      <div className="why_gallery">
+      <div className="why_gallery content_body">
         <div className="why_board">
           <img
             className="why_image"
@@ -60,13 +60,13 @@ export default function Why() {
         </div>
       </div>
 
-      <p className="why_note -stats">
+      <p className="why_note content_aside -stats">
         Across two discovery phases, we reviewed 43 studies, surveyed 2,282
         customers, conducted 12 in-depth interviews, and analyzed 39 competitors to
         inform product decisions.
       </p>
 
-      <span className="why_divisor"></span>
+      <span className="why_divisor content_rule"></span>
     </section>
   );
 }

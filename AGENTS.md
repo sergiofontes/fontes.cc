@@ -44,6 +44,20 @@ Every SCSS file starts with `@import "scaffold"`, which pulls in `utils.scss` (S
 
 When styling a new section, compose it with the `grid`/`content` utilities rather than inventing layout primitives, and `@import "scaffold"` for the shared mixins and breakpoints.
 
+#### Composing a section
+
+Reach for these classes **before** writing raw `grid-column`/breakpoint math — they already encode the responsive spans every section shares, so a new section rarely needs custom placement. Put the container class first, then the component's own BEM class, then modifiers (`class="experience_text content_body"`).
+
+- Container: `grid content` on the `<section>`. The rotated/sticky `<h2>` is placed automatically by `.content`.
+- `content_body` — the wide body/media column (body copy, galleries, carousels). Spans the content column on mobile and widens on tablet/desktop.
+- `content_aside` — the narrow right-hand column (subtitle notes, colophon, logos). Add `-center` to vertically center it against its neighbouring media instead of top-aligning.
+- `content_media` — an always-full-bleed element (gutter to gutter, every breakpoint).
+- `content_rule` — the closing hairline; base spans wide (to the last content column), `-edge` runs to the trailing gutter.
+
+Each utility owns its `grid-column` only — the component keeps its own `grid-row`, typography, and any single-breakpoint exception (e.g. a divider that goes full-bleed on mobile but narrows on desktop). When a placement genuinely diverges at one breakpoint, add a one-line `grid-column` override in the component scss (it wins on source order); don't fork the utility.
+
+Two shared scaffolds live in their own component modules and are applied as extra classes the same way: `hero` (the dark, full-height cover used by `Header` and `Cover`) and `carousel` (the horizontal scroll-snap track used by `Work` and `Solution`). Shared interactive-control states (press, focus ring, hover surface) live as grouped selectors in `components/button/button.scss`.
+
 ### SVGs and i18n
 
 SVGs are imported directly as React components via `@svgr/webpack`. Under Next 16 (Turbopack by default) the loader is wired through `turbopack.rules` in `next.config.js`, with the legacy `webpack()` hook kept as a fallback. `next.config.js` also sets `i18n` to a single `en` locale (no actual translations exist).

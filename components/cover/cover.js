@@ -19,7 +19,7 @@ Cover.propTypes = {
 
 export default function Cover({ logo, label, category, title, summary, image }) {
   return (
-    <header id="cover" className="cover grid">
+    <header id="cover" className="hero cover grid">
       <img
         className="cover_art"
         src={image.src}

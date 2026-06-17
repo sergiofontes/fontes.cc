@@ -1,0 +1,28 @@
+///////////////////////////////////////////////////////////////////////////////
+// Carousel (shared scroll track)                                            //
+///////////////////////////////////////////////////////////////////////////////
+
+// The horizontal scroll-snap track shared by the `Work` and `Solution` carousels:
+// a flex row that scrolls with a hidden scrollbar and a focus ring. Each consumer
+// keeps its own grid placement, snap padding, and focus-ring offset.
+
+@import "../../styles/scaffold";
+
+.carousel {
+  display: flex;
+  gap: var(--gap);
+  width: 100%; // grid children collapse without this (justify-items: start)
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+
+  &:focus-visible {
+    outline: var(--border-focus) solid var(--color-focus-ring);
+  }
+}

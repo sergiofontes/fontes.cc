@@ -14,40 +14,21 @@
   scroll-margin-top: var(--gap);
 }
 
-// Body copy (spans the wide content column, like `.what_body`) ──────────────────
+// Body copy (placement via `content_body`) ─────────────────────────────────────
 .why_text {
-  grid-column: var(--content-start) / span var(--content-width);
-  width: 100%;
-
   p + p { margin-top: 1rem; }
 
   @include media(">tablet") {
     grid-row: 1;
-    grid-column: 3 / span 7;
-  }
-
-  @include media(">desktop") {
-    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
   }
 }
 
-// Subtitle notes — sit beside the body / gallery, mirroring `.colophon` ─────────
+// Subtitle notes (placement via `content_aside`) ───────────────────────────────
 .why_note {
-  grid-column: var(--content-start) / span var(--content-width);
-  width: 100%;
   margin: 0;
   font-size: .866667rem; // 13px
   line-height: 1.4;
   color: var(--color-subtitle);
-
-  @include media(">tablet") {
-    grid-column: 10 / span 2;
-    align-self: start;
-  }
-
-  @include media(">desktop") {
-    grid-column: calc(var(--content-start) + var(--content-width) * 2) / span var(--content-width);
-  }
 
   &.-about {
     @include media(">tablet") { grid-row: 1; }
@@ -63,17 +44,10 @@
 // the board crops by width and the decks stay a constant size per mode.
 .why_gallery {
   position: relative;
-  grid-column: var(--content-start) / span var(--content-width);
-  width: 100%;
   height: 310px;
 
   @include media(">tablet") {
     grid-row: 2;
-    grid-column: 3 / span 7;
-  }
-
-  @include media(">desktop") {
-    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
   }
 }
 
@@ -162,18 +136,9 @@
   }
 }
 
-// Divider (mirrors `.what_divisor`) ─────────────────────────────────────────────
+// Divider (placement via `content_rule`) ───────────────────────────────────────
 .why_divisor {
-  grid-column: var(--content-start) / span calc(var(--content-width) * 2);
-  width: 100%;
-  border-bottom: 1px solid var(--color-text);
-
   @include media(">tablet") {
     grid-row: 3;
-    grid-column: 3 / span calc(var(--content-width) * 3);
-  }
-
-  @include media(">desktop") {
-    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
   }
 }

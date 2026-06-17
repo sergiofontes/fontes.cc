@@ -10,12 +10,10 @@
 
 .what { scroll-margin-top: var(--gap); }
 
-// Media — three phone mockups, composed with CSS ───────────────────────────────
+// Media — three phone mockups, composed with CSS (placement via `content_media`) ─
 .what_media {
   display: flex;
-  grid-column: 1 / -1;
   justify-content: center;
-  width: 100%;
   overflow-x: clip; // contains the mobile bleed so it never scrolls the page
 
   @include media(">tablet") { grid-row: 1; }
@@ -68,20 +66,12 @@
   }
 }
 
-// Body copy + KPIs (spans the wide content column, like `.experience_text`) ─────
+// Body copy + KPIs (placement via `content_body`) ──────────────────────────────
 .what_body {
-  grid-column: var(--content-start) / span var(--content-width);
-  width: 100%;
-
   p + p { margin-top: 1rem; }
 
   @include media(">tablet") {
     grid-row: 2;
-    grid-column: 3 / span 7;
-  }
-
-  @include media(">desktop") {
-    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
   }
 }
 
@@ -121,23 +111,15 @@
 
 .kpis_caption { color: var(--color-subtitle); }
 
-// Colophon — credits column (mirrors `.experience_logos` placement) ────────────
+// Colophon — credits column (placement via `content_aside`) ────────────────────
 .colophon {
   display: flex;
   flex-direction: column;
-  grid-column: var(--content-start) / span var(--content-width);
   gap: var(--space-lg);
-  width: 100%;
   margin: 0;
 
   @include media(">tablet") {
     grid-row: 2;
-    grid-column: 10 / span 2;
-    align-self: start;
-  }
-
-  @include media(">desktop") {
-    grid-column: calc(var(--content-start) + var(--content-width) * 2) / span var(--content-width);
   }
 }
 
@@ -148,18 +130,9 @@
 
 .colophon_value { margin: 0; }
 
-// Divider ──────────────────────────────────────────────────────────────────────
+// Divider (placement via `content_rule`) ───────────────────────────────────────
 .what_divisor {
-  grid-column: var(--content-start) / span calc(var(--content-width) * 2);
-  width: 100%;
-  border-bottom: 1px solid var(--color-text);
-
   @include media(">tablet") {
     grid-row: 3;
-    grid-column: 3 / span calc(var(--content-width) * 3);
-  }
-
-  @include media(">desktop") {
-    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
   }
 }

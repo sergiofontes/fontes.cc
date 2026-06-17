@@ -43,12 +43,8 @@
     background-color: var(--color-text);
   }
 
-  &:active { transform: translateY(1px); }
-
-  &:focus-visible {
-    outline: var(--border-focus) solid var(--color-focus-ring);
-    outline-offset: 0;
-  }
+  // Press and focus outline come from the shared control states.
+  &:focus-visible { outline-offset: 0; }
 
   // Focus grows the dot like hover, keeping its active/inactive color
   &:focus-visible::before {

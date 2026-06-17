@@ -52,7 +52,7 @@ export default function Work() {
     <section id="work" className="work grid">
       <h2 className="work_title">Work</h2>
 
-      <div className="work_cases">
+      <div className="work_cases content_media">
         {cases.map((item) => (
           <CasePreview key={item.logo} {...item} />
         ))}

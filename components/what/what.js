@@ -21,7 +21,7 @@ function Phone({ name, modifier, width, height, alt }) {
 export default function What() {
   return (
     <section id="what" className="what grid content">
-      <div className="what_media">
+      <div className="what_media content_media">
         <div className="what_mockups">
           <Phone name="mockup_about" modifier="-left" width={247} height={510} alt="" />
           <Phone
@@ -37,7 +37,7 @@ export default function What() {
 
       <h2>What</h2>
 
-      <div className="what_body">
+      <div className="what_body content_body">
         <p>
           The Online Catalog is a lightweight commerce tool that enables small
           businesses to create a professional digital showcase for their products
@@ -69,7 +69,7 @@ export default function What() {
         </div>
       </div>
 
-      <dl className="colophon">
+      <dl className="colophon content_aside">
         <div className="colophon_group">
           <dt className="label colophon_label">What I did</dt>
           <dd className="colophon_value">
@@ -84,7 +84,7 @@ export default function What() {
         </div>
       </dl>
 
-      <span className="what_divisor"></span>
+      <span className="what_divisor content_rule"></span>
     </section>
   );
 }
