@@ -1,0 +1,169 @@
+///////////////////////////////////////////////////////////////////////////////
+// Cover (case page header)                                                  //
+///////////////////////////////////////////////////////////////////////////////
+
+// Mirrors the home Header’s grid/content structure: an eyebrow label + category
+// over a divider, with the page title (logo lockup + heading + summary) below.
+// Only the title and links differ from the home cover.
+
+@import "../../styles/scaffold";
+
+.cover {
+  position: relative;
+  grid-template-rows: 1fr auto auto;
+  align-items: end;
+  height: 85vh;
+  height: calc(85vh - env(safe-area-inset-bottom));
+  height: 85svh;
+  min-height: 40rem;
+  max-height: var(--header-max-height);
+  padding-top: calc(var(--gap) * 4);
+  padding-bottom: calc(var(--gap) * 2);
+  overflow: hidden;
+  background-color: var(--color-cover);
+
+  * {
+    color: var(--color-text-inverse);
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h2 { color: var(--color-text-dim); }
+
+  @include media(">tablet") {
+    @include media("portrait") { padding-top: calc(var(--gap) * 6); }
+  }
+
+  @include media(">desktop") {
+    grid-template-rows: auto auto 1fr;
+    height: 90vh;
+    min-height: 40rem;
+    max-height: var(--header-max-height);
+    padding-top: var(--gap);
+    padding-bottom: var(--space-3xl);
+  }
+}
+
+// Decorative artwork ──────────────────────────────────────────────────────────
+// A faint, light-grey illustration. It stacks above the title on mobile/tablet
+// and floats to the top-right behind the title on desktop.
+.cover_art {
+  position: absolute;
+  grid-row: 1;
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 45svh;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: exclusion;
+  object-fit: contain;
+
+  // Desktop: a grid child anchored to the content columns (so it tracks the
+  // text axis and the centred grid) rather than pinned to the viewport edge.
+  // It spans behind the title, with the text painting on top (earlier in DOM).
+  @include media(">tablet") {
+    grid-column-start: var(--content-start);
+    align-self: start;
+    justify-self: start;
+  }
+
+  @include media(">desktop") {
+    grid-row: 1 / -1;
+    grid-column: var(--content-start) / -1;
+    width: min(40rem, 100%);
+    max-height: none;
+  }
+}
+
+// Eyebrow label (“Case”) — rotated in the heading gutter on mobile/tablet,
+// upright at the top on desktop (mirrors `.content h2`).
+.cover_label {
+  z-index: 2;
+  grid-row: 3;
+  grid-column: var(--heading-start) / span var(--heading-width);
+  align-self: start;
+  justify-self: end;
+  margin: 0;
+  transform: rotate(-90deg);
+  transform-origin: bottom right;
+
+  @include media(">desktop") {
+    grid-row: 1;
+    margin-top: .266667rem;
+    transform: none;
+  }
+}
+
+// Category (“Work”) — desktop only, beside the divider’s left edge.
+.cover_category {
+  display: none;
+
+  @include media(">desktop") {
+    display: block;
+    grid-row: 1;
+    grid-column: var(--content-start) / span var(--content-width);
+    align-self: center;
+    margin: 0;
+    line-height: 1;
+  }
+}
+
+// Divider ───────────────────────────────────────────────────────────────────
+.cover_border {
+  grid-row: 2;
+  grid-column: var(--content-start) / -1;
+  width: 100%;
+  border-bottom: 1px solid var(--color-text-inverse);
+}
+
+// Title block (logo lockup + heading + summary) ───────────────────────────────
+.cover_main {
+  display: flex;
+  flex-direction: column;
+  grid-row: 3;
+  grid-column: var(--content-start) / span var(--content-width);
+  gap: var(--space-xl);
+  width: 100%;
+
+  @include media(">tablet") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3 - 1);
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3 - 1);
+    align-self: end;
+  }
+}
+
+.cover_titling {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+// Stone (and future case logos) render dark by default; force them to the
+// inverse colour with a flat white fill that survives gradients.
+.cover .logo {
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.cover .stone { width: 5.2667rem; } // 79px
+
+.cover_heading {
+  margin: 0;
+  font-size: 4.2667rem; // 64px
+  line-height: .9;
+  letter-spacing: -.02em;
+
+  @include media(">desktop") {
+    font-size: 6.6667rem; // 100px
+  }
+}
+
+.cover_summary {
+  margin: 0;
+}

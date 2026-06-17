@@ -33,7 +33,8 @@
     outline-offset: 0;
   }
 
-  &:disabled {
+  &:disabled,
+  &.-disabled {
     cursor: not-allowed;
     opacity: .4;
   }

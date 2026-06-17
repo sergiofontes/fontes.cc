@@ -79,7 +79,7 @@ export default function CasePreview({
               </span>
               <ButtonIcon
                 icon="plus"
-                disabled
+                href="/work/catalog"
                 classes="work_plus"
                 aria-label={`${name} Online Catalog`}
               />
@@ -131,7 +131,7 @@ export default function CasePreview({
       {featured && summary && (
         <div className="work_cta">
           <p className="work_summary">{summary}</p>
-          <Button size="medium" disabled classes="work_button">
+          <Button size="medium" href="/work/catalog" classes="work_button">
             Read the case
           </Button>
         </div>

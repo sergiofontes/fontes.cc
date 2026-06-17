@@ -10,6 +10,7 @@ const ICONS = {
 
 ButtonIcon.propTypes = {
   icon: PropTypes.oneOf(["arrow", "plus"]),
+  href: PropTypes.string,
   disabled: PropTypes.bool,
   "aria-label": PropTypes.string.isRequired,
   classes: PropTypes.string,
@@ -17,12 +18,29 @@ ButtonIcon.propTypes = {
 
 ButtonIcon.defaultProps = {
   icon: "arrow",
+  href: "",
   disabled: false,
   classes: "",
 };
 
-export default function ButtonIcon({ icon, disabled, classes, ...props }) {
+export default function ButtonIcon({ icon, href, disabled, classes, ...props }) {
   const Icon = ICONS[icon] || IconArrow;
+
+  // With an href the control navigates, so it renders as a link (mirroring
+  // `Button`); otherwise it stays a plain button (e.g. the carousel arrows).
+  if (href) {
+    return (
+      <a
+        className={cn("button_icon", { "-disabled": disabled }, classes)}
+        href={disabled ? undefined : href}
+        aria-disabled={disabled || undefined}
+        tabIndex={disabled ? -1 : undefined}
+        {...props}
+      >
+        <Icon />
+      </a>
+    );
+  }
 
   return (
     <button
