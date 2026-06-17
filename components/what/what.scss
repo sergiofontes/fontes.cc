@@ -78,7 +78,7 @@
 
 .what_kpis-label {
   display: block;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
   color: var(--color-subtitle);
 }
 
@@ -96,7 +96,7 @@
 .what_kpis-item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .what_kpis-value {
@@ -121,8 +121,8 @@
   }
 }
 
-.what_colophon-label {
-  margin-bottom: var(--space-sm);
+.what_colophon-label,
+.what_colophon-value {
   color: var(--color-subtitle);
 }
 

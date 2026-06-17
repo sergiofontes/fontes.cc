@@ -23,7 +23,13 @@ export default function What() {
     <section id="what" className="what grid content">
       <div className="what_media content_media">
         <div className="what_mockups">
-          <Phone name="mockup_about" modifier="-left" width={247} height={510} alt="" />
+          <Phone
+            name="mockup_about"
+            modifier="-left"
+            width={247}
+            height={510}
+            alt=""
+          />
           <Phone
             name="mockup_pdp"
             modifier="-center"
@@ -31,7 +37,13 @@ export default function What() {
             height={600}
             alt="The Online Catalog showing a product page in a merchant’s store"
           />
-          <Phone name="mockup_plp_custom" modifier="-right" width={247} height={510} alt="" />
+          <Phone
+            name="mockup_plp_custom"
+            modifier="-right"
+            width={247}
+            height={510}
+            alt=""
+          />
         </div>
       </div>
 
@@ -40,45 +52,46 @@ export default function What() {
       <div className="what_body content_body">
         <p>
           The Online Catalog is a lightweight commerce tool that enables small
-          businesses to create a professional digital showcase for their products
-          without the complexity of a full e-commerce store. Merchants can organize
-          products into categories and share a single catalog link across channels
-          they already use, such as WhatsApp, social media profiles, and QR codes.
+          businesses to create a professional digital showcase for their
+          products without the complexity of a full e-commerce store. Merchants
+          can organize products into categories and share a single catalog link
+          across channels they already use, such as WhatsApp, social media
+          profiles, and QR codes.
         </p>
         <p>
-          Integrated into the Stone ecosystem, the product also works through Stone’s
-          POS devices, allowing merchants to manage their catalog using tools already
-          embedded in their daily operations. By making products easier to discover,
-          browse, and share, Online Catalog helps merchants strengthen their digital
-          presence and generate more sales opportunities without changing how they
-          already sell.
+          Integrated into the Stone ecosystem, the product also works through
+          Stone’s POS devices, allowing merchants to manage their catalog using
+          tools already embedded in their daily operations. By making products
+          easier to discover, browse, and share, Online Catalog helps merchants
+          strengthen their digital presence and generate more sales
+          opportunities without changing how they already sell.
         </p>
 
         <div className="what_kpis">
-          <span className="label what_kpis-label">First 30 days</span>
-          <div className="what_kpis-list">
-            <div className="what_kpis-item">
+          <h3 className="label what_kpis-label">First 30 days</h3>
+          <ul className="what_kpis-list">
+            <li className="what_kpis-item">
               <span className="what_kpis-value">10,000+</span>
               <span className="what_kpis-caption">active merchants</span>
-            </div>
-            <div className="what_kpis-item">
+            </li>
+            <li className="what_kpis-item">
               <span className="what_kpis-value">26,000+</span>
               <span className="what_kpis-caption">new leads to merchants</span>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
 
       <dl className="what_colophon content_aside">
         <div className="what_colophon-group">
           <dt className="label what_colophon-label">What I did</dt>
-          <dd className="what_colophon-value">
+          <dd className="what_colophon-value note">
             Product Discovery, Product Design, Usability Testing
           </dd>
         </div>
         <div className="what_colophon-group">
           <dt className="label what_colophon-label">Designers</dt>
-          <dd className="what_colophon-value">
+          <dd className="what_colophon-value note">
             Sérgio Fontes, Rafaela Lopes, Vinícius Alcântara, Fausto Junior
           </dd>
         </div>
