@@ -1,0 +1,165 @@
+///////////////////////////////////////////////////////////////////////////////
+// What Section (case)                                                       //
+///////////////////////////////////////////////////////////////////////////////
+
+// Reuses the home `content` grid: a rotated/sticky `<h2>` heading, a body column,
+// and a right-hand colophon — laid out exactly like `AboutExperience`. The three
+// product mockups are composed and shadowed entirely in CSS.
+
+@import "../../styles/scaffold";
+
+.what { scroll-margin-top: var(--gap); }
+
+// Media — three phone mockups, composed with CSS ───────────────────────────────
+.what_media {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: center;
+  width: 100%;
+  overflow-x: clip; // contains the mobile bleed so it never scrolls the page
+
+  @include media(">tablet") { grid-row: 1; }
+}
+
+// The mockup group keeps the same relative composition at every breakpoint; only
+// its width changes. It bleeds past the gutters on mobile (html clips overflow-x).
+// Because the layout is width-driven (each phone is a % of the group’s width), the
+// prototype’s max heights are enforced as the matching max widths — the group keeps
+// a constant ~717/600 ratio, so 420/630/717px cap the height at 351/527/600px.
+.what_mockups {
+  position: relative;
+  flex-shrink: 0; // keep the mobile bleed instead of shrinking to the container
+  width: 108%;
+  max-width: 470px;
+  padding-bottom: var(--space-xl);
+
+  @include media(">tablet") {
+    width: 100%;
+    max-width: 630px; // caps height at the tablet prototype (~527px)
+  }
+
+  @include media(">desktop") {
+    max-width: min(61%, 717px); // caps height at the desktop prototype (~600px)
+  }
+}
+
+// Phones share one device aspect, so percentage placement is resolution-independent.
+// The centre screen sits in flow (defining the group’s height); the flanks float.
+.what_phone {
+  position: absolute;
+  top: 7.5%;
+  display: block;
+  width: 33.9%;
+  height: auto;
+  filter:
+    drop-shadow(0 2px 6px rgb(0 0 0 / 8%))
+    drop-shadow(0 14px 24px rgb(0 0 0 / 10%))
+    drop-shadow(0 40px 64px rgb(0 0 0 / 8%));
+
+  &.-left { left: 0; }
+  &.-right { right: 0; }
+
+  &.-center {
+    position: relative;
+    top: 0;
+    z-index: 2;
+    width: 39.9%;
+    margin-inline: auto;
+  }
+}
+
+// Body copy + KPIs (spans the wide content column, like `.experience_text`) ─────
+.what_body {
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+
+  p + p { margin-top: 1rem; }
+
+  @include media(">tablet") {
+    grid-row: 2;
+    grid-column: 3 / span 7;
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  }
+}
+
+// KPIs — the “First 30 days” stats inside the body column ──────────────────────
+.kpis { margin-top: var(--space-xl); }
+
+.kpis_label {
+  display: block;
+  margin-bottom: var(--space-lg);
+  color: var(--color-subtitle);
+}
+
+.kpis_list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+
+  @include media(">tablet") {
+    flex-direction: row;
+    gap: var(--space-2xl);
+  }
+}
+
+.kpis_item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.kpis_value {
+  font-family: var(--font-title);
+  font-size: 2.2667rem; // 34px
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.kpis_caption { color: var(--color-subtitle); }
+
+// Colophon — credits column (mirrors `.experience_logos` placement) ────────────
+.colophon {
+  display: flex;
+  flex-direction: column;
+  grid-column: var(--content-start) / span var(--content-width);
+  gap: var(--space-lg);
+  width: 100%;
+  margin: 0;
+
+  @include media(">tablet") {
+    grid-row: 2;
+    grid-column: 10 / span 2;
+    align-self: start;
+  }
+
+  @include media(">desktop") {
+    grid-column: calc(var(--content-start) + var(--content-width) * 2) / span var(--content-width);
+  }
+}
+
+.colophon_label {
+  margin-bottom: var(--space-sm);
+  color: var(--color-subtitle);
+}
+
+.colophon_value { margin: 0; }
+
+// Divider ──────────────────────────────────────────────────────────────────────
+.what_divisor {
+  grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  width: 100%;
+  border-bottom: 1px solid var(--color-text);
+
+  @include media(">tablet") {
+    grid-row: 3;
+    grid-column: 3 / span calc(var(--content-width) * 3);
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+  }
+}
