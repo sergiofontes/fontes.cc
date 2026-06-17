@@ -15,14 +15,10 @@ $color-setup: #dff8c3;
 // Body columns place via `content_body`; right-hand notes via `content_aside -center`.
 
 // Vertical padding sets the white gap above/below the section (between the gray
-// `Why` band and the page tail) — matches the prototype’s 90 / 120 / 90 rhythm.
+// `Why` band and the page tail) — a uniform gap across breakpoints.
 .solution {
-  padding-block: var(--space-3xl); // 90 — mobile & desktop
+  padding-block: var(--space-2xl); // 45 — all breakpoints
   scroll-margin-top: var(--gap);
-
-  @include media(">tablet") { padding-block: var(--space-4xl); } // 120
-
-  @include media(">desktop") { padding-block: var(--space-3xl); } // 90
 }
 
 // Distance between the sub-blocks (the first block needs no leading gap) ─────────
