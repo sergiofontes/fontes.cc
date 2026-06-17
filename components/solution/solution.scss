@@ -240,13 +240,23 @@ $color-setup: #dff8c3;
   // edge (and slightly off the right on mobile) and offset down so the panel
   // reads at the top. `width` (the image is `height: auto`) and `left`/`top` are
   // the prototype’s mockup box as a share of the panel — set per breakpoint
-  // since the panel’s aspect-ratio and crop differ at each.
+  // since the panel’s aspect-ratio and crop differ at each. The layered
+  // `shadow/medium` lifts the window off the panel as `filter: drop-shadow`
+  // (not `box-shadow`) so it hugs the screenshot’s own rounded corners — which
+  // scale with the image — instead of tracing the frame’s square box; the
+  // frame’s `overflow: hidden` then clips it to the visible (top/right) edges,
+  // leaving the bleeding sides shadow-free.
   .solution_media {
     position: absolute;
     top: 9.7%;
     left: -26.2%;
     width: 131.3%;
     height: auto;
+    filter:
+      drop-shadow(0 3px 7px rgb(0 0 0 / 10%))
+      drop-shadow(0 13px 13px rgb(0 0 0 / 9%))
+      drop-shadow(0 30px 18px rgb(0 0 0 / 5%))
+      drop-shadow(0 53px 21px rgb(0 0 0 / 1%));
     border-radius: var(--radius-small);
 
     @include media(">tablet") {
