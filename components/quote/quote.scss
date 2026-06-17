@@ -34,10 +34,6 @@
     grid-column: var(--content-start) / span 8;
     padding-right: var(--space-md);
   }
-
-  // Hang the opening quotation mark into the gutter so the glyph optically
-  // aligns with the text block below it.
-  .lead { text-indent: -.45em; }
 }
 
 // Attribution — narrower column, sits under the quote ─────────────────────────────

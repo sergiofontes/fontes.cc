@@ -113,6 +113,16 @@ small,
 blockquote,
 figure { margin: 0; }
 
+// Hang an opening quotation mark / bracket into the margin so the glyph optically
+// aligns with the text block below it (the case Quote and the testimonial). Native
+// today only in Safari; browsers without it fall back to a negative indent on the
+// blockquote’s `.lead`, tuned to the glyph’s optical width.
+blockquote { hanging-punctuation: first; }
+
+@supports not (hanging-punctuation: first) {
+  blockquote .lead { text-indent: -.45em; }
+}
+
 figcaption {
   font-family: var(--font-title);
   font-size: .75rem;
