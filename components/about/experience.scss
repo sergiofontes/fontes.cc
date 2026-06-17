@@ -4,14 +4,12 @@
 
 @import "../../styles/scaffold";
 
-// Body copy (placement via `content_body`) ─────────────────────────────────────
 .experience_text {
   @include media(">tablet") {
     grid-row: 1;
   }
 }
 
-// Logos (placement via `content_aside`) ────────────────────────────────────────
 .experience_logos {
   @include media(">tablet") {
     grid-row: 1;
@@ -63,7 +61,6 @@
   height: auto;
 }
 
-// Divider (placement via `content_rule -edge`) ─────────────────────────────────
 .experience_divisor {
   @include media(">tablet") {
     grid-row: 2;

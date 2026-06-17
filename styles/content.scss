@@ -30,9 +30,7 @@
 
   h2, h3 { margin-top: .266667rem; }
 
-  // Rotated placement comes from the `.content_heading` class (Section
-  // composition below); only the sticky offset and the mobile margin nudge are
-  // content-specific.
+  // Rotation comes from `.content_heading`; here only the sticky offset + margin.
   h2 {
     position: sticky;
     top: calc(var(--logo-size) + var(--gap) + 1rem);
@@ -77,14 +75,13 @@
 .content_divisor,
 .content_divisors { border-bottom: 1px solid var(--color-text); }
 
-// Closing divider of a section. Low specificity so the responsive spans below
-// govern its reach on tablet/desktop (penultimate column); on mobile it extends
-// one column into the trailing gutter to meet the screen’s right edge.
+// Closing divider. Low specificity so the responsive spans below govern its reach
+// (penultimate column on tablet/desktop); on mobile it runs one column into the
+// trailing gutter to meet the screen edge.
 .-last { grid-column-end: span calc(var(--content-width) + 1); }
 
-// Traits is the page’s last section, so its closing divider reaches the screen
-// edge at every breakpoint — out-specifying the responsive spans below, which
-// otherwise hold every other section’s divider at the penultimate column.
+// Traits is the page’s last section, so its divider reaches the screen edge at
+// every breakpoint — out-specifying the responsive spans below.
 .content_divisor.-last { grid-column-end: -1; }
 
 @include media(">tablet") {
@@ -121,15 +118,10 @@
 // Section composition                                                       //
 ///////////////////////////////////////////////////////////////////////////////
 
-// The repeated section grid placements, lifted from the section components so any
-// `grid content` section composes from these instead of re-deriving the spans:
-// a wide body column, a narrow right-hand aside, full-bleed media, and the
-// closing hairline. Each owns its `grid-column` only — consumers keep their own
-// `grid-row`, typography, and any single-breakpoint exception.
+// Shared section placements. Each owns its `grid-column` only; consumers keep
+// their own `grid-row`, typography, and any single-breakpoint exception.
 
-// Rotated gutter heading. Applied as a class to every content-section `<h2>` and
-// to Work’s and the case Cover’s headings (which live on their own grids, not
-// `.content`). Each consumer keeps its own deltas: sticky offset, `grid-row`,
+// Rotated gutter heading. Each consumer keeps its own sticky offset, `grid-row`,
 // `margin`, and `white-space`.
 .content_heading {
   z-index: 2;
@@ -142,13 +134,11 @@
   @include media(">desktop") { transform: none; }
 }
 
-// Wide body/media column (body copy, galleries, carousels).
 .content_body {
   grid-column: var(--content-start) / span var(--content-width);
   width: 100%;
 
-  // Body-copy columns space their paragraphs uniformly (media columns hold no
-  // `<p>` siblings, so this is a no-op for them).
+  // Space stacked paragraphs (no-op for media columns).
   p + p { margin-top: 1rem; }
 
   @include media(">tablet") {
@@ -160,8 +150,6 @@
   }
 }
 
-// Narrow right-hand column (subtitle notes, colophon, logos). `-center` aligns it
-// to the middle of its neighbouring media instead of the top.
 .content_aside {
   grid-column: var(--content-start) / span var(--content-width);
   width: 100%;
@@ -180,14 +168,11 @@
   }
 }
 
-// Full-bleed element (gutter to gutter, every breakpoint).
 .content_media {
   grid-column: 1 / -1;
   width: 100%;
 }
 
-// Closing hairline. Base spans wide (to the last content column); `-edge` runs all
-// the way to the trailing gutter.
 .content_rule {
   grid-column: var(--content-start) / span calc(var(--content-width) * 2);
   width: 100%;

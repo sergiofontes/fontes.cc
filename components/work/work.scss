@@ -8,17 +8,15 @@
   scroll-margin-top: var(--gap);
 }
 
-// The cases stack in a single full-width cell that the heading overlaps, so the
-// sticky “Work” heading can span the whole section instead of one case.
-// (full-bleed placement via `content_media`)
+// One full-width cell the heading overlaps, so the sticky “Work” heading spans the
+// whole section instead of a single case.
 .work_cases {
   grid-row: 1;
 }
 
-// Case ─────────────────────────────────────────────────────────────────────────
 // Each case is its own nested grid so the carousel and colophon align to the
-// shared column lines (“integrated to the grid”). The carousel is full-bleed on
-// every breakpoint, so its widths are derived from the live grid column.
+// shared column lines. The carousel is full-bleed at every breakpoint, so its
+// widths derive from the live grid column.
 .work_case {
   // One grid column = (track width − the 2 outer gutters − the gaps) ÷ columns,
   // capped at --column-max so it matches the centered grid past the max width.
@@ -31,10 +29,8 @@
   // The outer gutter: --gap-delta until the grid centers, then half the slack.
   --work-gutter: max(var(--gap-delta), calc((100% - var(--container-max) - 2 * var(--gap)) / 2));
 
-  // Leading inset so the first image lines up with the content column (its left
-  // edge sits on --content-start). The colophon supplies this on desktop, so it
-  // resets to 0 there. Mobile content starts one gap past the gutter; tablet
-  // content starts one column further in.
+  // Leading inset so the first image lines up with the content column. The colophon
+  // supplies this on desktop, so it resets to 0 there.
   --work-lead: calc(var(--work-gutter) + var(--gap));
   --work-slide: calc((100% - var(--work-lead)) * .85);
   --work-image-h: 24rem;
@@ -50,8 +46,8 @@
     --work-image-h: 26rem;
   }
 
-  // Desktop: each image spans 6 columns + 5 gutters and the colophon spans the
-  // 2-column heading area (which is why the leading inset is no longer needed).
+  // Desktop: each image spans 6 columns + 5 gutters; the colophon takes the
+  // 2-column heading area, so the leading inset is no longer needed.
   @include media(">desktop") {
     --work-lead: 0;
     --work-slide: calc(6 * var(--work-col) + 5 * var(--gap));
@@ -60,10 +56,8 @@
   }
 }
 
-// Heading ───────────────────────────────────────────────────────────────────────
-// Rotated in the gutter on mobile/tablet; upright in the heading column on desktop.
-// Rotated-heading placement comes from the `.content_heading` class; only the
-// sticky offset and row are work-specific.
+// Heading — rotated via `.content_heading`; only the sticky offset and row are
+// work-specific.
 .work_title {
   position: sticky;
   top: calc(var(--logo-size) + var(--gap) + 1rem);
@@ -80,7 +74,7 @@
   }
 }
 
-// Header (logo lockup + year + carousel controls) ───────────────────────────────
+// Header — logo lockup + year + carousel controls
 .work_header {
   display: flex;
   grid-row: 1;
@@ -106,8 +100,7 @@
   align-items: center;
   min-width: 0;
 
-  // Per-logo widths from the Figma section specs (px ÷ 15px root; height
-  // follows each logo’s aspect).
+  // Per-logo widths from the Figma specs (px ÷ 15px root; height follows aspect).
   // stylelint-disable
   .logo          { height: auto; }
   .logo_stone    { width: 5.2667rem; } // 79px
@@ -159,10 +152,8 @@
   transform: scaleX(-1);
 }
 
-// Carousel ──────────────────────────────────────────────────────────────────────
-// Full-bleed on every breakpoint: the track spans every column (gutter to
-// gutter) so the carousel can scroll across the whole screen.
-// (full-bleed placement via `content_media`)
+// Carousel — full-bleed on every breakpoint (gutter to gutter) so it scrolls
+// across the whole screen.
 .work_gallery {
   grid-row: 2;
 }
@@ -178,9 +169,9 @@
 
   &:focus-visible { outline-offset: 2px; }
 
-  // Free scroll on desktop: snapping would pull the start past the colophon’s
-  // inset (there’s no snap point at the leading edge), so the carousel scrolls
-  // freely instead and rests showing the colophon aligned to the grid.
+  // Free scroll on desktop: there’s no snap point at the leading edge, so snapping
+  // would pull the start past the colophon’s inset. It rests with the colophon
+  // aligned to the grid instead.
   @include media(">desktop") {
     scroll-snap-type: none;
   }
@@ -191,12 +182,12 @@
   scroll-snap-align: start;
 
   // Trailing breathing room at the scroll end (kept off the track padding so it
-  // doesn’t shrink the percentage basis the slide width is derived from).
+  // doesn’t shrink the percentage basis the slide width derives from).
   &:last-child { margin-right: var(--gap-out); }
 }
 
-// First image: inset to the content column where the colophon would sit. On
-// desktop the colophon takes that slot, so --work-lead is 0 and this is a no-op.
+// First image: inset to where the colophon would sit. On desktop the colophon
+// takes that slot (--work-lead is 0), so this is a no-op.
 .work_colophon + .work_slide {
   margin-left: var(--work-lead);
 }
@@ -209,9 +200,8 @@
   border-radius: var(--radius-small);
 }
 
-// Colophon (What I did / Designers) — desktop only ──────────────────────────────
-// First item inside the track, so it scrolls away with the carousel. Sized to
-// the 2-column heading area and inset so its left edge lands on column 3.
+// Colophon (What I did / Designers) — desktop only. First item inside the track,
+// so it scrolls away with the carousel; sized to the 2-column heading area.
 .work_colophon {
   display: none;
 
@@ -230,7 +220,6 @@
       color: var(--color-subtitle);
     }
 
-    // 13px note text comes from the `.note` class.
     dd {
       margin: 0 0 var(--space-lg);
 
@@ -239,7 +228,7 @@
   }
 }
 
-// Featured call-to-action (summary + “Read the case”) ───────────────────────────
+// Featured call-to-action — summary + “Read the case”
 .work_cta {
   display: flex;
   flex-direction: column;
@@ -258,7 +247,6 @@
   margin: 0;
 }
 
-// The closing divider is a bare `content_rule` (placement + hairline): Work is
-// not the page’s last section, so each case’s divider stays at the penultimate
-// column on tablet/desktop, running full width only on mobile — like the case
-// page’s section dividers. Auto grid-row keeps it last in the `work_case` grid. ─
+// The closing divider is a bare `content_rule`: Work isn’t the page’s last section,
+// so each case’s divider stays at the penultimate column (full width only on
+// mobile). Auto grid-row keeps it last in the `work_case` grid.

@@ -136,8 +136,7 @@
   @include media(">max") { left: calc((100vw - var(--container-max)) / 2); }
 }
 
-// Appearance and open/hover behavior come from the shared `.button_menu`
-// component; the nav only owns its fixed placement.
+// Appearance comes from `.button_menu`; the nav only owns the fixed placement.
 .nav_button {
   position: fixed;
   top: var(--gap);

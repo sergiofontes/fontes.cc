@@ -26,8 +26,8 @@
     color: var(--color-text);
   }
 
-  // `transform`, `background-color`, and the focus outline come from the shared
-  // control states below; the link keeps its own `text-decoration` resets.
+  // Transform/surface/focus come from the shared control states; the link only
+  // resets its own `text-decoration`.
   &:active { text-decoration: none; }
 
   &:hover { text-decoration: none; }
@@ -54,9 +54,8 @@
 // Shared control states                                                     //
 ///////////////////////////////////////////////////////////////////////////////
 
-// The press, focus-ring, and hover-surface shared by every control (Button,
-// ButtonIcon, ButtonMenu, ButtonDot). Each control keeps its own focus-ring
-// offset, transition, and any control-specific hover/disabled treatment.
+// Press, focus ring, and hover surface shared by every control. Each keeps its own
+// focus-ring offset, transition, and control-specific hover/disabled treatment.
 
 .button,
 .button_icon,

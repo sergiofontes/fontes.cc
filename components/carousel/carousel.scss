@@ -2,9 +2,8 @@
 // Carousel (shared scroll track)                                            //
 ///////////////////////////////////////////////////////////////////////////////
 
-// The horizontal scroll-snap track shared by the `Work` and `Solution` carousels:
-// a flex row that scrolls with a hidden scrollbar and a focus ring. Each consumer
-// keeps its own grid placement, snap padding, and focus-ring offset.
+// The horizontal scroll-snap track shared by `Work` and `Solution`: a flex row
+// with a hidden scrollbar. Each consumer keeps its own placement and snap padding.
 
 @import "../../styles/scaffold";
 

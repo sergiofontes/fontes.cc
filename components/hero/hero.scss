@@ -2,9 +2,8 @@
 // Hero (shared cover scaffold)                                              //
 ///////////////////////////////////////////////////////////////////////////////
 
-// The dark, full-height cover shared by the home `Header` and the case `Cover`:
-// inverse colours, the viewport-height block, and the padding rhythm. Each
-// component keeps only its own grid structure and title layout.
+// The dark, full-height cover shared by the home `Header` and case `Cover`:
+// inverse colours, viewport-height block, padding rhythm. Each keeps its own grid.
 
 @import "../../styles/scaffold";
 

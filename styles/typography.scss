@@ -78,7 +78,7 @@ p {
   margin-bottom: 1rem;
 }
 
-// Label type. Reused by the case Quote's cite/role via the `label` class.
+// Label type (also applied via the `.label` class).
 label,
 .label {
   font-family: var(--font-title);
@@ -91,7 +91,7 @@ label,
 
 small { display: block; }
 
-// 13px subtitle text. Reused by the section notes via the `note` class.
+// 13px subtitle text (also applied via the `.note` class).
 small,
 .note {
   font-size: .866667rem; // 13px
@@ -113,10 +113,8 @@ small,
 blockquote,
 figure { margin: 0; }
 
-// Hang an opening quotation mark / bracket into the margin so the glyph optically
-// aligns with the text block below it (the case Quote and the testimonial). Native
-// today only in Safari; browsers without it fall back to a negative indent on the
-// blockquote’s `.lead`, tuned to the glyph’s optical width.
+// Hang the opening quote/bracket into the margin so the glyph optically aligns with
+// the text below. Safari-only today; the fallback indents the `.lead` instead.
 blockquote { hanging-punctuation: first; }
 
 @supports not (hanging-punctuation: first) {

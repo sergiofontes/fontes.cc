@@ -2,9 +2,8 @@
 // Why & How Section (case)                                                  //
 ///////////////////////////////////////////////////////////////////////////////
 
-// Shares the home `content` grid with `What`: a rotated/sticky `<h2>`, a body
-// column, and right-hand subtitle notes. The discovery board and its two tilted
-// “cover” decks are composed, transformed, and shadowed entirely in CSS.
+// Shares the home `content` grid with `What`. The discovery board and its two
+// tilted “cover” decks are composed, transformed, and shadowed entirely in CSS.
 
 @import "../../styles/scaffold";
 
@@ -14,15 +13,12 @@
   scroll-margin-top: var(--gap);
 }
 
-// Body copy (placement via `content_body`) ─────────────────────────────────────
 .why_text {
   @include media(">tablet") {
     grid-row: 1;
   }
 }
 
-// Subtitle notes (placement via `content_aside`). The 13px note text comes from
-// the `.note` class.
 .why_note {
   margin: 0;
 
@@ -35,7 +31,6 @@
   }
 }
 
-// Gallery — the discovery board with two tilted decks composed on top ───────────
 // Height is fixed across breakpoints (the prototype keeps a constant 310px), so
 // the board crops by width and the decks stay a constant size per mode.
 .why_gallery {
@@ -47,8 +42,7 @@
   }
 }
 
-// Board — fills the gallery, clipped to a small radius; the screenshot covers it
-// and is anchored left so it crops on the right (matching the prototype).
+// Screenshot covers the board, anchored left so it crops on the right.
 .why_board {
   position: absolute;
   inset: 0;
@@ -64,8 +58,7 @@
   object-position: left center;
 }
 
-// Decks — flat 16:9 covers, tilted via the prototype’s rotate+skew and shadowed
-// with the layered `shadow/medium` effect. Both live in CSS, no baked pixels.
+// Flat 16:9 covers, tilted via the prototype’s rotate+skew and shadowed in CSS.
 .why_cards {
   position: absolute;
   inset: 0;
@@ -96,7 +89,6 @@
     z-index: 1;
   }
 
-  // Tablet sits between the mobile (141px) and desktop (267px) sizes.
   @include media(">tablet") {
     width: 204px; // ~273px perspective bbox, midway between the two modes
 
@@ -132,7 +124,6 @@
   }
 }
 
-// Divider (placement via `content_rule`) ───────────────────────────────────────
 .why_divisor {
   @include media(">tablet") {
     grid-row: 3;

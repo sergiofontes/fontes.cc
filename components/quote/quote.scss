@@ -2,10 +2,9 @@
 // Quote Section (case)                                                      //
 ///////////////////////////////////////////////////////////////////////////////
 
-// A lead pull quote, its attribution, and a closing hairline, placed on the
-// shared `grid`. The three pieces each own a row so the rule (row 3) can run
-// wider than the quote. The top gap is owned by `Solution`’s bottom padding;
-// this section only pads its bottom, ahead of the footer.
+// Pull quote, attribution, and a closing hairline on the shared `grid`. Each owns
+// a row so the rule can run wider than the quote. The top gap comes from
+// `Solution`’s bottom padding; this section only pads its bottom.
 
 @import "../../styles/scaffold";
 
@@ -24,7 +23,6 @@
   @include media(">desktop") { row-gap: var(--space-md); } // 15
 }
 
-// Pull quote — wide on tablet/desktop, full content column on mobile ─────────────
 .quote_text {
   grid-row: 1;
   grid-column: var(--content-start) / span var(--content-width);
@@ -36,7 +34,6 @@
   }
 }
 
-// Attribution — narrower column, sits under the quote ─────────────────────────────
 .quote_cite {
   display: flex;
   flex-direction: column;
@@ -50,14 +47,12 @@
   }
 }
 
-// Label type comes from the `.label` class (typography.scss); the name overrides
-// the weight, the role uses `.label` as-is (no extra class needed).
+// Type from `.label`; the name just overrides the weight.
 .quote_name {
   font-style: normal; // reset the default italic on <cite>
   font-weight: 800;
 }
 
-// Closing hairline (placement via `content_rule -edge`) ───────────────────────────
 .quote_divisor {
   grid-row: 3;
   margin-top: var(--space-md); // 15

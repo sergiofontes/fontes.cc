@@ -2,13 +2,11 @@
 // Cover (case page header)                                                  //
 ///////////////////////////////////////////////////////////////////////////////
 
-// Mirrors the home Header’s grid/content structure: an eyebrow label + category
-// over a divider, with the page title (logo lockup + heading + summary) below.
-// Only the title and links differ from the home cover.
+// Mirrors the home `Header`’s grid/content structure; only the title and links
+// differ. The dark cover scaffold comes from `.hero`.
 
 @import "../../styles/scaffold";
 
-// Cover scaffold (height, inverse colours, top padding) comes from `.hero`.
 .cover {
   position: relative;
   grid-template-rows: 1fr auto auto;
@@ -23,9 +21,9 @@
   }
 }
 
-// Decorative artwork ──────────────────────────────────────────────────────────
-// A faint, light-grey illustration. It stacks above the title on mobile/tablet
-// and floats to the top-right behind the title on desktop.
+// Faint illustration: stacks above the title on mobile/tablet, floats top-right
+// behind it on desktop. A grid child (not viewport-pinned) so it tracks the text
+// axis and the centred grid; the text paints on top (earlier in DOM).
 .cover_art {
   position: absolute;
   grid-row: 1;
@@ -40,9 +38,6 @@
   mix-blend-mode: exclusion;
   object-fit: contain;
 
-  // Desktop: a grid child anchored to the content columns (so it tracks the
-  // text axis and the centred grid) rather than pinned to the viewport edge.
-  // It spans behind the title, with the text painting on top (earlier in DOM).
   @include media(">tablet") {
     grid-column-start: var(--content-start);
     align-self: start;
@@ -57,8 +52,8 @@
   }
 }
 
-// Eyebrow label (“Case”) — rotated in the heading gutter on mobile/tablet,
-// upright at the top on desktop (rotation via the `.content_heading` class).
+// Eyebrow label (“Case”) — rotated via `.content_heading` on mobile/tablet,
+// upright at the top on desktop.
 .cover_label {
   grid-row: 3;
   margin: 0;
@@ -83,7 +78,6 @@
   }
 }
 
-// Divider ───────────────────────────────────────────────────────────────────
 .cover_border {
   grid-row: 2;
   grid-column: var(--content-start) / -1;
@@ -91,7 +85,6 @@
   border-bottom: 1px solid var(--color-text-inverse);
 }
 
-// Title block (logo lockup + heading + summary) ───────────────────────────────
 .cover_main {
   display: flex;
   flex-direction: column;
@@ -116,8 +109,8 @@
   gap: var(--space-lg);
 }
 
-// Stone (and future case logos) render dark by default; force them to the
-// inverse colour with a flat white fill that survives gradients.
+// Case logos render dark by default; force them to the inverse colour with a flat
+// white fill that survives gradients.
 .cover .logo {
   height: auto;
   filter: brightness(0) invert(1);

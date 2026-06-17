@@ -39,7 +39,7 @@
 html { overflow-x: clip; }
 body { background-color: var(--color-cover); }
 
-// Images are presentational here — keep them from being selected or dragged out.
+// Presentational images; prevent selecting/dragging.
 img {
   user-select: none;
   -webkit-user-drag: none;

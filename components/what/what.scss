@@ -2,15 +2,13 @@
 // What Section (case)                                                       //
 ///////////////////////////////////////////////////////////////////////////////
 
-// Reuses the home `content` grid: a rotated/sticky `<h2>` heading, a body column,
-// and a right-hand colophon — laid out exactly like `AboutExperience`. The three
-// product mockups are composed and shadowed entirely in CSS.
+// Reuses the home `content` grid (rotated/sticky `<h2>`, body column, right-hand
+// colophon). The three product mockups are composed and shadowed in CSS.
 
 @import "../../styles/scaffold";
 
 .what { scroll-margin-top: var(--gap); }
 
-// Media — three phone mockups, composed with CSS (placement via `content_media`) ─
 .what_media {
   display: flex;
   justify-content: center;
@@ -19,11 +17,10 @@
   @include media(">tablet") { grid-row: 1; }
 }
 
-// The mockup group keeps the same relative composition at every breakpoint; only
-// its width changes. It bleeds past the gutters on mobile (html clips overflow-x).
-// Because the layout is width-driven (each phone is a % of the group’s width), the
-// prototype’s max heights are enforced as the matching max widths — the group keeps
-// a constant ~717/600 ratio, so 420/630/717px cap the height at 351/527/600px.
+// Width-driven composition: the group keeps a constant ~717/600 ratio and only its
+// width changes, so the prototype’s max heights are enforced as max widths
+// (420/630/717px cap the height at 351/527/600px). It bleeds past the gutters on
+// mobile (html clips overflow-x).
 .what_mockups {
   position: relative;
   flex-shrink: 0; // keep the mobile bleed instead of shrinking to the container
@@ -41,8 +38,8 @@
   }
 }
 
-// Phones share one device aspect, so percentage placement is resolution-independent.
-// The centre screen sits in flow (defining the group’s height); the flanks float.
+// One shared device aspect makes the % placement resolution-independent. The
+// centre screen sits in flow (defines the group’s height); the flanks float.
 .what_phone {
   position: absolute;
   top: 7.5%;
@@ -66,14 +63,12 @@
   }
 }
 
-// Body copy + KPIs (placement via `content_body`) ──────────────────────────────
 .what_body {
   @include media(">tablet") {
     grid-row: 2;
   }
 }
 
-// KPIs — the “First 30 days” stats inside the body column ──────────────────────
 .what_kpis { margin-top: var(--space-xl); }
 
 .what_kpis-label {
@@ -109,7 +104,6 @@
 
 .what_kpis-caption { color: var(--color-subtitle); }
 
-// Colophon — credits column (placement via `content_aside`) ────────────────────
 .what_colophon {
   @include media(">tablet") {
     grid-row: 2;
@@ -130,7 +124,6 @@
 
 .what_colophon-value { margin: 0; }
 
-// Divider (placement via `content_rule`) ───────────────────────────────────────
 .what_divisor {
   @include media(">tablet") {
     grid-row: 3;

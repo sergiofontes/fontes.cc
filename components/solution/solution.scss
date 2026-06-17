@@ -2,26 +2,22 @@
 // Solution Section (case)                                                   //
 ///////////////////////////////////////////////////////////////////////////////
 
-// Six stacked blocks that reuse the home `content` grid (rotated/sticky `<h2>`,
-// a wide body column, right-hand subtitle notes). Every mockup is a flat asset
-// framed inside a CSS mask container and shadowed entirely in CSS — no baked
-// frames or shadows. The setup block is a `ButtonDot`-paged scroll-snap carousel.
+// Six stacked blocks on the home `content` grid. Every mockup is a flat asset
+// framed in a CSS mask container and shadowed in CSS — no baked frames or shadows.
+// The setup block is a `ButtonDot`-paged scroll-snap carousel.
 
 @import "../../styles/scaffold";
 
 // The light-lime panel sitting behind the offset setup screenshots.
 $color-setup: #dff8c3;
 
-// Body columns place via `content_body`; right-hand notes via `content_aside -center`.
-
-// Vertical padding sets the white gap above/below the section (between the gray
-// `Why` band and the page tail) — a uniform gap across breakpoints.
+// White gap above/below the section, uniform across breakpoints.
 .solution {
   padding-block: var(--space-2xl); // 45 — all breakpoints
   scroll-margin-top: var(--gap);
 }
 
-// Distance between the sub-blocks (the first block needs no leading gap) ─────────
+// Gap between sub-blocks (the first needs none).
 .solution_sharing,
 .solution_templates,
 .solution_config,
@@ -34,14 +30,12 @@ $color-setup: #dff8c3;
   @include media(">desktop") { margin-top: var(--space-xl); } // 30
 }
 
-// Shared note — the small subtitle copy beside / below each block. The 13px note
-// text comes from the `.note` class.
 .solution_note {
   width: 100%;
   margin: 0;
 }
 
-// Shared mask frame — every mockup is clipped to a rounded container ─────────────
+// Shared mask frame — mockups clipped to a rounded container.
 .solution_frame {
   position: relative;
   width: 100%;
@@ -56,7 +50,7 @@ $color-setup: #dff8c3;
   object-fit: cover;
 }
 
-// Block 1 — lede + promotional video ────────────────────────────────────────────
+// Block 1 — lede + promotional video
 .solution_lede {
   @include media(">tablet") { grid-row: 1; }
 }
@@ -120,13 +114,13 @@ $color-setup: #dff8c3;
   @include media(">tablet") { grid-row: 2; }
 }
 
-// Block 2 — sharing montage (full-bleed, clipped at the viewport edges) ──────────
+// Block 2 — sharing montage (full-bleed, clipped at the viewport edges)
 .solution_sharing {
   display: flex;
   gap: var(--space-md);
   align-items: flex-start;
   justify-content: center;
-  padding-block: var(--space-xl); // 30 — breathing room around the full-bleed montage
+  padding-block: var(--space-xl); // 30
   overflow: hidden;
 
   @include media(">tablet") { gap: var(--space-lg); }
@@ -134,10 +128,9 @@ $color-setup: #dff8c3;
   @include media(">desktop") { gap: var(--space-xl); }
 }
 
-// The cards already ship with their own rounded corners + border baked into the
-// PNG, so a `box-shadow` on the rectangular frame would trace the frame’s square
-// corners instead of the card’s rounding. `filter: drop-shadow` follows the
-// asset’s real silhouette (matching `why`/`what`), so the shadow hugs the radius.
+// The cards carry their own rounded corners in the PNG, so `box-shadow` would
+// trace the frame’s square box. `filter: drop-shadow` follows the asset’s real
+// silhouette (matching `why`/`what`), hugging the radius.
 .solution_frame.-share {
   flex-shrink: 0;
   width: 116px;
@@ -157,9 +150,9 @@ $color-setup: #dff8c3;
   }
 }
 
-// Block 3 — printed & social templates ──────────────────────────────────────────
-// Sits above the pair (wide) on tablet, then returns to the aside column on
-// desktop — so it stays custom rather than using `content_aside`.
+// Block 3 — printed & social templates
+// Above the pair (wide) on tablet, back to the aside column on desktop — so it
+// stays custom rather than using `content_aside`.
 .solution_note.-templates {
   grid-column: var(--content-start) / span var(--content-width);
 
@@ -174,7 +167,7 @@ $color-setup: #dff8c3;
   }
 }
 
-// Shared side-by-side media pair (templates + phones) ────────────────────────────
+// Shared side-by-side media pair (templates + phones).
 .solution_pair {
   display: flex;
   gap: var(--gap);
@@ -204,7 +197,7 @@ $color-setup: #dff8c3;
   @include media(">tablet") { aspect-ratio: 252 / 310; } // …portrait from tablet up
 }
 
-// Block 4 — setup carousel ───────────────────────────────────────────────────────
+// Block 4 — setup carousel
 .solution_config { align-items: start; }
 
 // Shared scroll/snap/scrollbar/focus-ring come from `.carousel`.
@@ -236,16 +229,11 @@ $color-setup: #dff8c3;
 
   @include media(">desktop") { aspect-ratio: 533 / 444; }
 
-  // The browser screenshot floats inside the lime panel, bleeding off the left
-  // edge (and slightly off the right on mobile) and offset down so the panel
-  // reads at the top. `width` (the image is `height: auto`) and `left`/`top` are
-  // the prototype’s mockup box as a share of the panel — set per breakpoint
-  // since the panel’s aspect-ratio and crop differ at each. The layered
-  // `shadow/medium` lifts the window off the panel as `filter: drop-shadow`
-  // (not `box-shadow`) so it hugs the screenshot’s own rounded corners — which
-  // scale with the image — instead of tracing the frame’s square box; the
-  // frame’s `overflow: hidden` then clips it to the visible (top/right) edges,
-  // leaving the bleeding sides shadow-free.
+  // The screenshot floats inside the lime panel, bleeding off the left edge and
+  // offset down. `width` and `left`/`top` are the prototype’s mockup box as a share
+  // of the panel, set per breakpoint. The layered shadow is `drop-shadow` (not
+  // `box-shadow`) so it hugs the screenshot’s rounded corners; the frame’s
+  // `overflow: hidden` then clips it to the visible top/right edges.
   .solution_media {
     position: absolute;
     top: 9.7%;
@@ -273,7 +261,6 @@ $color-setup: #dff8c3;
   }
 }
 
-// Placement via `content_aside -center`.
 .solution_aside {
   display: flex;
   flex-direction: column;
@@ -293,7 +280,7 @@ $color-setup: #dff8c3;
   @include media(">desktop") { flex-direction: row; }
 }
 
-// Block 5 — store customization (two phones side by side) ────────────────────────
+// Block 5 — store customization (two phones side by side)
 .solution_pair.-phones {
   flex-direction: row;
   grid-column: 1 / -1; // full-bleed pair on mobile
@@ -327,9 +314,9 @@ $color-setup: #dff8c3;
   @include media(">tablet") { grid-row: 1; }
 }
 
-// Block 6 — responsive across devices ────────────────────────────────────────────
+// Block 6 — responsive across devices
 .solution_devices {
-  row-gap: var(--space-md); // 15 — composite → caption → divider rhythm (mobile)
+  row-gap: var(--space-md); // 15
   align-items: start;
   padding-top: var(--space-xl);
 
@@ -337,10 +324,8 @@ $color-setup: #dff8c3;
 }
 
 // The composite PNG carries a soft drop-shadow with a transparent band below the
-// devices. A negative bottom margin trims that empty band from the layout box so
-// the caption and divider sit close to the artwork — as in the prototype —
-// instead of floating below the shadow. Tuned per breakpoint to the asset’s
-// scaled shadow height (it grows with the image across the tablet range).
+// devices. A negative bottom margin trims that band so the caption sits close to
+// the artwork; tuned per breakpoint to the asset’s scaled shadow height.
 .solution_frame.-devices {
   grid-column: 1 / -1; // full-bleed on mobile
   margin-bottom: -40px;
@@ -358,8 +343,8 @@ $color-setup: #dff8c3;
   }
 }
 
-// Centered beneath the composite on mobile/tablet; on desktop it aligns left
-// with the divider’s start (content-start), matching the prototype.
+// Centered under the composite on mobile/tablet; left-aligned to content-start on
+// desktop, matching the prototype.
 .solution_note.-devices {
   grid-column: var(--content-start) / span var(--content-width);
   text-align: center;
@@ -375,7 +360,7 @@ $color-setup: #dff8c3;
   }
 }
 
-// Placement via `content_rule`; narrower than the base rule on mobile.
+// Narrower than the base rule on mobile.
 .solution_divisor {
   grid-column: var(--content-start) / span var(--content-width);
 
