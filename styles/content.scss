@@ -77,8 +77,15 @@
 .content_divisor,
 .content_divisors { border-bottom: 1px solid var(--color-text); }
 
-// Standalone modifier (kept low specificity so the responsive rules below win)
+// Closing divider of a section. Low specificity so the responsive spans below
+// govern its reach on tablet/desktop (penultimate column); on mobile it extends
+// one column into the trailing gutter to meet the screen’s right edge.
 .-last { grid-column-end: span calc(var(--content-width) + 1); }
+
+// Traits is the page’s last section, so its closing divider reaches the screen
+// edge at every breakpoint — out-specifying the responsive spans below, which
+// otherwise hold every other section’s divider at the penultimate column.
+.content_divisor.-last { grid-column-end: -1; }
 
 @include media(">tablet") {
   .content_column, .content_columns { grid-row: 1; }

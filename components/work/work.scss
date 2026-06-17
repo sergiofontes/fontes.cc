@@ -258,8 +258,7 @@
   margin: 0;
 }
 
-// Divider (placement via `content_rule`; edge on mobile/tablet, then the base’s
-// wide span on desktop where the right edge aligns to the last column) ───────────
-.work_divisor {
-  grid-column: var(--content-start) / -1;
-}
+// The closing divider is a bare `content_rule` (placement + hairline): Work is
+// not the page’s last section, so each case’s divider stays at the penultimate
+// column on tablet/desktop, running full width only on mobile — like the case
+// page’s section dividers. Auto grid-row keeps it last in the `work_case` grid. ─

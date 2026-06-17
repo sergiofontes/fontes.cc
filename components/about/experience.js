@@ -39,7 +39,7 @@ export default function Experience() {
         </ul>
       </aside>
 
-      <span className="experience_divisor content_rule -edge"></span>
+      <span className="experience_divisor content_rule"></span>
     </section>
   );
 }

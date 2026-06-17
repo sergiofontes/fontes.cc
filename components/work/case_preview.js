@@ -139,7 +139,7 @@ export default function CasePreview({
         </div>
       )}
 
-      <span className="work_divisor content_rule" />
+      <span className="content_rule" />
     </article>
   );
 }
