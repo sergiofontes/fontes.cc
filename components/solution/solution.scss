@@ -240,16 +240,30 @@ $color-setup: #dff8c3;
 
   @include media(">desktop") { aspect-ratio: 533 / 444; }
 
-  // The browser screenshot floats inside the panel, cropped on the sides and
-  // offset down so the lime panel reads at the top.
+  // The browser screenshot floats inside the lime panel, bleeding off the left
+  // edge (and slightly off the right on mobile) and offset down so the panel
+  // reads at the top. `width` (the image is `height: auto`) and `left`/`top` are
+  // the prototype’s mockup box as a share of the panel — set per breakpoint
+  // since the panel’s aspect-ratio and crop differ at each.
   .solution_media {
     position: absolute;
-    top: 8%;
-    left: 50%;
-    width: 116%;
+    top: 9.7%;
+    left: -26.2%;
+    width: 131.3%;
     height: auto;
     border-radius: var(--radius-small);
-    transform: translateX(-50%);
+
+    @include media(">tablet") {
+      top: 4.7%;
+      left: -52.8%;
+      width: 148.1%;
+    }
+
+    @include media(">desktop") {
+      top: 7.9%;
+      left: -25.5%;
+      width: 120.1%;
+    }
   }
 }
 
