@@ -50,7 +50,7 @@ const cases = [
 export default function Work() {
   return (
     <section id="work" className="work grid">
-      <h2 className="work_title">Work</h2>
+      <h2 className="work_title content_heading">Work</h2>
 
       <div className="work_cases content_media">
         {cases.map((item) => (

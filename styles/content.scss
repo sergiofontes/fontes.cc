@@ -30,16 +30,13 @@
 
   h2, h3 { margin-top: .266667rem; }
 
+  // Rotated placement comes from the `.content_heading` class (Section
+  // composition below); only the sticky offset and the mobile margin nudge are
+  // content-specific.
   h2 {
     position: sticky;
     top: calc(var(--logo-size) + var(--gap) + 1rem);
-    z-index: 2;
-    grid-column: var(--heading-start) / span var(--heading-width);
-    align-self: start;
-    justify-self: end;
     margin-top: -.6875rem;
-    transform: rotate(-90deg);
-    transform-origin: bottom right;
   }
 
   p {
@@ -60,10 +57,8 @@
 
     h2 {
       top: var(--gap);
-      grid-column: var(--heading-start) / span var(--heading-width);
       margin-top: .266667rem;
       white-space: normal;
-      transform: unset;
     }
 
     h2, h3 { margin-top: .266667rem; }
@@ -125,10 +120,29 @@
 // closing hairline. Each owns its `grid-column` only — consumers keep their own
 // `grid-row`, typography, and any single-breakpoint exception.
 
+// Rotated gutter heading. Applied as a class to every content-section `<h2>` and
+// to Work’s and the case Cover’s headings (which live on their own grids, not
+// `.content`). Each consumer keeps its own deltas: sticky offset, `grid-row`,
+// `margin`, and `white-space`.
+.content_heading {
+  z-index: 2;
+  grid-column: var(--heading-start) / span var(--heading-width);
+  align-self: start;
+  justify-self: end;
+  transform: rotate(-90deg);
+  transform-origin: bottom right;
+
+  @include media(">desktop") { transform: none; }
+}
+
 // Wide body/media column (body copy, galleries, carousels).
 .content_body {
   grid-column: var(--content-start) / span var(--content-width);
   width: 100%;
+
+  // Body-copy columns space their paragraphs uniformly (media columns hold no
+  // `<p>` siblings, so this is a no-op for them).
+  p + p { margin-top: 1rem; }
 
   @include media(">tablet") {
     grid-column: 3 / span 7;

@@ -1,7 +1,7 @@
 export default function Traits() {
   return (
     <section id="traits" className="grid content">
-      <h2>Traits</h2>
+      <h2 className="content_heading">Traits</h2>
       <div className="content_column">
         <h3>Generalist</h3>
         <p>

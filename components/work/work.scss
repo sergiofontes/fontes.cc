@@ -62,17 +62,13 @@
 
 // Heading ───────────────────────────────────────────────────────────────────────
 // Rotated in the gutter on mobile/tablet; upright in the heading column on desktop.
+// Rotated-heading placement comes from the `.content_heading` class; only the
+// sticky offset and row are work-specific.
 .work_title {
   position: sticky;
   top: calc(var(--logo-size) + var(--gap) + 1rem);
-  z-index: 2;
   grid-row: 1;
-  grid-column: var(--heading-start) / span var(--heading-width);
-  align-self: start;
-  justify-self: end;
   margin: 0;
-  transform: rotate(-90deg);
-  transform-origin: bottom right;
 
   @include media(">tablet") {
     top: 1rem;
@@ -81,7 +77,6 @@
   @include media(">desktop") {
     top: var(--gap);
     margin-top: .266667rem;
-    transform: none;
   }
 }
 
@@ -235,11 +230,9 @@
       color: var(--color-subtitle);
     }
 
+    // 13px note text comes from the `.note` class.
     dd {
       margin: 0 0 var(--space-lg);
-      font-size: .866667rem;
-      line-height: 1.4;
-      color: var(--color-subtitle);
 
       &:last-child { margin-bottom: 0; }
     }
@@ -269,8 +262,4 @@
 // wide span on desktop where the right edge aligns to the last column) ───────────
 .work_divisor {
   grid-column: var(--content-start) / -1;
-
-  @include media(">tablet") {
-    grid-column: var(--content-start) / -1;
-  }
 }

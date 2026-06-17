@@ -6,8 +6,6 @@
 
 // Body copy (placement via `content_body`) ─────────────────────────────────────
 .experience_text {
-  p + p { margin-top: 1rem; }
-
   @include media(">tablet") {
     grid-row: 1;
   }

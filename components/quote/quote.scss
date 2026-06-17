@@ -54,21 +54,12 @@
   }
 }
 
-.quote_name,
-.quote_role {
-  font-family: var(--font-title);
-  font-size: .8rem;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: .0667rem;
-}
-
+// Label type comes from the `.label` class (typography.scss); the name overrides
+// the weight, the role uses `.label` as-is (no extra class needed).
 .quote_name {
   font-style: normal; // reset the default italic on <cite>
   font-weight: 800;
 }
-
-.quote_role { font-weight: 500; }
 
 // Closing hairline (placement via `content_rule -edge`) ───────────────────────────
 .quote_divisor {

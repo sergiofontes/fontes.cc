@@ -45,7 +45,7 @@ export default function Cover({ logo, label, category, title, summary, image }) 
         <p className="cover_summary lead">{summary}</p>
       </div>
 
-      <h2 className="cover_label">{label}</h2>
+      <h2 className="cover_label content_heading">{label}</h2>
       <p className="cover_category lead">{category}</p>
       <span className="cover_border" />
     </header>

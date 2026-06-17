@@ -115,9 +115,9 @@ export default function CasePreview({
           <li className="work_colophon">
             <dl>
               <dt className="label">What I did</dt>
-              <dd>{activities}</dd>
+              <dd className="note">{activities}</dd>
               <dt className="label">Designers</dt>
-              <dd>{designers}</dd>
+              <dd className="note">{designers}</dd>
             </dl>
           </li>
           {Array.from({ length: slides }).map((_, index) => (

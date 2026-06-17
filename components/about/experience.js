@@ -4,7 +4,7 @@ import Handnote from '../../public/images/logos/handnote.svg';
 export default function Experience() {
   return (
     <section id="experience" className="grid content">
-      <h2>Experience</h2>
+      <h2 className="content_heading">Experience</h2>
 
       <div className="experience_text content_body">
         <p>

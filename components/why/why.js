@@ -3,7 +3,7 @@ const IMG = "/images/work/catalog";
 export default function Why() {
   return (
     <section id="why-how" className="why grid content">
-      <h2>Why &amp; how</h2>
+      <h2 className="content_heading">Why &amp; how</h2>
 
       <div className="why_text content_body">
         <p>
@@ -23,7 +23,7 @@ export default function Why() {
         </p>
       </div>
 
-      <p className="why_note content_aside -about">
+      <p className="note why_note content_aside -about">
         Stone is a Brazilian fintech focused on small and medium-sized businesses.
       </p>
 
@@ -60,7 +60,7 @@ export default function Why() {
         </div>
       </div>
 
-      <p className="why_note content_aside -stats">
+      <p className="note why_note content_aside -stats">
         Across two discovery phases, we reviewed 43 studies, surveyed 2,282
         customers, conducted 12 in-depth interviews, and analyzed 39 competitors to
         inform product decisions.

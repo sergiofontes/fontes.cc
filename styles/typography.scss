@@ -24,14 +24,14 @@ h1 {
   font-size: 6.75rem;
   line-height: .81;
   text-transform: lowercase;
-  letter-spacing: -2%;
+  letter-spacing: -.02em;
   &, b { font-weight: 400; }
 
   > span { @include fontless; }
 
   @include media(">tablet") {
     font-size: 9rem;
-    letter-spacing: -4%;
+    letter-spacing: -.04em;
   }
 
   @include media(">desktop") {
@@ -72,15 +72,13 @@ h3 {
   letter-spacing: .0667rem;
 }
 
-h4 {}
-h5 {}
-
 // Paragraph
 p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
+// Label type. Reused by the case Quote's cite/role via the `label` class.
 label,
 .label {
   font-family: var(--font-title);
@@ -91,9 +89,12 @@ label,
   letter-spacing: .0667rem;
 }
 
-small {
-  display: block;
-  font-size: .8667rem;
+small { display: block; }
+
+// 13px subtitle text. Reused by the section notes via the `note` class.
+small,
+.note {
+  font-size: .866667rem; // 13px
   line-height: 1.4;
   color: var(--color-subtitle);
 }
@@ -132,7 +133,10 @@ figcaption {
 a {
   position: relative;
   display: inline-block;
-  transition: all .15s ease-in-out;
+  transition:
+    top .15s ease-in-out,
+    text-decoration-color .15s ease-in-out,
+    text-decoration-thickness .15s ease-in-out;
 
   &, &:visited {
     color: var(--color-text);
@@ -147,9 +151,6 @@ a {
 
 // Code
 abbr[title] { text-decoration: none; }
-code {}
-pre {}
-kbd {}
 
 // List
 ul, ol {
@@ -157,9 +158,3 @@ ul, ol {
   margin: 0;
   list-style-position: inside;
 }
-
-ul {}
-ol {}
-li {}
-dl {}
-dl {}

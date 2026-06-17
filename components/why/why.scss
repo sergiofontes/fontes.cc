@@ -16,19 +16,15 @@
 
 // Body copy (placement via `content_body`) ─────────────────────────────────────
 .why_text {
-  p + p { margin-top: 1rem; }
-
   @include media(">tablet") {
     grid-row: 1;
   }
 }
 
-// Subtitle notes (placement via `content_aside`) ───────────────────────────────
+// Subtitle notes (placement via `content_aside`). The 13px note text comes from
+// the `.note` class.
 .why_note {
   margin: 0;
-  font-size: .866667rem; // 13px
-  line-height: 1.4;
-  color: var(--color-subtitle);
 
   &.-about {
     @include media(">tablet") { grid-row: 1; }

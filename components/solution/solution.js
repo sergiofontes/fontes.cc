@@ -99,7 +99,7 @@ function ConfigCarousel() {
       </ul>
 
       <div className="solution_aside content_aside -center">
-        <p className="solution_note">
+        <p className="note solution_note">
           The setup experience strikes a balance between customization and
           simplicity, making it easy for merchants to get started.
         </p>
@@ -126,7 +126,7 @@ export default function Solution() {
     <section id="solution" className="solution">
       {/* Block 1 — lede + promotional video ─────────────────────────────── */}
       <div className="solution_intro grid content">
-        <h2>Solution</h2>
+        <h2 className="content_heading">Solution</h2>
 
         <div className="solution_lede content_body">
           <p>
@@ -158,7 +158,7 @@ export default function Solution() {
           </span>
         </a>
 
-        <p className="solution_note content_aside -center -video">
+        <p className="note solution_note content_aside -center -video">
           Promotional video of the Online Catalog.
         </p>
       </div>
@@ -178,7 +178,7 @@ export default function Solution() {
 
       {/* Block 3 — printed & social templates ───────────────────────────── */}
       <div className="solution_templates grid content">
-        <p className="solution_note -templates">
+        <p className="note solution_note -templates">
           A variety of templates for social media and printed materials help
           merchants promote their stores and attract new customers.
         </p>
@@ -226,7 +226,7 @@ export default function Solution() {
           </figure>
         </div>
 
-        <p className="solution_note content_aside -center -custom">
+        <p className="note solution_note content_aside -center -custom">
           Merchants can customize their catalog with their store name and logo,
           and optionally add brand colors and a supporting image.
         </p>
@@ -244,7 +244,7 @@ export default function Solution() {
           </picture>
         </figure>
 
-        <p className="solution_note -devices">
+        <p className="note solution_note -devices">
           Universal interface for any type of device.
         </p>
 

@@ -35,7 +35,7 @@ export default function What() {
         </div>
       </div>
 
-      <h2>What</h2>
+      <h2 className="content_heading">What</h2>
 
       <div className="what_body content_body">
         <p>

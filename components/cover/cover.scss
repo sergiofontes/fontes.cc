@@ -58,21 +58,14 @@
 }
 
 // Eyebrow label (“Case”) — rotated in the heading gutter on mobile/tablet,
-// upright at the top on desktop (mirrors `.content h2`).
+// upright at the top on desktop (rotation via the `.content_heading` class).
 .cover_label {
-  z-index: 2;
   grid-row: 3;
-  grid-column: var(--heading-start) / span var(--heading-width);
-  align-self: start;
-  justify-self: end;
   margin: 0;
-  transform: rotate(-90deg);
-  transform-origin: bottom right;
 
   @include media(">desktop") {
     grid-row: 1;
     margin-top: .266667rem;
-    transform: none;
   }
 }
 

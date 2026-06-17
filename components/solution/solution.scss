@@ -38,13 +38,11 @@ $color-setup: #dff8c3;
   @include media(">desktop") { margin-top: var(--space-xl); } // 30
 }
 
-// Shared note — the small subtitle copy beside / below each block ────────────────
+// Shared note — the small subtitle copy beside / below each block. The 13px note
+// text comes from the `.note` class.
 .solution_note {
   width: 100%;
   margin: 0;
-  font-size: .866667rem; // 13px
-  line-height: 1.4;
-  color: var(--color-subtitle);
 }
 
 // Shared mask frame — every mockup is clipped to a rounded container ─────────────
@@ -64,8 +62,6 @@ $color-setup: #dff8c3;
 
 // Block 1 — lede + promotional video ────────────────────────────────────────────
 .solution_lede {
-  p + p { margin-top: 1rem; }
-
   @include media(">tablet") { grid-row: 1; }
 }
 
@@ -191,6 +187,10 @@ $color-setup: #dff8c3;
 
 .solution_pair > * { flex: 1; }
 
+// Tablet mirrors the prototype’s narrower-left / wider-right split (both pairs).
+.solution_pair > :first-child { @include media(">tablet", "<=desktop") { flex: 168; } }
+.solution_pair > :last-child { @include media(">tablet", "<=desktop") { flex: 234; } }
+
 .solution_pair.-templates {
   flex-direction: column;
 
@@ -200,10 +200,6 @@ $color-setup: #dff8c3;
   }
 
   @include media(">desktop") { grid-row: 1; }
-
-  // Tablet mirrors the prototype’s narrower-left / wider-right split.
-  > :first-child { @include media(">tablet", "<=desktop") { flex: 168; } }
-  > :last-child { @include media(">tablet", "<=desktop") { flex: 234; } }
 }
 
 .solution_frame.-template {
@@ -290,9 +286,6 @@ $color-setup: #dff8c3;
   @include media(">desktop") {
     grid-column: var(--content-start) / span calc(var(--content-width) * 2);
   }
-
-  > :first-child { @include media(">tablet", "<=desktop") { flex: 168; } }
-  > :last-child { @include media(">tablet", "<=desktop") { flex: 234; } }
 }
 
 .solution_frame.-phone {

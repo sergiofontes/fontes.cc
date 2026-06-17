@@ -13,8 +13,8 @@ export default function Quote() {
         </blockquote>
 
         <figcaption className="quote_cite">
-          <cite className="quote_name">Miguel Andrade</cite>
-          <span className="quote_role">Stone customer</span>
+          <cite className="label quote_name">Miguel Andrade</cite>
+          <span className="label">Stone customer</span>
         </figcaption>
 
         <span className="quote_divisor content_rule -edge" aria-hidden="true"></span>

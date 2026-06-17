@@ -3,7 +3,7 @@ import Anchor from '../../components/anchor';
 export default function Contact() {
   return (
     <section id="contact" className="contact grid content">
-      <h2>Contact</h2>
+      <h2 className="content_heading">Contact</h2>
       <div className="content_column">
         <p>
           <span className="label contact_label">Email:</span>

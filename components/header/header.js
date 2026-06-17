@@ -19,7 +19,7 @@ export default function Header() {
         </h1>
       </section>
       <section id="intro" className="intro grid content">
-        <h2>Intro</h2>
+        <h2 className="content_heading">Intro</h2>
         <div className="content_column">
           <p className="lead">
             Hi, I’m<i></i> Sérgio Fontes.
