@@ -23,9 +23,9 @@ export default function Why() {
         </p>
       </div>
 
-      <p className="note why_note content_aside -about">
+      <aside className="note why_note content_aside -about">
         Stone is a Brazilian fintech focused on small and medium-sized businesses.
-      </p>
+      </aside>
 
       {/* The discovery board screenshot with two tilted “cover” decks composed on
           top. Both decks are flat covers tilted and shadowed entirely in CSS. */}
@@ -60,11 +60,11 @@ export default function Why() {
         </div>
       </div>
 
-      <p className="note why_note content_aside -stats">
+      <aside className="note why_note content_aside -stats">
         Across two discovery phases, we reviewed 43 studies, surveyed 2,282
         customers, conducted 12 in-depth interviews, and analyzed 39 competitors to
         inform product decisions.
-      </p>
+      </aside>
 
       <span className="why_divisor content_rule"></span>
     </section>

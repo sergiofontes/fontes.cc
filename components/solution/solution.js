@@ -98,7 +98,7 @@ function ConfigCarousel() {
         ))}
       </ul>
 
-      <div className="solution_aside content_aside -center">
+      <aside className="solution_aside content_aside -center">
         <p className="note solution_note">
           The setup experience strikes a balance between customization and
           simplicity, making it easy for merchants to get started.
@@ -116,7 +116,7 @@ function ConfigCarousel() {
             />
           ))}
         </div>
-      </div>
+      </aside>
     </>
   );
 }
@@ -158,9 +158,9 @@ export default function Solution() {
           </span>
         </a>
 
-        <p className="note solution_note content_aside -center -video">
+        <aside className="note solution_note content_aside -center -video">
           Promotional video of the Online Catalog.
-        </p>
+        </aside>
       </div>
 
       {/* Block 2 — sharing across channels (full-bleed montage) ──────────── */}
@@ -178,10 +178,10 @@ export default function Solution() {
 
       {/* Block 3 — printed & social templates ───────────────────────────── */}
       <div className="solution_templates grid content">
-        <p className="note solution_note -templates">
+        <aside className="note solution_note -templates">
           A variety of templates for social media and printed materials help
           merchants promote their stores and attract new customers.
-        </p>
+        </aside>
 
         <div className="solution_pair content_body -templates">
           <figure className="solution_frame -template">
@@ -226,10 +226,10 @@ export default function Solution() {
           </figure>
         </div>
 
-        <p className="note solution_note content_aside -center -custom">
+        <aside className="note solution_note content_aside -center -custom">
           Merchants can customize their catalog with their store name and logo,
           and optionally add brand colors and a supporting image.
-        </p>
+        </aside>
       </div>
 
       {/* Block 6 — responsive across devices ────────────────────────────── */}
@@ -244,9 +244,9 @@ export default function Solution() {
           </picture>
         </figure>
 
-        <p className="note solution_note -devices">
+        <aside className="note solution_note -devices">
           Universal interface for any type of device.
-        </p>
+        </aside>
 
         <span className="solution_divisor"></span>
       </div>

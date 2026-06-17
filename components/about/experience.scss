@@ -13,6 +13,12 @@
 
 // Logos (placement via `content_aside`) ────────────────────────────────────────
 .experience_logos {
+  @include media(">tablet") {
+    grid-row: 1;
+  }
+}
+
+.experience_logos-list {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xl);
@@ -27,7 +33,6 @@
   @include media(">tablet") {
     flex-direction: column-reverse;
     flex-wrap: nowrap;
-    grid-row: 1;
     gap: var(--space-lg);
   }
 }

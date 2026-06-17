@@ -82,20 +82,22 @@ export default function What() {
         </div>
       </div>
 
-      <dl className="what_colophon content_aside">
-        <div className="what_colophon-group">
-          <dt className="label what_colophon-label">What I did</dt>
-          <dd className="what_colophon-value note">
-            Product Discovery, Product Design, Usability Testing
-          </dd>
-        </div>
-        <div className="what_colophon-group">
-          <dt className="label what_colophon-label">Designers</dt>
-          <dd className="what_colophon-value note">
-            Sérgio Fontes, Rafaela Lopes, Vinícius Alcântara, Fausto Junior
-          </dd>
-        </div>
-      </dl>
+      <aside className="what_colophon content_aside">
+        <dl className="what_colophon-list">
+          <div className="what_colophon-group">
+            <dt className="label what_colophon-label">What I did</dt>
+            <dd className="what_colophon-value note">
+              Product Discovery, Product Design, Usability Testing
+            </dd>
+          </div>
+          <div className="what_colophon-group">
+            <dt className="label what_colophon-label">Designers</dt>
+            <dd className="what_colophon-value note">
+              Sérgio Fontes, Vinícius Alcântara, Fausto Junior
+            </dd>
+          </div>
+        </dl>
+      </aside>
 
       <span className="what_divisor content_rule"></span>
     </section>

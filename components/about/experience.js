@@ -21,21 +21,23 @@ export default function Experience() {
         </p>
       </div>
 
-      <ul className="experience_logos content_aside" aria-label="Companies I’ve worked at">
-        <li className="experience_logo">
-          <Logo type="guava" />
-          <span className="label experience_period">2013–2021</span>
-        </li>
-        <li className="experience_logo">
-          <Logo type="vtex" />
-          <span className="label experience_period">2021–2022</span>
-        </li>
-        <li className="experience_logo -current">
-          <Handnote className="experience_note" role="img" aria-label="currently" />
-          <Logo type="stone" />
-          <span className="label experience_period">2022–&nbsp;…</span>
-        </li>
-      </ul>
+      <aside className="experience_logos content_aside">
+        <ul className="experience_logos-list" aria-label="Companies I’ve worked at">
+          <li className="experience_logo">
+            <Logo type="guava" />
+            <span className="label experience_period">2013–2021</span>
+          </li>
+          <li className="experience_logo">
+            <Logo type="vtex" />
+            <span className="label experience_period">2021–2022</span>
+          </li>
+          <li className="experience_logo -current">
+            <Handnote className="experience_note" role="img" aria-label="currently" />
+            <Logo type="stone" />
+            <span className="label experience_period">2022–&nbsp;…</span>
+          </li>
+        </ul>
+      </aside>
 
       <span className="experience_divisor content_rule -edge"></span>
     </section>

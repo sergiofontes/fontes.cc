@@ -111,14 +111,16 @@
 
 // Colophon — credits column (placement via `content_aside`) ────────────────────
 .what_colophon {
+  @include media(">tablet") {
+    grid-row: 2;
+  }
+}
+
+.what_colophon-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
   margin: 0;
-
-  @include media(">tablet") {
-    grid-row: 2;
-  }
 }
 
 .what_colophon-label,

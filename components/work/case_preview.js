@@ -113,12 +113,14 @@ export default function CasePreview({
       >
         <ul className="work_track carousel" ref={trackRef} tabIndex={0} onScroll={sync}>
           <li className="work_colophon">
-            <dl>
-              <dt className="label">What I did</dt>
-              <dd className="note">{activities}</dd>
-              <dt className="label">Designers</dt>
-              <dd className="note">{designers}</dd>
-            </dl>
+            <aside>
+              <dl>
+                <dt className="label">What I did</dt>
+                <dd className="note">{activities}</dd>
+                <dt className="label">Designers</dt>
+                <dd className="note">{designers}</dd>
+              </dl>
+            </aside>
           </li>
           {Array.from({ length: slides }).map((_, index) => (
             <li className="work_slide" key={index}>
