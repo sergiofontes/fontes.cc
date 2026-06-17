@@ -43,6 +43,7 @@ export default function OnlineCatalog() {
           image={{
             src: "/images/work/catalog/cover.png",
             src2x: "/images/work/catalog/cover@2x.png",
+            alt: "Illustration of a hand holding a phone that shows a burger from the catalog, beside a Stone card machine.",
             width: 678,
             height: 611,
           }}

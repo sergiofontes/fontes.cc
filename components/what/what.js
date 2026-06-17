@@ -1,8 +1,9 @@
 const IMG = "/images/work/catalog";
 
 // The three product mockups are composed with CSS (positioning + drop shadows);
-// the assets are plain transparent phone renders. Only the centre screen carries
-// a meaningful alt — the flanking screens are decorative duplicates of the app.
+// the assets are plain transparent phone renders. Each phone shows a different
+// part of the catalog (store profile, product page, product list), so each gets
+// its own descriptive alt.
 function Phone({ name, modifier, width, height, alt }) {
   return (
     <img
@@ -28,21 +29,21 @@ export default function What() {
             modifier="-left"
             width={247}
             height={510}
-            alt=""
+            alt="The store’s profile in the catalog — its logo, tagline, address, and opening hours."
           />
           <Phone
             name="mockup_pdp"
             modifier="-center"
             width={291}
             height={600}
-            alt="The Online Catalog showing a product page in a merchant’s store"
+            alt="A product page in the catalog, with the item’s photo, price, description, and an add-to-cart button."
           />
           <Phone
             name="mockup_plp_custom"
             modifier="-right"
             width={247}
             height={510}
-            alt=""
+            alt="The catalog’s product list, with a search field, category filters, and items grouped by type."
           />
         </div>
       </div>

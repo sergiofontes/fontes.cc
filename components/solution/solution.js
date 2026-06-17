@@ -29,24 +29,49 @@ function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
   );
 }
 
-// The six “sharing” cards keep their own native heights (chat bubble, post,
-// story…), so each carries its real intrinsic size to avoid layout shift.
+// The six “sharing” cards keep their own native heights (Slack message, Instagram
+// post, Instagram story), so each carries its real intrinsic size to avoid layout
+// shift. The left three share the store; the right three share a product.
 const SHARING = [
-  { name: "store_1", height: 157 },
-  { name: "store_2", height: 257 },
-  { name: "store_3", height: 405 },
-  { name: "product_3", height: 405 },
-  { name: "product_2", height: 257 },
-  { name: "product_1", height: 173 },
+  {
+    name: "store_1",
+    height: 157,
+    alt: "A Slack message sharing the store’s catalog link, with a link preview of the storefront.",
+  },
+  {
+    name: "store_2",
+    height: 257,
+    alt: "An Instagram post promoting the store, with its logo and tagline over a burger photo.",
+  },
+  {
+    name: "store_3",
+    height: 405,
+    alt: "An Instagram story promoting the store, with its tagline and a button to visit the store.",
+  },
+  {
+    name: "product_3",
+    height: 405,
+    alt: "An Instagram story sharing a product — a burger with its price, description, and a button to order it.",
+  },
+  {
+    name: "product_2",
+    height: 257,
+    alt: "An Instagram post sharing a product, with its photo, price, and description.",
+  },
+  {
+    name: "product_1",
+    height: 173,
+    alt: "A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description.",
+  },
 ];
 
 // The setup carousel: four backoffice screens sharing one green-panel mask,
 // paged with the shared `ButtonDot` pagination (CSS scroll-snap does the work).
 const CONFIG_SLIDES = [
   "General settings, sharing link, and WhatsApp orders",
-  "Store information and contact details",
-  "Appearance and brand customization",
-  "Catalog organization and product management",
+  "Store information, description, and address",
+  "Contact details and social networks",
+  "Appearance — catalog colors, logo, and cover image",
 ];
 
 function ConfigCarousel() {
@@ -163,15 +188,13 @@ export default function Solution() {
         </aside>
       </div>
 
-      {/* Block 2 — sharing across channels (full-bleed montage) ──────────── */}
-      <div
-        className="solution_sharing"
-        role="img"
-        aria-label="The Online Catalog shared across WhatsApp, Instagram stories, and social posts."
-      >
-        {SHARING.map(({ name, height }) => (
+      {/* Block 2 — sharing across channels (full-bleed montage). Each card is its
+          own screenshot with its own alt, so the montage reads as six images
+          rather than one labelled group. */}
+      <div className="solution_sharing">
+        {SHARING.map(({ name, height, alt }) => (
           <figure className="solution_frame -share" key={name}>
-            <Media name={`sharing_${name}`} width={197} height={height} alt="" />
+            <Media name={`sharing_${name}`} width={197} height={height} alt={alt} />
           </figure>
         ))}
       </div>
@@ -190,7 +213,7 @@ export default function Solution() {
               scales={[1]}
               width={252}
               height={310}
-              alt="Printed business cards and table tents for the catalog."
+              alt="A printed table tent showing the store’s logo and the catalog’s QR code."
             />
           </figure>
           <figure className="solution_frame -template">
@@ -199,7 +222,7 @@ export default function Solution() {
               scales={[1]}
               width={252}
               height={310}
-              alt="Social-media templates featuring the merchant’s store."
+              alt="A printed flyer and business card with the store’s logo and the catalog’s QR code."
             />
           </figure>
         </div>
@@ -214,7 +237,7 @@ export default function Solution() {
       <div className="solution_custom grid content">
         <div className="solution_pair -phones">
           <figure className="solution_frame -phone">
-            <Media name="mockup_plp" width={247} height={510} alt="The default catalog shown on a phone." />
+            <Media name="mockup_plp" width={247} height={510} alt="The default catalog on a phone, showing the product list." />
           </figure>
           <figure className="solution_frame -phone">
             <Media

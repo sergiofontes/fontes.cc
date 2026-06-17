@@ -12,6 +12,7 @@ Cover.propTypes = {
   image: PropTypes.shape({
     src: PropTypes.string.isRequired,
     src2x: PropTypes.string,
+    alt: PropTypes.string,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
   }).isRequired,
@@ -26,8 +27,8 @@ export default function Cover({ logo, label, category, title, summary, image }) 
         srcSet={image.src2x ? `${image.src} 1x, ${image.src2x} 2x` : undefined}
         width={image.width}
         height={image.height}
-        alt=""
-        aria-hidden="true"
+        alt={image.alt || ""}
+        aria-hidden={image.alt ? undefined : "true"}
       />
 
       <div className="cover_main">
