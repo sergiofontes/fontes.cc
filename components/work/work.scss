@@ -201,12 +201,65 @@
   margin-left: var(--work-lead);
 }
 
+// Placeholder box for cases whose gallery art isn’t built yet.
 .work_image {
   display: block;
   width: 100%;
   height: var(--work-image-h);
   background-color: var(--color-surface-dim);
   border-radius: var(--radius-small);
+}
+
+// A built gallery frame — the carousel window the composition is clipped to. Its
+// `background` (set inline per slide) shows through the gaps between mockups.
+.work_frame {
+  position: relative;
+  width: 100%;
+  height: var(--work-image-h);
+  overflow: hidden;
+  border-radius: var(--radius-small);
+}
+
+// The composition stage: a 534×444 box (the prototype’s frame) pinned to the
+// window’s height and centered, so the mockups keep their proportions and full
+// height while the window crops the sides on narrower breakpoints (and shows a
+// little background on wider ones) — matching the Figma overflow.
+.work_stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 534 / 444;
+  transform: translate(-50%, -50%);
+}
+
+// Mockups are flat transparent PNGs; the drop-shadow follows their silhouette
+// (the rounded phone/card edges) the way `box-shadow` couldn’t.
+.work_mockup {
+  position: absolute;
+  height: auto;
+  filter: var(--drop-shadow-large);
+
+  &.-flat { filter: var(--drop-shadow-small); }
+}
+
+// Video slide — the thumbnail fills the whole frame (cropped); the `.video` link and
+// centered `Play` badge wrapping it are shared with Solution. Its stage drops the
+// 534/444 letterbox so the image bleeds gutter to gutter.
+.work_frame.-video .work_stage {
+  inset: 0;
+  width: 100%;
+  height: 101%;
+  aspect-ratio: auto;
+  transform: none;
+}
+
+.work_frame.-video .work_mockup {
+  inset: 0;
+  width: 100%;
+  height: 101%;
+  object-fit: cover;
+  filter: none;
 }
 
 // Colophon (What I did / Designers) — desktop only. First item inside the track,

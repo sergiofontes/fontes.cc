@@ -14,6 +14,7 @@ import '../components/button_menu/button_menu.scss';
 import '../components/button_dot/button_dot.scss';
 import '../components/hero/hero.scss';
 import '../components/carousel/carousel.scss';
+import '../components/play/play.scss';
 import '../components/nav/nav.scss';
 import '../components/header/header.scss';
 import '../components/cover/cover.scss';

@@ -55,60 +55,12 @@ $color-setup: #dff8c3;
   @include media(">tablet") { grid-row: 1; }
 }
 
+// Link scaffold, focus ring, and play badge come from the shared `.video`/`.play`.
 .solution_video {
-  position: relative;
-  display: block;
-
   @include media(">tablet") { grid-row: 2; }
-
-  &:focus-visible {
-    border-radius: var(--radius-small);
-    outline: var(--border-focus) solid var(--color-focus-ring);
-    outline-offset: 3px;
-  }
 }
 
 .solution_frame.-video { aspect-ratio: 533 / 310; }
-
-.solution_play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 48px;
-  background-color: var(--color-background);
-  border-radius: 14px;
-  box-shadow: var(--shadow-small);
-  transform: translate(-50%, -50%);
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  @include media(">desktop") {
-    width: 84px;
-    height: 64px;
-    border-radius: 18px;
-
-    svg {
-      width: 28px;
-      height: 28px;
-    }
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .solution_play { transition: transform .2s ease-in-out; }
-
-  .solution_video:hover .solution_play,
-  .solution_video:focus-visible .solution_play {
-    transform: translate(-50%, -50%) scale(1.06);
-  }
-}
 
 .solution_note.-video {
   @include media(">tablet") { grid-row: 2; }

@@ -1,0 +1,60 @@
+///////////////////////////////////////////////////////////////////////////////
+// Play (video thumbnail badge)                                              //
+///////////////////////////////////////////////////////////////////////////////
+
+// Shared by Solution and Work: a `.video` link wrapping a thumbnail, with a
+// centered `.play` badge that scales on hover/focus. The link owns the focus ring
+// and drives the badge; each consumer keeps its own placement and frame.
+
+@import "../../styles/scaffold";
+
+.video {
+  position: relative;
+  display: block;
+
+  &:focus-visible {
+    border-radius: var(--radius-small);
+    outline: var(--border-focus) solid var(--color-focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+.play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 48px;
+  background-color: var(--color-background);
+  border-radius: 14px;
+  box-shadow: var(--shadow-small);
+  transform: translate(-50%, -50%);
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @include media(">desktop") {
+    width: 84px;
+    height: 64px;
+    border-radius: 18px;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .play { transition: transform .2s ease-in-out; }
+
+  .video:hover .play,
+  .video:focus-visible .play {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}

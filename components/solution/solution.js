@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 
 import ButtonDot from "../button_dot";
-import PlayIcon from "../../public/images/icon_play.svg";
+import Play from "../play";
 
 const IMG = "/images/work/catalog";
 
@@ -169,7 +169,7 @@ export default function Solution() {
         </div>
 
         <a
-          className="solution_video content_body"
+          className="solution_video video content_body"
           href={VIDEO_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -178,9 +178,7 @@ export default function Solution() {
           <figure className="solution_frame -video">
             <Media name="video_promo" scales={[1, 2]} width={533} height={310} alt="" />
           </figure>
-          <span className="solution_play" aria-hidden="true">
-            <PlayIcon />
-          </span>
+          <Play />
         </a>
 
         <aside className="note solution_note content_aside -center -video">

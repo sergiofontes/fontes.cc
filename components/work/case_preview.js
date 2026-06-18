@@ -1,10 +1,84 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import cn from "classnames";
 
 import Logo from "../logos/";
 import Button from "../button";
 import ButtonIcon from "../button_icon";
+import Play from "../play";
 import Handnote from "../../public/images/handnote_2.svg";
+
+const DIRS = {
+  previews: "/images/work/previews",
+  catalog: "/images/work/catalog",
+};
+
+// A flat mockup PNG positioned (in %) inside the gallery frame. `scales` lists the
+// densities it ships at, so the srcSet stays honest; the layered shadow is composed
+// in CSS via the `-flat` modifier (small) or the default (large).
+function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, flat, alt }) {
+  const base = `${DIRS[dir]}/${name}`;
+  const srcSet = scales
+    .map((s) => `${base}${s > 1 ? `@${s}x` : ""}.png ${s}x`)
+    .join(", ");
+
+  return (
+    <img
+      className={cn("work_mockup", { "-flat": flat })}
+      src={`${base}.png`}
+      srcSet={srcSet}
+      style={left == null ? undefined : { left: `${left}%`, top: `${top}%`, width: `${width}%` }}
+      alt={alt}
+      aria-hidden={alt ? undefined : "true"}
+      loading="lazy"
+    />
+  );
+}
+
+// One gallery frame: the mockups float on a `work_stage` that covers the frame at
+// the prototype’s 534×444 ratio, so the composition stays undistorted while the
+// carousel window clips it per breakpoint (matching the Figma overflow). A `video`
+// slide wraps the frame in the shared `.video` link + `Play` badge, reusing the
+// same target and behavior as Solution’s promotional video.
+function Frame({ bg, shadow, video, alt, mockups }) {
+  const frame = (
+    <figure className={cn("work_frame", { "-video": video })} style={bg ? { background: bg } : undefined}>
+      <span className="work_stage">
+        {mockups.map((mockup, index) => (
+          <Mockup
+            key={mockup.name}
+            {...mockup}
+            flat={shadow === "small"}
+            alt={index === 0 ? alt : ""}
+          />
+        ))}
+      </span>
+    </figure>
+  );
+
+  if (!video) return frame;
+
+  return (
+    <a
+      className="video"
+      href={video.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={video.label}
+    >
+      {frame}
+      <Play />
+    </a>
+  );
+}
+
+Frame.propTypes = {
+  bg: PropTypes.string,
+  shadow: PropTypes.oneOf(["small", "large"]),
+  video: PropTypes.shape({ href: PropTypes.string, label: PropTypes.string }),
+  alt: PropTypes.string,
+  mockups: PropTypes.array.isRequired,
+};
 
 CasePreview.propTypes = {
   logo: PropTypes.string.isRequired,
@@ -13,14 +87,10 @@ CasePreview.propTypes = {
   year: PropTypes.string.isRequired,
   activities: PropTypes.string.isRequired,
   designers: PropTypes.string.isRequired,
-  slides: PropTypes.number.isRequired,
+  slides: PropTypes.number,
+  gallery: PropTypes.array,
   featured: PropTypes.bool,
   summary: PropTypes.string,
-};
-
-CasePreview.defaultProps = {
-  featured: false,
-  summary: "",
 };
 
 export default function CasePreview({
@@ -31,8 +101,9 @@ export default function CasePreview({
   activities,
   designers,
   slides,
-  featured,
-  summary,
+  gallery,
+  featured = false,
+  summary = "",
 }) {
   const trackRef = useRef(null);
   const [atStart, setAtStart] = useState(true);
@@ -114,11 +185,17 @@ export default function CasePreview({
               </dl>
             </aside>
           </li>
-          {Array.from({ length: slides }).map((_, index) => (
-            <li className="work_slide" key={index}>
-              <span className="work_image" aria-hidden="true" />
-            </li>
-          ))}
+          {gallery
+            ? gallery.map((slide, index) => (
+                <li className="work_slide" key={index}>
+                  <Frame {...slide} />
+                </li>
+              ))
+            : Array.from({ length: slides }).map((_, index) => (
+                <li className="work_slide" key={index}>
+                  <span className="work_image" aria-hidden="true" />
+                </li>
+              ))}
         </ul>
       </div>
 
