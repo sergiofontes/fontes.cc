@@ -44,6 +44,7 @@
     --work-lead: calc(var(--work-gutter) + var(--work-col) + 2 * var(--gap));
     --work-slide: calc((100% - var(--work-lead)) * .72);
     --work-image-h: 26rem;
+    padding-bottom: var(--space-2xl);
   }
 
   // Desktop: each image spans 6 columns + 5 gutters; the colophon takes the
@@ -52,7 +53,6 @@
     --work-lead: 0;
     --work-slide: calc(6 * var(--work-col) + 5 * var(--gap));
     --work-image-h: 29.6rem; // 444px
-    padding-bottom: var(--space-2xl);
   }
 }
 
