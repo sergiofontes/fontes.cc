@@ -80,9 +80,11 @@
 // trailing gutter to meet the screen edge.
 .-last { grid-column-end: span calc(var(--content-width) + 1); }
 
-// Traits is the page’s last section, so its divider reaches the screen edge at
-// every breakpoint — out-specifying the responsive spans below.
-.content_divisor.-last { grid-column-end: -1; }
+// A `-last` divider closes a section’s final subsection (or a single section), so it
+// reaches the screen edge at every breakpoint — out-specifying the responsive spans
+// below. Non-final subsection dividers keep their base span (penultimate column).
+.content_divisor.-last,
+.content_divisors.-last { grid-column-end: -1; }
 
 @include media(">tablet") {
   .content_column, .content_columns { grid-row: 1; }

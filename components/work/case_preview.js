@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 import Logo from "../logos/";
 import Button from "../button";
 import ButtonIcon from "../button_icon";
+import Handnote from "../../public/images/handnote_2.svg";
 
 CasePreview.propTypes = {
   logo: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
   activities: PropTypes.string.isRequired,
   designers: PropTypes.string.isRequired,
@@ -24,6 +26,7 @@ CasePreview.defaultProps = {
 export default function CasePreview({
   logo,
   name,
+  subtitle,
   year,
   activities,
   designers,
@@ -70,20 +73,9 @@ export default function CasePreview({
       <div className="work_header">
         <span className="work_lockup">
           <Logo type={logo} />
+          <h3 className="work_subtitle">{subtitle}</h3>
           {featured && (
-            <>
-              <span className="work_label label">
-                Online
-                <br />
-                Catalog
-              </span>
-              <ButtonIcon
-                icon="plus"
-                href="/work/catalog"
-                classes="work_plus"
-                aria-label={`${name} Online Catalog`}
-              />
-            </>
+            <Handnote className="work_note" role="img" aria-label="check the case" />
           )}
         </span>
 

@@ -4,9 +4,10 @@ const cases = [
   {
     logo: "stone",
     name: "Stone",
+    subtitle: "Online Catalog",
     year: "2021",
     activities: "Product Discovery, Product Design, Usability Testing",
-    designers: "Sérgio Fontes, Rafaela Lopes, Vinícius Alcântara, Fausto Junior",
+    designers: "Sérgio Fontes, Vinícius Alcântara, Fausto Junior",
     slides: 4,
     featured: true,
     summary:
@@ -15,7 +16,8 @@ const cases = [
   {
     logo: "vtex",
     name: "VTEX",
-    year: "2021",
+    subtitle: "Grocery Starter Pack",
+    year: "2022",
     activities: "Interface Design",
     designers: "Sérgio Fontes, Nathália Moura",
     slides: 3,
@@ -23,6 +25,7 @@ const cases = [
   {
     logo: "petplate",
     name: "PetPlate",
+    subtitle: "Ecommerce Redesign",
     year: "2021",
     activities: "Product Design, Design System, Front-end Development",
     designers:
@@ -32,6 +35,7 @@ const cases = [
   {
     logo: "guava",
     name: "Guava",
+    subtitle: "Branding & Website",
     year: "2021",
     activities: "Product Design, Copywriting, Branding, Front-end Development",
     designers: "Sérgio Fontes, Renata Motta, Juliana Carvalho, Filipe Soares",
@@ -40,9 +44,10 @@ const cases = [
   {
     logo: "tropical",
     name: "Tropical Ruby",
-    year: "2021",
+    subtitle: "Branding & Website",
+    year: "2015",
     activities: "Product Design, Copywriting, Branding, Front-end Development",
-    designers: "Sérgio Fontes, Renata Motta, Juliana Carvalho, Filipe Soares",
+    designers: "Sérgio Fontes",
     slides: 4,
   },
 ];

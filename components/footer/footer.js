@@ -4,10 +4,9 @@ export default function Footer() {
   return (
     <footer className="footer grid content">
       <div>
-        <small>Sérgio Fontes, 2022. Copy, design &amp; code by me. </small>
+        <small>Sérgio Fontes, 2026. Copy, design &amp; code by me. </small>
         <small>
-          No cookies, no tracking, just the beauty of HTML &amp; CSS (shh, there’s some
-          JS too).
+          No cookies, no tracking, just the beauty of HTML, CSS &amp; some JS.
         </small>
       </div>
       <div>
@@ -24,7 +23,7 @@ export default function Footer() {
           <Anchor href="https://fonts.google.com/specimen/DM+Sans" target="_blank">
             DM Sans
           </Anchor>
-          , and{' '}
+          ,{' '}
           <Anchor
             href="https://fonts.google.com/specimen/Abril+Fatface"
             target="_blank"
@@ -42,10 +41,7 @@ export default function Footer() {
           <Anchor href="https://vercel.com/" target="_blank">
             Vercel
           </Anchor>
-          .{' '}
-        </small>
-        <small>
-          Check the source at{' '}
+          . Check the source at{' '}
           <Anchor href="https://github.com/sergiofontes/fontes.cc/" target="_blank">
             GitHub
           </Anchor>

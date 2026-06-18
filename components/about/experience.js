@@ -1,5 +1,5 @@
 import Logo from '../logos/';
-import Handnote from '../../public/images/logos/handnote.svg';
+import Handnote from '../../public/images/handnote.svg';
 
 export default function Experience() {
   return (
@@ -39,7 +39,7 @@ export default function Experience() {
         </ul>
       </aside>
 
-      <span className="experience_divisor content_rule"></span>
+      <span className="experience_divisor content_rule -edge"></span>
     </section>
   );
 }
