@@ -35,8 +35,22 @@
   .nav_link:not(:last-child) { margin-bottom: 1.5rem; }
 
   .nav_links {
+    display: flex;
+    flex-direction: column;
     grid-column: 2 / span var(--columns);
     list-style: none;
+  }
+
+  .nav_link.-back a { font-size: 1rem; }
+
+  .nav_back {
+    display: inline-flex;
+    align-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: var(--space-sm);
+    transform: rotate(180deg); // the shared arrow points right; flip it to point back
+    path { fill: var(--color-text-inverse); }
   }
 
   .nav_divisor {
@@ -49,7 +63,7 @@
   .grid {
     z-index: 11;
     display: none;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto 1fr auto;
     height: 100%;
     padding-top: calc(var(--logo-size) + (var(--gap) * 4));
     padding-bottom: calc(var(--gap) * 1.5);
@@ -87,7 +101,13 @@
     .nav_link:not(:last-child) { margin-bottom: 1rem; }
     .nav_links, .nav_arrow { grid-column: unset; }
     .nav_arrow { display: block; }
-    .nav_button, .nav_divisor { display: none; }
+    .nav_button, .nav_divisor, .nav_back { display: none; }
+
+    // The back link returns to the top of the list (DOM order), dimmed.
+    .nav_link.-back {
+      opacity: .5;
+      &:hover, &:focus-within { opacity: 1; }
+    }
 
     .grid {
       display: block;
@@ -98,10 +118,10 @@
       margin: 0;
     }
 
-    @include media("height>=1000px") {
-      top: var(--header-max-height);
-      bottom: auto;
-    }
+    /* @include media("height>=1000px") {
+      top: auto;
+      bottom: 10vh;
+    } */
   }
 
   @include media(">max") { left: calc((100vw - var(--container-max)) / 2); }
@@ -161,7 +181,16 @@
     background-color: var(--color-cover);
     mix-blend-mode: unset;
 
-    small { display: block; }
+    // In-page links stack at the top; the back link is pinned to the bottom.
+    .nav_link.-back {
+      order: 1;
+      margin-top: auto;
+    }
+
+    small {
+      display: block;
+      color: var(--color-text-inverse-dim);
+    }
     .grid { display: grid; }
 
     ~ *:not(.nav_symbol) { opacity: 0; }

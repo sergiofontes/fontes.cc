@@ -66,7 +66,7 @@ export default function Why() {
         inform product decisions.
       </aside>
 
-      <span className="why_divisor content_rule"></span>
+      <span className="why_divisor content_rule -edge"></span>
     </section>
   );
 }

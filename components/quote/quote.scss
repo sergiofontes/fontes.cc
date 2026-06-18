@@ -55,5 +55,10 @@
 
 .quote_divisor {
   grid-row: 3;
-  margin-top: var(--space-md); // 15
+
+  // mobile/tablet row-gap is already 30; only desktop (15px row-gap) needs the
+  // extra 15px to keep a 30px gap above the rule.
+  @include media(">desktop") {
+    margin-top: var(--space-md); // +15 desktop row-gap = 30
+  }
 }

@@ -360,11 +360,19 @@ $color-setup: #dff8c3;
   }
 }
 
-// Narrower than the base rule on mobile.
+// Closes the devices block (and the section), reaching the penultimate column on
+// every breakpoint — unlike the `-edge` rules that close What, Why, and Quote at
+// the screen edge. `content_rule` is avoided here: its mobile span overshoots the
+// 4-column grid into phantom columns, which skews the section’s alignment; `/ -2`
+// pins the rule to the penultimate line instead.
 .solution_divisor {
-  grid-column: var(--content-start) / span var(--content-width);
+  grid-column: var(--content-start) / -2;
+  width: 100%;
+  margin-top: var(--space-md); // +15 mobile row-gap = 30 above the caption
+  border-bottom: 1px solid var(--color-text);
 
   @include media(">tablet") {
     grid-row: 3;
+    margin-top: 0; // tablet/desktop row-gap is already 30
   }
 }

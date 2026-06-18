@@ -85,8 +85,20 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
           <span className="nav_divisor"></span>
           <ol className="nav_links">
             {links.map((item, index) => (
-              <li className="nav_link" key={item.label}>
-                {renderTarget(item, item.label)}
+              <li className={cn("nav_link", { "-back": item.href })} key={item.label}>
+                {renderTarget(
+                  item,
+                  item.href ? (
+                    <>
+                      <span className="nav_back" aria-hidden="true">
+                        <IconArrow />
+                      </span>
+                      {item.label}
+                    </>
+                  ) : (
+                    item.label
+                  ),
+                )}
                 {index === links.length - 1 && (
                   <span className="nav_arrow">
                     <IconArrow />
@@ -96,7 +108,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
             ))}
           </ol>
 
-          <small aria-hidden="hidden">Sérgio Fontes, 2022.</small>
+          <small aria-hidden="hidden">Sérgio Fontes, 2026.</small>
         </div>
       </nav>
 

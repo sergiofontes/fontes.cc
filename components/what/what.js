@@ -100,7 +100,7 @@ export default function What() {
         </dl>
       </aside>
 
-      <span className="what_divisor content_rule"></span>
+      <span className="what_divisor content_rule -edge"></span>
     </section>
   );
 }
