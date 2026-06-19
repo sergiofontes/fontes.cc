@@ -146,11 +146,14 @@ function ResponsiveDevices() {
   const alt =
     "The Online Catalog adapting across desktop, tablet, and mobile devices.";
 
+  // Detail-heavy composite (device screenshots): raise the quality above the
+  // default 75 so the UI text stays crisp after AVIF/WebP encoding.
   const { props: desktop } = getImageProps({
     src: `${IMG}/responsive_desktop@3x.png`,
     alt,
     width: 1245,
     height: 750,
+    quality: 90,
     sizes: "90vw",
   });
   const { props: mobile } = getImageProps({
@@ -158,6 +161,7 @@ function ResponsiveDevices() {
     alt,
     width: 537,
     height: 973,
+    quality: 90,
     sizes: "92vw",
   });
 

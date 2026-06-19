@@ -42,10 +42,15 @@ module.exports = {
   images: {
     // Serve modern formats; the optimizer negotiates per request via Accept.
     formats: ['image/avif', 'image/webp'],
+    // 75 is the default for most mockups; 90 for the large, detail-heavy device
+    // composite (block 6) whose screenshots soften at the default quality.
+    qualities: [75, 90],
     // Small fixed widths the composed mockups/cards render at, so the browser can
     // pick a tight candidate instead of jumping to the smallest device size (640).
     imageSizes: [16, 32, 48, 64, 96, 128, 200, 256, 320, 384, 512],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    // 2560 lets the wide device composite (block 6) stay sharp on retina screens
+    // (~2740px needed); every other image caps well below it via its `sizes`.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560],
   },
   async redirects() {
     // /work has no page of its own; send it to the only case.
