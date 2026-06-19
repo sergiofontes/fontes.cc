@@ -14,7 +14,7 @@ There is no test suite and no JS linter configured for this project.
 
 ## Architecture
 
-The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that exports `siteTitle` and renders children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`.
+The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that renders the “Skip to content” link and children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`. Per-page and site-wide SEO/metadata live as thematic JSON in `data/seo/` (`site.json` defaults plus one file per page), consumed by the `components/seo` component which each page spreads (`<Seo {...seo} />`).
 
 ### Component convention
 

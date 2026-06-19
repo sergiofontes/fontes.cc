@@ -63,3 +63,30 @@ img {
   user-select: none;
   -webkit-user-drag: none;
 }
+
+// Skip link: off-canvas until focused, then pinned to the top-left over the
+// fixed nav so keyboard users can jump straight to the main content.
+.skip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: .75rem 1rem;
+  color: var(--color-text-inverse);
+  background-color: var(--color-cover);
+  border-radius: 0 0 var(--radius-small) 0;
+  transform: translateY(-110%);
+
+  &:focus-visible {
+    @include focus-ring-outline;
+    transform: translateY(0);
+  }
+}
+
+// Programmatic skip target; clear the offset under the fixed nav and don't ring
+// the whole region when focus lands here.
+.main {
+  scroll-margin-top: 5rem;
+
+  &:focus { outline: none; }
+}

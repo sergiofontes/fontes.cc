@@ -1,3 +1,5 @@
+@import "../../styles/scaffold";
+
 .anchor {
   display: inline-block;
 
@@ -10,6 +12,14 @@
   }
 
   span { display: none; }
+}
+
+// Screen-reader-only “opens in a new tab” hint; the double selector beats the
+// `.anchor span { display: none }` rule above so it stays in the a11y tree.
+.anchor .anchor_newtab {
+  display: inline-block;
+
+  @include fontless;
 }
 
 .anchor_external {

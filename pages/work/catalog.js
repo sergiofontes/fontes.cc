@@ -1,6 +1,6 @@
-import Head from "next/head";
-
 import Layout from "../../components/layout";
+import Seo from "../../components/seo";
+import seo from "../../data/seo/catalog.json";
 import Nav from "../../components/nav";
 import Cover from "../../components/cover";
 import What from "../../components/what";
@@ -22,14 +22,7 @@ const CASE_SYMBOL = { href: "/" };
 export default function OnlineCatalog() {
   return (
     <Layout>
-      <Head>
-        <title>Online Catalog · Stone — Sérgio Fontes</title>
-        <meta
-          name="description"
-          content="Helping small businesses showcase their products online and generate more sales opportunities."
-          key="desc"
-        />
-      </Head>
+      <Seo {...seo} />
 
       <div className="index">
         <Nav links={CASE_LINKS} symbol={CASE_SYMBOL} />
@@ -49,7 +42,7 @@ export default function OnlineCatalog() {
           }}
         />
 
-        <main className="main">
+        <main id="main" className="main" tabIndex={-1}>
           <What />
           <Why />
           <Solution />

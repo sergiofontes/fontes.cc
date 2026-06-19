@@ -34,6 +34,10 @@ export default function Anchor({
   children,
   ...props
 }) {
+  // Links opening a new tab get the safe `rel` plus a screen-reader hint, unless
+  // the caller already passes its own `rel`.
+  const newTab = props.target === "_blank";
+
   return (
     <a
       className={cn(
@@ -49,11 +53,13 @@ export default function Anchor({
         classes,
       )}
       href={href}
+      rel={newTab ? "noopener noreferrer" : undefined}
       {...props}
     >
       {type === "github" && <IconGithub />}
       {type === "linkedin" && <IconLinkedin />}
       {children}
+      {newTab && <span className="anchor_newtab"> (opens in a new tab)</span>}
       <span>Offline</span>
       {type === "external" && <IconArrow />}
     </a>

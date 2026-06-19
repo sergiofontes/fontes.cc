@@ -111,12 +111,12 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
             ))}
           </ol>
 
-          <small aria-hidden="hidden">Sérgio Fontes, 2026.</small>
+          <small aria-hidden="true">Sérgio Fontes, 2026.</small>
         </div>
       </nav>
 
       <div className="nav_symbol">
-        {renderTarget(symbol, <Symbol aria-label="Go to homepage" />)}
+        {renderTarget(symbol, <Symbol role="img" aria-label="Go to homepage" />)}
       </div>
     </>
   );

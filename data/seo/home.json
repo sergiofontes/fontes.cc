@@ -1,0 +1,33 @@
+{
+  "title": "Sérgio Fontes—Product Designer",
+  "description": "Brazilian digital designer. I help companies design, build, and validate digital products.",
+  "path": "/",
+  "type": "website",
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://fontes.cc/#person",
+        "name": "Sérgio Fontes",
+        "url": "https://fontes.cc",
+        "image": "https://fontes.cc/images/preview.png",
+        "jobTitle": "Product Designer",
+        "description": "Brazilian digital designer. I help companies design, build, and validate digital products.",
+        "nationality": "Brazilian",
+        "sameAs": [
+          "https://www.linkedin.com/in/osergiofontes/",
+          "https://github.com/sergiofontes"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://fontes.cc/#website",
+        "url": "https://fontes.cc",
+        "name": "Sérgio Fontes—Product Designer",
+        "inLanguage": "en",
+        "author": { "@id": "https://fontes.cc/#person" }
+      }
+    ]
+  }
+}

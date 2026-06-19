@@ -17,6 +17,9 @@ const svgrOptions = {
 
 module.exports = {
   turbopack: {
+    // Pin the workspace root so Turbopack doesn't pick the wrong directory when a
+    // stray lockfile exists higher up (e.g. ~/package-lock.json).
+    root: __dirname,
     rules: {
       '*.svg': {
         loaders: [{ loader: '@svgr/webpack', options: svgrOptions }],
