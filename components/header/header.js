@@ -2,7 +2,17 @@ import Typewriter from 'typewriter-effect';
 
 export default function Header() {
   return (
-    <header id="hi" className="hero header">
+    <header id="hi" className="hero header grid">
+      <img
+        className="header_art"
+        src="/images/cover_home.png"
+        srcSet="/images/cover_home.png 1x, /images/cover_home@2x.png 2x"
+        width={371}
+        height={371}
+        alt=""
+        aria-hidden="true"
+      />
+
       <section className="header_title grid content">
         <h1 aria-label="Product, U.X., Digital Designer">
           <b>

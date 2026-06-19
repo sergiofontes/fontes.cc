@@ -12,6 +12,7 @@
   grid-template-rows: 1fr auto auto;
   align-items: end;
   max-height: var(--header-max-height);
+  padding-top: var(--gap);
   padding-bottom: calc(var(--gap) * 2);
   overflow: hidden;
 
@@ -28,6 +29,7 @@
   position: absolute;
   grid-row: 1;
   grid-column: 1 / -1;
+  align-self: start;
   justify-self: center;
   width: auto;
   max-width: 100%;
@@ -40,7 +42,6 @@
 
   @include media(">tablet") {
     grid-column-start: var(--content-start);
-    align-self: start;
     justify-self: start;
   }
 

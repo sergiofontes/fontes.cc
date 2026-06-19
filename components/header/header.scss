@@ -6,6 +6,7 @@
 
 // Cover scaffold (height, inverse colours, padding) comes from `.hero`.
 .header {
+  position: relative;
   display: grid;
   grid-template-rows: 1fr auto;
   grid-auto-flow: column;
@@ -59,6 +60,41 @@
       grid-row: 2;
       align-self: end;
     }
+  }
+}
+
+// Faint portrait melting into the cover. Grid placement matches the case `Cover` art
+// (`.cover_art`): full-bleed and centered on mobile, anchored to the content column on
+// tablet, floating from the content column behind the title on desktop. It top-aligns
+// at every breakpoint (the case `Cover` lets mobile fall to `align-items: end`; the
+// home proto keeps the portrait up top). Sizes are the Figma dimensions (352px mobile,
+// 523px tablet) rather than the cover’s viewport-relative `svh`. `lighten` over the
+// black cover keeps the white title legible where the art overlaps it (`Cover` uses
+// `exclusion`).
+.header_art {
+  position: absolute;
+  grid-row: 1;
+  grid-column: 1 / -1;
+  align-self: start;
+  justify-self: center;
+  width: 23.4667rem; // 352px (Figma)
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: lighten;
+  object-fit: contain;
+
+  @include media(">tablet") {
+    grid-column-start: var(--content-start);
+    justify-self: start;
+    width: 34.8667rem; // 523px (Figma)
+  }
+
+  @include media(">desktop") {
+    grid-row: 1 / -1;
+    grid-column: var(--content-start) / -1;
+    width: min(40rem, 100%);
   }
 }
 
