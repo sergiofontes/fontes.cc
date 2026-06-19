@@ -17,7 +17,7 @@
   --color-text-inverse: var(--white);
   --color-text-dim    : var(--gray);
   --color-text-inverse-dim: #ffffff80;
-  --color-subtitle    : var(--gray-mid);
+  --color-subtitle    : var(--gray);
   --color-accent      : var(--red);
   --color-cover       : var(--black);
   --color-background  : var(--white);
@@ -26,7 +26,7 @@
   --color-focus-ring  : #c53333;
   --color-focus-bkg   : var(--black);
   // stylelint-enable
-  
+
   color: var(--color-text);
   background-color: var(--color-background);
 }

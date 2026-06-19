@@ -36,7 +36,7 @@
   --work-image-h: 24rem;
   row-gap: var(--gap);
   align-items: start;
-  padding-bottom: var(--space-xl);
+  padding-bottom: var(--space-2xl);
 
   &:last-child { padding-bottom: 0; }
 
@@ -44,7 +44,7 @@
     --work-lead: calc(var(--work-gutter) + var(--work-col) + 2 * var(--gap));
     --work-slide: calc((100% - var(--work-lead)) * .72);
     --work-image-h: 26rem;
-    padding-bottom: var(--space-2xl);
+    padding-bottom: var(--space-3xl);
   }
 
   // Desktop: each image spans 6 columns + 5 gutters; the colophon takes the
@@ -233,6 +233,23 @@
   transform: translate(-50%, -50%);
 }
 
+// Website/page previews (full-frame compositions) keep the frame itself at the
+// prototype’s 534×444 ratio and let the stage fill it, so the mockup-to-frame
+// spacing tracks the frame width and matches the Figma margins at every breakpoint
+// — unlike the height-pinned stage, whose width is fixed by the frame’s height.
+.work_frame.-fill {
+  height: auto;
+  aspect-ratio: 534 / 444;
+
+  .work_stage {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    transform: none;
+  }
+}
+
 // Mockups are flat transparent PNGs; the drop-shadow follows their silhouette
 // (the rounded phone/card edges) the way `box-shadow` couldn’t.
 .work_mockup {
@@ -240,7 +257,24 @@
   height: auto;
   filter: var(--drop-shadow-large);
 
-  &.-flat { filter: var(--drop-shadow-small); }
+  &.-medium { filter: var(--drop-shadow-medium); }
+  &.-small { filter: var(--drop-shadow-small); }
+}
+
+// The VTEX web product-card spec is an annotated diagram (labels + leader lines),
+// not a floating mockup, so it opts out of the silhouette drop-shadow. The rule
+// keys off the 1x `src`, covering every density variant of the same image.
+.work_mockup[src$="preview_vtex_specs.png"] {
+  filter: none;
+}
+
+// These read as smaller cards within their frames, so they take the small
+// drop-shadow regardless of their frame’s default (medium). Keyed off the 1x
+// `src`, so each rule covers every density variant of the same image.
+.work_mockup[src$="preview_vtex_cards.png"],
+.work_mockup[src$="preview_petplate_mockup_5.png"],
+.work_mockup[src$="preview_petplate_mockup_6.png"] {
+  filter: var(--drop-shadow-small);
 }
 
 // Video slide — the thumbnail fills the whole frame (cropped); the `.video` link and
