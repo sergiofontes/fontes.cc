@@ -13,7 +13,6 @@ function Phone({ name, modifier, width, height, alt }) {
       width={width}
       height={height}
       alt={alt}
-      aria-hidden={alt ? undefined : "true"}
       loading="lazy"
     />
   );

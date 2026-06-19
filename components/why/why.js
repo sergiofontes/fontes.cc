@@ -40,13 +40,13 @@ export default function Why() {
             loading="lazy"
           />
         </div>
-        <div className="why_cards" aria-hidden="true">
+        <div className="why_cards">
           <img
             className="why_card -vender"
             src={`${IMG}/capa_vender_original@2x.png`}
             width={1000}
             height={563}
-            alt=""
+            alt="A discovery deck cover titled “Vender Mais” (Sell more), showing a customer paying by phone at a Stone card machine."
             loading="lazy"
           />
           <img
@@ -54,7 +54,7 @@ export default function Why() {
             src={`${IMG}/capa_atrair_original@2x.png`}
             width={1000}
             height={563}
-            alt=""
+            alt="A discovery deck cover titled “Atrair” (Attract), showing a Stone agent presenting a phone to a shop owner."
             loading="lazy"
           />
         </div>

@@ -17,7 +17,7 @@ export default function Quote() {
           <span className="label">Stone customer</span>
         </figcaption>
 
-        <span className="quote_divisor content_rule -edge" aria-hidden="true"></span>
+        <span className="quote_divisor content_rule -edge"></span>
       </figure>
     </section>
   );

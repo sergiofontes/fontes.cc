@@ -15,8 +15,9 @@ const DIRS = {
 
 // A flat mockup PNG positioned (in %) inside the gallery frame. `scales` lists the
 // densities it ships at, so the srcSet stays honest; the layered shadow is composed
-// in CSS via the `shadow` modifier (`-small`/`-medium`, or the default large).
-function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, shadow, alt }) {
+// in CSS via the `shadow` modifier (`-small`/`-medium`, or the default large). Each
+// mockup carries its own `alt`; continuity repeats pass an empty `alt` to stay decorative.
+function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, shadow, alt = "" }) {
   const base = `${DIRS[dir]}/${name}`;
   const srcSet = scales
     .map((s) => `${base}${s > 1 ? `@${s}x` : ""}.png ${s}x`)
@@ -29,7 +30,6 @@ function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, 
       srcSet={srcSet}
       style={left == null ? undefined : { left: `${left}%`, top: `${top}%`, width: `${width}%` }}
       alt={alt}
-      aria-hidden={alt ? undefined : "true"}
       loading="lazy"
     />
   );
@@ -40,17 +40,12 @@ function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, 
 // carousel window clips it per breakpoint (matching the Figma overflow). A `video`
 // slide wraps the frame in the shared `.video` link + `Play` badge, reusing the
 // same target and behavior as Solution’s promotional video.
-function Frame({ bg, shadow, fill, video, alt, mockups }) {
+function Frame({ bg, shadow, fill, video, mockups }) {
   const frame = (
     <figure className={cn("work_frame", { "-video": video, "-fill": fill })} style={bg ? { background: bg } : undefined}>
       <span className="work_stage">
-        {mockups.map((mockup, index) => (
-          <Mockup
-            key={mockup.name}
-            {...mockup}
-            shadow={shadow}
-            alt={index === 0 ? alt : ""}
-          />
+        {mockups.map((mockup) => (
+          <Mockup key={mockup.name} {...mockup} shadow={shadow} />
         ))}
       </span>
     </figure>
@@ -77,7 +72,6 @@ Frame.propTypes = {
   shadow: PropTypes.oneOf(["small", "medium", "large"]),
   fill: PropTypes.bool,
   video: PropTypes.shape({ href: PropTypes.string, label: PropTypes.string }),
-  alt: PropTypes.string,
   mockups: PropTypes.array.isRequired,
 };
 
@@ -205,7 +199,7 @@ export default function CasePreview({
               ))
             : Array.from({ length: slides }).map((_, index) => (
                 <li className="work_slide" key={index}>
-                  <span className="work_image" aria-hidden="true" />
+                  <span className="work_image" />
                 </li>
               ))}
         </ul>

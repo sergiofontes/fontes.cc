@@ -22,7 +22,6 @@ function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
       src={`${IMG}/${name}.png`}
       srcSet={srcSet}
       alt={alt}
-      aria-hidden={alt ? undefined : "true"}
       loading="lazy"
       {...rest}
     />
@@ -149,7 +148,7 @@ function ConfigCarousel() {
 export default function Solution() {
   return (
     <section id="solution" className="solution">
-      {/* Block 1 — lede + promotional video ─────────────────────────────── */}
+      {/* Block 1 — lede + promotional video */}
       <div className="solution_intro grid content">
         <h2 className="content_heading">Solution</h2>
 
@@ -176,7 +175,13 @@ export default function Solution() {
           aria-label="Watch the Online Catalog promotional video"
         >
           <figure className="solution_frame -video">
-            <Media name="video_promo" scales={[1, 2]} width={533} height={310} alt="" />
+            <Media
+              name="video_promo"
+              scales={[1, 2]}
+              width={533}
+              height={310}
+              alt="A still from the promotional video — a WhatsApp-style chat where a customer messages Boni Burger asking to see the menu."
+            />
           </figure>
           <Play />
         </a>
@@ -197,7 +202,7 @@ export default function Solution() {
         ))}
       </div>
 
-      {/* Block 3 — printed & social templates ───────────────────────────── */}
+      {/* Block 3 — printed & social templates */}
       <div className="solution_templates grid content">
         <aside className="note solution_note -templates">
           A variety of templates for social media and printed materials help
@@ -226,12 +231,12 @@ export default function Solution() {
         </div>
       </div>
 
-      {/* Block 4 — setup carousel ────────────────────────────────────────── */}
+      {/* Block 4 — setup carousel */}
       <div className="solution_config grid content">
         <ConfigCarousel />
       </div>
 
-      {/* Block 5 — store customization on mobile ────────────────────────── */}
+      {/* Block 5 — store customization on mobile */}
       <div className="solution_custom grid content">
         <div className="solution_pair -phones">
           <figure className="solution_frame -phone">
@@ -253,7 +258,7 @@ export default function Solution() {
         </aside>
       </div>
 
-      {/* Block 6 — responsive across devices ────────────────────────────── */}
+      {/* Block 6 — responsive across devices */}
       <div className="solution_devices grid content">
         <figure className="solution_frame -devices">
           <picture>

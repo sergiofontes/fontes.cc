@@ -22,13 +22,12 @@ export default function Cover({ logo, label, category, title, summary, image }) 
   return (
     <header id="cover" className="hero cover grid">
       <img
-        className="cover_art"
+        className="hero_art cover_art"
         src={image.src}
         srcSet={image.src2x ? `${image.src} 1x, ${image.src2x} 2x` : undefined}
         width={image.width}
         height={image.height}
         alt={image.alt || ""}
-        aria-hidden={image.alt ? undefined : "true"}
       />
 
       <div className="cover_main">
