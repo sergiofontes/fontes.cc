@@ -1,0 +1,65 @@
+@import "../../styles/scaffold";
+
+.anchor {
+  display: inline-block;
+
+  svg {
+    position: relative;
+    display: inline-block;
+    width: 1rem;
+    vertical-align: middle;
+    transition: margin-left .15s ease-in-out;
+  }
+
+  span { display: none; }
+}
+
+// Screen-reader-only “opens in a new tab” hint; the double selector beats the
+// `.anchor span { display: none }` rule above so it stays in the a11y tree.
+.anchor .anchor_newtab {
+  display: inline-block;
+
+  @include fontless;
+}
+
+.anchor_external {
+  svg { margin-left: calc(var(--gap) / 4); }
+
+  &:hover, &:active, &:focus {
+    svg { margin-left: calc(var(--gap) / 3); }
+  }
+}
+
+.anchor_social {
+  svg {
+    margin-right: .2rem;
+    path { fill: var(--color-subtitle); }
+  }
+
+  &:hover, &:active, &:focus {
+    svg path { fill: var(--color-text); }
+  }
+}
+
+.anchor_linkedin svg {
+  top: -3px;
+  width: .9rem;
+}
+
+.anchor.-offline {
+  cursor: not-allowed;
+
+  span {
+    display: inline-block;
+    padding: 2px 2px 3px;
+    margin-left: calc(var(--gap) / 4);
+    font-size: .7em;
+    line-height: 1;
+    color: var(--color-subtitle);
+    text-transform: uppercase;
+    border: 1px solid var(--color-subtle);
+    border-radius: var(--radius-small);
+  }
+
+  svg { display: none; }
+}

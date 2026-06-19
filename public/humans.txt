@@ -1,0 +1,26 @@
+/* TEAM */
+
+	Copy, Design & Code: Sérgio Fontes
+	Site: https://fontes.cc
+	Contact: sergio [at] fontes.cc
+	LinkedIn: linkedin.com/in/osergiofontes
+	GitHub: github.com/sergiofontes
+	From: Brazil
+
+/* THANKS */
+
+	Collaborators on the featured work —
+	Vinícius Alcântara, Fausto Junior, Nathália Moura, Renata Motta,
+	Filipe Soares, Fanny Chien, Juliana Carvalho
+
+/* SITE */
+
+	Last update: 2026/06/19
+	Language: English
+	Doctype: HTML5
+	Standards: HTML5, CSS3 (Sass), JavaScript
+	Components: Next.js, React
+	Fonts: Schibsted Grotesk, DM Sans, Abril Fatface
+	Design: Figma
+	Hosting: Vercel
+	Source: github.com/sergiofontes/fontes.cc

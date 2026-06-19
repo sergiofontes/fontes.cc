@@ -1,0 +1,102 @@
+@import "../../styles/scaffold";
+
+// Cover scaffold (height, inverse colours, padding) comes from `.hero`.
+.header {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-auto-flow: column;
+  row-gap: calc(var(--gap) * 2);
+  align-items: end;
+
+  h1 {
+    top: 3px;
+    grid-column: 1 / span var(--columns-total);
+    margin: 0;
+  }
+
+  .header_title, .header_intro { grid-column: 1 / span var(--columns-total); }
+  .header_intro { grid-row: 1; }
+  .header_title { grid-row: 2; }
+  .content_divisors { border-color: var(--color-text-inverse); }
+
+  @include media(">tablet") {
+    grid-template-rows: 1fr auto auto;
+
+    h1 {
+      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+      text-align: left;
+    }
+
+    .content_divisors { grid-column: var(--content-start) / -1; }
+
+    @include media("<=desktop") {
+      .content_columns { display: block; }
+
+      .header_intro {
+        grid-row: 2;
+        grid-column-end: span calc(var(--columns) + 1);
+      }
+
+      .header_title { grid-row: 3; }
+    }
+  }
+
+  @include media(">desktop") {
+    grid-template-rows: auto 1fr;
+
+    .header_intro { grid-row: 1; }
+
+    h1 {
+      top: 5px;
+      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+    }
+
+    .header_title {
+      grid-row: 2;
+      align-self: end;
+    }
+  }
+}
+
+// Home portrait melting into the cover. Placement comes from `.hero_art`; here only
+// the Figma widths and `lighten`, which keeps the white title legible over the art.
+.header_art {
+  width: 23.4667rem; // 352px (Figma)
+  mix-blend-mode: lighten;
+
+  @include media(">tablet") { width: 30rem; } // 523px (Figma)
+
+  @include media(">desktop") { width: min(33rem, 100%); }
+}
+
+.header_title {
+  justify-content: start;
+  width: 100%;
+  overflow: hidden;
+
+  h1 { left: -.5rem; }
+
+  b {
+    position: relative;
+    left: .45em;
+    display: block;
+  }
+
+  @include media(">desktop") {
+    b { left: .6em; }
+  }
+
+  [class*="Typewriter__cursor"] { animation-timing-function: cubic-bezier(.75, 0, .04, 1.01); }
+}
+
+.header_intro {
+  i { display: block; }
+  p { display: inline; }
+  .lead { line-height: 1; }
+
+  @include media(">desktop") {
+    align-items: end;
+    p { display: block; }
+  }
+}

@@ -81,5 +81,12 @@ module.exports = {
     'scss/selector-no-redundant-nesting-selector': true,
     'scss/at-rule-no-unknown': true,
     'scss/at-import-partial-extension': null,
+    'selector-class-pattern': [
+      /^(-[a-z0-9]+(-[a-z0-9]+)*|[a-z0-9]+(-[a-z0-9]+)*(_[a-z0-9]+(-[a-z0-9]+)*)?)$/,
+      {
+        message:
+          'Expected class to follow Lean BEM: block-name, block_element, or -modifier',
+      },
+    ],
   },
 }

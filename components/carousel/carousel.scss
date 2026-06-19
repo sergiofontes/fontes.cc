@@ -1,0 +1,25 @@
+// The horizontal scroll-snap track shared by `Work` and `Solution`: a flex row
+// with a hidden scrollbar. Each consumer keeps its own placement and snap padding.
+
+@import "../../styles/scaffold";
+
+.carousel {
+  display: flex;
+  gap: var(--gap);
+  width: 100%; // grid children collapse without this (justify-items: start)
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  @include media("<=tablet") { gap: calc(var(--gap) * 2); }
+
+  &::-webkit-scrollbar { display: none; }
+
+  &:focus-visible {
+    outline: var(--border-focus) solid var(--color-focus-ring);
+  }
+}

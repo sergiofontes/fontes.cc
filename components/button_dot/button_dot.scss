@@ -1,0 +1,54 @@
+@import "../../styles/scaffold";
+
+.button_dot {
+  @include buttonless;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  border-radius: 12px;
+
+  &::before {
+    display: block;
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    content: "";
+    background-color: var(--color-subtle);
+    border-radius: 50%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform .15s ease-in-out;
+
+    &::before {
+      transition:
+        width .2s ease-in-out,
+        height .2s ease-in-out,
+        background-color .2s ease-in-out;
+    }
+  }
+
+  &:hover::before {
+    width: 14px;
+    height: 14px;
+  }
+
+  &.-active::before {
+    width: 14px;
+    height: 14px;
+    background-color: var(--color-text);
+  }
+
+  // Press and focus outline come from the shared control states.
+  &:focus-visible { outline-offset: 0; }
+
+  // Focus grows the dot like hover, keeping its active/inactive color
+  &:focus-visible::before {
+    width: 14px;
+    height: 14px;
+  }
+}

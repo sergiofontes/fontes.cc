@@ -1,26 +1,28 @@
-///////////////////////////////////////////////////////////////////////////////
-// Colors                                                                    //
-///////////////////////////////////////////////////////////////////////////////
-
 :root {
   // stylelint-disable
-  --black             : #211d1d;
+  --black             : #202020;
   --white             : #fbfbfb;
-  --gray              : #787575;
-  --gray-light        : #b0aeae;
+  --gray              : #838383;
+  --gray-mid          : #646464;
+  --gray-light        : #bbbbbb;
+  --red               : #b52025;
 
   --color-primary     : var(--black);
 
   --color-text        : var(--black);
   --color-text-inverse: var(--white);
+  --color-text-dim    : var(--gray);
+  --color-text-inverse-dim: #ffffff80;
   --color-subtitle    : var(--gray);
+  --color-accent      : var(--red);
   --color-cover       : var(--black);
   --color-background  : var(--white);
+  --color-surface-dim : #0000000a;
   --color-subtle      : var(--gray-light);
-  --color-focus-ring  : var(--white);
+  --color-focus-ring  : #c53333;
   --color-focus-bkg   : var(--black);
   // stylelint-enable
-  
+
   color: var(--color-text);
   background-color: var(--color-background);
 }

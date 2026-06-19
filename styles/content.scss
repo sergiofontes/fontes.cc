@@ -1,7 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Content Container                                                         //
-///////////////////////////////////////////////////////////////////////////////
-
 @import "scaffold";
 
 :root {
@@ -30,16 +26,11 @@
 
   h2, h3 { margin-top: .266667rem; }
 
+  // Rotation comes from `.content_heading`; here only the sticky offset + margin.
   h2 {
     position: sticky;
     top: calc(var(--logo-size) + var(--gap) + 1rem);
-    z-index: 2;
-    grid-column: var(--heading-start) / span var(--heading-width);
-    align-self: start;
-    justify-self: end;
     margin-top: -.6875rem;
-    transform: rotate(-90deg);
-    transform-origin: bottom right;
   }
 
   p {
@@ -47,57 +38,153 @@
     + p { margin-top: 1.5rem; }
   }
 
-  .column, .columns, .divisor, .divisors {
-    grid-column-start: var(--content-start);
-    grid-column-end: span var(--content-width);
-    width: 100%;
-  }
-
-  .divisor, .divisors { border-bottom: 2px solid var(--color-text); }
-  .last { grid-column-end: span calc(var(--content-width) + 1); }
-
   @include media(">tablet") {
     row-gap: var(--gap);
     align-items: start;
 
     h2 { top: 1rem; }
     p + p { margin-top: 0; }
-    .column, .columns { grid-row: 1; }
-    .divisor, .divisors { grid-row: 2; }
-    .column { grid-column-start: auto; }
-
-    .columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column-start: auto;
-      grid-column-end: span calc(var(--content-width) * 2);
-      grid-auto-flow: column;
-      gap: var(--gap);
-    }
-
-    .column, .divisor {
-      grid-column-end: span var(--content-width);
-      &:nth-of-type(1) { grid-column-start: var(--content-start); }
-      &:nth-of-type(2) { grid-column-start: calc(var(--content-start) + var(--content-width)); }
-      &:nth-of-type(3) { grid-column-start: calc(var(--content-start) + var(--content-width) + var(--content-width)); }
-    }
-
-    .divisors { grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 2); }
   }
 
   @include media(">desktop") {
     align-items: stretch;
 
-    .columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
-
     h2 {
       top: var(--gap);
-      grid-column: var(--heading-start) / span var(--heading-width);
       margin-top: .266667rem;
       white-space: normal;
-      transform: unset;
     }
 
     h2, h3 { margin-top: .266667rem; }
+  }
+}
+
+.content_column,
+.content_columns,
+.content_divisor,
+.content_divisors {
+  grid-column-start: var(--content-start);
+  grid-column-end: span var(--content-width);
+  width: 100%;
+}
+
+.content_divisor,
+.content_divisors { border-bottom: 1px solid var(--color-text); }
+
+// Closing divider. Low specificity so the responsive spans below govern its reach
+// (penultimate column on tablet/desktop); on mobile it runs one column into the
+// trailing gutter to meet the screen edge.
+.-last { grid-column-end: span calc(var(--content-width) + 1); }
+
+// A `-last` divider closes a section’s final subsection (or a single section), so it
+// reaches the screen edge at every breakpoint — out-specifying the responsive spans
+// below. Non-final subsection dividers keep their base span (penultimate column).
+.content_divisor.-last,
+.content_divisors.-last { grid-column-end: -1; }
+
+@include media(">tablet") {
+  .content_column, .content_columns { grid-row: 1; }
+  .content_divisor, .content_divisors { grid-row: 2; }
+  .content_column { grid-column-start: auto; }
+
+  .content_columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-start: auto;
+    grid-column-end: span calc(var(--content-width) * 2);
+    grid-auto-flow: column;
+    gap: var(--gap);
+  }
+
+  .content_column, .content_divisor {
+    grid-column-end: span var(--content-width);
+    &:nth-of-type(1) { grid-column-start: var(--content-start); }
+    &:nth-of-type(2) { grid-column-start: calc(var(--content-start) + var(--content-width)); }
+    &:nth-of-type(3) { grid-column-start: calc(var(--content-start) + var(--content-width) + var(--content-width)); }
+  }
+
+  .content_divisors {
+    grid-column: calc(var(--content-start) + var(--content-width)) / span calc(var(--content-width) * 2);
+  }
+}
+
+@include media(">desktop") {
+  .content_columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
+}
+
+// Shared section placements. Each owns its `grid-column` only; consumers keep
+// their own `grid-row`, typography, and any single-breakpoint exception.
+
+// Rotated gutter heading. Each consumer keeps its own sticky offset, `grid-row`,
+// `margin`, and `white-space`.
+.content_heading {
+  z-index: 2;
+  grid-column: var(--heading-start) / span var(--heading-width);
+  align-self: start;
+  justify-self: end;
+  transform: rotate(-90deg);
+  transform-origin: bottom right;
+
+  @include media(">desktop") { transform: none; }
+}
+
+.content_body {
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+
+  // Space stacked paragraphs (no-op for media columns).
+  p + p { margin-top: 1rem; }
+
+  @include media(">tablet") {
+    grid-column: 3 / span 7;
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  }
+}
+
+.content_aside {
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+
+  @include media(">tablet") {
+    grid-column: 10 / span 2;
+    align-self: start;
+  }
+
+  @include media(">desktop") {
+    grid-column: calc(var(--content-start) + var(--content-width) * 2) / span var(--content-width);
+  }
+
+  &.-center {
+    @include media(">tablet") { align-self: center; }
+  }
+}
+
+.content_media {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.content_rule {
+  grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  width: 100%;
+  border-bottom: 1px solid var(--color-text);
+
+  @include media(">tablet") {
+    grid-column: 3 / span calc(var(--content-width) * 3);
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+  }
+
+  &.-edge {
+    grid-column: var(--content-start) / -1;
+
+    @include media(">tablet") { grid-column: 3 / -1; }
+
+    @include media(">desktop") { grid-column: var(--content-start) / -1; }
   }
 }

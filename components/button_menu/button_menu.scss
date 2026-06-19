@@ -1,0 +1,62 @@
+@import "../../styles/scaffold";
+
+.button_menu {
+  @include buttonless($radius: var(--radius-small));
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: flex-end;
+  justify-content: center;
+  width: var(--button-size);
+  height: var(--button-size);
+  padding: calc(var(--button-size) / 6);
+
+  // Top bar is shorter and right-aligned; bottom bar is full width
+  span {
+    display: block;
+    width: 70%;
+    border-bottom: 3px solid var(--color-background);
+
+    &:last-of-type { width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition:
+      gap .15s ease-in-out,
+      background-color .15s ease-in-out,
+      transform .15s ease-in-out;
+
+    span {
+      transition:
+        width .15s ease-in-out,
+        border-color .15s ease-in-out,
+        transform .15s ease-in-out;
+    }
+  }
+
+  // Hover (closed): bars spread apart; the surface, press, and focus outline
+  // come from the shared control states.
+  &:hover { gap: .75rem; }
+
+  &:focus-visible { outline-offset: 0; }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    span { border-color: var(--color-subtle); }
+  }
+
+  // Open: bars cross into an X
+  &.-open {
+    align-items: center;
+
+    &:hover { gap: .5rem; }
+
+    span {
+      width: 100%;
+
+      &:first-of-type { transform: rotate(45deg) translateX(15%) translateY(100%); }
+      &:last-of-type { transform: rotate(-45deg) translateX(15%) translateY(-120%); }
+    }
+  }
+}

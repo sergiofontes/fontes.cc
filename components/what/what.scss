@@ -1,0 +1,127 @@
+// Reuses the home `content` grid (rotated/sticky `<h2>`, body column, right-hand
+// colophon). The three product mockups are composed and shadowed in CSS.
+
+@import "../../styles/scaffold";
+
+.what { scroll-margin-top: var(--gap); }
+
+.what_media {
+  display: flex;
+  justify-content: center;
+  overflow-x: clip; // contains the mobile bleed so it never scrolls the page
+
+  @include media(">tablet") { grid-row: 1; }
+}
+
+// Width-driven composition: the group keeps a constant ~717/600 ratio and only its
+// width changes, so the prototype’s max heights are enforced as max widths
+// (420/630/717px cap the height at 351/527/600px). It bleeds past the gutters on
+// mobile (html clips overflow-x).
+.what_mockups {
+  position: relative;
+  flex-shrink: 0; // keep the mobile bleed instead of shrinking to the container
+  width: 108%;
+  max-width: 470px;
+  padding-bottom: var(--space-xl);
+
+  @include media(">tablet") {
+    width: 100%;
+    max-width: 630px; // caps height at the tablet prototype (~527px)
+  }
+
+  @include media(">desktop") {
+    max-width: min(61%, 717px); // caps height at the desktop prototype (~600px)
+  }
+}
+
+// One shared device aspect makes the % placement resolution-independent. The
+// centre screen sits in flow (defines the group’s height); the flanks float.
+.what_phone {
+  position: absolute;
+  top: 7.5%;
+  display: block;
+  width: 33.9%;
+  height: auto;
+  filter:
+    drop-shadow(0 2px 6px rgb(0 0 0 / 8%))
+    drop-shadow(0 14px 24px rgb(0 0 0 / 10%))
+    drop-shadow(0 40px 64px rgb(0 0 0 / 8%));
+
+  &.-left { left: 0; }
+  &.-right { right: 0; }
+
+  &.-center {
+    position: relative;
+    top: 0;
+    z-index: 2;
+    width: 39.9%;
+    margin-inline: auto;
+  }
+}
+
+.what_body {
+  @include media(">tablet") {
+    grid-row: 2;
+  }
+}
+
+.what_kpis { margin-top: var(--space-xl); }
+
+.what_kpis-label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  color: var(--color-subtitle);
+}
+
+.what_kpis-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+
+  @include media(">tablet") {
+    flex-direction: row;
+    gap: var(--space-2xl);
+  }
+}
+
+.what_kpis-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.what_kpis-value {
+  font-family: var(--font-title);
+  font-size: 2.2667rem; // 34px
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.what_kpis-caption { color: var(--color-subtitle); }
+
+.what_colophon {
+  @include media(">tablet") {
+    grid-row: 2;
+  }
+}
+
+.what_colophon-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.what_colophon-label,
+.what_colophon-value {
+  color: var(--color-subtitle);
+}
+
+.what_colophon-value { margin: 0; }
+
+.what_divisor {
+  @include media(">tablet") {
+    grid-row: 3;
+  }
+}

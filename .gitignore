@@ -17,6 +17,9 @@
 
 # misc
 .DS_Store
+.stylelint-fix.*.tmp
+.claude/*
+!.claude/skills/
 
 # debug
 npm-debug.log*

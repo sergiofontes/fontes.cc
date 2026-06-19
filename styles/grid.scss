@@ -1,17 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-// Grid                                                                      //
-///////////////////////////////////////////////////////////////////////////////
-
 // stylelint-disable
 @use "sass:math";
 @import "scaffold";
 
-// Grid Properties ////////////////////////////////////////////////////////////
+// Grid properties
 
 // Base value (1rem)
-$base-mob         : 16px;
+$base-mob         : 15px;
 $base             : 15px;
-$base-large       : 16px;
+$base-large       : 15px;
 
 // Mobile
 $columns-mob      : 4;             // Columns number.
@@ -37,6 +33,15 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
 
 // Set all Sass variables as CSS properties.
 :root {
+  --space-xs      : 5px;
+  --space-sm      : 10px;
+  --space-md      : 15px;
+  --space-lg      : 20px;
+  --space-xl      : 30px;
+  --space-2xl     : 45px;
+  --space-3xl     : 90px;
+  --space-4xl     : 120px;
+
   --base          : #{$base-mob};
   --column-max    : #{$column-max};
   --container-max : #{$container-max};
@@ -45,14 +50,14 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
   --gap           : #{$gap-mob};
   --gap-out       : #{$gap-mob-out};
   --gap-delta     : calc(var(--gap-out) - var(--gap));
-  
+
   @include media(">tablet") {
     --base        : #{$base};
     --columns     : #{$columns-tab};
     --gap         : #{$gap-tab};
     --gap-out     : #{$gap-tab-out};
   }
-  
+
   @include media(">desktop") {
     --columns     : #{$columns};
     --gap         : #{$gap};
@@ -65,7 +70,7 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
 }
 // stylelint-enable
 
-// Grid System ////////////////////////////////////////////////////////////////
+// Grid system
 
 .grid {
   position: relative;

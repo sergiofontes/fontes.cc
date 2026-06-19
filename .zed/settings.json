@@ -1,0 +1,13 @@
+{
+  "languages": {
+    "SCSS": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "sh",
+          "arguments": ["scripts/format-scss.sh"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,343 @@
+@import "../../styles/scaffold";
+
+.work {
+  scroll-margin-top: var(--gap);
+}
+
+// One full-width cell the heading overlaps, so the sticky “Work” heading spans the
+// whole section instead of a single case.
+.work_cases {
+  grid-row: 1;
+}
+
+// Each case is its own nested grid so the carousel and colophon align to the
+// shared column lines. The carousel is full-bleed at every breakpoint, so its
+// widths derive from the live grid column.
+.work_case {
+  // One grid column = (track width − the 2 outer gutters − the gaps) ÷ columns,
+  // capped at --column-max so it matches the centered grid past the max width.
+  --work-col:
+    min(
+      calc((100% - 2 * var(--gap-delta) - (var(--columns) + 1) * var(--gap)) / var(--columns)),
+      var(--column-max)
+    );
+
+  // The outer gutter: --gap-delta until the grid centers, then half the slack.
+  --work-gutter: max(var(--gap-delta), calc((100% - var(--container-max) - 2 * var(--gap)) / 2));
+
+  // Leading inset so the first image lines up with the content column. The colophon
+  // supplies this on desktop, so it resets to 0 there.
+  --work-lead: calc(var(--work-gutter) + var(--gap));
+  --work-slide: calc((100% - var(--work-lead)) * .85);
+  --work-image-h: 24rem;
+  row-gap: var(--gap);
+  align-items: start;
+  padding-bottom: var(--spacing);
+
+  &:last-child { padding-bottom: 0; }
+
+  @include media(">tablet") {
+    --work-lead: calc(var(--work-gutter) + var(--work-col) + 2 * var(--gap));
+    --work-slide: calc((100% - var(--work-lead)) * .72);
+    --work-image-h: 26rem;
+    padding-bottom: var(--spacing);
+  }
+
+  // Desktop: each image spans 6 columns + 5 gutters; the colophon takes the
+  // 2-column heading area, so the leading inset is no longer needed.
+  @include media(">desktop") {
+    --work-lead: 0;
+    --work-slide: calc(6 * var(--work-col) + 5 * var(--gap));
+    --work-image-h: 29.6rem; // 444px
+  }
+}
+
+// Heading — rotated via `.content_heading`; only the sticky offset and row are
+// work-specific.
+.work_title {
+  position: sticky;
+  top: calc(var(--logo-size) + var(--gap) + 1rem);
+  grid-row: 1;
+  margin: 0;
+
+  @include media(">tablet") {
+    top: 1rem;
+  }
+
+  @include media(">desktop") {
+    top: var(--gap);
+    margin-top: .266667rem;
+  }
+}
+
+// Header — logo lockup + year + carousel controls
+.work_header {
+  display: flex;
+  grid-row: 1;
+  grid-column: var(--content-start) / span 4;
+  gap: var(--gap);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @include media(">tablet") {
+    grid-column: var(--content-start) / span 9;
+  }
+
+  // Right edge aligns to the last column, like the gallery and divider.
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+  }
+}
+
+.work_lockup {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  min-width: 0;
+
+  // Per-logo widths from the Figma specs (px ÷ 15px root; height follows aspect).
+  // stylelint-disable
+  .logo          { height: auto; }
+  .logo_stone    { width: 5.2667rem; } // 79px
+  .logo_vtex     { width: 5.1333rem; } // 77px
+  .logo_petplate { width: 4.5333rem; } // 68px
+  .logo_guava    { width: 4.9333rem; } // 74px
+  .logo_tropical { width: 4.8rem; }    // 72px
+  // stylelint-enable
+}
+
+// Project subtitle — the global `h3` already supplies the DM Sans 800 uppercase
+// look; only the lockup margin reset is work-specific. Wraps beside the logo when
+// the header is tight (mobile).
+.work_subtitle {
+  margin: 0;
+}
+
+// Handwritten “check the case” note pinned above the featured project’s subtitle.
+// Dropped on mobile, where the header is tightest, like the rest of the lockup chrome.
+.work_note {
+  position: absolute;
+  bottom: calc(100% - .4rem);
+  left: calc(100% - .2rem);
+  display: none;
+  width: 6.6rem;
+  height: auto;
+
+  @include media(">tablet") {
+    display: block;
+  }
+}
+
+.work_controls {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+// Uppercase comes from the `.label` class in the markup.
+.work_year {
+  display: none;
+  color: var(--color-subtitle);
+
+  @include media(">tablet") {
+    display: block;
+  }
+}
+
+.work_arrows {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.work_arrow.-left svg {
+  transform: scaleX(-1);
+}
+
+// Carousel — full-bleed on every breakpoint (`content_media`, gutter to gutter).
+// Only the header pins to row 1; the CTA, gallery, and rule auto-flow after it in
+// DOM order, so a non-featured case (no CTA) collapses to header → gallery → rule
+// without reserving an empty row.
+
+// Shared scroll/snap/scrollbar/focus-ring come from `.carousel`.
+.work_track {
+  align-items: flex-start;
+  overscroll-behavior-x: contain;
+
+  // Snap each image to the content column (matching the leading inset) instead
+  // of the full-bleed left edge.
+  scroll-padding-left: var(--work-lead);
+
+  &:focus-visible { outline-offset: 2px; }
+
+  // Free scroll on desktop: there’s no snap point at the leading edge, so snapping
+  // would pull the start past the colophon’s inset. It rests with the colophon
+  // aligned to the grid instead.
+  @include media(">desktop") {
+    scroll-snap-type: none;
+  }
+}
+
+.work_slide {
+  flex: 0 0 var(--work-slide);
+  scroll-snap-align: start;
+
+  // Trailing breathing room at the scroll end (kept off the track padding so it
+  // doesn’t shrink the percentage basis the slide width derives from).
+  &:last-child { margin-right: var(--gap-out); }
+}
+
+// First image: inset to where the colophon would sit. On desktop the colophon
+// takes that slot (--work-lead is 0), so this is a no-op.
+.work_colophon + .work_slide {
+  margin-left: var(--work-lead);
+}
+
+// Placeholder box for cases whose gallery art isn’t built yet.
+.work_image {
+  display: block;
+  width: 100%;
+  height: var(--work-image-h);
+  background-color: var(--color-surface-dim);
+  border-radius: var(--radius-small);
+}
+
+// A built gallery frame — the carousel window the composition is clipped to. Its
+// `background` (set inline per slide) shows through the gaps between mockups.
+.work_frame {
+  position: relative;
+  width: 100%;
+  height: var(--work-image-h);
+  overflow: hidden;
+  border-radius: var(--radius-small);
+}
+
+// The composition stage: a 534×444 box (the prototype’s frame) pinned to the
+// window’s height and centered, so the mockups keep their proportions and full
+// height while the window crops the sides on narrower breakpoints (and shows a
+// little background on wider ones) — matching the Figma overflow.
+.work_stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 534 / 444;
+  transform: translate(-50%, -50%);
+}
+
+// Website/page previews (full-frame compositions) keep the frame itself at the
+// prototype’s 534×444 ratio and let the stage fill it, so the mockup-to-frame
+// spacing tracks the frame width and matches the Figma margins at every breakpoint
+// — unlike the height-pinned stage, whose width is fixed by the frame’s height.
+.work_frame.-fill {
+  height: auto;
+  aspect-ratio: 534 / 444;
+
+  .work_stage {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    transform: none;
+  }
+}
+
+// Mockups are flat transparent PNGs; the drop-shadow follows their silhouette
+// (the rounded phone/card edges) the way `box-shadow` couldn’t.
+.work_mockup {
+  position: absolute;
+  height: auto;
+  filter: var(--drop-shadow-large);
+
+  &.-medium { filter: var(--drop-shadow-medium); }
+  &.-small { filter: var(--drop-shadow-small); }
+
+  // Annotated diagrams (e.g. the VTEX product-card spec) opt out of the silhouette
+  // drop-shadow; per-mockup `shadow` in the gallery data drives the modifier.
+  &.-flat { filter: none; }
+}
+
+// Video slide — the thumbnail fills the whole frame (cropped); the `.video` link and
+// centered `Play` badge wrapping it are shared with Solution. Its stage drops the
+// 534/444 letterbox so the image bleeds gutter to gutter.
+.work_frame.-video .work_stage {
+  inset: 0;
+  width: 100%;
+  height: 101%;
+  aspect-ratio: auto;
+  transform: none;
+}
+
+.work_frame.-video .work_mockup {
+  inset: 0;
+  width: 100%;
+  height: 101%;
+  object-fit: cover;
+  filter: none;
+}
+
+// Colophon (What I did / Designers) — desktop only. First item inside the track,
+// so it scrolls away with the carousel; sized to the 2-column heading area.
+.work_colophon {
+  display: none;
+
+  @include media(">desktop") {
+    display: block;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    width: calc(2 * var(--work-col) + var(--gap));
+    margin-left: calc(var(--work-gutter) + 3 * var(--gap) + 2 * var(--work-col));
+    text-align: right;
+
+    dl { margin: 0; }
+
+    dt {
+      margin-bottom: 1px;
+      color: var(--color-subtitle);
+    }
+
+    dd {
+      margin: 0 0 var(--space-lg);
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+}
+
+// Featured call-to-action — summary + “Read the case”. Sits between the header and
+// the gallery (above it), placed by DOM order in the auto-flowing case grid.
+.work_cta {
+  display: flex;
+  flex-direction: column;
+  grid-column: var(--content-start) / -1;
+  gap: var(--space-md);
+  align-items: flex-start;
+  width: 100%;
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+  }
+}
+
+.work_summary {
+  margin: 0;
+}
+
+// Each case closes with a `content_rule` at the penultimate column; the final case
+// is the section’s last subsection, so its divider reaches the screen edge instead.
+// Auto grid-row keeps it last in the `work_case` grid.
+.work_case:last-child .content_rule { grid-column-end: -1; }
+
+// Mobile: the shared `content_rule` span overshoots the 4-column grid into implicit
+// tracks, which both stretches a non-last divider to the screen edge and pulls the
+// full-bleed gallery short of it. End on the penultimate line instead (the last case
+// still reaches the edge, above), and sit 30px below the media — like tablet/desktop.
+@include media("<=tablet") {
+  .work_case .content_rule {
+    grid-column-end: -2;
+    margin-top: var(--gap);
+  }
+}

@@ -1,0 +1,31 @@
+@import "../../styles/scaffold";
+
+.button_icon {
+  @include buttonless($radius: var(--radius-small));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition:
+      background-color .15s ease-in-out,
+      transform .15s ease-in-out;
+  }
+
+  // Press, hover surface, and focus outline come from the shared control states.
+  &:focus-visible { outline-offset: 0; }
+
+  &:disabled,
+  &.-disabled {
+    cursor: not-allowed;
+    opacity: .4;
+  }
+}

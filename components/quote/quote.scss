@@ -1,0 +1,62 @@
+// Pull quote, attribution, and a closing hairline on the shared `grid`. Each owns
+// a row so the rule can run wider than the quote. The top gap comes from
+// `Solution`’s bottom padding; this section only pads its bottom.
+
+@import "../../styles/scaffold";
+
+.quote {
+  padding-bottom: var(--space-3xl); // 90 — mobile & desktop
+  scroll-margin-top: var(--gap);
+
+  @include media(">tablet") { padding-bottom: var(--space-4xl); } // 120
+
+  @include media(">desktop") { padding-bottom: var(--space-3xl); } // 90
+}
+
+.quote_figure {
+  row-gap: var(--space-xl); // 30 — column gap stays the grid’s own `--gap`
+
+  @include media(">desktop") { row-gap: var(--space-md); } // 15
+}
+
+.quote_text {
+  grid-row: 1;
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+
+  p { margin-bottom: 0; }
+
+  @include media(">tablet") {
+    grid-column: var(--content-start) / span 8;
+    padding-right: var(--space-md);
+  }
+}
+
+.quote_cite {
+  display: flex;
+  flex-direction: column;
+  grid-row: 2;
+  grid-column: var(--content-start) / span var(--content-width);
+  width: 100%;
+  color: var(--color-subtitle);
+
+  @include media(">tablet") {
+    grid-column: var(--content-start) / span 3;
+  }
+}
+
+// Type from `.label`; the name just overrides the weight.
+.quote_name {
+  font-style: normal; // reset the default italic on <cite>
+  font-weight: 800;
+}
+
+.quote_divisor {
+  grid-row: 3;
+
+  // mobile/tablet row-gap is already 30; only desktop (15px row-gap) needs the
+  // extra 15px to keep a 30px gap above the rule.
+  @include media(">desktop") {
+    margin-top: var(--space-md); // +15 desktop row-gap = 30
+  }
+}

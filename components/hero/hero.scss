@@ -1,0 +1,57 @@
+// Dark, full-height cover shared by the home `Header` and case `Cover`: inverse
+// colours, viewport-height block, padding rhythm. Each keeps its own grid.
+
+@import "../../styles/scaffold";
+
+.hero {
+  height: 85vh; // env/svh fallbacks below keep the menu at the screen bottom on mobile
+  height: calc(85vh - env(safe-area-inset-bottom));
+  height: 85svh;
+  min-height: 44rem;
+  padding-top: var(--gap);
+  background-color: var(--color-cover);
+
+  * {
+    color: var(--color-text-inverse);
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h2 { color: var(--color-text-dim); }
+
+  @include media(">tablet") {
+    min-height: 48rem;
+  }
+
+  @include media(">desktop") {
+    height: 90vh;
+    min-height: 50rem;
+    max-height: var(--header-max-height);
+  }
+}
+
+// Faint cover art shared by both heroes: a non-interactive image, full-bleed and
+// centered on mobile, anchored to the content column on tablet, floating behind the
+// title on desktop. Sits first in the DOM so the text paints on top. Each consumer
+// sets its own width, blend mode, and height.
+.hero_art {
+  position: absolute;
+  grid-row: 1;
+  grid-column: 1 / -1;
+  align-self: start;
+  justify-self: center;
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+  object-fit: contain;
+
+  @include media(">tablet") {
+    grid-column-start: var(--content-start);
+    justify-self: start;
+  }
+
+  @include media(">desktop") {
+    grid-row: 1 / -1;
+    grid-column: var(--content-start) / -1;
+  }
+}

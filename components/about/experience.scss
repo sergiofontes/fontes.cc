@@ -1,0 +1,64 @@
+@import "../../styles/scaffold";
+
+.experience_text {
+  @include media(">tablet") {
+    grid-row: 1;
+  }
+}
+
+.experience_logos {
+  @include media(">tablet") {
+    grid-row: 1;
+  }
+}
+
+.experience_logos-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+  padding: 0;
+  list-style: none;
+
+  .logo {
+    width: auto;
+    height: 28px;
+  }
+
+  @include media(">tablet") {
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    gap: var(--space-lg);
+  }
+}
+
+.experience_logo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+
+  @include media(">tablet") {
+    align-items: flex-start;
+  }
+}
+
+// Uppercase comes from the `.label` class in the markup.
+.experience_period {
+  color: var(--color-subtitle);
+}
+
+// Handwritten “currently” note pinned above the current role’s logo.
+.experience_note {
+  position: absolute;
+  top: -2.1rem;
+  left: 4.4rem;
+  width: 4.27rem;
+  height: auto;
+}
+
+.experience_divisor {
+  @include media(">tablet") {
+    grid-row: 2;
+  }
+}
