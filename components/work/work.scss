@@ -161,11 +161,10 @@
   transform: scaleX(-1);
 }
 
-// Carousel — full-bleed on every breakpoint (gutter to gutter) so it scrolls
-// across the whole screen.
-.work_gallery {
-  grid-row: 2;
-}
+// Carousel — full-bleed on every breakpoint (`content_media`, gutter to gutter).
+// Only the header pins to row 1; the CTA, gallery, and rule auto-flow after it in
+// DOM order, so a non-featured case (no CTA) collapses to header → gallery → rule
+// without reserving an empty row.
 
 // Shared scroll/snap/scrollbar/focus-ring come from `.carousel`.
 .work_track {
@@ -324,7 +323,8 @@
   }
 }
 
-// Featured call-to-action — summary + “Read the case”
+// Featured call-to-action — summary + “Read the case”. Sits between the header and
+// the gallery (above it), placed by DOM order in the auto-flowing case grid.
 .work_cta {
   display: flex;
   flex-direction: column;

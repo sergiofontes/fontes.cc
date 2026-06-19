@@ -158,19 +158,28 @@ export default function CasePreview({
           <span className="work_arrows">
             <ButtonIcon
               classes="work_arrow -left"
-              disabled={atEnd}
-              onClick={() => scrollByStep(1)}
-              aria-label={`Next ${name} image`}
-            />
-            <ButtonIcon
-              classes="work_arrow"
               disabled={atStart}
               onClick={() => scrollByStep(-1)}
               aria-label={`Previous ${name} image`}
             />
+            <ButtonIcon
+              classes="work_arrow"
+              disabled={atEnd}
+              onClick={() => scrollByStep(1)}
+              aria-label={`Next ${name} image`}
+            />
           </span>
         </span>
       </div>
+
+      {featured && summary && (
+        <div className="work_cta">
+          <p className="work_summary">{summary}</p>
+          <Button size="medium" href="/work/catalog" classes="work_button">
+            Read the case
+          </Button>
+        </div>
+      )}
 
       <div
         className="work_gallery content_media"
@@ -201,15 +210,6 @@ export default function CasePreview({
               ))}
         </ul>
       </div>
-
-      {featured && summary && (
-        <div className="work_cta">
-          <p className="work_summary">{summary}</p>
-          <Button size="medium" href="/work/catalog" classes="work_button">
-            Read the case
-          </Button>
-        </div>
-      )}
 
       <span className="content_rule" />
     </article>
