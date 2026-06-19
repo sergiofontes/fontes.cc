@@ -11,6 +11,7 @@ $color-setup: #dff8c3;
 .solution {
   padding-block: var(--space-2xl); // 45 — all breakpoints
   scroll-margin-top: var(--gap);
+  padding-bottom: var(--spacing);
 }
 
 // Gap between sub-blocks (the first needs none).

@@ -65,9 +65,9 @@
   width: 23.4667rem; // 352px (Figma)
   mix-blend-mode: lighten;
 
-  @include media(">tablet") { width: 34.8667rem; } // 523px (Figma)
+  @include media(">tablet") { width: 30rem; } // 523px (Figma)
 
-  @include media(">desktop") { width: min(40rem, 100%); }
+  @include media(">desktop") { width: min(33rem, 100%); }
 }
 
 .header_title {
