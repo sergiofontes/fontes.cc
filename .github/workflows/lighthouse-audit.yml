@@ -5,7 +5,7 @@ jobs:
     audit:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
             - name: Vercel Action
               id: vercel_action
               uses: amondnet/vercel-action@v20
@@ -36,6 +36,9 @@ jobs:
             #           ⏱ Running budget checks...
             - name: Audit URLs using Lighthouse
               id: lighthouse_audit
+              # A flaky 403 from Vercel's edge shouldn't red-X the PR; the
+              # report step runs with `if: always()` and degrades gracefully.
+              continue-on-error: true
               uses: treosh/lighthouse-ci-action@v9
               with:
                   # add as many urls here as you wish to audit
@@ -45,16 +48,32 @@ jobs:
                   # budgetPath: '.github/lighthouse/budget.json'
                   uploadArtifacts: true
                   temporaryPublicStorage: true
-                  runs: 3
+                  # Single run: 3 rapid hits on one deployment tripped Vercel's
+                  # bot mitigation (403). One pass is plenty for an informational audit.
+                  runs: 1
             - name: Format Lighthouse result
               id: lighthouse_result
               if: ${{ always() }}
-              uses: actions/github-script@v4
+              uses: actions/github-script@v7
+              env:
+                  # Pass through env (not raw interpolation) so empty outputs from a
+                  # failed audit can't inject invalid JS into the script body.
+                  LIGHTHOUSE_LINKS: ${{ steps.lighthouse_audit.outputs.links }}
+                  LIGHTHOUSE_MANIFEST: ${{ steps.lighthouse_audit.outputs.manifest }}
               with:
                   github-token: ${{secrets.GITHUB_TOKEN}}
                   script: |
-                      const links = ${{ steps.lighthouse_audit.outputs.links }}
-                      const results = (${{ steps.lighthouse_audit.outputs.manifest }}).filter(result => result.isRepresentativeRun);
+                      const links = JSON.parse(process.env.LIGHTHOUSE_LINKS || '{}');
+                      const manifest = JSON.parse(process.env.LIGHTHOUSE_MANIFEST || '[]');
+                      const results = manifest.filter(result => result.isRepresentativeRun);
+
+                      if (!results.length) {
+                        core.setOutput(
+                          "comment",
+                          "🚦 Lighthouse audit didn’t complete — the preview URL couldn’t be loaded. See the workflow logs for details."
+                        );
+                        return;
+                      }
 
                       const score = res => res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴';
 
@@ -105,7 +124,7 @@ jobs:
             - name: Add Lighthouse comment to PR
               id: lighthouse_comment_to_pr
               if: ${{ always() }}
-              uses: marocchino/sticky-pull-request-comment@v1
+              uses: marocchino/sticky-pull-request-comment@v2
               with:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   number: ${{ github.event.pull_request.number }}
