@@ -101,12 +101,28 @@
     .nav_link:not(:last-child) { margin-bottom: 1rem; }
     .nav_links, .nav_arrow { grid-column: unset; }
     .nav_arrow { display: block; }
-    .nav_button, .nav_divisor, .nav_back { display: none; }
+    .nav_button, .nav_divisor { display: none; }
 
-    // The back link returns to the top of the list (DOM order), dimmed.
+    // The back link returns to the top of the list (DOM order), dimmed, with its
+    // arrow hung in the left margin so the label lines up with the other links.
     .nav_link.-back {
+      position: relative;
       opacity: .5;
       &:hover, &:focus-within { opacity: 1; }
+    }
+
+    .nav_back {
+      position: absolute;
+      top: .15rem;
+      left: -1.5rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      margin: 0;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .grid {

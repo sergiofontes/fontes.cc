@@ -11,7 +11,7 @@ import Footer from "../../components/footer";
 
 // In-page section anchors for this case; “Back to home” returns to the index.
 const CASE_LINKS = [
-  { label: "Back to home", href: "/" },
+  { label: "Back", href: "/" },
   { label: "What", to: "what" },
   { label: "Why & how", to: "why-how" },
   { label: "Solution", to: "solution", spy: true },
