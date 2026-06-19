@@ -1,4 +1,4 @@
-import Anchor from '../../components/anchor';
+import Anchor from "../../components/anchor";
 
 export default function Footer() {
   return (
@@ -11,38 +11,47 @@ export default function Footer() {
       </div>
       <div>
         <small>
-          Designed with{' '}
+          Designed in{" "}
           <Anchor href="https://figma.com" target="_blank">
             Figma
-          </Anchor>{' '}
-          using{' '}
-          <Anchor href="https://fonts.google.com/specimen/Schibsted+Grotesk" target="_blank">
+          </Anchor>{" "}
+          with{" "}
+          <Anchor
+            href="https://fonts.google.com/specimen/Schibsted+Grotesk"
+            target="_blank"
+          >
             Schibsted Grotesk
           </Anchor>
-          ,{' '}
-          <Anchor href="https://fonts.google.com/specimen/DM+Sans" target="_blank">
+          ,{" "}
+          <Anchor
+            href="https://fonts.google.com/specimen/DM+Sans"
+            target="_blank"
+          >
             DM Sans
           </Anchor>
-          ,{' '}
+          ,{" "}
           <Anchor
             href="https://fonts.google.com/specimen/Abril+Fatface"
             target="_blank"
           >
             Abril Fatface
           </Anchor>
-          .{' '}
+          .{" "}
         </small>
         <small>
-          Built with{' '}
+          Built with{" "}
           <Anchor href="https://nextjs.org/" target="_blank">
             Next.js
-          </Anchor>{' '}
-          and hosted at{' '}
+          </Anchor>{" "}
+          and hosted at{" "}
           <Anchor href="https://vercel.com/" target="_blank">
             Vercel
           </Anchor>
-          . Check the source at{' '}
-          <Anchor href="https://github.com/sergiofontes/fontes.cc/" target="_blank">
+          . Check the source at{" "}
+          <Anchor
+            href="https://github.com/sergiofontes/fontes.cc/"
+            target="_blank"
+          >
             GitHub
           </Anchor>
           .
