@@ -6,6 +6,7 @@ import { useState } from "react";
 import ButtonMenu from "../button_menu";
 import Symbol from "../../public/images/symbol.svg";
 import IconArrow from "../../public/images/icon_arrow.svg";
+import IconChevron from "../../public/images/icon_chevron.svg";
 
 // Home navigation: in-page section anchors driven by react-scroll. The last
 // link is spied so its arrow flips when the section is in view.
@@ -94,7 +95,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
                   item.href ? (
                     <>
                       <span className="nav_back" aria-hidden="true">
-                        <IconArrow />
+                        <IconChevron />
                       </span>
                       {item.label}
                     </>
@@ -116,7 +117,10 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
       </nav>
 
       <div className="nav_symbol">
-        {renderTarget(symbol, <Symbol role="img" aria-label="Go to homepage" />)}
+        {renderTarget(
+          symbol,
+          <Symbol role="img" aria-label="Go to homepage" />,
+        )}
       </div>
     </>
   );
