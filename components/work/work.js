@@ -158,7 +158,7 @@ const PETPLATE_GALLERY = [
       {
         name: "preview_petplate_mockup_2",
         left: 2.81,
-        top: 23.42,
+        top: 18.42,
         width: 31.84,
         alt: "The same product on a phone — the “Chicken Apple Sausage Bites 4-Pack” page with its photo carousel, rating, and price.",
       },
@@ -254,7 +254,13 @@ const GUAVA_GALLERY = [
     shadow: "medium",
     mockups: [
       // Repeats the previous frame’s work page bleeding in for continuity → decorative.
-      { name: "preview_guava_1_mockup_2", left: -48.13, top: 19.82, width: 93.63, alt: "" },
+      {
+        name: "preview_guava_1_mockup_2",
+        left: -48.13,
+        top: 19.82,
+        width: 93.63,
+        alt: "",
+      },
       {
         name: "preview_guava_2_mockup_3",
         left: 23.03,
@@ -269,7 +275,13 @@ const GUAVA_GALLERY = [
     shadow: "medium",
     mockups: [
       // Repeats the previous frame’s about page bleeding in for continuity → decorative.
-      { name: "preview_guava_2_mockup_3", left: -82.58, top: -6.08, width: 93.63, alt: "" },
+      {
+        name: "preview_guava_2_mockup_3",
+        left: -82.58,
+        top: -6.08,
+        width: 93.63,
+        alt: "",
+      },
       {
         name: "preview_guava_3_mockup_4",
         left: 3.18,
