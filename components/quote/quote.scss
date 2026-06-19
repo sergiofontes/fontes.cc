@@ -24,6 +24,8 @@
   grid-column: var(--content-start) / span var(--content-width);
   width: 100%;
 
+  p { margin-bottom: 0; }
+
   @include media(">tablet") {
     grid-column: var(--content-start) / span 8;
     padding-right: var(--space-md);
