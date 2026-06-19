@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const IMG = "/images/work/catalog";
 
 export default function Why() {
@@ -31,31 +33,31 @@ export default function Why() {
           top. Both decks are flat covers tilted and shadowed entirely in CSS. */}
       <div className="why_gallery content_body">
         <div className="why_board">
-          <img
+          <Image
             className="why_image"
             src={`${IMG}/discovery.png`}
             width={2772}
             height={1328}
+            sizes="(min-width: 1201px) 800px, (min-width: 768px) 75vw, 92vw"
             alt="Discovery board mapping the research behind the project."
-            loading="lazy"
           />
         </div>
         <div className="why_cards">
-          <img
+          <Image
             className="why_card -vender"
             src={`${IMG}/capa_vender_original@2x.png`}
             width={1000}
             height={563}
+            sizes="(min-width: 1201px) 267px, (min-width: 768px) 204px, 141px"
             alt="A discovery deck cover titled “Vender Mais” (Sell more), showing a customer paying by phone at a Stone card machine."
-            loading="lazy"
           />
-          <img
+          <Image
             className="why_card -atrair"
             src={`${IMG}/capa_atrair_original@2x.png`}
             width={1000}
             height={563}
+            sizes="(min-width: 1201px) 267px, (min-width: 768px) 204px, 141px"
             alt="A discovery deck cover titled “Atrair” (Attract), showing a Stone agent presenting a phone to a shop owner."
-            loading="lazy"
           />
         </div>
       </div>

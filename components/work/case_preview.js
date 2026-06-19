@@ -1,36 +1,54 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
+import Image from "next/image";
 
 import Logo from "../logos/";
 import Button from "../button";
 import ButtonIcon from "../button_icon";
 import Play from "../play";
 import Handnote from "../../public/images/handnote_2.svg";
+import MOCKUP_SIZES from "./mockup-sizes";
 
 const DIRS = {
   previews: "/images/work/previews",
   catalog: "/images/work/catalog",
 };
 
-// A flat mockup PNG positioned (in %) inside the gallery frame. `scales` lists the
-// densities it ships at, so the srcSet stays honest; the layered shadow is composed
-// in CSS via the `shadow` modifier (`-small`/`-medium`, or the default large). Each
-// mockup carries its own `alt`; continuity repeats pass an empty `alt` to stay decorative.
-function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, shadow, alt = "" }) {
+// A flat mockup positioned (in %) inside the gallery frame. `next/image` serves the
+// sharpest source (the highest `scale` shipped) as AVIF/WebP and lazy-loads by
+// default; the layered shadow is composed in CSS via the `shadow` modifier
+// (`-small`/`-medium`/`-flat`, or the default large). Each mockup carries its own
+// `alt`; continuity repeats pass an empty `alt` to stay decorative.
+function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, shadow, fill, alt = "" }) {
   const base = `${DIRS[dir]}/${name}`;
-  const srcSet = scales
-    .map((s) => `${base}${s > 1 ? `@${s}x` : ""}.png ${s}x`)
-    .join(", ");
+  const max = Math.max(...scales);
+  const src = `${base}${max > 1 ? `@${max}x` : ""}.png`;
+  const [w, h] = MOCKUP_SIZES[name] || [4, 3];
+
+  // The mockup renders at a `width` share of its basis. Height-pinned stage frames
+  // give a fixed basis per breakpoint (stage width 433/469/534); full-frame (`fill`)
+  // and video frames scale with the slide, so they get a slide-relative `sizes`.
+  const sizes =
+    width == null
+      ? "(min-width: 1201px) 700px, (min-width: 768px) 62vw, 78vw"
+      : fill
+        ? `(min-width: 1201px) ${Math.round((width / 100) * 700)}px, (min-width: 768px) ${((width / 100) * 62).toFixed(1)}vw, ${((width / 100) * 78).toFixed(1)}vw`
+        : `(min-width: 1201px) ${Math.round((width / 100) * 534)}px, (min-width: 768px) ${Math.round((width / 100) * 469)}px, ${Math.round((width / 100) * 433)}px`;
 
   return (
-    <img
-      className={cn("work_mockup", { "-small": shadow === "small", "-medium": shadow === "medium" })}
-      src={`${base}.png`}
-      srcSet={srcSet}
+    <Image
+      className={cn("work_mockup", {
+        "-small": shadow === "small",
+        "-medium": shadow === "medium",
+        "-flat": shadow === "none",
+      })}
+      src={src}
+      width={w}
+      height={h}
+      sizes={sizes}
       style={left == null ? undefined : { left: `${left}%`, top: `${top}%`, width: `${width}%` }}
       alt={alt}
-      loading="lazy"
     />
   );
 }
@@ -45,7 +63,12 @@ function Frame({ bg, shadow, fill, video, mockups }) {
     <figure className={cn("work_frame", { "-video": video, "-fill": fill })} style={bg ? { background: bg } : undefined}>
       <span className="work_stage">
         {mockups.map((mockup) => (
-          <Mockup key={mockup.name} {...mockup} shadow={shadow} />
+          <Mockup
+            key={mockup.name}
+            {...mockup}
+            shadow={mockup.shadow ?? shadow}
+            fill={fill}
+          />
         ))}
       </span>
     </figure>

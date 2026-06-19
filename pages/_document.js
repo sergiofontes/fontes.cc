@@ -26,10 +26,6 @@ export default function Document() {
         />
         <link rel="manifest" href="favicons/site.webmanifest" />
         <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#211d1d" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:wght@400;700&family=Schibsted+Grotesk:wght@400..900&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <body>
         <Main />

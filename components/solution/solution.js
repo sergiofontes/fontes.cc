@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import Image, { getImageProps } from "next/image";
 
 import ButtonDot from "../button_dot";
 import Play from "../play";
@@ -8,24 +9,15 @@ const IMG = "/images/work/catalog";
 // The promotional video lives on YouTube; the play button links out to it.
 const VIDEO_URL = "https://www.youtube.com/watch?v=J0cINzc2ziE";
 
-// Every mockup is a plain transparent/flat asset; the framing (mask + radius)
-// and the layered drop shadow are composed entirely in CSS. `scales` lists the
-// densities each asset ships at (some only have 1x), so the srcSet stays honest.
+// Every mockup is a plain transparent/flat asset; the framing (mask + radius) and
+// the layered drop shadow are composed entirely in CSS. `next/image` serves the
+// sharpest source (the highest `scale` shipped) as AVIF/WebP and lazy-loads by
+// default; each call passes the `sizes` for its frame's render width.
 function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
-  const srcSet = scales
-    .map((s) => `${IMG}/${name}${s > 1 ? `@${s}x` : ""}.png ${s}x`)
-    .join(", ");
+  const max = Math.max(...scales);
+  const src = `${IMG}/${name}${max > 1 ? `@${max}x` : ""}.png`;
 
-  return (
-    <img
-      className="solution_media"
-      src={`${IMG}/${name}.png`}
-      srcSet={srcSet}
-      alt={alt}
-      loading="lazy"
-      {...rest}
-    />
-  );
+  return <Image className="solution_media" src={src} alt={alt} {...rest} />;
 }
 
 // The six “sharing” cards keep their own native heights (Slack message, Instagram
@@ -115,6 +107,7 @@ function ConfigCarousel() {
                 scales={[1, 2]}
                 width={1280}
                 height={874}
+                sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
                 alt={`Online Catalog backoffice: ${label}.`}
               />
             </figure>
@@ -142,6 +135,37 @@ function ConfigCarousel() {
         </div>
       </aside>
     </>
+  );
+}
+
+// The responsive composite is art-directed: a portrait device stack on mobile/
+// tablet, a landscape arrangement on desktop. `next/image` can't swap sources by
+// media query, so `getImageProps` builds the optimized (AVIF/WebP) srcSets and a
+// `<picture>` keeps the single-fetch art direction.
+function ResponsiveDevices() {
+  const alt =
+    "The Online Catalog adapting across desktop, tablet, and mobile devices.";
+
+  const { props: desktop } = getImageProps({
+    src: `${IMG}/responsive_desktop@3x.png`,
+    alt,
+    width: 1245,
+    height: 750,
+    sizes: "90vw",
+  });
+  const { props: mobile } = getImageProps({
+    src: `${IMG}/responsive@3x.png`,
+    alt,
+    width: 537,
+    height: 973,
+    sizes: "92vw",
+  });
+
+  return (
+    <picture>
+      <source media="(min-width: 1201px)" srcSet={desktop.srcSet} sizes={desktop.sizes} />
+      <img className="solution_media" {...mobile} />
+    </picture>
   );
 }
 
@@ -180,6 +204,7 @@ export default function Solution() {
               scales={[1, 2]}
               width={533}
               height={310}
+              sizes="(min-width: 1201px) 560px, (min-width: 768px) 55vw, 92vw"
               alt="A still from the promotional video — a WhatsApp-style chat where a customer messages Boni Burger asking to see the menu."
             />
           </figure>
@@ -197,7 +222,13 @@ export default function Solution() {
       <div className="solution_sharing">
         {SHARING.map(({ name, height, alt }) => (
           <figure className="solution_frame -share" key={name}>
-            <Media name={`sharing_${name}`} width={197} height={height} alt={alt} />
+            <Media
+              name={`sharing_${name}`}
+              width={197}
+              height={height}
+              sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
+              alt={alt}
+            />
           </figure>
         ))}
       </div>
@@ -214,8 +245,8 @@ export default function Solution() {
             <Media
               name="stationary_2"
               scales={[1]}
-              width={252}
-              height={310}
+              fill
+              sizes="(min-width: 1201px) 260px, (min-width: 768px) 30vw, 92vw"
               alt="A printed table tent showing the store’s logo and the catalog’s QR code."
             />
           </figure>
@@ -223,8 +254,8 @@ export default function Solution() {
             <Media
               name="stationary_1"
               scales={[1]}
-              width={252}
-              height={310}
+              fill
+              sizes="(min-width: 1201px) 260px, (min-width: 768px) 30vw, 92vw"
               alt="A printed flyer and business card with the store’s logo and the catalog’s QR code."
             />
           </figure>
@@ -240,13 +271,20 @@ export default function Solution() {
       <div className="solution_custom grid content">
         <div className="solution_pair -phones">
           <figure className="solution_frame -phone">
-            <Media name="mockup_plp" width={247} height={510} alt="The default catalog on a phone, showing the product list." />
+            <Media
+              name="mockup_plp"
+              width={247}
+              height={510}
+              sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
+              alt="The default catalog on a phone, showing the product list."
+            />
           </figure>
           <figure className="solution_frame -phone">
             <Media
               name="mockup_plp_custom"
               width={247}
               height={510}
+              sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
               alt="A catalog customized with the merchant’s brand colors and banner."
             />
           </figure>
@@ -261,13 +299,7 @@ export default function Solution() {
       {/* Block 6 — responsive across devices */}
       <div className="solution_devices grid content">
         <figure className="solution_frame -devices">
-          <picture>
-            <source
-              media="(min-width: 1201px)"
-              srcSet={`${IMG}/responsive_desktop.png 1x, ${IMG}/responsive_desktop@2x.png 2x, ${IMG}/responsive_desktop@3x.png 3x`}
-            />
-            <Media name="responsive" width={720} height={1306} alt="The Online Catalog adapting across desktop, tablet, and mobile devices." />
-          </picture>
+          <ResponsiveDevices />
         </figure>
 
         <aside className="note solution_note -devices">

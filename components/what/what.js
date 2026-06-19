@@ -1,19 +1,21 @@
+import Image from "next/image";
+
 const IMG = "/images/work/catalog";
 
 // The three product mockups are composed with CSS (positioning + drop shadows);
 // the assets are plain transparent phone renders. Each phone shows a different
 // part of the catalog (store profile, product page, product list), so each gets
-// its own descriptive alt.
-function Phone({ name, modifier, width, height, alt }) {
+// its own descriptive alt. `next/image` serves the @3x source as AVIF/WebP and
+// lazy-loads by default; `sizes` matches the phone’s fixed render width per mode.
+function Phone({ name, modifier, width, height, sizes, alt }) {
   return (
-    <img
+    <Image
       className={`what_phone ${modifier}`}
-      src={`${IMG}/${name}.png`}
-      srcSet={`${IMG}/${name}.png 1x, ${IMG}/${name}@2x.png 2x, ${IMG}/${name}@3x.png 3x`}
+      src={`${IMG}/${name}@3x.png`}
       width={width}
       height={height}
+      sizes={sizes}
       alt={alt}
-      loading="lazy"
     />
   );
 }
@@ -28,6 +30,7 @@ export default function What() {
             modifier="-left"
             width={247}
             height={510}
+            sizes="(min-width: 1201px) 245px, (min-width: 768px) 215px, 165px"
             alt="The store’s profile in the catalog — its logo, tagline, address, and opening hours."
           />
           <Phone
@@ -35,6 +38,7 @@ export default function What() {
             modifier="-center"
             width={291}
             height={600}
+            sizes="(min-width: 1201px) 290px, (min-width: 768px) 255px, 190px"
             alt="A product page in the catalog, with the item’s photo, price, description, and an add-to-cart button."
           />
           <Phone
@@ -42,6 +46,7 @@ export default function What() {
             modifier="-right"
             width={247}
             height={510}
+            sizes="(min-width: 1201px) 245px, (min-width: 768px) 215px, 165px"
             alt="The catalog’s product list, with a search field, category filters, and items grouped by type."
           />
         </div>

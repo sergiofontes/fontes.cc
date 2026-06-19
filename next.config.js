@@ -36,4 +36,12 @@ module.exports = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+  images: {
+    // Serve modern formats; the optimizer negotiates per request via Accept.
+    formats: ['image/avif', 'image/webp'],
+    // Small fixed widths the composed mockups/cards render at, so the browser can
+    // pick a tight candidate instead of jumping to the smallest device size (640).
+    imageSizes: [16, 32, 48, 64, 96, 128, 200, 256, 320, 384, 512],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+  },
 };

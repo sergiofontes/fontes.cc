@@ -1,16 +1,18 @@
+import Image from 'next/image';
 import Typewriter from 'typewriter-effect';
 
 export default function Header() {
   return (
     <header id="hi" className="hero header grid">
-      <img
+      <Image
         className="hero_art header_art"
-        src="/images/cover_home.png"
-        srcSet="/images/cover_home.png 1x, /images/cover_home@2x.png 2x"
-        width={371}
-        height={371}
+        src="/images/cover_home@2x.png"
+        width={742}
+        height={742}
+        sizes="(min-width: 1201px) 495px, (min-width: 768px) 450px, 352px"
         alt=""
         aria-hidden="true"
+        priority
       />
 
       <section className="header_title grid content">

@@ -50,6 +50,14 @@
 html { overflow-x: clip; }
 body { background-color: var(--color-cover); }
 
+// Typographic root: `_app` applies next/font's `--font-body/title/hero` here. The
+// wrapper carries no box (`display: contents`) so it never affects layout — it only
+// re-roots `font-family` to the variable fonts for the whole app subtree.
+.fonts {
+  display: contents;
+  font-family: var(--font-body);
+}
+
 // Presentational images; prevent selecting/dragging.
 img {
   user-select: none;

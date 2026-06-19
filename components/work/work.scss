@@ -254,22 +254,10 @@
 
   &.-medium { filter: var(--drop-shadow-medium); }
   &.-small { filter: var(--drop-shadow-small); }
-}
 
-// The VTEX web product-card spec is an annotated diagram (labels + leader lines),
-// not a floating mockup, so it opts out of the silhouette drop-shadow. The rule
-// keys off the 1x `src`, covering every density variant of the same image.
-.work_mockup[src$="preview_vtex_specs.png"] {
-  filter: none;
-}
-
-// These read as smaller cards within their frames, so they take the small
-// drop-shadow regardless of their frame’s default (medium). Keyed off the 1x
-// `src`, so each rule covers every density variant of the same image.
-.work_mockup[src$="preview_vtex_cards.png"],
-.work_mockup[src$="preview_petplate_mockup_5.png"],
-.work_mockup[src$="preview_petplate_mockup_6.png"] {
-  filter: var(--drop-shadow-small);
+  // Annotated diagrams (e.g. the VTEX product-card spec) opt out of the silhouette
+  // drop-shadow; per-mockup `shadow` in the gallery data drives the modifier.
+  &.-flat { filter: none; }
 }
 
 // Video slide — the thumbnail fills the whole frame (cropped); the `.video` link and

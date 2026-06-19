@@ -98,6 +98,7 @@ const VTEX_GALLERY = [
     mockups: [
       {
         name: "preview_vtex_specs",
+        shadow: "none", // annotated diagram (labels + leader lines), not a floating mockup
         left: 17.04,
         top: 5.41,
         width: 67.6,
@@ -105,6 +106,7 @@ const VTEX_GALLERY = [
       },
       {
         name: "preview_vtex_cards",
+        shadow: "small", // reads as smaller cards within the frame
         left: -7.12,
         top: 58.78,
         width: 118.46,
@@ -196,6 +198,7 @@ const PETPLATE_GALLERY = [
     mockups: [
       {
         name: "preview_petplate_mockup_5",
+        shadow: "small", // reads as a smaller card within the frame
         left: -6.18,
         top: 32.66,
         width: 28.5,
@@ -203,6 +206,7 @@ const PETPLATE_GALLERY = [
       },
       {
         name: "preview_petplate_mockup_6",
+        shadow: "small", // reads as a smaller card within the frame
         left: 20.04,
         top: 21.62,
         width: 28.5,

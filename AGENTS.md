@@ -14,7 +14,7 @@ There is no test suite and no JS linter configured for this project.
 
 ## Architecture
 
-The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that exports `siteTitle` and renders children; `pages/_document.js` holds the static `<head>` (favicons, fonts, theme color) shared across pages.
+The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that exports `siteTitle` and renders children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`.
 
 ### Component convention
 
@@ -113,7 +113,7 @@ UI rules relevant to this static, animation-heavy portfolio. MUST/SHOULD/NEVER.
 ### Performance
 - MUST: Prevent CLS — explicit image dimensions; preload above-fold images, lazy-load the rest
 - MUST: Profile with CPU/network throttling; avoid reflow thrash (batch layout reads/writes)
-- SHOULD: Fonts via `<link rel="preload"/preconnect">` with `font-display: swap` (Google Fonts loaded in `_document.js`)
+- SHOULD: Fonts self-hosted via `next/font/google` in `pages/_app.js` (auto preload + `font-display: swap` + size-adjusted fallbacks); each family is exposed on a `--font-body/title/hero` custom property and re-rooted on the `.fonts` wrapper
 
 ### Design & theming
 - MUST: Meet contrast (prefer [APCA](https://apcacontrast.com/)); increase it on `:hover`/`:active`/`:focus`
