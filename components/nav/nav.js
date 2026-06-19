@@ -1,7 +1,7 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
 import { Link } from "react-scroll";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ButtonMenu from "../button_menu";
 import Symbol from "../../public/images/symbol.svg";
@@ -38,6 +38,39 @@ Nav.propTypes = {
 
 export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [atSpied, setAtSpied] = useState(false);
+
+  // The last link is "spied": its arrow flips once you reach its section.
+  // react-scroll's positional spy can't activate a short final section (it never
+  // scrolls high enough to enter the active zone), so track the section directly —
+  // active once its top crosses the viewport midpoint, or the page hits the end.
+  const spied = links.find((item) => item.spy);
+  useEffect(() => {
+    const target = spied?.to && document.getElementById(spied.to);
+    if (!target) return undefined;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const { top, bottom } = target.getBoundingClientRect();
+      const atBottom =
+        Math.ceil(window.scrollY + window.innerHeight) >=
+        document.documentElement.scrollHeight - 1;
+      setAtSpied(bottom > 0 && (top <= window.innerHeight / 2 || atBottom));
+    };
+    const onScroll = () => {
+      frame ||= requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [spied?.to]);
 
   const handleOpenCloseClick = () => {
     setIsOpen((value) => {
@@ -64,8 +97,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
         href={`#${item.to}`}
         smooth={`easeInOutCirc`}
         offset={item.offset ?? -100}
-        spy={item.spy || undefined}
-        activeClass={item.spy ? "-active" : undefined}
+        className={item.spy && atSpied ? "-active" : undefined}
         duration={300}
         onClick={handleCloseClick}
       >
