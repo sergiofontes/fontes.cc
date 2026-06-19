@@ -26,6 +26,7 @@ export default function Document() {
         />
         <link rel="manifest" href="/favicons/site.webmanifest" />
         <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#211d1d" />
+        <link rel="author" type="text/plain" href="/humans.txt" />
       </Head>
       <body>
         <Main />
