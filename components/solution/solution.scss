@@ -241,13 +241,16 @@ $color-setup: #dff8c3;
   aspect-ratio: 252 / 395;
   background-color: var(--color-surface-dim);
 
-  // The phone render sits inset on the tinted panel, cropped at the fold.
+  // The phone render sits inset on the tinted panel, cropped at the fold. The
+  // flat asset gets its shadow from CSS; the frame’s `overflow: hidden` keeps it
+  // contained within the panel (as in the prototype).
   .solution_media {
     position: absolute;
     top: 6.6%;
     left: 50%;
     width: 79%;
     height: auto;
+    filter: var(--drop-shadow-medium);
     transform: translateX(-50%);
   }
 }
