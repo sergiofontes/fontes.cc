@@ -1,3 +1,5 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 import 'normalize.css/normalize.css';
 import '../styles/typography.scss';
 import '../styles/global.scss';
@@ -30,5 +32,10 @@ import '../components/logos/logos.scss';
 import '../components/footer/footer.scss';
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+      <SpeedInsights />
+    </>
+  );
 }
