@@ -11,9 +11,9 @@ import IconArrow from "../../public/images/icon_arrow.svg";
 // link is spied so its arrow flips when the section is in view.
 const HOME_LINKS = [
   { label: "Experience", to: "experience" },
-  { label: "Traits", to: "traits" },
+  { label: "Work", to: "work" },
   { label: "Contact", to: "contact" },
-  { label: "Work", to: "work", spy: true },
+  { label: "Traits", to: "traits", spy: true },
 ];
 
 const HOME_SYMBOL = { to: "hi", offset: 0 };
@@ -85,7 +85,10 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
           <span className="nav_divisor"></span>
           <ol className="nav_links">
             {links.map((item, index) => (
-              <li className={cn("nav_link", { "-back": item.href })} key={item.label}>
+              <li
+                className={cn("nav_link", { "-back": item.href })}
+                key={item.label}
+              >
                 {renderTarget(
                   item,
                   item.href ? (
