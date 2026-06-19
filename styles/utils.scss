@@ -1,8 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Mixins & functions utilities                               (Global block) //
-///////////////////////////////////////////////////////////////////////////////
-
-// Px to rem
 $base: 16px !default;
 
 @function rem($size) {
@@ -11,7 +6,6 @@ $base: 16px !default;
   @return #{$rem}rem;
 }
 
-// Clear fix wizardry
 @mixin clearfix {
   &::after {
     display: block;
@@ -20,13 +14,11 @@ $base: 16px !default;
   }
 }
 
-// Ease dimensioning
 @mixin size($width, $height: $width) {
   width: $width;
   height: $height;
 }
 
-// Text overflow
 @mixin text-overflow($max-width: 100%) {
   max-width: $max-width;
   overflow: hidden;
@@ -61,7 +53,6 @@ $base: 16px !default;
   white-space: normal;
 }
 
-// Remove default button appearance
 @mixin buttonless(
   $background: transparent,
   $border:     0,
@@ -76,7 +67,6 @@ $base: 16px !default;
   box-shadow: $shadow;
 }
 
-// Fancy underline, all native
 @mixin underline(
   $color:     black,
   $thickness: 2px,
@@ -92,12 +82,10 @@ $base: 16px !default;
   text-decoration-skip: if($skip, skip, none);
 }
 
-// Dashed line as background
 @mixin dashed-line($color: black, $direction: 0deg) {
   background-image: linear-gradient($direction, transparent 25%, $color 25%, $color 50%, transparent 50%, transparent 75%, $color 75%, $color 100%);
 }
 
-// Focus ring techniques
 @mixin focus-ring-outline($border: 2px, $offset: 2px) {
   outline: $border solid var(--color-focus-ring);
   outline-offset: $offset;

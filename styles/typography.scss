@@ -1,7 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Typography                                                                //
-///////////////////////////////////////////////////////////////////////////////
-
 @import "scaffold";
 
 :root {
@@ -18,7 +14,6 @@
 
 * { box-sizing: border-box; }
 
-// Title
 h1 {
   font-family: var(--font-hero);
   font-size: 6.75rem;
@@ -72,13 +67,11 @@ h3 {
   letter-spacing: .0667rem;
 }
 
-// Paragraph
 p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
-// Label type (also applied via the `.label` class).
 label,
 .label {
   font-family: var(--font-title);
@@ -91,7 +84,6 @@ label,
 
 small { display: block; }
 
-// 13px subtitle text (also applied via the `.note` class).
 small,
 .note {
   font-size: .866667rem; // 13px
@@ -113,8 +105,8 @@ small,
 blockquote,
 figure { margin: 0; }
 
-// Hang the opening quote/bracket into the margin so the glyph optically aligns with
-// the text below. Safari-only today; the fallback indents the `.lead` instead.
+// Hang the opening quote into the margin so it optically aligns with the text.
+// Safari-only; the fallback indents `.lead` instead.
 blockquote { hanging-punctuation: first; }
 
 @supports not (hanging-punctuation: first) {
@@ -137,7 +129,6 @@ figcaption {
 
 ::selection { background-color: #ef0b0b59; }
 
-// Link
 a {
   position: relative;
   display: inline-block;
@@ -157,10 +148,8 @@ a {
   &:active { top: 1px; }
 }
 
-// Code
 abbr[title] { text-decoration: none; }
 
-// List
 ul, ol {
   padding: 0;
   margin: 0;

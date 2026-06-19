@@ -1,7 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Experience Section                                                        //
-///////////////////////////////////////////////////////////////////////////////
-
 @import "../../styles/scaffold";
 
 .experience_text {
@@ -47,9 +43,9 @@
   }
 }
 
+// Uppercase comes from the `.label` class in the markup.
 .experience_period {
   color: var(--color-subtitle);
-  text-transform: uppercase;
 }
 
 // Handwritten “currently” note pinned above the current role’s logo.

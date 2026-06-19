@@ -1,9 +1,5 @@
 @import "../../styles/scaffold";
 
-///////////////////////////////////////////////////////////////////////////////
-// Button                                                                     //
-///////////////////////////////////////////////////////////////////////////////
-
 .button {
   // Override base <a> layout and decoration
   display: inline-flex;
@@ -49,10 +45,6 @@
     svg path { fill: var(--color-subtle); }
   }
 }
-
-///////////////////////////////////////////////////////////////////////////////
-// Shared control states                                                     //
-///////////////////////////////////////////////////////////////////////////////
 
 // Press, focus ring, and hover surface shared by every control. Each keeps its own
 // focus-ring offset, transition, and control-specific hover/disabled treatment.

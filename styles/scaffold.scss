@@ -1,12 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////
-// Scaffold                                               (Global Component) //
-///////////////////////////////////////////////////////////////////////////////
-
-// Set default charset.
 @charset "utf-8";
 
-// Load all mixins & functions utilities.
-@import "utils";
-
-// Media queries with superpowers.
-@import "vendor/include-media";
+@import "utils";                // Sass mixins & functions
+@import "vendor/include-media"; // breakpoint queries

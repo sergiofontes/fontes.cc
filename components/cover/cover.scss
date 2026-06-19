@@ -1,7 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Cover (case page header)                                                  //
-///////////////////////////////////////////////////////////////////////////////
-
 // Mirrors the home `Header`’s grid/content structure; only the title and links
 // differ. The dark cover scaffold comes from `.hero`.
 
@@ -22,32 +18,14 @@
   }
 }
 
-// Faint illustration: stacks above the title on mobile/tablet, floats top-right
-// behind it on desktop. A grid child (not viewport-pinned) so it tracks the text
-// axis and the centred grid; the text paints on top (earlier in DOM).
+// Faint case illustration. Placement comes from `.hero_art`; here only the
+// height-capped auto width and `exclusion` blending over the cover.
 .cover_art {
-  position: absolute;
-  grid-row: 1;
-  grid-column: 1 / -1;
-  align-self: start;
-  justify-self: center;
   width: auto;
-  max-width: 100%;
-  height: auto;
   max-height: 45svh;
-  pointer-events: none;
-  user-select: none;
   mix-blend-mode: exclusion;
-  object-fit: contain;
-
-  @include media(">tablet") {
-    grid-column-start: var(--content-start);
-    justify-self: start;
-  }
 
   @include media(">desktop") {
-    grid-row: 1 / -1;
-    grid-column: var(--content-start) / -1;
     width: min(40rem, 100%);
     max-height: none;
   }

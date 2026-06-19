@@ -1,15 +1,11 @@
-///////////////////////////////////////////////////////////////////////////////
-// Traits Section                                                            //
-///////////////////////////////////////////////////////////////////////////////
-
 @import "../../styles/scaffold";
 
 .contact {
+  // Uppercase comes from the `.label` class in the markup.
   .contact_label {
     display: block;
     margin-bottom: .25rem;
     color: var(--color-subtitle);
-    text-transform: uppercase;
   }
 
   a { margin: 0; }

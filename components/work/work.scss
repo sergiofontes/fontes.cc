@@ -1,7 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Work Section                                                              //
-///////////////////////////////////////////////////////////////////////////////
-
 @import "../../styles/scaffold";
 
 .work {
@@ -141,10 +137,10 @@
   align-items: center;
 }
 
+// Uppercase comes from the `.label` class in the markup.
 .work_year {
   display: none;
   color: var(--color-subtitle);
-  text-transform: uppercase;
 
   @include media(">tablet") {
     display: block;

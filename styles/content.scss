@@ -1,7 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Content Container                                                         //
-///////////////////////////////////////////////////////////////////////////////
-
 @import "scaffold";
 
 :root {
@@ -115,10 +111,6 @@
 @include media(">desktop") {
   .content_columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
 }
-
-///////////////////////////////////////////////////////////////////////////////
-// Section composition                                                       //
-///////////////////////////////////////////////////////////////////////////////
 
 // Shared section placements. Each owns its `grid-column` only; consumers keep
 // their own `grid-row`, typography, and any single-breakpoint exception.

@@ -1,7 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// Nav Component                                                             //
-///////////////////////////////////////////////////////////////////////////////
-
 @import "../../styles/scaffold";
 
 .nav {
@@ -133,11 +129,6 @@
       padding: 0;
       margin: 0;
     }
-
-    /* @include media("height>=1000px") {
-      top: auto;
-      bottom: 10vh;
-    } */
   }
 
   @include media(">max") { left: calc((100vw - var(--container-max)) / 2); }
