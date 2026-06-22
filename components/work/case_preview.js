@@ -48,7 +48,7 @@ function Mockup({
 
   return (
     <Image
-      className={cn("work_mockup", {
+      className={cn("work_mockup reveal_item", {
         "-small": shadow === "small",
         "-medium": shadow === "medium",
         "-flat": shadow === "none",
@@ -222,7 +222,7 @@ export default function CasePreview({
       )}
 
       <div
-        className="work_gallery content_media"
+        className="work_gallery content_media reveal"
         role="group"
         aria-label={`${name} gallery`}
       >

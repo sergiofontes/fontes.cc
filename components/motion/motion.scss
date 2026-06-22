@@ -1,0 +1,29 @@
+@import "../../styles/scaffold";
+
+// Entrance animation for mockups: a `.reveal` group hides its `.reveal_item`
+// children (offset/scaled/transparent) until it first scrolls into view (`-in`
+// added by JS), then transitions each into place, staggered per item via `--i`.
+// Uses the individual `translate`/`scale`/`rotate` properties so it composes with
+// any existing `transform` on a mockup (e.g. tilted cards). The `--mk-*` custom
+// properties carry the tuned values as var() fallbacks (the What section overrides
+// them locally). Guarded for reduced motion and only armed by JS, so no-JS renders
+// the mockups in place.
+@media (prefers-reduced-motion: no-preference) {
+  .reveal.-ready .reveal_item {
+    opacity: 0;
+    transition-delay: calc(var(--i, 0) * var(--mk-stagger, 150ms));
+    transition-timing-function: var(--mk-ease, cubic-bezier(.22, 1, .36, 1));
+    transition-duration: var(--mk-dur, 600ms);
+    transition-property: opacity, translate, scale, rotate;
+    rotate: var(--mk-rot, 0deg);
+    scale: var(--mk-scale, .94);
+    translate: var(--mk-x, 0) var(--mk-y, 50px);
+  }
+
+  .reveal.-ready.-in .reveal_item {
+    opacity: 1;
+    rotate: none;
+    scale: none;
+    translate: none;
+  }
+}

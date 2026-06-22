@@ -265,6 +265,9 @@
   &.-flat { filter: none; }
 }
 
+// The mockup entrance animation is shared across cases and the catalog page; see
+// `components/motion` (the `.reveal` / `.reveal_item` scaffold).
+
 // Video slide — the thumbnail fills the whole frame (cropped); the `.video` link and
 // centered `Play` badge wrapping it are shared with Solution. Its stage drops the
 // 534/444 letterbox so the image bleeds gutter to gutter.

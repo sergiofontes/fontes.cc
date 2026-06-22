@@ -9,11 +9,13 @@ import AboutTestimonial from '../components/about/testimonial';
 import AboutTraits from '../components/about/traits';
 import AboutContact from '../components/about/contact';
 import Work from '../components/work';
+import Motion from '../components/motion';
 
 export default function Home() {
   return (
     <Layout home>
       <Seo {...seo} />
+      <Motion />
 
       <div className="index">
         <Nav />

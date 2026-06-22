@@ -30,6 +30,7 @@ import '../components/about/experience.scss';
 import '../components/about/testimonial.scss';
 import '../components/about/contact.scss';
 import '../components/work/work.scss';
+import '../components/motion/motion.scss';
 import '../components/logos/logos.scss';
 import '../components/footer/footer.scss';
 
