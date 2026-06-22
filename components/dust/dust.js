@@ -334,7 +334,7 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
   return (
     <>
       <Image
-        className={cn("hero_art", classes)}
+        className={cn("hero_art dust_still", classes)}
         src={src}
         width={width}
         height={height}
@@ -350,6 +350,17 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
         height={height}
         aria-hidden="true"
       />
+      {/* Visible only when scripting is off, where the canvas can never paint. */}
+      <noscript>
+        <img
+          className={cn("hero_art", classes)}
+          src={src}
+          width={width}
+          height={height}
+          alt={alt}
+          aria-hidden={alt ? undefined : "true"}
+        />
+      </noscript>
     </>
   );
 }
