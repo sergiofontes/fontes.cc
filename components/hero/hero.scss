@@ -3,10 +3,10 @@
 @import "../../styles/scaffold";
 
 .hero {
-  height: 85vh; // env/svh fallbacks below keep the menu at the screen bottom on mobile
-  height: calc(85vh - env(safe-area-inset-bottom));
-  height: 85svh;
-  min-height: 44rem;
+  height: 93vh; // env/svh fallbacks below keep the menu at the screen bottom on mobile
+  height: calc(90vh - env(safe-area-inset-bottom));
+  height: 93lvh;
+  min-height: var(--header-min-height);
   padding-top: var(--gap);
   background-color: var(--color-cover);
 
@@ -18,13 +18,8 @@
 
   h2 { color: var(--color-text-dim); }
 
-  @include media(">tablet") {
-    min-height: 48rem;
-  }
-
   @include media(">desktop") {
     height: 90vh;
-    min-height: 50rem;
     max-height: var(--header-max-height);
   }
 }

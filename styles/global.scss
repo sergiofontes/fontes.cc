@@ -2,13 +2,23 @@
 
 :root {
   --header-max-height: 900px;
+  --header-min-height: 44rem;
   --logo-size: var(--button-size);
-
   --button-size: 2.75rem;
 
   --border-small: 2px;
   --border-focus: 1.5px;
+
   --radius-small: 2px;
+
+  @include media(">tablet") {
+    --header-min-height: 48rem;
+  }
+
+  @include media(">desktop") {
+    --header-min-height: 50rem;
+  }
+
   --shadow-small:
     0 1px 2px rgb(0 0 0 / 7%),
     0 4px 4px rgb(0 0 0 / 6%),
