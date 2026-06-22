@@ -19,7 +19,7 @@ export default function Home() {
         <Nav />
         <Header />
 
-        <main id="main" className="main" tabIndex={-1}>
+        <main className="main">
 
           <AboutExperience />
 

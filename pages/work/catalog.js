@@ -42,7 +42,7 @@ export default function OnlineCatalog() {
           }}
         />
 
-        <main id="main" className="main" tabIndex={-1}>
+        <main className="main">
           <What />
           <Why />
           <Solution />
