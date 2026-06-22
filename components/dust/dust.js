@@ -34,6 +34,8 @@ const CONFIG = {
   reach: 0.05, // click push falloff distance (× dim)
   jitter: 0.1, // random chaos added on scatter (× dim)
   scatterMode: "radial", // radial | swirl | random
+  edgeFade: 0.12, // fraction of the box near each edge where grains fade to 0,
+  // so the canvas border is never exposed and the dust blends into the cover
 };
 const COLOR = hexToRgb(CONFIG.colorHex);
 const MAX_SIDE = 760; // cap the larger backing dimension
@@ -231,6 +233,8 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
       const aBase = CONFIG.alphaBase;
       const aJit = CONFIG.alphaJitter;
       const gSize = CONFIG.grainSize;
+      const band = dim * CONFIG.edgeFade; // edge fade width, in backing px
+      const invBand = band > 0 ? 1 / band : 0;
       for (let i = 0; i < count; i += 1) {
         const px = x[i] | 0;
         const py = y[i] | 0;
@@ -242,6 +246,14 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
         const v2 = (cb * f) | 0;
         let a = aBase + (aj[i] / 255) * aJit;
         if (a > 255) a = 255;
+        // Fade toward the box edges so the canvas border is never exposed.
+        if (band > 0) {
+          let ef = Math.min(px, cw - px, py, ch - py) * invBand;
+          if (ef < 1) {
+            if (ef < 0) ef = 0;
+            a *= ef;
+          }
+        }
         a |= 0;
         for (let dy = 0; dy < g; dy += 1) {
           const yy = py + dy;
