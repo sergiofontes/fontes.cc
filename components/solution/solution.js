@@ -17,7 +17,7 @@ function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
   const max = Math.max(...scales);
   const src = `${IMG}/${name}${max > 1 ? `@${max}x` : ""}.png`;
 
-  return <Image className="solution_media" src={src} alt={alt} {...rest} />;
+  return <Image className="solution_media reveal_item" src={src} alt={alt} {...rest} />;
 }
 
 // The six “sharing” cards keep their own native heights (Slack message, Instagram
@@ -98,7 +98,7 @@ function ConfigCarousel() {
   return (
     <>
       <ul
-        className="solution_track carousel"
+        className="solution_track carousel reveal"
         ref={trackRef}
         tabIndex={0}
         onScroll={sync}
@@ -177,7 +177,7 @@ function ResponsiveDevices() {
         srcSet={desktop.srcSet}
         sizes={desktop.sizes}
       />
-      <img className="solution_media" {...mobile} />
+      <img className="solution_media reveal_item" {...mobile} />
     </picture>
   );
 }
@@ -205,7 +205,7 @@ export default function Solution() {
         </div>
 
         <a
-          className="solution_video video content_body"
+          className="solution_video video content_body reveal"
           href={VIDEO_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -232,7 +232,7 @@ export default function Solution() {
       {/* Block 2 — sharing across channels (full-bleed montage). Each card is its
           own screenshot with its own alt, so the montage reads as six images
           rather than one labelled group. */}
-      <div className="solution_sharing">
+      <div className="solution_sharing reveal">
         {SHARING.map(({ name, height, alt }) => (
           <figure className="solution_frame -share" key={name}>
             <Media
@@ -253,7 +253,7 @@ export default function Solution() {
           merchants promote their stores and attract new customers.
         </aside>
 
-        <div className="solution_pair content_body -templates">
+        <div className="solution_pair content_body -templates reveal">
           <figure className="solution_frame -template">
             <Media
               name="stationary_2"
@@ -282,7 +282,7 @@ export default function Solution() {
 
       {/* Block 5 — store customization on mobile */}
       <div className="solution_custom grid content">
-        <div className="solution_pair -phones">
+        <div className="solution_pair -phones reveal">
           <figure className="solution_frame -phone">
             <Media
               name="mockup_plp"
@@ -311,7 +311,7 @@ export default function Solution() {
 
       {/* Block 6 — responsive across devices */}
       <div className="solution_devices grid content">
-        <figure className="solution_frame -devices">
+        <figure className="solution_frame -devices reveal">
           <ResponsiveDevices />
         </figure>
 

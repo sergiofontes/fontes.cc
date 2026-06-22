@@ -10,7 +10,7 @@ const IMG = "/images/work/catalog";
 function Phone({ name, modifier, width, height, sizes, alt }) {
   return (
     <Image
-      className={`what_phone ${modifier}`}
+      className={`what_phone reveal_item ${modifier}`}
       src={`${IMG}/${name}@3x.png`}
       width={width}
       height={height}
@@ -24,7 +24,7 @@ export default function What() {
   return (
     <section id="what" className="what grid content">
       <div className="what_media content_media">
-        <div className="what_mockups">
+        <div className="what_mockups reveal">
           <Phone
             name="mockup_about"
             modifier="-left"

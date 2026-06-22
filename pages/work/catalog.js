@@ -8,6 +8,7 @@ import Why from "../../components/why";
 import Solution from "../../components/solution";
 import Quote from "../../components/quote";
 import Footer from "../../components/footer";
+import Motion from "../../components/motion";
 
 // In-page section anchors for this case; “Back to home” returns to the index.
 const CASE_LINKS = [
@@ -23,6 +24,7 @@ export default function OnlineCatalog() {
   return (
     <Layout>
       <Seo {...seo} />
+      <Motion />
 
       <div className="index">
         <Nav links={CASE_LINKS} symbol={CASE_SYMBOL} />
