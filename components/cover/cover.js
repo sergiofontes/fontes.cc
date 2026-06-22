@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import PropTypes from "prop-types";
-import Image from "next/image";
 
 import Logo from "../logos/";
+import Dust from "../dust";
 
 Cover.propTypes = {
   logo: PropTypes.string.isRequired,
@@ -22,14 +22,13 @@ Cover.propTypes = {
 export default function Cover({ logo, label, category, title, summary, image }) {
   return (
     <header id="cover" className="hero cover grid">
-      <Image
-        className="hero_art cover_art"
+      <Dust
+        classes="cover_art"
         src={image.src2x || image.src}
         width={image.width}
         height={image.height}
         sizes="(min-width: 1201px) 600px, (min-width: 768px) 50vw, 90vw"
         alt={image.alt || ""}
-        priority
       />
 
       <div className="cover_main">

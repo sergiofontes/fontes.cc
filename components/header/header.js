@@ -1,18 +1,16 @@
-import Image from 'next/image';
 import Typewriter from 'typewriter-effect';
+
+import Dust from '../dust';
 
 export default function Header() {
   return (
     <header id="hi" className="hero header grid">
-      <Image
-        className="hero_art header_art"
+      <Dust
+        classes="header_art"
         src="/images/cover_home@2x.png"
         width={742}
         height={742}
         sizes="(min-width: 1201px) 495px, (min-width: 768px) 450px, 352px"
-        alt=""
-        aria-hidden="true"
-        priority
       />
 
       <section className="header_title grid content">
