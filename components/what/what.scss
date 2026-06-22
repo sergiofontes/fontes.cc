@@ -18,6 +18,18 @@
 // (420/630/717px cap the height at 351/527/600px). It bleeds past the gutters on
 // mobile (html clips overflow-x).
 .what_mockups {
+  // Entrance-animation params for these mockups only — pinned here, independent of
+  // the shared defaults (components/motion). `rise-scale` = x/y/scale/rot;
+  // `--mk-what-delay` gates the flanks (the centre and flanks override the delay,
+  // so `--mk-stagger` is unused here but kept for parity with the shared config).
+  --mk-x: 0;
+  --mk-y: 50px;
+  --mk-scale: .94;
+  --mk-rot: 0deg;
+  --mk-dur: 600ms;
+  --mk-stagger: 150ms;
+  --mk-what-delay: 400ms;
+  --mk-ease: cubic-bezier(.22, 1, .36, 1);
   position: relative;
   flex-shrink: 0; // keep the mobile bleed instead of shrinking to the container
   width: 108%;
@@ -56,6 +68,30 @@
     z-index: 2;
     width: 39.9%;
     margin-inline: auto;
+  }
+}
+
+// Bespoke choreography for these three mockups, overriding the shared `.reveal`
+// timing (components/motion): the centre phone leads with the standard rise
+// (no stagger), then the flanks slide out horizontally from behind it — it sits on
+// top via `z-index`, so they read as emerging from behind — once it has settled.
+@media (prefers-reduced-motion: no-preference) {
+  .what_mockups.-ready .what_phone.-center {
+    transition-delay: 0ms;
+  }
+
+  .what_mockups.-ready .what_phone.-left,
+  .what_mockups.-ready .what_phone.-right {
+    transition-delay: var(--mk-what-delay, 400ms); // after the centre settles (tunable)
+    scale: .9;
+  }
+
+  .what_mockups.-ready .what_phone.-left {
+    translate: 70% 0; // tucked behind the centre, slides out left
+  }
+
+  .what_mockups.-ready .what_phone.-right {
+    translate: -70% 0; // tucked behind the centre, slides out right
   }
 }
 
