@@ -30,7 +30,7 @@
   --work-lead: calc(var(--work-gutter) + var(--gap));
   --work-slide: calc((100% - var(--work-lead)) * .85);
   --work-image-h: 24rem;
-  row-gap: var(--gap);
+  row-gap: calc(var(--gap) / 2);
   align-items: start;
   padding-bottom: var(--spacing);
 
@@ -179,6 +179,11 @@
   @include media(">desktop") {
     scroll-snap-type: none;
   }
+}
+
+.work_gallery {
+  padding-top: calc(var(--gap) / 2);
+  padding-bottom: calc(var(--gap) / 2);
 }
 
 .work_slide {

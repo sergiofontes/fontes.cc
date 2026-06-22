@@ -24,8 +24,6 @@
   row-gap: calc(var(--gap) * 1.5);
   align-items: start;
 
-  h2, h3 { margin-top: .266667rem; }
-
   // Rotation comes from `.content_heading`; here only the sticky offset + margin.
   h2 {
     position: sticky;
@@ -55,7 +53,8 @@
       white-space: normal;
     }
 
-    h2, h3 { margin-top: .266667rem; }
+    h3 { margin-top: .4rem; }
+    p .label { margin-top: .266667rem; }
   }
 }
 
@@ -155,6 +154,7 @@
 
   @include media(">desktop") {
     grid-column: calc(var(--content-start) + var(--content-width) * 2) / span var(--content-width);
+    padding-right: var(--gap);
   }
 
   &.-center {

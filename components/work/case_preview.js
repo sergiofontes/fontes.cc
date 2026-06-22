@@ -20,7 +20,17 @@ const DIRS = {
 // default; the layered shadow is composed in CSS via the `shadow` modifier
 // (`-small`/`-medium`/`-flat`, or the default large). Each mockup carries its own
 // `alt`; continuity repeats pass an empty `alt` to stay decorative.
-function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, shadow, fill, alt = "" }) {
+function Mockup({
+  name,
+  dir = "previews",
+  scales = [1, 2, 3],
+  left,
+  top,
+  width,
+  shadow,
+  fill,
+  alt = "",
+}) {
   const base = `${DIRS[dir]}/${name}`;
   const max = Math.max(...scales);
   const src = `${base}${max > 1 ? `@${max}x` : ""}.png`;
@@ -47,7 +57,11 @@ function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, 
       width={w}
       height={h}
       sizes={sizes}
-      style={left == null ? undefined : { left: `${left}%`, top: `${top}%`, width: `${width}%` }}
+      style={
+        left == null
+          ? undefined
+          : { left: `${left}%`, top: `${top}%`, width: `${width}%` }
+      }
       alt={alt}
     />
   );
@@ -60,7 +74,10 @@ function Mockup({ name, dir = "previews", scales = [1, 2, 3], left, top, width, 
 // same target and behavior as Solution’s promotional video.
 function Frame({ bg, shadow, fill, video, mockups }) {
   const frame = (
-    <figure className={cn("work_frame", { "-video": video, "-fill": fill })} style={bg ? { background: bg } : undefined}>
+    <figure
+      className={cn("work_frame", { "-video": video, "-fill": fill })}
+      style={bg ? { background: bg } : undefined}
+    >
       <span className="work_stage">
         {mockups.map((mockup) => (
           <Mockup
@@ -151,7 +168,9 @@ export default function CasePreview({
     const slide = track.querySelector(".work_slide");
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
     const step = (slide ? slide.offsetWidth : track.clientWidth) + gap;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     track.scrollBy({
       left: step * direction,
@@ -166,7 +185,11 @@ export default function CasePreview({
           <Logo type={logo} />
           <h3 className="work_subtitle">{subtitle}</h3>
           {featured && (
-            <Handnote className="work_note" role="img" aria-label="check the case" />
+            <Handnote
+              className="work_note"
+              role="img"
+              aria-label="check the case"
+            />
           )}
         </span>
 
@@ -203,7 +226,12 @@ export default function CasePreview({
         role="group"
         aria-label={`${name} gallery`}
       >
-        <ul className="work_track carousel" ref={trackRef} tabIndex={0} onScroll={sync}>
+        <ul
+          className="work_track carousel"
+          ref={trackRef}
+          tabIndex={0}
+          onScroll={sync}
+        >
           <li className="work_colophon">
             <aside>
               <dl>

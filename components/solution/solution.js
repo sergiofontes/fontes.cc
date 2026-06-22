@@ -86,8 +86,13 @@ function ConfigCarousel() {
   const goTo = (index) => {
     const track = trackRef.current;
     if (!track) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    track.scrollTo({ left: step() * index, behavior: reduce ? "auto" : "smooth" });
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    track.scrollTo({
+      left: step() * index,
+      behavior: reduce ? "auto" : "smooth",
+    });
   };
 
   return (
@@ -167,7 +172,11 @@ function ResponsiveDevices() {
 
   return (
     <picture>
-      <source media="(min-width: 1201px)" srcSet={desktop.srcSet} sizes={desktop.sizes} />
+      <source
+        media="(min-width: 1201px)"
+        srcSet={desktop.srcSet}
+        sizes={desktop.sizes}
+      />
       <img className="solution_media" {...mobile} />
     </picture>
   );
@@ -183,9 +192,9 @@ export default function Solution() {
         <div className="solution_lede content_body">
           <p>
             One opportunity stood out: helping merchants build a simple,
-            centralized online presence for their products. Enter Online Catalog,
-            a tool designed to organize what they sell and make it easy to share
-            across digital and physical channels.
+            centralized online presence for their products. Enter Online
+            Catalog, a tool designed to organize what they sell and make it easy
+            to share across digital and physical channels.
           </p>
           <p>
             Still in active development, Online Catalog has shown potential as a
@@ -239,7 +248,7 @@ export default function Solution() {
 
       {/* Block 3 — printed & social templates */}
       <div className="solution_templates grid content">
-        <aside className="note solution_note -templates">
+        <aside className="note solution_note content_aside -templates">
           A variety of templates for social media and printed materials help
           merchants promote their stores and attract new customers.
         </aside>
