@@ -10,7 +10,6 @@ import Quote from "../../components/quote";
 import Footer from "../../components/footer";
 import Motion from "../../components/motion";
 
-// In-page section anchors for this case; “Back to home” returns to the index.
 const CASE_LINKS = [
   { label: "Back", href: "/" },
   { label: "What", to: "what" },
@@ -44,7 +43,7 @@ export default function OnlineCatalog() {
           }}
         />
 
-        <main className="main">
+        <main className="index_main" id="content">
           <What />
           <Why />
           <Solution />

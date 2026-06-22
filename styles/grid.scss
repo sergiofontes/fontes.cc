@@ -2,27 +2,25 @@
 @use "sass:math";
 @import "scaffold";
 
-// Grid properties
-
-// Base value (1rem)
+// Base value
 $base-mob         : 15px;
 $base             : 15px;
 $base-large       : 15px;
 
 // Mobile
-$columns-mob      : 4;             // Columns number.
-$gap-mob          : $base-mob;     // Gutter width.
-$gap-mob-out      : $base-mob * 3; // External gutter width.
+$columns-mob      : 4;
+$gap-mob          : $base-mob;
+$gap-mob-out      : $base-mob * 3;
 
 // Tablet
-$columns-tab      : 10;            // Columns number.
-$gap-tab          : $base * 2;     // Gutter width.
-$gap-tab-out      : $base * 4;     // External gutter width.
+$columns-tab      : 10;
+$gap-tab          : $base * 2;
+$gap-tab-out      : $base * 4;
 
 // Desktop
-$columns          : 13;            // Columns number.
-$gap              : $base * 2;     // Gutter width.
-$gap-out          : $base * 3;     // External gutter width.
+$columns          : 13;
+$gap              : $base * 2;
+$gap-out          : $base * 3;
 
 // Set a max width to the grid‘s container, based on
 // the wider breakpoint minus the external gutters.
@@ -69,8 +67,6 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
   }
 }
 // stylelint-enable
-
-// Grid system
 
 .grid {
   position: relative;

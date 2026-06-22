@@ -1,22 +1,19 @@
 import { useEffect } from "react";
 
-// Page-level controller: each `.reveal` group reveals its `.reveal_item` mockups
-// the first time it scrolls into view, staggered per item via `--i`. The motion is
-// defined in motion.scss (the `--mk-*` custom properties, with the tuned values as
-// var() fallbacks); the What section pins its own values locally. Skipped under
-// reduced motion (mockups render in place).
+// Reveals each `.motion` group's `.motion_item` children on first scroll-in,
+// staggered per item via `--i`. See “Reveal animation” in AGENTS.md.
 export default function Motion() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return undefined;
     }
 
-    const groups = [...document.querySelectorAll(".reveal")];
+    const groups = [...document.querySelectorAll(".motion")];
     if (!groups.length) return undefined;
 
     const observers = groups.map((group) => {
       group
-        .querySelectorAll(".reveal_item")
+        .querySelectorAll(".motion_item")
         .forEach((item, i) => item.style.setProperty("--i", i));
       group.classList.add("-ready");
 

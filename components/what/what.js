@@ -2,15 +2,11 @@ import Image from "next/image";
 
 const IMG = "/images/work/catalog";
 
-// The three product mockups are composed with CSS (positioning + drop shadows);
-// the assets are plain transparent phone renders. Each phone shows a different
-// part of the catalog (store profile, product page, product list), so each gets
-// its own descriptive alt. `next/image` serves the @3x source as AVIF/WebP and
-// lazy-loads by default; `sizes` matches the phone’s fixed render width per mode.
+// Each phone shows a different part of the catalog, so each gets its own alt.
 function Phone({ name, modifier, width, height, sizes, alt }) {
   return (
     <Image
-      className={`what_phone reveal_item ${modifier}`}
+      className={`what_phone motion_item ${modifier}`}
       src={`${IMG}/${name}@3x.png`}
       width={width}
       height={height}
@@ -24,7 +20,7 @@ export default function What() {
   return (
     <section id="what" className="what grid content">
       <div className="what_media content_media">
-        <div className="what_mockups reveal">
+        <div className="what_mockups motion">
           <Phone
             name="mockup_about"
             modifier="-left"

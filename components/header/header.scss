@@ -1,6 +1,5 @@
 @import "../../styles/scaffold";
 
-// Cover scaffold (height, inverse colours, padding) comes from `.hero`.
 .header {
   position: relative;
   display: grid;
@@ -59,8 +58,7 @@
   }
 }
 
-// Home portrait melting into the cover. Placement comes from `.hero_art`; here only
-// the Figma widths and `lighten`, which keeps the white title legible over the art.
+// Home portrait; placement from `.hero_art`. `lighten` keeps the title legible.
 .header_art {
   width: 23.4667rem; // 352px (Figma)
   mix-blend-mode: lighten;

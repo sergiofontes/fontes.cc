@@ -1,5 +1,4 @@
-// Mirrors the home `Header`’s grid/content structure; only the title and links
-// differ. The dark cover scaffold comes from `.hero`.
+// Case cover: the home `Header`’s grid/content structure with a different title.
 
 @import "../../styles/scaffold";
 
@@ -18,8 +17,6 @@
   }
 }
 
-// Faint case illustration. Placement comes from `.hero_art`; here only the
-// height-capped auto width and `exclusion` blending over the cover.
 .cover_art {
   width: auto;
   max-height: 45svh;
@@ -31,8 +28,6 @@
   }
 }
 
-// Eyebrow label (“Case”) — rotated via `.content_heading` on mobile/tablet,
-// upright at the top on desktop.
 .cover_label {
   grid-row: 3;
   margin: 0;
@@ -43,7 +38,7 @@
   }
 }
 
-// Category (“Work”) — desktop only, beside the divider’s left edge.
+// Category — desktop only.
 .cover_category {
   display: none;
 
@@ -88,8 +83,7 @@
   gap: var(--space-lg);
 }
 
-// Case logos render dark by default; force them to the inverse colour with a flat
-// white fill that survives gradients.
+// Force case logos to white (survives gradient fills).
 .cover .logo {
   height: auto;
   filter: brightness(0) invert(1);

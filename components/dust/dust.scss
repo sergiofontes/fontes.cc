@@ -1,17 +1,12 @@
 @import "../../styles/scaffold";
 
-// Grain canvas that reconstructs the cover portrait. Placement, width and blend
-// come from `.hero_art` / `.header_art`; clicks are listened for on the `.hero`
-// ancestor, so the canvas keeps `pointer-events: none` from `.hero_art`.
+// Grain canvas; placement, width and blend come from `.hero_art`.
 .dust {
   display: block;
 }
 
-// The <canvas> is the visible art when motion is allowed, so hide the static
-// fallback image from the first paint (no flash on reload, no JS needed). It stays
-// visible under reduced motion — where the simulation never runs — and is kept in
-// the DOM regardless so its `alt` still describes the case cover to assistive tech.
-// Scoped to `.dust_still` so the <noscript> fallback image (no-JS) stays visible.
+// When motion is allowed the canvas is the art, so hide the static fallback image
+// from first paint. The image stays for reduced motion / no-JS (and keeps its `alt`).
 @media (prefers-reduced-motion: no-preference) {
   .dust_still {
     opacity: 0;

@@ -14,7 +14,7 @@ There is no test suite and no JS linter configured for this project.
 
 ## Architecture
 
-The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that renders the “Skip to content” link and children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`. Per-page and site-wide SEO/metadata live as thematic JSON in `data/seo/` (`site.json` defaults plus one file per page), consumed by the `components/seo` component which each page spreads (`<Seo {...seo} />`).
+The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that renders the “Skip to content” link (targeting the `#content` main landmark) and children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`. Per-page and site-wide SEO/metadata live as thematic JSON in `data/seo/` (`site.json` defaults plus one file per page), consumed by the `components/seo` component which each page spreads (`<Seo {...seo} />`).
 
 ### Component convention
 
@@ -56,7 +56,15 @@ Reach for these classes **before** writing raw `grid-column`/breakpoint math —
 
 Each utility owns its `grid-column` only — the component keeps its own `grid-row`, typography, and any single-breakpoint exception (e.g. a divider that goes full-bleed on mobile but narrows on desktop). When a placement genuinely diverges at one breakpoint, add a one-line `grid-column` override in the component scss (it wins on source order); don't fork the utility.
 
-Two shared scaffolds live in their own component modules and are applied as extra classes the same way: `hero` (the dark, full-height cover used by `Header` and `Cover`) and `carousel` (the horizontal scroll-snap track used by `Work` and `Solution`). Shared interactive-control states (press, focus ring, hover surface) live as grouped selectors in `components/button/button.scss`.
+Several shared scaffolds live in their own component modules and are applied as extra classes the same way: `hero` (the dark, full-height cover used by `Header` and `Cover`), `carousel` (the horizontal scroll-snap track used by `Work` and `Solution`), and `play`/`video` (the centered play badge and its link wrapper, used by `Work` and `Solution`). Shared interactive-control states (press, focus ring, hover surface) live as grouped selectors in `components/button/button.scss`.
+
+### Reveal animation
+
+`components/motion` (`Motion`, rendered once per page) reveals mockups on first scroll-in. Mark a group `motion` and its animated children `motion_item`; `Motion` indexes each child with a `--i` custom property, adds `-ready`, then `-in` once the group enters the viewport. `motion.scss` transitions each `motion_item` from offset/scaled/transparent into place, staggered by `--i` and tuned through the `--mk-*` custom properties (tuned values inline as `var()` fallbacks; sections like `What` override them locally). Guarded behind `prefers-reduced-motion` and only armed by JS, so reduced-motion and no-JS render the mockups in place.
+
+### Images
+
+Raster art (mockups, covers) uses `next/image`: each call ships the sharpest source it has (the highest `@Nx`) and Next serves it as AVIF/WebP, lazy by default, sized via an explicit `sizes` that matches the element's render width per breakpoint; above-the-fold covers pass `priority`. The visual composition — positioning, masks, drop shadows — is done in CSS over flat or transparent PNGs, so the assets stay plain. `components/work/mockup-sizes.js` holds each mockup's intrinsic `[width, height]` (required by `next/image` for the aspect ratio).
 
 ### SVGs and i18n
 
@@ -113,7 +121,7 @@ UI rules relevant to this static, animation-heavy portfolio. MUST/SHOULD/NEVER.
 ### Performance
 - MUST: Prevent CLS — explicit image dimensions; preload above-fold images, lazy-load the rest
 - MUST: Profile with CPU/network throttling; avoid reflow thrash (batch layout reads/writes)
-- SHOULD: Fonts self-hosted via `next/font/google` in `pages/_app.js` (auto preload + `font-display: swap` + size-adjusted fallbacks); each family is exposed on a `--font-body/title/hero` custom property and re-rooted on the `.fonts` wrapper
+- SHOULD: Fonts self-hosted via `next/font/google` in `pages/_app.js` (auto preload + `font-display: swap` + size-adjusted fallbacks); each family is exposed on a `--font-body/title/hero` custom property and re-rooted on the `.global_fonts` wrapper
 
 ### Design & theming
 - MUST: Meet contrast (prefer [APCA](https://apcacontrast.com/)); increase it on `:hover`/`:active`/`:focus`

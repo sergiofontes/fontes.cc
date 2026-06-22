@@ -1,5 +1,4 @@
-// Dark, full-height cover shared by the home `Header` and case `Cover`: inverse
-// colours, viewport-height block, padding rhythm. Each keeps its own grid.
+// Dark, full-height cover scaffold shared by `Header` and `Cover`.
 
 @import "../../styles/scaffold";
 
@@ -30,10 +29,8 @@
   }
 }
 
-// Faint cover art shared by both heroes: a non-interactive image, full-bleed and
-// centered on mobile, anchored to the content column on tablet, floating behind the
-// title on desktop. Sits first in the DOM so the text paints on top. Each consumer
-// sets its own width, blend mode, and height.
+// Faint cover art behind both heroes. Sits first in the DOM so the text paints on
+// top; each consumer sets its own width, blend mode, and height.
 .hero_art {
   position: absolute;
   grid-row: 1;

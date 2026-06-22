@@ -1,6 +1,3 @@
-// Reuses the home `content` grid (rotated/sticky `<h2>`, body column, right-hand
-// colophon). The three product mockups are composed and shadowed in CSS.
-
 @import "../../styles/scaffold";
 
 .what { scroll-margin-top: var(--gap); }
@@ -13,15 +10,10 @@
   @include media(">tablet") { grid-row: 1; }
 }
 
-// Width-driven composition: the group keeps a constant ~717/600 ratio and only its
-// width changes, so the prototype’s max heights are enforced as max widths
-// (420/630/717px cap the height at 351/527/600px). It bleeds past the gutters on
-// mobile (html clips overflow-x).
+// Width-driven: the group keeps a constant ratio, so the prototype’s max heights are
+// enforced as max widths. Bleeds past the gutters on mobile (html clips overflow-x).
 .what_mockups {
-  // Entrance-animation params for these mockups only — pinned here, independent of
-  // the shared defaults (components/motion). `rise-scale` = x/y/scale/rot;
-  // `--mk-what-delay` gates the flanks (the centre and flanks override the delay,
-  // so `--mk-stagger` is unused here but kept for parity with the shared config).
+  // Entrance params for these mockups only (override the shared motion defaults).
   --mk-x: 0;
   --mk-y: 50px;
   --mk-scale: .94;
@@ -46,8 +38,7 @@
   }
 }
 
-// One shared device aspect makes the % placement resolution-independent. The
-// centre screen sits in flow (defines the group’s height); the flanks float.
+// Centre screen sits in flow (sets the group height); the flanks float over it.
 .what_phone {
   position: absolute;
   top: 7.5%;
@@ -71,10 +62,8 @@
   }
 }
 
-// Bespoke choreography for these three mockups, overriding the shared `.reveal`
-// timing (components/motion): the centre phone leads with the standard rise
-// (no stagger), then the flanks slide out horizontally from behind it — it sits on
-// top via `z-index`, so they read as emerging from behind — once it has settled.
+// Bespoke choreography: the centre phone rises first, then the flanks slide out from
+// behind it (it sits on top via `z-index`) once it has settled.
 @media (prefers-reduced-motion: no-preference) {
   .what_mockups.-ready .what_phone.-center {
     transition-delay: 0ms;

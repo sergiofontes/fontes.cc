@@ -1,3 +1,10 @@
 export default function Layout({ children }) {
-  return <>{children}</>;
+  return (
+    <>
+      <a className="global_skip" href="#content">
+        Skip to content
+      </a>
+      {children}
+    </>
+  );
 }

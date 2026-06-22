@@ -1,22 +1,20 @@
-// Pull quote, attribution, and a closing hairline on the shared `grid`. Each owns
-// a row so the rule can run wider than the quote. The top gap comes from
-// `Solution`’s bottom padding; this section only pads its bottom.
+// Pull quote, attribution, and a closing hairline on the shared `grid`.
 
 @import "../../styles/scaffold";
 
 .quote {
-  padding-bottom: var(--space-3xl); // 90 — mobile & desktop
+  padding-bottom: var(--space-3xl);
   scroll-margin-top: var(--gap);
 
-  @include media(">tablet") { padding-bottom: var(--space-4xl); } // 120
+  @include media(">tablet") { padding-bottom: var(--space-4xl); }
 
-  @include media(">desktop") { padding-bottom: var(--space-3xl); } // 90
+  @include media(">desktop") { padding-bottom: var(--space-3xl); }
 }
 
 .quote_figure {
-  row-gap: var(--space-xl); // 30 — column gap stays the grid’s own `--gap`
+  row-gap: var(--space-xl); // column gap stays the grid’s own `--gap`
 
-  @include media(">desktop") { row-gap: var(--space-md); } // 15
+  @include media(">desktop") { row-gap: var(--space-md); }
 }
 
 .quote_text {
@@ -54,9 +52,8 @@
 .quote_divisor {
   grid-row: 3;
 
-  // mobile/tablet row-gap is already 30; only desktop (15px row-gap) needs the
-  // extra 15px to keep a 30px gap above the rule.
+  // desktop row-gap is 15, so +15 keeps a 30px gap above the rule.
   @include media(">desktop") {
-    margin-top: var(--space-md); // +15 desktop row-gap = 30
+    margin-top: var(--space-md);
   }
 }

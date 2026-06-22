@@ -1,7 +1,6 @@
 @import "../../styles/scaffold";
 
 .button {
-  // Override base <a> layout and decoration
   display: inline-flex;
   gap: 6px;
   align-items: center;
@@ -22,8 +21,6 @@
     color: var(--color-text);
   }
 
-  // Transform/surface/focus come from the shared control states; the link only
-  // resets its own `text-decoration`.
   &:active { text-decoration: none; }
 
   &:hover { text-decoration: none; }
@@ -46,8 +43,7 @@
   }
 }
 
-// Press, focus ring, and hover surface shared by every control. Each keeps its own
-// focus-ring offset, transition, and control-specific hover/disabled treatment.
+// Press, focus ring, and hover surface shared by every control.
 
 .button,
 .button_icon,

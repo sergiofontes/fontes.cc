@@ -1,9 +1,7 @@
 import CasePreview from "./case_preview";
 
-// Each Stone gallery slide is a 534×444 frame holding flat, transparent mockup
-// PNGs positioned as percentages of that frame — matching the Figma “previews”.
-// Shadows are composed in CSS (`shadow` picks the drop-shadow token); the frame’s
-// `bg` shows through the gaps between mockups.
+// Each gallery slide is a 534×444 frame of flat transparent mockup PNGs positioned in
+// %; the `shadow` token drives the CSS shadow and `bg` shows through the gaps.
 const STONE_GALLERY = [
   {
     bg: "#f7dfcf",
@@ -61,9 +59,6 @@ const STONE_GALLERY = [
   },
 ];
 
-// VTEX — three frames: phones cascading over a tinted frame, a web catalog (a product
-// detail above the card grid, both bleeding past the edges), then the checkout phones.
-// Medium shadow throughout, matching the Figma effect style.
 const VTEX_GALLERY = [
   {
     bg: "#f3f6e1",
@@ -143,8 +138,6 @@ const VTEX_GALLERY = [
   },
 ];
 
-// PetPlate — a web product page behind the phone app, two wide web pages, then the
-// checkout cards cascading up-right.
 const PETPLATE_GALLERY = [
   {
     bg: "#deedff",
@@ -230,8 +223,7 @@ const PETPLATE_GALLERY = [
   },
 ];
 
-// Guava — browser windows scrolling across the carousel: each frame repeats the
-// previous window bleeding in from the left for continuity.
+// Guava — each frame repeats the previous window bleeding in for continuity.
 const GUAVA_GALLERY = [
   {
     bg: "#ffcccc",
@@ -297,8 +289,6 @@ const GUAVA_GALLERY = [
   },
 ];
 
-// Tropical Ruby — one browser window per frame, filling the tinted frame and bleeding
-// off the bottom.
 const TROPICAL_GALLERY = [
   {
     bg: "#fff5cc",

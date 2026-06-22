@@ -70,14 +70,8 @@
 .content_divisor,
 .content_divisors { border-bottom: 1px solid var(--color-text); }
 
-// Closing divider. Low specificity so the responsive spans below govern its reach
-// (penultimate column on tablet/desktop); on mobile it runs one column into the
-// trailing gutter to meet the screen edge.
-.-last { grid-column-end: span calc(var(--content-width) + 1); }
-
-// A `-last` divider closes a section’s final subsection (or a single section), so it
-// reaches the screen edge at every breakpoint — out-specifying the responsive spans
-// below. Non-final subsection dividers keep their base span (penultimate column).
+// `-last` closes a section’s final (or only) subsection, so its divider reaches the
+// screen edge at every breakpoint instead of stopping at the penultimate column.
 .content_divisor.-last,
 .content_divisors.-last { grid-column-end: -1; }
 

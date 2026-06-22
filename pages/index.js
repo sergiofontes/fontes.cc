@@ -13,7 +13,7 @@ import Motion from '../components/motion';
 
 export default function Home() {
   return (
-    <Layout home>
+    <Layout>
       <Seo {...seo} />
       <Motion />
 
@@ -21,7 +21,7 @@ export default function Home() {
         <Nav />
         <Header />
 
-        <main className="main">
+        <main className="index_main" id="content">
 
           <AboutExperience />
 

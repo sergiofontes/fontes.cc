@@ -34,8 +34,7 @@ export default function Anchor({
   children,
   ...props
 }) {
-  // Links opening a new tab get the safe `rel` plus a screen-reader hint, unless
-  // the caller already passes its own `rel`.
+  // New-tab links get the safe `rel` + an SR hint (unless the caller passes its own).
   const newTab = props.target === "_blank";
 
   return (

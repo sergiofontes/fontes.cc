@@ -6,23 +6,17 @@ import Play from "../play";
 
 const IMG = "/images/work/catalog";
 
-// The promotional video lives on YouTube; the play button links out to it.
 const VIDEO_URL = "https://www.youtube.com/watch?v=J0cINzc2ziE";
 
-// Every mockup is a plain transparent/flat asset; the framing (mask + radius) and
-// the layered drop shadow are composed entirely in CSS. `next/image` serves the
-// sharpest source (the highest `scale` shipped) as AVIF/WebP and lazy-loads by
-// default; each call passes the `sizes` for its frame's render width.
+// Flat assets; framing (mask + radius) and the drop shadow are composed in CSS.
 function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
   const max = Math.max(...scales);
   const src = `${IMG}/${name}${max > 1 ? `@${max}x` : ""}.png`;
 
-  return <Image className="solution_media reveal_item" src={src} alt={alt} {...rest} />;
+  return <Image className="solution_media motion_item" src={src} alt={alt} {...rest} />;
 }
 
-// The six “sharing” cards keep their own native heights (Slack message, Instagram
-// post, Instagram story), so each carries its real intrinsic size to avoid layout
-// shift. The left three share the store; the right three share a product.
+// Each sharing card keeps its native height (Slack/IG post/IG story) to avoid CLS.
 const SHARING = [
   {
     name: "store_1",
@@ -56,8 +50,7 @@ const SHARING = [
   },
 ];
 
-// The setup carousel: four backoffice screens sharing one green-panel mask,
-// paged with the shared `ButtonDot` pagination (CSS scroll-snap does the work).
+// Setup carousel: four backoffice screens, paged with `ButtonDot` (CSS scroll-snap).
 const CONFIG_SLIDES = [
   "General settings, sharing link, and WhatsApp orders",
   "Store information, description, and address",
@@ -98,7 +91,7 @@ function ConfigCarousel() {
   return (
     <>
       <ul
-        className="solution_track carousel reveal"
+        className="solution_track carousel motion"
         ref={trackRef}
         tabIndex={0}
         onScroll={sync}
@@ -143,16 +136,13 @@ function ConfigCarousel() {
   );
 }
 
-// The responsive composite is art-directed: a portrait device stack on mobile/
-// tablet, a landscape arrangement on desktop. `next/image` can't swap sources by
-// media query, so `getImageProps` builds the optimized (AVIF/WebP) srcSets and a
-// `<picture>` keeps the single-fetch art direction.
+// Art-directed: portrait device stack on mobile/tablet, landscape on desktop.
+// `next/image` can't swap by media query, so `getImageProps` + `<picture>` do it.
 function ResponsiveDevices() {
   const alt =
     "The Online Catalog adapting across desktop, tablet, and mobile devices.";
 
-  // Detail-heavy composite (device screenshots): raise the quality above the
-  // default 75 so the UI text stays crisp after AVIF/WebP encoding.
+  // Raise quality above the default 75 so the device-screenshot text stays crisp.
   const { props: desktop } = getImageProps({
     src: `${IMG}/responsive_desktop@3x.png`,
     alt,
@@ -177,7 +167,7 @@ function ResponsiveDevices() {
         srcSet={desktop.srcSet}
         sizes={desktop.sizes}
       />
-      <img className="solution_media reveal_item" {...mobile} />
+      <img className="solution_media motion_item" {...mobile} />
     </picture>
   );
 }
@@ -205,7 +195,7 @@ export default function Solution() {
         </div>
 
         <a
-          className="solution_video video content_body reveal"
+          className="solution_video video content_body motion"
           href={VIDEO_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -229,10 +219,8 @@ export default function Solution() {
         </aside>
       </div>
 
-      {/* Block 2 — sharing across channels (full-bleed montage). Each card is its
-          own screenshot with its own alt, so the montage reads as six images
-          rather than one labelled group. */}
-      <div className="solution_sharing reveal">
+      {/* Block 2 — sharing across channels (full-bleed montage) */}
+      <div className="solution_sharing motion">
         {SHARING.map(({ name, height, alt }) => (
           <figure className="solution_frame -share" key={name}>
             <Media
@@ -253,7 +241,7 @@ export default function Solution() {
           merchants promote their stores and attract new customers.
         </aside>
 
-        <div className="solution_pair content_body -templates reveal">
+        <div className="solution_pair content_body -templates motion">
           <figure className="solution_frame -template">
             <Media
               name="stationary_2"
@@ -282,7 +270,7 @@ export default function Solution() {
 
       {/* Block 5 — store customization on mobile */}
       <div className="solution_custom grid content">
-        <div className="solution_pair -phones reveal">
+        <div className="solution_pair -phones motion">
           <figure className="solution_frame -phone">
             <Media
               name="mockup_plp"
@@ -311,7 +299,7 @@ export default function Solution() {
 
       {/* Block 6 — responsive across devices */}
       <div className="solution_devices grid content">
-        <figure className="solution_frame -devices reveal">
+        <figure className="solution_frame -devices motion">
           <ResponsiveDevices />
         </figure>
 

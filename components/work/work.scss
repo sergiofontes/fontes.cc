@@ -4,15 +4,13 @@
   scroll-margin-top: var(--gap);
 }
 
-// One full-width cell the heading overlaps, so the sticky “Work” heading spans the
-// whole section instead of a single case.
+// Full-width cell the heading overlaps, so the sticky “Work” heading spans the section.
 .work_cases {
   grid-row: 1;
 }
 
-// Each case is its own nested grid so the carousel and colophon align to the
-// shared column lines. The carousel is full-bleed at every breakpoint, so its
-// widths derive from the live grid column.
+// Each case is its own nested grid so the carousel and colophon align to the shared
+// column lines; the full-bleed carousel widths derive from the live grid column.
 .work_case {
   // One grid column = (track width − the 2 outer gutters − the gaps) ÷ columns,
   // capped at --column-max so it matches the centered grid past the max width.
@@ -52,8 +50,6 @@
   }
 }
 
-// Heading — rotated via `.content_heading`; only the sticky offset and row are
-// work-specific.
 .work_title {
   position: sticky;
   top: calc(var(--logo-size) + var(--gap) + 1rem);
@@ -70,7 +66,6 @@
   }
 }
 
-// Header — logo lockup + year + carousel controls
 .work_header {
   display: flex;
   grid-row: 1;
@@ -97,7 +92,7 @@
   align-items: center;
   min-width: 0;
 
-  // Per-logo widths from the Figma specs (px ÷ 15px root; height follows aspect).
+  // Per-logo widths from Figma (px ÷ 15px root).
   // stylelint-disable
   .logo          { height: auto; }
   .logo_stone    { width: 5.2667rem; } // 79px
@@ -108,15 +103,12 @@
   // stylelint-enable
 }
 
-// Project subtitle — the global `h3` already supplies the DM Sans 800 uppercase
-// look; only the lockup margin reset is work-specific. Wraps beside the logo when
-// the header is tight (mobile).
+// Subtitle — the global `h3` supplies the look; only the margin reset is work-specific.
 .work_subtitle {
   margin: 0;
 }
 
-// Handwritten “check the case” note pinned above the featured project’s subtitle.
-// Dropped on mobile, where the header is tightest, like the rest of the lockup chrome.
+// Handwritten “check the case” note above the featured subtitle; dropped on mobile.
 .work_note {
   position: absolute;
   bottom: calc(100% - .4rem);
@@ -137,7 +129,6 @@
   align-items: center;
 }
 
-// Uppercase comes from the `.label` class in the markup.
 .work_year {
   display: none;
   color: var(--color-subtitle);
@@ -157,12 +148,9 @@
   transform: scaleX(-1);
 }
 
-// Carousel — full-bleed on every breakpoint (`content_media`, gutter to gutter).
-// Only the header pins to row 1; the CTA, gallery, and rule auto-flow after it in
-// DOM order, so a non-featured case (no CTA) collapses to header → gallery → rule
-// without reserving an empty row.
+// Carousel — full-bleed (`content_media`). The header pins to row 1; CTA, gallery, and
+// rule auto-flow after it, so a non-featured case (no CTA) collapses cleanly.
 
-// Shared scroll/snap/scrollbar/focus-ring come from `.carousel`.
 .work_track {
   align-items: flex-start;
   overscroll-behavior-x: contain;
@@ -173,9 +161,7 @@
 
   &:focus-visible { outline-offset: 2px; }
 
-  // Free scroll on desktop: there’s no snap point at the leading edge, so snapping
-  // would pull the start past the colophon’s inset. It rests with the colophon
-  // aligned to the grid instead.
+  // Free scroll on desktop so snapping doesn’t pull the start past the colophon inset.
   @include media(">desktop") {
     scroll-snap-type: none;
   }
@@ -210,8 +196,7 @@
   border-radius: var(--radius-small);
 }
 
-// A built gallery frame — the carousel window the composition is clipped to. Its
-// `background` (set inline per slide) shows through the gaps between mockups.
+// Gallery frame — the window the composition is clipped to; inline `bg` shows in gaps.
 .work_frame {
   position: relative;
   width: 100%;
@@ -220,10 +205,8 @@
   border-radius: var(--radius-small);
 }
 
-// The composition stage: a 534×444 box (the prototype’s frame) pinned to the
-// window’s height and centered, so the mockups keep their proportions and full
-// height while the window crops the sides on narrower breakpoints (and shows a
-// little background on wider ones) — matching the Figma overflow.
+// Composition stage: a 534×444 box pinned to the window height and centered, so the
+// mockups keep their proportions while the window crops the sides per breakpoint.
 .work_stage {
   position: absolute;
   top: 50%;
@@ -233,10 +216,8 @@
   transform: translate(-50%, -50%);
 }
 
-// Website/page previews (full-frame compositions) keep the frame itself at the
-// prototype’s 534×444 ratio and let the stage fill it, so the mockup-to-frame
-// spacing tracks the frame width and matches the Figma margins at every breakpoint
-// — unlike the height-pinned stage, whose width is fixed by the frame’s height.
+// Full-frame previews keep the frame at 534×444 and let the stage fill it, so the
+// mockup spacing tracks the frame width (not the height-pinned stage’s fixed width).
 .work_frame.-fill {
   height: auto;
   aspect-ratio: 534 / 444;
@@ -250,8 +231,7 @@
   }
 }
 
-// Mockups are flat transparent PNGs; the drop-shadow follows their silhouette
-// (the rounded phone/card edges) the way `box-shadow` couldn’t.
+// Flat PNGs; `drop-shadow` follows the rounded silhouette where `box-shadow` couldn’t.
 .work_mockup {
   position: absolute;
   height: auto;
@@ -265,12 +245,10 @@
   &.-flat { filter: none; }
 }
 
-// The mockup entrance animation is shared across cases and the catalog page; see
-// `components/motion` (the `.reveal` / `.reveal_item` scaffold).
+// Mockup entrance animation: see AGENTS.md › Reveal animation.
 
-// Video slide — the thumbnail fills the whole frame (cropped); the `.video` link and
-// centered `Play` badge wrapping it are shared with Solution. Its stage drops the
-// 534/444 letterbox so the image bleeds gutter to gutter.
+// Video slide — thumbnail fills the frame; `.video` link + `Play` badge shared with
+// Solution. The stage drops the 534/444 letterbox so the image bleeds full-width.
 .work_frame.-video .work_stage {
   inset: 0;
   width: 100%;
@@ -315,8 +293,7 @@
   }
 }
 
-// Featured call-to-action — summary + “Read the case”. Sits between the header and
-// the gallery (above it), placed by DOM order in the auto-flowing case grid.
+// Featured CTA — summary + “Read the case”; placed by DOM order above the gallery.
 .work_cta {
   display: flex;
   flex-direction: column;
@@ -334,15 +311,11 @@
   margin: 0;
 }
 
-// Each case closes with a `content_rule` at the penultimate column; the final case
-// is the section’s last subsection, so its divider reaches the screen edge instead.
-// Auto grid-row keeps it last in the `work_case` grid.
+// Each case closes with a `content_rule`; the final case’s divider reaches the edge.
 .work_case:last-child .content_rule { grid-column-end: -1; }
 
-// Mobile: the shared `content_rule` span overshoots the 4-column grid into implicit
-// tracks, which both stretches a non-last divider to the screen edge and pulls the
-// full-bleed gallery short of it. End on the penultimate line instead (the last case
-// still reaches the edge, above), and sit 30px below the media — like tablet/desktop.
+// Mobile: the shared `content_rule` span overshoots the 4-col grid, so end on the
+// penultimate line instead (the last case still reaches the edge, above).
 @include media("<=tablet") {
   .work_case .content_rule {
     grid-column-end: -2;

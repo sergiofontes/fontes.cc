@@ -17,7 +17,6 @@ function hexToRgb(hex) {
   return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
 }
 
-// Behaviour of the dust effect (tuned values).
 const CONFIG = {
   colorHex: "#ffffff", // grain tint (white tint × brightness ⇒ grey on the dark cover)
   baseGray: 86, // brightness floor (0–255)
@@ -25,8 +24,8 @@ const CONFIG = {
   alphaBase: 205, // opacity floor (0–255)
   alphaJitter: 53, // random opacity added per grain
   grainSize: 1, // base grain side in backing px (+0/1 per grain)
-  count: 12000, // grain count after thinning the source stipple
-  scale: 1.2, // image zoom inside the box
+  count: 12000,
+  scale: 1.2,
   edgeRandom: 0, // px of random home displacement, growing toward the edges
   stiffness: 0.005, // spring pull toward home (return speed)
   damping: 0.85, // velocity settle per step (gravity-like)
@@ -40,12 +39,10 @@ const CONFIG = {
 const COLOR = hexToRgb(CONFIG.colorHex);
 const MAX_SIDE = 760; // cap the larger backing dimension
 
-// Reconstructs the cover art from grey dust grains on a <canvas>: the grains gather
-// into the image on load, a click scatters them, then a spring pulls every grain
-// home so the image re-forms (gravity-like settle). Grains that fly past the box
-// simply leave the frame — nothing piles up at the edges. A static next/image is
-// rendered underneath as the fallback — it stays for reduced motion or until the
-// simulation paints its first frame, so there is no flash and no CLS.
+// Reconstructs the cover art from grey dust grains on a <canvas>: they gather into
+// the image on load, a click scatters them, then a spring pulls each grain home. A
+// static next/image underneath is the fallback (reduced motion, or until first
+// paint), so there is no flash and no CLS.
 export default function Dust({ src, width, height, sizes = "", alt = "", classes = "" }) {
   const canvasRef = useRef(null);
 
@@ -62,8 +59,8 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
     const offctx = off.getContext("2d", { willReadFrequently: true });
     const ALPHA_MIN = 24; // ignore near-transparent source pixels
 
-    let cw = 0; // backing width
-    let ch = 0; // backing height
+    let cw = 0;
+    let ch = 0;
     let dim = 0; // reference size for physics magnitudes
     let count = 0;
     let frameId = 0;
@@ -125,9 +122,8 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
       offctx.drawImage(source, 0, 0, cw, ch);
       const data = offctx.getImageData(0, 0, cw, ch).data;
 
-      // The source is a faint, dark stipple, so weight the keep odds by each
-      // pixel's "lit ink" (luminance × alpha): grains land where the image is
-      // bright and thin out into its shadows. Expected kept count ≈ CONFIG.count.
+      // Weight keep-odds by each pixel's "lit ink" (luminance × alpha), so grains land
+      // where the source is bright and thin out into its shadows (≈ CONFIG.count kept).
       let weight = 0;
       for (let i = 0; i < data.length; i += 4) {
         const a = data[i + 3];

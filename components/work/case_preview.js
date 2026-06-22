@@ -15,11 +15,8 @@ const DIRS = {
   catalog: "/images/work/catalog",
 };
 
-// A flat mockup positioned (in %) inside the gallery frame. `next/image` serves the
-// sharpest source (the highest `scale` shipped) as AVIF/WebP and lazy-loads by
-// default; the layered shadow is composed in CSS via the `shadow` modifier
-// (`-small`/`-medium`/`-flat`, or the default large). Each mockup carries its own
-// `alt`; continuity repeats pass an empty `alt` to stay decorative.
+// A flat mockup positioned (in %) in the gallery frame; the layered shadow comes from
+// the `shadow` modifier. Each carries its own `alt`; continuity repeats pass `alt=""`.
 function Mockup({
   name,
   dir = "previews",
@@ -36,9 +33,8 @@ function Mockup({
   const src = `${base}${max > 1 ? `@${max}x` : ""}.png`;
   const [w, h] = MOCKUP_SIZES[name] || [4, 3];
 
-  // The mockup renders at a `width` share of its basis. Height-pinned stage frames
-  // give a fixed basis per breakpoint (stage width 433/469/534); full-frame (`fill`)
-  // and video frames scale with the slide, so they get a slide-relative `sizes`.
+  // Height-pinned stage frames have a fixed per-breakpoint basis (stage 433/469/534);
+  // `fill` and video frames scale with the slide, so they get a slide-relative `sizes`.
   const sizes =
     width == null
       ? "(min-width: 1201px) 700px, (min-width: 768px) 62vw, 78vw"
@@ -48,7 +44,7 @@ function Mockup({
 
   return (
     <Image
-      className={cn("work_mockup reveal_item", {
+      className={cn("work_mockup motion_item", {
         "-small": shadow === "small",
         "-medium": shadow === "medium",
         "-flat": shadow === "none",
@@ -67,11 +63,9 @@ function Mockup({
   );
 }
 
-// One gallery frame: the mockups float on a `work_stage` that covers the frame at
-// the prototype’s 534×444 ratio, so the composition stays undistorted while the
-// carousel window clips it per breakpoint (matching the Figma overflow). A `video`
-// slide wraps the frame in the shared `.video` link + `Play` badge, reusing the
-// same target and behavior as Solution’s promotional video.
+// One gallery frame: mockups float on a `work_stage` clipped by the carousel window
+// (the prototype's 534×444 ratio). A `video` slide wraps it in the shared `.video`
+// link + `Play` badge.
 function Frame({ bg, shadow, fill, video, mockups }) {
   const frame = (
     <figure
@@ -222,7 +216,7 @@ export default function CasePreview({
       )}
 
       <div
-        className="work_gallery content_media reveal"
+        className="work_gallery content_media motion"
         role="group"
         aria-label={`${name} gallery`}
       >
