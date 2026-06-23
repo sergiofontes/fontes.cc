@@ -1,4 +1,4 @@
-@import "scaffold";
+@use "scaffold" as *;
 
 :root {
   --heading-start: 1;

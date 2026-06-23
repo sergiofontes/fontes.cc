@@ -1,6 +1,6 @@
 // Six stacked blocks on the home `content` grid; mockups are framed and shadowed in CSS.
 
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 $color-setup: #dff8c3;
 

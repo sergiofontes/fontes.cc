@@ -1,6 +1,6 @@
 // Pull quote, attribution, and a closing hairline on the shared `grid`.
 
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .quote {
   padding-bottom: var(--space-3xl);

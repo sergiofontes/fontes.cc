@@ -1,4 +1,4 @@
-@import "../styles/scaffold";
+@use "../styles/scaffold" as *;
 
 .index_main {
   --color-focus-ring: var(--black);

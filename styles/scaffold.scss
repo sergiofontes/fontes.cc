@@ -1,4 +1,7 @@
-@charset "utf-8";
+@forward "utils";
 
-@import "utils";
+// include-media stays a legacy @import on purpose: it's configured by reassigning
+// $breakpoints after load (see vendor/include-media.scss), which @use/@forward can't
+// express. Sass requires it after @forward, which trips stylelint's CSS-only position rule.
+// stylelint-disable-next-line no-invalid-position-at-import-rule
 @import "vendor/include-media";

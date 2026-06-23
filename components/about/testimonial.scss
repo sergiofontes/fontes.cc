@@ -1,4 +1,4 @@
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .testimonial {
   --quote-start: var(--content-start);

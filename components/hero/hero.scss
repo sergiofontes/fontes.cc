@@ -1,7 +1,7 @@
 // Dark, full-height cover. `.hero` is the home cover and the scaffold the case
 // (`.hero-case`) reuses, layering its own grid and titling further down.
 
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .hero {
   position: relative;

@@ -1,7 +1,7 @@
 // stylelint-disable
 @use "sass:math";
 @use "sass:map";
-@import "scaffold";
+@use "scaffold" as *;
 
 // Base value
 $base-mob         : 15px;

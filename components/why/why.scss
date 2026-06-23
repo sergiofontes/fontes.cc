@@ -1,4 +1,4 @@
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .why {
   padding-block: var(--space-3xl);

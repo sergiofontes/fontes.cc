@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $base: 16px !default;
 
 @function rem($size) {

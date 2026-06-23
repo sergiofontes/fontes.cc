@@ -1,4 +1,4 @@
-@import "scaffold";
+@use "scaffold" as *;
 
 :root {
   --font-body: "Schibsted Grotesk", sans-serif;

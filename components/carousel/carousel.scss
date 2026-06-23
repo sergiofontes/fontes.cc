@@ -1,6 +1,6 @@
 // Horizontal scroll-snap track shared by `Work` and `Solution`.
 
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .carousel {
   display: flex;
