@@ -167,11 +167,13 @@
     width: var(--logo-size);
     height: var(--logo-size);
     cursor: pointer;
+
+    &:active { transform: none; } // wrapper owns the press; avoid stacking the global a scale
   }
   svg path { fill: var(--color-background); }
 
   &:hover { transform: translateY(-2px); }
-  &:active { transform: translateY(2px); }
+  &:active { transform: scale(.96); }
 
   @include media(">desktop") { left: var(--gap-out); }
 

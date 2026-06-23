@@ -49,7 +49,7 @@
 .button_icon,
 .button_menu,
 .button_dot {
-  &:active { transform: translateY(1px); }
+  &:active { transform: scale(.96); }
 
   &:focus-visible { outline: var(--border-focus) solid var(--color-focus-ring); }
 }
