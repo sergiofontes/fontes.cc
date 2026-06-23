@@ -118,7 +118,7 @@ export function Colophon({ activities, designers }) {
         <dl>
           <dt className="label">What I did</dt>
           <dd className="note">{activities}</dd>
-          <dt className="label">Designers</dt>
+          <dt className="label">{designers.includes(",") ? "Designers" : "Designer"}</dt>
           <dd className="note">{designers}</dd>
         </dl>
       </aside>
