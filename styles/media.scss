@@ -1,0 +1,65 @@
+@use "sass:map";
+@use "sass:string";
+
+// Viewport widths — single source of truth. Each value is the largest px still
+// in the range *below* the breakpoint, so `<=tablet` → (max-width: 767px) and the
+// mixin auto-derives the adjacent `>tablet` → (min-width: 768px). Values are kept
+// exactly as include-media had them so every query compiles byte-identically.
+$breakpoints: (
+  "phone":         319px,
+  "phonemid":      374px,
+  "phonelarge":    413px,
+  "tablet":        767px,
+  "desktop":       1200px,
+  "notebook":      1200px,
+  "desktoplarge":  1439px,
+  "notebooklarge": 1439px,
+  "max":           1460px,
+);
+
+// `media(">tablet")`, `media(">tablet", "<=desktop")` … → a `@media` block.
+// ">"/"<" are exclusive: they auto-generate the adjacent ±1px boundary.
+// ">="/"<=" are inclusive: they use the stored value as-is.
+@mixin media($conditions...) {
+  $query: "";
+
+  @each $condition in $conditions {
+    $head: string.slice($condition, 1, 2);
+    $operator: string.slice($condition, 1, 1);
+
+    @if $head == ">=" or $head == "<=" {
+      $operator: $head;
+    }
+
+    $name: string.slice($condition, string.length($operator) + 1);
+
+    @if not map.has-key($breakpoints, $name) {
+      @error "Unknown breakpoint `#{$name}` in media(#{$condition}).";
+    }
+
+    $value: map.get($breakpoints, $name);
+    $prefix: "max";
+
+    @if $operator == ">" or $operator == ">=" {
+      $prefix: "min";
+    }
+
+    @if $operator == ">" {
+      $value: $value + 1px;
+    }
+
+    @if $operator == "<" {
+      $value: $value - 1px;
+    }
+
+    @if $query != "" {
+      $query: "#{$query} and ";
+    }
+
+    $query: "#{$query}(#{$prefix}-width: #{$value})";
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}

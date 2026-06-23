@@ -21,7 +21,7 @@ const CONFIG = {
   colorHex: "#ffffff", // grain tint (white tint × brightness ⇒ grey on the dark cover)
   baseGray: 86, // brightness floor (0–255)
   lumInfluence: 0, // extra brightness pulled from the source luminance
-  alphaBase: 105, // opacity floor (0–255)
+  alphaBase: 255, // opacity floor (0–255)
   alphaJitter: 53, // random opacity added per grain
   grainSize: 1, // base grain side in backing px (+0/1 per grain)
   count: 12000,
