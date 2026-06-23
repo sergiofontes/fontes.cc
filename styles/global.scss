@@ -1,8 +1,8 @@
 @import "scaffold";
 
 :root {
-  --header-max-height: 900px;
-  --header-min-height: 44rem;
+  --hero-max-height: 900px;
+  --hero-min-height: 44rem;
   --logo-size: var(--button-size);
   --button-size: 2.75rem;
 
@@ -12,11 +12,11 @@
   --radius-small: 2px;
 
   @include media(">tablet") {
-    --header-min-height: 48rem;
+    --hero-min-height: 48rem;
   }
 
   @include media(">desktop") {
-    --header-min-height: 50rem;
+    --hero-min-height: 50rem;
   }
 
   --shadow-small:

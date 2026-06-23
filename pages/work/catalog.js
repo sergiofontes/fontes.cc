@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 import seo from "../../data/seo/catalog.json";
 import Nav from "../../components/nav";
-import Cover from "../../components/cover";
+import HeroCase from "../../components/hero-case";
 import What from "../../components/what";
 import Why from "../../components/why";
 import Solution from "../../components/solution";
@@ -28,7 +28,7 @@ export default function OnlineCatalog() {
       <div className="index">
         <Nav links={CASE_LINKS} symbol={CASE_SYMBOL} />
 
-        <Cover
+        <HeroCase
           logo="stone"
           label="Case"
           category="Work"

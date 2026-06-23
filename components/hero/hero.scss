@@ -1,12 +1,17 @@
-// Dark, full-height cover scaffold shared by `Header` and `Cover`.
+// Dark, full-height cover. `.hero` is the home cover and the scaffold the case
+// (`.hero-case`) reuses, layering its own grid and titling further down.
 
 @import "../../styles/scaffold";
 
 .hero {
+  position: relative;
+  grid-template-rows: 1fr auto;
+  row-gap: calc(var(--gap) * 2);
+  align-items: end;
   height: 93vh; // env/svh fallbacks below keep the menu at the screen bottom on mobile
   height: calc(90vh - env(safe-area-inset-bottom));
   height: 93lvh;
-  min-height: var(--header-min-height);
+  min-height: var(--hero-min-height);
   padding-top: var(--gap);
   background-color: var(--color-cover);
 
@@ -18,32 +23,223 @@
 
   h2 { color: var(--color-text-dim); }
 
+  .hero_title,
+  .hero_intro { grid-column: 1 / span var(--columns-total); }
+
+  .hero_intro { grid-row: 1; }
+  .hero_title { grid-row: 2; }
+
+  .content_divisors { border-color: var(--color-text-inverse); }
+
+  @include media(">tablet") {
+    grid-template-rows: 1fr auto auto;
+
+    .content_divisors { grid-column: var(--content-start) / -1; }
+
+    @include media("<=desktop") {
+      .content_columns { display: block; }
+
+      .hero_intro {
+        grid-row: 2;
+        grid-column-end: span calc(var(--columns) + 1);
+      }
+
+      .hero_title { grid-row: 3; }
+    }
+  }
+
   @include media(">desktop") {
+    grid-template-rows: auto 1fr;
     height: 90vh;
-    max-height: var(--header-max-height);
+    max-height: var(--hero-max-height);
+
+    .hero_intro { grid-row: 1; }
+
+    .hero_title {
+      grid-row: 2;
+      align-self: end;
+    }
   }
 }
 
 // Faint cover art behind both heroes. Sits first in the DOM so the text paints on
-// top; each consumer sets its own width, blend mode, and height.
+// top; `lighten` keeps the home title legible, `.hero-case_art` overrides size/blend.
 .hero_art {
   position: absolute;
   grid-row: 1;
   grid-column: 1 / -1;
   align-self: start;
   justify-self: center;
+  width: 23.4667rem; // 352px (Figma)
   max-width: 100%;
   height: auto;
   pointer-events: none;
   object-fit: contain;
+  mix-blend-mode: lighten;
 
   @include media(">tablet") {
     grid-column-start: var(--content-start);
     justify-self: start;
+    width: 30rem; // 523px (Figma)
   }
 
   @include media(">desktop") {
     grid-row: 1 / -1;
     grid-column: var(--content-start) / -1;
+    width: min(33rem, 100%);
   }
+}
+
+.hero_title {
+  justify-content: start;
+  width: 100%;
+  overflow: hidden;
+
+  h1 {
+    top: 3px;
+    left: -.5rem;
+    grid-column: 1 / span var(--columns-total);
+    margin: 0;
+  }
+
+  b {
+    position: relative;
+    left: .45em;
+    display: block;
+  }
+
+  [class*="Typewriter__cursor"] { animation-timing-function: cubic-bezier(.75, 0, .04, 1.01); }
+
+  @include media(">tablet") {
+    h1 {
+      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+      text-align: left;
+    }
+  }
+
+  @include media(">desktop") {
+    h1 {
+      top: 5px;
+      grid-column: var(--content-start) / span calc(var(--content-width) * 3);
+    }
+
+    b { left: .6em; }
+  }
+}
+
+.hero_intro {
+  i { display: block; }
+  p { display: inline; }
+  .lead { line-height: 1; }
+
+  @include media(">desktop") {
+    align-items: end;
+
+    p { display: block; }
+  }
+}
+
+// Case cover (`HeroCase`): wears `.hero` for the shared look, then overrides the
+// grid and lays out its titling, summary, label, and category.
+.hero-case {
+  grid-template-rows: 1fr auto auto;
+  row-gap: var(--gap); // restore the grid's gap, which the home `.hero` doubles
+  max-height: var(--hero-max-height);
+  padding-bottom: calc(var(--gap) * 2);
+  overflow: hidden;
+
+  @include media(">desktop") {
+    grid-template-rows: auto auto 1fr;
+    padding-bottom: var(--space-3xl);
+  }
+}
+
+// Case art: the shared `.hero_art` placement, height-capped with an exclusion blend.
+.hero-case_art {
+  width: auto;
+  max-height: 45svh;
+  mix-blend-mode: exclusion;
+
+  @include media(">desktop") {
+    width: min(40rem, 100%);
+    max-height: none;
+  }
+}
+
+.hero-case_label {
+  grid-row: 3;
+  margin: -.5rem 0 0;
+
+  @include media(">desktop") {
+    grid-row: 1;
+    margin-top: .266667rem;
+  }
+}
+
+// Category — desktop only.
+.hero-case_category {
+  display: none;
+
+  @include media(">desktop") {
+    display: block;
+    grid-row: 1;
+    grid-column: var(--content-start) / span var(--content-width);
+    align-self: center;
+    margin: 0;
+    line-height: 1;
+  }
+}
+
+.hero-case_border {
+  grid-row: 2;
+  grid-column: var(--content-start) / -1;
+  width: 100%;
+  border-bottom: 1px solid var(--color-text-inverse);
+}
+
+.hero-case_main {
+  display: flex;
+  flex-direction: column;
+  grid-row: 3;
+  grid-column: var(--content-start) / span var(--content-width);
+  gap: var(--space-xl);
+  width: 100%;
+
+  @include media(">tablet") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3 - 1);
+  }
+
+  @include media(">desktop") {
+    grid-column: var(--content-start) / span calc(var(--content-width) * 3 - 1);
+    align-self: end;
+  }
+}
+
+.hero-case_titling {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+// Force case logos to white (survives gradient fills).
+.hero-case .logo {
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.hero-case .logo_stone { width: 5.2667rem; } // 79px
+
+.hero-case_heading {
+  margin: 0;
+  font-size: 4.2667rem; // 64px
+  line-height: .9;
+  letter-spacing: -.02em;
+
+  @include media(">desktop") {
+    font-size: 6.6667rem; // 100px
+  }
+}
+
+.hero-case_summary {
+  margin: 0;
 }

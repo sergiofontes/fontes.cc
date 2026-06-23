@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Logo from "../logos/";
 import Dust from "../dust";
 
-Cover.propTypes = {
+HeroCase.propTypes = {
   logo: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
@@ -19,11 +19,11 @@ Cover.propTypes = {
   }).isRequired,
 };
 
-export default function Cover({ logo, label, category, title, summary, image }) {
+export default function HeroCase({ logo, label, category, title, summary, image }) {
   return (
-    <header id="cover" className="hero cover grid">
+    <header id="cover" className="hero hero-case grid">
       <Dust
-        classes="cover_art"
+        classes="hero-case_art"
         src={image.src2x || image.src}
         width={image.width}
         height={image.height}
@@ -31,10 +31,10 @@ export default function Cover({ logo, label, category, title, summary, image }) 
         alt={image.alt || ""}
       />
 
-      <div className="cover_main">
-        <span className="cover_titling">
+      <div className="hero-case_main">
+        <span className="hero-case_titling">
           <Logo type={logo} />
-          <h1 className="cover_heading">
+          <h1 className="hero-case_heading">
             {title.map((line, index) => (
               <Fragment key={line}>
                 {index > 0 && <br />}
@@ -43,12 +43,12 @@ export default function Cover({ logo, label, category, title, summary, image }) 
             ))}
           </h1>
         </span>
-        <p className="cover_summary lead">{summary}</p>
+        <p className="hero-case_summary lead">{summary}</p>
       </div>
 
-      <h2 className="cover_label content_heading">{label}</h2>
-      <p className="cover_category lead">{category}</p>
-      <span className="cover_border" />
+      <h2 className="hero-case_label content_heading">{label}</h2>
+      <p className="hero-case_category lead">{category}</p>
+      <span className="hero-case_border" />
     </header>
   );
 }

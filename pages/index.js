@@ -2,7 +2,7 @@ import Layout from '../components/layout';
 import Seo from '../components/seo';
 import seo from '../data/seo/home.json';
 import Nav from '../components/nav';
-import Header from '../components/header';
+import Hero from '../components/hero';
 import Footer from '../components/footer';
 import AboutExperience from '../components/about/experience';
 import AboutTestimonial from '../components/about/testimonial';
@@ -19,7 +19,7 @@ export default function Home() {
 
       <div className="index">
         <Nav />
-        <Header />
+        <Hero />
 
         <main className="index_main" id="content">
 

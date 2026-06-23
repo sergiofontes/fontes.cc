@@ -14,7 +14,7 @@ There is no test suite and no JS linter configured for this project.
 
 ## Architecture
 
-The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Header`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. `components/layout.js` is a thin wrapper that renders the “Skip to content” link (targeting the `#content` main landmark) and children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`. Per-page and site-wide SEO/metadata live as thematic JSON in `data/seo/` (`site.json` defaults plus one file per page), consumed by the `components/seo` component which each page spreads (`<Seo {...seo} />`).
+The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Hero`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. The work-case pages (e.g. `pages/work/catalog.js`) open with `HeroCase` instead of `Hero`. `components/layout.js` is a thin wrapper that renders the “Skip to content” link (targeting the `#content` main landmark) and children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`. Per-page and site-wide SEO/metadata live as thematic JSON in `data/seo/` (`site.json` defaults plus one file per page), consumed by the `components/seo` component which each page spreads (`<Seo {...seo} />`).
 
 ### Component convention
 
@@ -56,7 +56,7 @@ Reach for these classes **before** writing raw `grid-column`/breakpoint math —
 
 Each utility owns its `grid-column` only — the component keeps its own `grid-row`, typography, and any single-breakpoint exception (e.g. a divider that goes full-bleed on mobile but narrows on desktop). When a placement genuinely diverges at one breakpoint, add a one-line `grid-column` override in the component scss (it wins on source order); don't fork the utility.
 
-Several shared scaffolds live in their own component modules and are applied as extra classes the same way: `hero` (the dark, full-height cover used by `Header` and `Cover`), `carousel` (the horizontal scroll-snap track used by `Work` and `Solution`), and `play`/`video` (the centered play badge and its link wrapper, used by `Work` and `Solution`). Shared interactive-control states (press, focus ring, hover surface) live as grouped selectors in `components/button/button.scss`.
+Several shared scaffolds live in their own component modules and are applied as extra classes the same way: `hero` (the dark, full-height home cover; the case cover `HeroCase` wears its `hero` class for the shared look and layers `hero-case` on top — both live in the single `components/hero/hero.scss`, so `HeroCase` ships no stylesheet of its own), `carousel` (the horizontal scroll-snap track used by `Work` and `Solution`), and `play`/`video` (the centered play badge and its link wrapper, used by `Work` and `Solution`). Shared interactive-control states (press, focus ring, hover surface) live as grouped selectors in `components/button/button.scss`.
 
 ### Reveal animation
 
