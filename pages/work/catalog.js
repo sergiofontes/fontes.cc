@@ -2,6 +2,7 @@ import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 import seo from "../../data/seo/catalog.json";
 import Nav from "../../components/nav";
+import Logo from "../../components/logos/";
 import HeroCase from "../../components/hero-case";
 import What from "../../components/what";
 import Why from "../../components/why";
@@ -29,11 +30,6 @@ export default function OnlineCatalog() {
         <Nav links={CASE_LINKS} symbol={CASE_SYMBOL} />
 
         <HeroCase
-          logo="stone"
-          label="Case"
-          category="Work"
-          title={["Online", "Catalog"]}
-          summary="Helping small businesses showcase their products online and generate more sales opportunities."
           image={{
             src: "/images/work/catalog/cover.png",
             src2x: "/images/work/catalog/cover@2x.png",
@@ -41,7 +37,25 @@ export default function OnlineCatalog() {
             width: 678,
             height: 611,
           }}
-        />
+        >
+          <div className="hero-case_main">
+            <span className="hero-case_titling">
+              <Logo type="stone" />
+              <h1 className="hero-case_heading">
+                Online
+                <br />
+                Catalog
+              </h1>
+            </span>
+            <p className="hero-case_summary lead">
+              Helping small businesses showcase their products online and
+              generate more sales opportunities.
+            </p>
+          </div>
+
+          <h2 className="hero-case_label content_heading">Case</h2>
+          <p className="hero-case_category lead">Work</p>
+        </HeroCase>
 
         <main className="index_main" id="content">
           <What />

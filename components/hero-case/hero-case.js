@@ -1,15 +1,8 @@
-import { Fragment } from "react";
 import PropTypes from "prop-types";
 
-import Logo from "../logos/";
 import Dust from "../dust";
 
 HeroCase.propTypes = {
-  logo: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  title: PropTypes.arrayOf(PropTypes.string).isRequired,
-  summary: PropTypes.string.isRequired,
   image: PropTypes.shape({
     src: PropTypes.string.isRequired,
     src2x: PropTypes.string,
@@ -17,9 +10,13 @@ HeroCase.propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
   }).isRequired,
+  // The titling (logo + heading), summary, label, and category, authored at the call site.
+  children: PropTypes.node,
 };
 
-export default function HeroCase({ logo, label, category, title, summary, image }) {
+// The case cover: the shared `hero` scaffold + the reconstructing Dust art. Its copy is
+// authored as markup by the page. See AGENTS.md › Content lives in the markup.
+export default function HeroCase({ image, children }) {
   return (
     <header id="cover" className="hero hero-case grid">
       <Dust
@@ -31,23 +28,8 @@ export default function HeroCase({ logo, label, category, title, summary, image 
         alt={image.alt || ""}
       />
 
-      <div className="hero-case_main">
-        <span className="hero-case_titling">
-          <Logo type={logo} />
-          <h1 className="hero-case_heading">
-            {title.map((line, index) => (
-              <Fragment key={line}>
-                {index > 0 && <br />}
-                {line}
-              </Fragment>
-            ))}
-          </h1>
-        </span>
-        <p className="hero-case_summary lead">{summary}</p>
-      </div>
+      {children}
 
-      <h2 className="hero-case_label content_heading">{label}</h2>
-      <p className="hero-case_category lead">{category}</p>
       <span className="hero-case_border" />
     </header>
   );

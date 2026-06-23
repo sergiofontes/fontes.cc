@@ -23,6 +23,16 @@ Each component lives in its own folder under `components/`:
 - `<name>.js` — the component. Class names are plain Lean BEM strings (`className="logo_experience"`), composed with the shared utility classes (`grid`, `content`, `content_column`/`content_columns`/`content_divisor`/`content_divisors`, and the `-last` modifier). Use `classnames` (aliased `cn`) only for conditional classes (e.g. `cn('nav', { open: isOpen })`); otherwise write the literal string.
 - `<name>.scss` — a **global** stylesheet (NOT a CSS Module), imported once in `pages/_app.js`.
 
+### Content lives in the markup
+
+Author content — visible copy, headings, summaries, credits, and image `alt` text — **directly in the JSX where it renders**, never collected into a separate JS data array/object that gets `.map()`’d into markup elsewhere. A reader should find a section’s words by opening its component, not by cross-referencing a `const` at the top of the file. This keeps content where it renders and the JS minimal.
+
+- **Do** spell each item out at its call site — see `components/about/*`, `components/what/what.js`, and `components/work/work.js` (every case is written as a `<CasePreview>` with literal `<Slide>`/`<Mockup>`/`<Colophon>` children, each `alt` and summary inline).
+- **Don’t** gather prose/`alt` text into a `cases`/`SHARING`-style array and render it through a `.map`. Presentational **helper components** that take content as props/children at the call site are encouraged (`Mockup`, `Slide`, `Media`, `Phone`); the anti-pattern is the separated *data array of content*, not props as such. A short identifier tied to chrome (a logo slug, a year) may stay an attribute, like `<Logo type="vtex" />`.
+- A behavior-only `.map` over a count or over DOM nodes is fine — it carries no content (e.g. the setup-carousel dots map `[0, 1, 2, 3]`; `Motion` maps observed groups).
+
+**Stays as data** (configuration/technical metadata, not body content): intrinsic image dimensions (`components/work/mockup-sizes.js`) and the `sizes`/`src` strings for `next/image`; per-page SEO/head metadata (`data/seo/*.json`); the small navigation link config in `components/nav/nav.js` (the `to`/`href`/`spy`/`sub` flags); and arrays consumed by a third-party API (e.g. the `Typewriter` `strings` in `components/hero/hero.js`).
+
 ### Interactive controls
 
 A small set of reusable controls lives under `components/`, each following the convention above (`index.js` + `<name>.js` + global `<name>.scss`). They take a `classes` prop (extra class names, composed via `cn`) and forward the rest of their props to the underlying element, so consumers can pass `aria-label`, `onClick`, etc. Defaults and prop shapes are declared with `PropTypes`/`defaultProps`, matching `components/anchor`.

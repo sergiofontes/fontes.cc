@@ -16,48 +16,40 @@ function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
   return <Image className="solution_media motion_item" src={src} alt={alt} {...rest} />;
 }
 
-// Each sharing card keeps its native height (Slack/IG post/IG story) to avoid CLS.
-const SHARING = [
-  {
-    name: "store_1",
-    height: 157,
-    alt: "A Slack message sharing the store’s catalog link, with a link preview of the storefront.",
-  },
-  {
-    name: "store_2",
-    height: 257,
-    alt: "An Instagram post promoting the store, with its logo and tagline over a burger photo.",
-  },
-  {
-    name: "store_3",
-    height: 405,
-    alt: "An Instagram story promoting the store, with its tagline and a button to visit the store.",
-  },
-  {
-    name: "product_3",
-    height: 405,
-    alt: "An Instagram story sharing a product — a burger with its price, description, and a button to order it.",
-  },
-  {
-    name: "product_2",
-    height: 257,
-    alt: "An Instagram post sharing a product, with its photo, price, and description.",
-  },
-  {
-    name: "product_1",
-    height: 173,
-    alt: "A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description.",
-  },
-];
+// One shared store/product card; keeps its native height (Slack/IG post/IG story) to avoid CLS.
+function Share({ name, height, alt }) {
+  return (
+    <figure className="solution_frame -share">
+      <Media
+        name={`sharing_${name}`}
+        width={197}
+        height={height}
+        sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
+        alt={alt}
+      />
+    </figure>
+  );
+}
+
+// One backoffice screen of the setup carousel; only its number and alt differ.
+function SetupSlide({ n, alt }) {
+  return (
+    <li className="solution_slide">
+      <figure className="solution_frame -setup">
+        <Media
+          name={`mockup_config_${n}`}
+          scales={[1, 2]}
+          width={1280}
+          height={874}
+          sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
+          alt={alt}
+        />
+      </figure>
+    </li>
+  );
+}
 
 // Setup carousel: four backoffice screens, paged with `ButtonDot` (CSS scroll-snap).
-const CONFIG_SLIDES = [
-  "General settings, sharing link, and WhatsApp orders",
-  "Store information, description, and address",
-  "Contact details and social networks",
-  "Appearance — catalog colors, logo, and cover image",
-];
-
 function ConfigCarousel() {
   const trackRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -97,20 +89,22 @@ function ConfigCarousel() {
         onScroll={sync}
         aria-label="Online Catalog setup screens"
       >
-        {CONFIG_SLIDES.map((label, index) => (
-          <li className="solution_slide" key={label}>
-            <figure className="solution_frame -setup">
-              <Media
-                name={`mockup_config_${index + 1}`}
-                scales={[1, 2]}
-                width={1280}
-                height={874}
-                sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
-                alt={`Online Catalog backoffice: ${label}.`}
-              />
-            </figure>
-          </li>
-        ))}
+        <SetupSlide
+          n={1}
+          alt="Online Catalog backoffice: General settings, sharing link, and WhatsApp orders."
+        />
+        <SetupSlide
+          n={2}
+          alt="Online Catalog backoffice: Store information, description, and address."
+        />
+        <SetupSlide
+          n={3}
+          alt="Online Catalog backoffice: Contact details and social networks."
+        />
+        <SetupSlide
+          n={4}
+          alt="Online Catalog backoffice: Appearance — catalog colors, logo, and cover image."
+        />
       </ul>
 
       <aside className="solution_aside content_aside -center">
@@ -120,9 +114,9 @@ function ConfigCarousel() {
         </p>
 
         <div className="solution_dots" role="group" aria-label="Setup screens">
-          {CONFIG_SLIDES.map((label, index) => (
+          {[0, 1, 2, 3].map((index) => (
             <ButtonDot
-              key={label}
+              key={index}
               classes="solution_dot"
               active={active === index}
               onClick={() => goTo(index)}
@@ -221,17 +215,36 @@ export default function Solution() {
 
       {/* Block 2 — sharing across channels (full-bleed montage) */}
       <div className="solution_sharing motion">
-        {SHARING.map(({ name, height, alt }) => (
-          <figure className="solution_frame -share" key={name}>
-            <Media
-              name={`sharing_${name}`}
-              width={197}
-              height={height}
-              sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
-              alt={alt}
-            />
-          </figure>
-        ))}
+        <Share
+          name="store_1"
+          height={157}
+          alt="A Slack message sharing the store’s catalog link, with a link preview of the storefront."
+        />
+        <Share
+          name="store_2"
+          height={257}
+          alt="An Instagram post promoting the store, with its logo and tagline over a burger photo."
+        />
+        <Share
+          name="store_3"
+          height={405}
+          alt="An Instagram story promoting the store, with its tagline and a button to visit the store."
+        />
+        <Share
+          name="product_3"
+          height={405}
+          alt="An Instagram story sharing a product — a burger with its price, description, and a button to order it."
+        />
+        <Share
+          name="product_2"
+          height={257}
+          alt="An Instagram post sharing a product, with its photo, price, and description."
+        />
+        <Share
+          name="product_1"
+          height={173}
+          alt="A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description."
+        />
       </div>
 
       {/* Block 3 — printed & social templates */}
