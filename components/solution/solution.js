@@ -1,186 +1,14 @@
-import { useCallback, useRef, useState } from "react";
-import Image, { getImageProps } from "next/image";
-
-import ButtonDot from "../button_dot";
+import {
+  Media,
+  Share,
+  Phone,
+  SetupSlide,
+  SetupCarousel,
+  ResponsiveDevices,
+} from "./gallery";
 import Play from "../play";
 
-const IMG = "/images/work/catalog";
-
 const VIDEO_URL = "https://www.youtube.com/watch?v=J0cINzc2ziE";
-
-// Flat assets; framing (mask + radius) and the drop shadow are composed in CSS.
-function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
-  const max = Math.max(...scales);
-  const src = `${IMG}/${name}${max > 1 ? `@${max}x` : ""}.png`;
-
-  return <Image className="solution_media motion_item" src={src} alt={alt} {...rest} />;
-}
-
-// One shared store/product card; keeps its native height (Slack/IG post/IG story) to avoid CLS.
-function Share({ name, height, alt }) {
-  return (
-    <figure className="solution_frame -share">
-      <Media
-        name={`sharing_${name}`}
-        width={197}
-        height={height}
-        sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
-        alt={alt}
-      />
-    </figure>
-  );
-}
-
-// One customization phone; only its mockup and alt differ.
-function Phone({ name, alt }) {
-  return (
-    <figure className="solution_frame -phone">
-      <Media
-        name={name}
-        width={247}
-        height={510}
-        sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
-        alt={alt}
-      />
-    </figure>
-  );
-}
-
-// One backoffice screen; it slides within the inert panel. Only its number and alt differ.
-function SetupSlide({ n, alt }) {
-  return (
-    <li className="solution_slide">
-      <Media
-        name={`mockup_config_${n}`}
-        scales={[1, 2]}
-        width={1280}
-        height={874}
-        sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
-        alt={alt}
-      />
-    </li>
-  );
-}
-
-// Setup carousel: four backoffice screens, paged with `ButtonDot` (CSS scroll-snap).
-function ConfigCarousel() {
-  const trackRef = useRef(null);
-  const [active, setActive] = useState(0);
-
-  const step = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return 1;
-    const slide = track.querySelector(".solution_slide");
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    return (slide ? slide.offsetWidth : track.clientWidth) + gap;
-  }, []);
-
-  const sync = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    setActive(Math.round(track.scrollLeft / step()));
-  }, [step]);
-
-  const goTo = (index) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    track.scrollTo({
-      left: step() * index,
-      behavior: reduce ? "auto" : "smooth",
-    });
-  };
-
-  return (
-    <>
-      {/* The lime panel stays inert; only the screens scroll within it. */}
-      <figure className="solution_frame -setup motion">
-        <ul
-          className="solution_track carousel"
-          ref={trackRef}
-          tabIndex={0}
-          onScroll={sync}
-          aria-label="Online Catalog setup screens"
-        >
-          <SetupSlide
-            n={1}
-            alt="Online Catalog backoffice: General settings, sharing link, and WhatsApp orders."
-          />
-          <SetupSlide
-            n={2}
-            alt="Online Catalog backoffice: Store information, description, and address."
-          />
-          <SetupSlide
-            n={3}
-            alt="Online Catalog backoffice: Contact details and social networks."
-          />
-          <SetupSlide
-            n={4}
-            alt="Online Catalog backoffice: Appearance — catalog colors, logo, and cover image."
-          />
-        </ul>
-      </figure>
-
-      <aside className="solution_aside content_aside -center">
-        <p className="note solution_note">
-          The setup experience strikes a balance between customization and
-          simplicity, making it easy for merchants to get started.
-        </p>
-
-        <div className="solution_dots" role="group" aria-label="Setup screens">
-          {[0, 1, 2, 3].map((index) => (
-            <ButtonDot
-              key={index}
-              classes="solution_dot"
-              active={active === index}
-              onClick={() => goTo(index)}
-              aria-label={`Show setup screen ${index + 1}`}
-              aria-current={active === index ? "true" : undefined}
-            />
-          ))}
-        </div>
-      </aside>
-    </>
-  );
-}
-
-// Art-directed: portrait device stack on mobile/tablet, landscape on desktop.
-// `next/image` can't swap by media query, so `getImageProps` + `<picture>` do it.
-function ResponsiveDevices() {
-  const alt =
-    "The Online Catalog adapting across desktop, tablet, and mobile devices.";
-
-  // Raise quality above the default 75 so the device-screenshot text stays crisp.
-  const { props: desktop } = getImageProps({
-    src: `${IMG}/responsive_desktop@3x.png`,
-    alt,
-    width: 1245,
-    height: 750,
-    quality: 90,
-    sizes: "90vw",
-  });
-  const { props: mobile } = getImageProps({
-    src: `${IMG}/responsive@3x.png`,
-    alt,
-    width: 537,
-    height: 973,
-    quality: 90,
-    sizes: "92vw",
-  });
-
-  return (
-    <picture>
-      <source
-        media="(min-width: 1201px)"
-        srcSet={desktop.srcSet}
-        sizes={desktop.sizes}
-      />
-      <img className="solution_media motion_item" {...mobile} />
-    </picture>
-  );
-}
 
 export default function Solution() {
   return (
@@ -294,7 +122,24 @@ export default function Solution() {
 
       {/* Block 4 — setup carousel */}
       <div className="solution_config grid content">
-        <ConfigCarousel />
+        <SetupCarousel note="The setup experience strikes a balance between customization and simplicity, making it easy for merchants to get started.">
+          <SetupSlide
+            n={1}
+            alt="Online Catalog backoffice: General settings, sharing link, and WhatsApp orders."
+          />
+          <SetupSlide
+            n={2}
+            alt="Online Catalog backoffice: Store information, description, and address."
+          />
+          <SetupSlide
+            n={3}
+            alt="Online Catalog backoffice: Contact details and social networks."
+          />
+          <SetupSlide
+            n={4}
+            alt="Online Catalog backoffice: Appearance — catalog colors, logo, and cover image."
+          />
+        </SetupCarousel>
       </div>
 
       {/* Block 5 — store customization on mobile */}
