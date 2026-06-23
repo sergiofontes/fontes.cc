@@ -1,12 +1,12 @@
 {
-  "title": "Online Catalog · Stone — Sérgio Fontes",
+  "title": "Online Catalog (Stone)—Sérgio Fontes",
   "description": "Helping small businesses showcase their products online and generate more sales opportunities.",
   "path": "/work/catalog",
   "type": "article",
   "jsonLd": {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "name": "Online Catalog · Stone",
+    "name": "Online Catalog (Stone)",
     "headline": "Online Catalog",
     "url": "https://fontes.cc/work/catalog",
     "image": "https://fontes.cc/images/preview.png",
