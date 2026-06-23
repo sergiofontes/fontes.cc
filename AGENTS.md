@@ -90,6 +90,12 @@ A repeatable playbook for translating a Figma section into a faithful, code-fitt
 
 **8 — Verify visually, then prove it.** `npx stylelint` the changed files (recess property order is enforced — vendor partials already error, ignore those). Drive the running dev server with Playwright (`npm i playwright` in a scratch dir, `chromium` already installed) to screenshot the `#section` element at the three mode widths, and assert: zero console/page errors, expected `role="img"` labels, and no NEW horizontal overflow. The page has pre-existing overflow at small widths from the hero — confirm a section isn’t the cause by `git stash`-ing the change and re-measuring `scrollWidth` on the baseline before blaming your code.
 
+## Comments
+
+- Inline code comments capture only the non-obvious **why** — the reason a value, guard, or workaround exists. Keep them lean.
+- Don’t state the obvious (what the code plainly does), restate a class/role, or duplicate guidance that already lives in this file or `CLAUDE.md`.
+- Structural and architectural explanation — how modules fit together, conventions, the responsive system behind a section — belongs here (or in `CLAUDE.md`), not in inline comments. Reference it from code when useful (e.g. `// see AGENTS.md › Reveal animation`).
+
 ## Front-end Guidelines
 
 UI rules relevant to this static, animation-heavy portfolio. MUST/SHOULD/NEVER.
