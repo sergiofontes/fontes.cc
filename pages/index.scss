@@ -1,7 +1,8 @@
 @import "../styles/scaffold";
 
-.main {
+.index_main {
   --color-focus-ring: var(--black);
+  scroll-margin-top: var(--gap);
   background-color: var(--color-background);
 
   > * {

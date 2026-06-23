@@ -1,6 +1,3 @@
-// Reuses the home `content` grid (rotated/sticky `<h2>`, body column, right-hand
-// colophon). The three product mockups are composed and shadowed in CSS.
-
 @import "../../styles/scaffold";
 
 .what { scroll-margin-top: var(--gap); }
@@ -13,11 +10,18 @@
   @include media(">tablet") { grid-row: 1; }
 }
 
-// Width-driven composition: the group keeps a constant ~717/600 ratio and only its
-// width changes, so the prototype’s max heights are enforced as max widths
-// (420/630/717px cap the height at 351/527/600px). It bleeds past the gutters on
-// mobile (html clips overflow-x).
+// Width-driven: the group keeps a constant ratio, so the prototype’s max heights are
+// enforced as max widths. Bleeds past the gutters on mobile (html clips overflow-x).
 .what_mockups {
+  // Entrance params for these mockups only (override the shared motion defaults).
+  --mk-x: 0;
+  --mk-y: 50px;
+  --mk-scale: .94;
+  --mk-rot: 0deg;
+  --mk-dur: 600ms;
+  --mk-stagger: 150ms;
+  --mk-what-delay: 400ms;
+  --mk-ease: cubic-bezier(.22, 1, .36, 1);
   position: relative;
   flex-shrink: 0; // keep the mobile bleed instead of shrinking to the container
   width: 108%;
@@ -34,8 +38,7 @@
   }
 }
 
-// One shared device aspect makes the % placement resolution-independent. The
-// centre screen sits in flow (defines the group’s height); the flanks float.
+// Centre screen sits in flow (sets the group height); the flanks float over it.
 .what_phone {
   position: absolute;
   top: 7.5%;
@@ -59,6 +62,28 @@
   }
 }
 
+// Bespoke choreography: the centre phone rises first, then the flanks slide out from
+// behind it (it sits on top via `z-index`) once it has settled.
+@media (prefers-reduced-motion: no-preference) {
+  .what_mockups.-ready .what_phone.-center {
+    transition-delay: 0ms;
+  }
+
+  .what_mockups.-ready .what_phone.-left,
+  .what_mockups.-ready .what_phone.-right {
+    transition-delay: var(--mk-what-delay, 400ms); // after the centre settles (tunable)
+    scale: .9;
+  }
+
+  .what_mockups.-ready .what_phone.-left {
+    translate: 70% 0; // tucked behind the centre, slides out left
+  }
+
+  .what_mockups.-ready .what_phone.-right {
+    translate: -70% 0; // tucked behind the centre, slides out right
+  }
+}
+
 .what_body {
   @include media(">tablet") {
     grid-row: 2;
@@ -69,14 +94,14 @@
 
 .what_kpis-label {
   display: block;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
   color: var(--color-subtitle);
 }
 
 .what_kpis-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-lg) var(--space-xl);
 
   @include media(">tablet") {
     flex-direction: row;
@@ -97,8 +122,6 @@
   line-height: 1;
   letter-spacing: -.02em;
 }
-
-.what_kpis-caption { color: var(--color-subtitle); }
 
 .what_colophon {
   @include media(">tablet") {

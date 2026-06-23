@@ -26,8 +26,7 @@ ButtonIcon.defaultProps = {
 export default function ButtonIcon({ icon, href, disabled, classes, ...props }) {
   const Icon = ICONS[icon] || IconArrow;
 
-  // With an href the control navigates, so it renders as a link (mirroring
-  // `Button`); otherwise it stays a plain button (e.g. the carousel arrows).
+  // With an href it renders as a link (like `Button`); otherwise a plain button.
   if (href) {
     return (
       <a

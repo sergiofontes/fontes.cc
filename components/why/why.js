@@ -29,12 +29,11 @@ export default function Why() {
         Stone is a Brazilian fintech focused on small and medium-sized businesses.
       </aside>
 
-      {/* The discovery board screenshot with two tilted “cover” decks composed on
-          top. Both decks are flat covers tilted and shadowed entirely in CSS. */}
-      <div className="why_gallery content_body">
+      {/* Discovery board with two tilted “cover” decks, composed in CSS. */}
+      <div className="why_gallery content_body motion">
         <div className="why_board">
           <Image
-            className="why_image"
+            className="why_image motion_item"
             src={`${IMG}/discovery.png`}
             width={2772}
             height={1328}
@@ -44,7 +43,7 @@ export default function Why() {
         </div>
         <div className="why_cards">
           <Image
-            className="why_card -vender"
+            className="why_card motion_item -vender"
             src={`${IMG}/capa_vender_original@2x.png`}
             width={1000}
             height={563}
@@ -52,7 +51,7 @@ export default function Why() {
             alt="A discovery deck cover titled “Vender Mais” (Sell more), showing a customer paying by phone at a Stone card machine."
           />
           <Image
-            className="why_card -atrair"
+            className="why_card motion_item -atrair"
             src={`${IMG}/capa_atrair_original@2x.png`}
             width={1000}
             height={563}

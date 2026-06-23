@@ -20,7 +20,6 @@
       transform .15s ease-in-out;
   }
 
-  // Press, hover surface, and focus outline come from the shared control states.
   &:focus-visible { outline-offset: 0; }
 
   &:disabled,

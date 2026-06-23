@@ -6,65 +6,50 @@ import Play from "../play";
 
 const IMG = "/images/work/catalog";
 
-// The promotional video lives on YouTube; the play button links out to it.
 const VIDEO_URL = "https://www.youtube.com/watch?v=J0cINzc2ziE";
 
-// Every mockup is a plain transparent/flat asset; the framing (mask + radius) and
-// the layered drop shadow are composed entirely in CSS. `next/image` serves the
-// sharpest source (the highest `scale` shipped) as AVIF/WebP and lazy-loads by
-// default; each call passes the `sizes` for its frame's render width.
+// Flat assets; framing (mask + radius) and the drop shadow are composed in CSS.
 function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
   const max = Math.max(...scales);
   const src = `${IMG}/${name}${max > 1 ? `@${max}x` : ""}.png`;
 
-  return <Image className="solution_media" src={src} alt={alt} {...rest} />;
+  return <Image className="solution_media motion_item" src={src} alt={alt} {...rest} />;
 }
 
-// The six “sharing” cards keep their own native heights (Slack message, Instagram
-// post, Instagram story), so each carries its real intrinsic size to avoid layout
-// shift. The left three share the store; the right three share a product.
-const SHARING = [
-  {
-    name: "store_1",
-    height: 157,
-    alt: "A Slack message sharing the store’s catalog link, with a link preview of the storefront.",
-  },
-  {
-    name: "store_2",
-    height: 257,
-    alt: "An Instagram post promoting the store, with its logo and tagline over a burger photo.",
-  },
-  {
-    name: "store_3",
-    height: 405,
-    alt: "An Instagram story promoting the store, with its tagline and a button to visit the store.",
-  },
-  {
-    name: "product_3",
-    height: 405,
-    alt: "An Instagram story sharing a product — a burger with its price, description, and a button to order it.",
-  },
-  {
-    name: "product_2",
-    height: 257,
-    alt: "An Instagram post sharing a product, with its photo, price, and description.",
-  },
-  {
-    name: "product_1",
-    height: 173,
-    alt: "A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description.",
-  },
-];
+// One shared store/product card; keeps its native height (Slack/IG post/IG story) to avoid CLS.
+function Share({ name, height, alt }) {
+  return (
+    <figure className="solution_frame -share">
+      <Media
+        name={`sharing_${name}`}
+        width={197}
+        height={height}
+        sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
+        alt={alt}
+      />
+    </figure>
+  );
+}
 
-// The setup carousel: four backoffice screens sharing one green-panel mask,
-// paged with the shared `ButtonDot` pagination (CSS scroll-snap does the work).
-const CONFIG_SLIDES = [
-  "General settings, sharing link, and WhatsApp orders",
-  "Store information, description, and address",
-  "Contact details and social networks",
-  "Appearance — catalog colors, logo, and cover image",
-];
+// One backoffice screen of the setup carousel; only its number and alt differ.
+function SetupSlide({ n, alt }) {
+  return (
+    <li className="solution_slide">
+      <figure className="solution_frame -setup">
+        <Media
+          name={`mockup_config_${n}`}
+          scales={[1, 2]}
+          width={1280}
+          height={874}
+          sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
+          alt={alt}
+        />
+      </figure>
+    </li>
+  );
+}
 
+// Setup carousel: four backoffice screens, paged with `ButtonDot` (CSS scroll-snap).
 function ConfigCarousel() {
   const trackRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -98,26 +83,28 @@ function ConfigCarousel() {
   return (
     <>
       <ul
-        className="solution_track carousel"
+        className="solution_track carousel motion"
         ref={trackRef}
         tabIndex={0}
         onScroll={sync}
         aria-label="Online Catalog setup screens"
       >
-        {CONFIG_SLIDES.map((label, index) => (
-          <li className="solution_slide" key={label}>
-            <figure className="solution_frame -setup">
-              <Media
-                name={`mockup_config_${index + 1}`}
-                scales={[1, 2]}
-                width={1280}
-                height={874}
-                sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
-                alt={`Online Catalog backoffice: ${label}.`}
-              />
-            </figure>
-          </li>
-        ))}
+        <SetupSlide
+          n={1}
+          alt="Online Catalog backoffice: General settings, sharing link, and WhatsApp orders."
+        />
+        <SetupSlide
+          n={2}
+          alt="Online Catalog backoffice: Store information, description, and address."
+        />
+        <SetupSlide
+          n={3}
+          alt="Online Catalog backoffice: Contact details and social networks."
+        />
+        <SetupSlide
+          n={4}
+          alt="Online Catalog backoffice: Appearance — catalog colors, logo, and cover image."
+        />
       </ul>
 
       <aside className="solution_aside content_aside -center">
@@ -127,9 +114,9 @@ function ConfigCarousel() {
         </p>
 
         <div className="solution_dots" role="group" aria-label="Setup screens">
-          {CONFIG_SLIDES.map((label, index) => (
+          {[0, 1, 2, 3].map((index) => (
             <ButtonDot
-              key={label}
+              key={index}
               classes="solution_dot"
               active={active === index}
               onClick={() => goTo(index)}
@@ -143,16 +130,13 @@ function ConfigCarousel() {
   );
 }
 
-// The responsive composite is art-directed: a portrait device stack on mobile/
-// tablet, a landscape arrangement on desktop. `next/image` can't swap sources by
-// media query, so `getImageProps` builds the optimized (AVIF/WebP) srcSets and a
-// `<picture>` keeps the single-fetch art direction.
+// Art-directed: portrait device stack on mobile/tablet, landscape on desktop.
+// `next/image` can't swap by media query, so `getImageProps` + `<picture>` do it.
 function ResponsiveDevices() {
   const alt =
     "The Online Catalog adapting across desktop, tablet, and mobile devices.";
 
-  // Detail-heavy composite (device screenshots): raise the quality above the
-  // default 75 so the UI text stays crisp after AVIF/WebP encoding.
+  // Raise quality above the default 75 so the device-screenshot text stays crisp.
   const { props: desktop } = getImageProps({
     src: `${IMG}/responsive_desktop@3x.png`,
     alt,
@@ -177,7 +161,7 @@ function ResponsiveDevices() {
         srcSet={desktop.srcSet}
         sizes={desktop.sizes}
       />
-      <img className="solution_media" {...mobile} />
+      <img className="solution_media motion_item" {...mobile} />
     </picture>
   );
 }
@@ -205,7 +189,7 @@ export default function Solution() {
         </div>
 
         <a
-          className="solution_video video content_body"
+          className="solution_video video content_body motion"
           href={VIDEO_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -229,21 +213,38 @@ export default function Solution() {
         </aside>
       </div>
 
-      {/* Block 2 — sharing across channels (full-bleed montage). Each card is its
-          own screenshot with its own alt, so the montage reads as six images
-          rather than one labelled group. */}
-      <div className="solution_sharing">
-        {SHARING.map(({ name, height, alt }) => (
-          <figure className="solution_frame -share" key={name}>
-            <Media
-              name={`sharing_${name}`}
-              width={197}
-              height={height}
-              sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
-              alt={alt}
-            />
-          </figure>
-        ))}
+      {/* Block 2 — sharing across channels (full-bleed montage) */}
+      <div className="solution_sharing motion">
+        <Share
+          name="store_1"
+          height={157}
+          alt="A Slack message sharing the store’s catalog link, with a link preview of the storefront."
+        />
+        <Share
+          name="store_2"
+          height={257}
+          alt="An Instagram post promoting the store, with its logo and tagline over a burger photo."
+        />
+        <Share
+          name="store_3"
+          height={405}
+          alt="An Instagram story promoting the store, with its tagline and a button to visit the store."
+        />
+        <Share
+          name="product_3"
+          height={405}
+          alt="An Instagram story sharing a product — a burger with its price, description, and a button to order it."
+        />
+        <Share
+          name="product_2"
+          height={257}
+          alt="An Instagram post sharing a product, with its photo, price, and description."
+        />
+        <Share
+          name="product_1"
+          height={173}
+          alt="A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description."
+        />
       </div>
 
       {/* Block 3 — printed & social templates */}
@@ -253,7 +254,7 @@ export default function Solution() {
           merchants promote their stores and attract new customers.
         </aside>
 
-        <div className="solution_pair content_body -templates">
+        <div className="solution_pair content_body -templates motion">
           <figure className="solution_frame -template">
             <Media
               name="stationary_2"
@@ -282,7 +283,7 @@ export default function Solution() {
 
       {/* Block 5 — store customization on mobile */}
       <div className="solution_custom grid content">
-        <div className="solution_pair -phones">
+        <div className="solution_pair -phones motion">
           <figure className="solution_frame -phone">
             <Media
               name="mockup_plp"
@@ -311,7 +312,7 @@ export default function Solution() {
 
       {/* Block 6 — responsive across devices */}
       <div className="solution_devices grid content">
-        <figure className="solution_frame -devices">
+        <figure className="solution_frame -devices motion">
           <ResponsiveDevices />
         </figure>
 

@@ -1,6 +1,3 @@
-// Shares the home `content` grid with `What`. The discovery board and its two
-// tilted “cover” decks are composed, transformed, and shadowed entirely in CSS.
-
 @import "../../styles/scaffold";
 
 .why {
@@ -27,8 +24,7 @@
   }
 }
 
-// Height is fixed across breakpoints (the prototype keeps a constant 310px), so
-// the board crops by width and the decks stay a constant size per mode.
+// Fixed height per breakpoint, so the board crops by width and the decks stay put.
 .why_gallery {
   position: relative;
   height: 310px;

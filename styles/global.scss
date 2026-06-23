@@ -1,14 +1,24 @@
 @import "scaffold";
 
 :root {
-  --header-max-height: 900px;
+  --hero-max-height: 900px;
+  --hero-min-height: 44rem;
   --logo-size: var(--button-size);
-
   --button-size: 2.75rem;
 
   --border-small: 2px;
   --border-focus: 1.5px;
+
   --radius-small: 2px;
+
+  @include media(">tablet") {
+    --hero-min-height: 48rem;
+  }
+
+  @include media(">desktop") {
+    --hero-min-height: 50rem;
+  }
+
   --shadow-small:
     0 1px 2px rgb(0 0 0 / 7%),
     0 4px 4px rgb(0 0 0 / 6%),
@@ -29,8 +39,8 @@
     0 100px 28px rgb(0 0 0 / 0%),
     -1px 0 3px rgb(0 0 0 / 9%);
 
-  // drop-shadow equivalents of the shadows above, for masked PNG mockups whose
-  // silhouette the shadow must follow (box-shadow only traces the element’s box).
+  // drop-shadow variants for masked PNG mockups, so the shadow traces the
+  // silhouette instead of the element box.
   --drop-shadow-small:
     drop-shadow(0 1px 2px rgb(0 0 0 / 7%))
     drop-shadow(0 4px 4px rgb(0 0 0 / 6%))
@@ -50,17 +60,32 @@
 html { overflow-x: clip; }
 body { background-color: var(--color-cover); }
 
-// Typographic root: `_app` applies next/font's `--font-body/title/hero` here. The
-// wrapper carries no box (`display: contents`) so it never affects layout — it only
-// re-roots `font-family` to the variable fonts for the whole app subtree.
-.fonts {
-  display: contents;
-  font-family: var(--font-body);
-}
-
-// Presentational images; prevent selecting/dragging.
 img {
   user-select: none;
   -webkit-user-drag: none;
 }
 
+// `_app` sets next/font’s `--font-*` here; `display: contents` re-roots `font-family`
+// to the variable fonts without adding a box.
+.global_fonts {
+  display: contents;
+  font-family: var(--font-body);
+}
+
+// Visually hidden until focused, then revealed top-left as the first tab stop.
+.global_skip {
+  @include fontless;
+
+  &:focus {
+    @include fontful;
+    position: fixed;
+    top: var(--gap);
+    left: var(--gap);
+    z-index: 20;
+    padding: .5rem .75rem;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    border-radius: var(--radius-small);
+    box-shadow: var(--shadow-small);
+  }
+}

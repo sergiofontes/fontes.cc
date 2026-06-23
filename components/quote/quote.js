@@ -1,6 +1,3 @@
-// A single customer testimonial: a lead-sized pull quote, an attribution, and a
-// full-width hairline closing the section. Laid out on the shared `grid`; the
-// three pieces stack across their own rows so the rule can run past the quote.
 export default function Quote() {
   return (
     <section id="quote" className="quote">

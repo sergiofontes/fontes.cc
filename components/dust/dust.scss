@@ -1,0 +1,14 @@
+@import "../../styles/scaffold";
+
+// Grain canvas; placement, width and blend come from `.hero_art`.
+.dust {
+  display: block;
+}
+
+// When motion is allowed the canvas is the art, so hide the static fallback image
+// from first paint. The image stays for reduced motion / no-JS (and keeps its `alt`).
+@media (prefers-reduced-motion: no-preference) {
+  .dust_still {
+    opacity: 0;
+  }
+}

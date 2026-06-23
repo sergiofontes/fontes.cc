@@ -8,11 +8,15 @@ import Symbol from "../../public/images/symbol.svg";
 import IconArrow from "../../public/images/icon_arrow.svg";
 import IconChevron from "../../public/images/icon_chevron.svg";
 
-// Home navigation: in-page section anchors driven by react-scroll. The last
-// link is spied so its arrow flips when the section is in view.
+// Home nav: in-page anchors (react-scroll). The last link is spied, flipping its arrow.
+// Work carries a `sub` page link to the case, surfaced only in the mobile menu.
 const HOME_LINKS = [
   { label: "Experience", to: "experience" },
-  { label: "Work", to: "work" },
+  {
+    label: "Work",
+    to: "work",
+    sub: { label: "Case: Online Catalog", href: "/work/catalog" },
+  },
   { label: "Contact", to: "contact" },
   { label: "Traits", to: "traits", spy: true },
 ];
@@ -27,6 +31,11 @@ Nav.propTypes = {
       to: PropTypes.string,
       href: PropTypes.string,
       spy: PropTypes.bool,
+      // Mobile-menu-only page link nested under this item (e.g. Work → a case).
+      sub: PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        href: PropTypes.string.isRequired,
+      }),
     }),
   ),
   symbol: PropTypes.shape({
@@ -40,10 +49,8 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
   const [isOpen, setIsOpen] = useState(false);
   const [atSpied, setAtSpied] = useState(false);
 
-  // The last link is "spied": its arrow flips once you reach its section.
-  // react-scroll's positional spy can't activate a short final section (it never
-  // scrolls high enough to enter the active zone), so track the section directly —
-  // active once its top crosses the viewport midpoint, or the page hits the end.
+  // react-scroll's positional spy can't activate a short final section, so track the
+  // spied section directly: active once its top crosses mid-viewport, or the page ends.
   const spied = links.find((item) => item.spy);
   useEffect(() => {
     const target = spied?.to && document.getElementById(spied.to);
@@ -97,7 +104,6 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
         href={`#${item.to}`}
         smooth={`easeInOutCirc`}
         offset={item.offset ?? -100}
-        className={item.spy && atSpied ? "-active" : undefined}
         duration={300}
         onClick={handleCloseClick}
       >
@@ -107,7 +113,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
 
   return (
     <>
-      <nav className={cn("nav", { "-open": isOpen })}>
+      <nav className={cn("nav", { "-open": isOpen })} aria-label="Open menu">
         <ButtonMenu
           classes="nav_button"
           open={isOpen}
@@ -119,14 +125,18 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
           <ol className="nav_links">
             {links.map((item, index) => (
               <li
-                className={cn("nav_link", { "-back": item.href })}
+                className={cn("nav_link", {
+                  "-back": item.href,
+                  "-active": item.spy && atSpied,
+                  "-sub": item.sub,
+                })}
                 key={item.label}
               >
                 {renderTarget(
                   item,
                   item.href ? (
                     <>
-                      <span className="nav_back" aria-hidden="true">
+                      <span className="nav_chevron" aria-hidden="true">
                         <IconChevron />
                       </span>
                       {item.label}
@@ -134,6 +144,18 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
                   ) : (
                     item.label
                   ),
+                )}
+                {item.sub && (
+                  <a
+                    className="nav_sub"
+                    href={item.sub.href}
+                    onClick={handleCloseClick}
+                  >
+                    {item.sub.label}
+                    <span className="nav_chevron" aria-hidden="true">
+                      <IconChevron />
+                    </span>
+                  </a>
                 )}
                 {index === links.length - 1 && (
                   <span className="nav_arrow">

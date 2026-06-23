@@ -43,7 +43,6 @@
     background-color: var(--color-text);
   }
 
-  // Press and focus outline come from the shared control states.
   &:focus-visible { outline-offset: 0; }
 
   // Focus grows the dot like hover, keeping its active/inactive color

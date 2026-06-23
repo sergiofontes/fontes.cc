@@ -11,7 +11,6 @@
   height: var(--button-size);
   padding: calc(var(--button-size) / 6);
 
-  // Top bar is shorter and right-aligned; bottom bar is full width
   span {
     display: block;
     width: 70%;
@@ -34,8 +33,7 @@
     }
   }
 
-  // Hover (closed): bars spread apart; the surface, press, and focus outline
-  // come from the shared control states.
+  // Hover (closed): bars spread apart.
   &:hover { gap: .75rem; }
 
   &:focus-visible { outline-offset: 0; }

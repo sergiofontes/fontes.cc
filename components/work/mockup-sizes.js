@@ -1,7 +1,5 @@
-// Intrinsic pixel size [width, height] of each mockup asset, keyed by base name.
-// next/image needs an explicit width/height for the aspect ratio; the composition
-// only sets a % width and lets height follow. Generated from the 1x source files in
-// public/images/work/{previews,catalog}.
+// Intrinsic [width, height] of each mockup asset, keyed by base name (see AGENTS.md
+// › Images). Generated from the 1x sources in public/images/work/{previews,catalog}.
 const MOCKUP_SIZES = {
   capa_atrair: [399, 317],
   capa_vender: [399, 317],

@@ -20,6 +20,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - NEVER add Claude as a co-author. Do not append a `Co-Authored-By: Claude` trailer (or any Claude/Anthropic co-author line) to commit messages.
 - DON'T write descriptions on small commits
 
+## Comments
+
+- Inline comments: only the essential, non-obvious **why** — never the obvious or a restatement of the code.
+- Keep structural/architectural notes in `AGENTS.md` (or here), not inline. See AGENTS.md › Comments.
+
 ## Styling
 
 - If something can be done in CSS instead of JS, use CSS.

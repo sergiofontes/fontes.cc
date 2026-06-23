@@ -1,6 +1,5 @@
-// Shared by Solution and Work: a `.video` link wrapping a thumbnail, with a
-// centered `.play` badge that scales on hover/focus. The link owns the focus ring
-// and drives the badge; each consumer keeps its own placement and frame.
+// `.video` link + centered `.play` badge, shared by `Work` and `Solution`. The link
+// owns the focus ring and drives the badge’s hover/focus scale.
 
 @import "../../styles/scaffold";
 
