@@ -21,7 +21,7 @@ const CONFIG = {
   colorHex: "#ffffff", // grain tint (white tint × brightness ⇒ grey on the dark cover)
   baseGray: 86, // brightness floor (0–255)
   lumInfluence: 0, // extra brightness pulled from the source luminance
-  alphaBase: 205, // opacity floor (0–255)
+  alphaBase: 105, // opacity floor (0–255)
   alphaJitter: 53, // random opacity added per grain
   grainSize: 1, // base grain side in backing px (+0/1 per grain)
   count: 12000,
@@ -43,7 +43,14 @@ const MAX_SIDE = 760; // cap the larger backing dimension
 // the image on load, a click scatters them, then a spring pulls each grain home. A
 // static next/image underneath is the fallback (reduced motion, or until first
 // paint), so there is no flash and no CLS.
-export default function Dust({ src, width, height, sizes = "", alt = "", classes = "" }) {
+export default function Dust({
+  src,
+  width,
+  height,
+  sizes = "",
+  alt = "",
+  classes = "",
+}) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -213,8 +220,10 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
       const damp = CONFIG.damping;
       const idle = dim * 0.0005; // faint drift so resting dust stays alive
       for (let i = 0; i < count; i += 1) {
-        vx[i] = (vx[i] + (hx[i] - x[i]) * k + (Math.random() - 0.5) * idle) * damp;
-        vy[i] = (vy[i] + (hy[i] - y[i]) * k + (Math.random() - 0.5) * idle) * damp;
+        vx[i] =
+          (vx[i] + (hx[i] - x[i]) * k + (Math.random() - 0.5) * idle) * damp;
+        vy[i] =
+          (vy[i] + (hy[i] - y[i]) * k + (Math.random() - 0.5) * idle) * damp;
         x[i] += vx[i];
         y[i] += vy[i];
       }
@@ -309,13 +318,13 @@ export default function Dust({ src, width, height, sizes = "", alt = "", classes
       const rect = canvas.getBoundingClientRect();
       scatterAt(
         ((event.clientX - rect.left) / rect.width) * cw,
-        ((event.clientY - rect.top) / rect.height) * ch
+        ((event.clientY - rect.top) / rect.height) * ch,
       );
     };
 
     const intersection = new IntersectionObserver(
       ([entry]) => (entry.isIntersecting ? play() : pause()),
-      { threshold: 0 }
+      { threshold: 0 },
     );
     const resize = new ResizeObserver(onResize);
 

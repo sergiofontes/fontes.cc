@@ -52,7 +52,7 @@
   position: sticky;
   top: calc(var(--logo-size) + var(--gap) + 1rem);
   grid-row: 1;
-  margin: 0;
+  margin: -.75rem 0 0;
 
   @include media(">tablet") {
     top: 1rem;
