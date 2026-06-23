@@ -31,6 +31,21 @@ function Share({ name, height, alt }) {
   );
 }
 
+// One customization phone; only its mockup and alt differ.
+function Phone({ name, alt }) {
+  return (
+    <figure className="solution_frame -phone">
+      <Media
+        name={name}
+        width={247}
+        height={510}
+        sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
+        alt={alt}
+      />
+    </figure>
+  );
+}
+
 // One backoffice screen of the setup carousel; only its number and alt differ.
 function SetupSlide({ n, alt }) {
   return (
@@ -284,24 +299,14 @@ export default function Solution() {
       {/* Block 5 — store customization on mobile */}
       <div className="solution_custom grid content">
         <div className="solution_pair -phones motion">
-          <figure className="solution_frame -phone">
-            <Media
-              name="mockup_plp"
-              width={247}
-              height={510}
-              sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
-              alt="The default catalog on a phone, showing the product list."
-            />
-          </figure>
-          <figure className="solution_frame -phone">
-            <Media
-              name="mockup_plp_custom"
-              width={247}
-              height={510}
-              sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
-              alt="A catalog customized with the merchant’s brand colors and banner."
-            />
-          </figure>
+          <Phone
+            name="mockup_plp"
+            alt="The default catalog on a phone, showing the product list."
+          />
+          <Phone
+            name="mockup_plp_custom"
+            alt="A catalog customized with the merchant’s brand colors and banner."
+          />
         </div>
 
         <aside className="note solution_note content_aside -center -custom">
