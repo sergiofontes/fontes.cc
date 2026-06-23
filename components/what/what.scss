@@ -94,14 +94,14 @@
 
 .what_kpis-label {
   display: block;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
   color: var(--color-subtitle);
 }
 
 .what_kpis-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-lg) var(--space-xl);
 
   @include media(">tablet") {
     flex-direction: row;
@@ -122,8 +122,6 @@
   line-height: 1;
   letter-spacing: -.02em;
 }
-
-.what_kpis-caption { color: var(--color-subtitle); }
 
 .what_colophon {
   @include media(">tablet") {
