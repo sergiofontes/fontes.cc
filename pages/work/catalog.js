@@ -11,7 +11,7 @@ import Footer from "../../components/footer";
 import Motion from "../../components/motion";
 
 const CASE_LINKS = [
-  { label: "Back", href: "/" },
+  { label: "Back to home", href: "/" },
   { label: "What", to: "what" },
   { label: "Why & how", to: "why-how" },
   { label: "Solution", to: "solution", spy: true },
