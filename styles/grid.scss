@@ -1,6 +1,7 @@
 // stylelint-disable
 @use "sass:math";
-@import "scaffold";
+@use "sass:map";
+@use "scaffold" as *;
 
 // Base value
 $base-mob         : 15px;
@@ -24,7 +25,7 @@ $gap-out          : $base * 3;
 
 // Set a max width to the grid‘s container, based on
 // the wider breakpoint minus the external gutters.
-$container-max    : map-get($breakpoints, "max") - ($gap-out * 2);
+$container-max    : map.get($breakpoints, "max") - ($gap-out * 2);
 
 // Calculate the max width of each grid‘s column.
 $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns);

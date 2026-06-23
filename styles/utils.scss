@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $base: 16px !default;
 
 @function rem($size) {
@@ -78,8 +80,8 @@ $base: 16px !default;
   text-decoration-color: $color;
   text-underline-position: $position;
   text-decoration-width: $thickness;
-  text-decoration-skip-ink: if($skip, auto, none);
-  text-decoration-skip: if($skip, skip, none);
+  text-decoration-skip-ink: if(sass($skip): auto; else: none);
+  text-decoration-skip: if(sass($skip): skip; else: none);
 }
 
 @mixin dashed-line($color: black, $direction: 0deg) {

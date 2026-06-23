@@ -1,6 +1,6 @@
 // Six stacked blocks on the home `content` grid; mockups are framed and shadowed in CSS.
 
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 $color-setup: #dff8c3;
 
@@ -135,56 +135,65 @@ $color-setup: #dff8c3;
 // Block 4 — setup carousel
 .solution_config { align-items: start; }
 
+// Fills the inert panel and scrolls inside it; screens butt flush (no gap) so the panel
+// reads as one continuous surface.
 .solution_track {
-  grid-column: 1 / -1; // full-bleed on mobile
+  gap: 0;
+  width: 100%;
+  height: 100%;
 
-  &:focus-visible { outline-offset: 3px; }
+  // Inset so the panel’s `overflow: hidden` can’t clip the focus ring.
+  &:focus-visible { outline-offset: -3px; }
+}
+
+.solution_slide {
+  position: relative; // positions the floating screen
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden; // each screen overflows its pane; clip so the neighbour can’t peek in
+  scroll-snap-align: start;
+}
+
+// The inert panel: holds the scroll track and stays put while the screens slide. Takes
+// the grid placement the track used to own.
+.solution_frame.-setup {
+  grid-column: 1 / -1; // full-bleed on mobile
+  aspect-ratio: 390 / 360;
+  background-color: $color-setup;
 
   @include media(">tablet") {
     grid-row: 1;
     grid-column: 3 / span 7;
+    aspect-ratio: 432 / 444;
   }
 
   @include media(">desktop") {
     grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+    aspect-ratio: 533 / 444;
   }
 }
 
-.solution_slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-}
+// Each screen floats in the panel (offset/sized per breakpoint as a share of it);
+// `drop-shadow` hugs its corners and the slide’s `overflow` clips it.
+.solution_slide .solution_media {
+  position: absolute;
+  top: 9.7%;
+  left: -26.2%;
+  width: 131.3%;
+  height: auto;
+  filter: var(--drop-shadow-medium) drop-shadow(0 53px 21px rgb(0 0 0 / 1%));
+  border-radius: var(--radius-small);
 
-.solution_frame.-setup {
-  aspect-ratio: 390 / 360;
-  background-color: $color-setup;
+  @include media(">tablet") {
+    top: 4.7%;
+    left: -52.8%;
+    width: 148.1%;
+  }
 
-  @include media(">tablet") { aspect-ratio: 432 / 444; }
-
-  @include media(">desktop") { aspect-ratio: 533 / 444; }
-
-  // The screenshot floats in the lime panel (offset/sized per breakpoint as a share
-  // of it); `drop-shadow` hugs its corners and the frame’s `overflow` clips it.
-  .solution_media {
-    position: absolute;
-    top: 9.7%;
-    left: -26.2%;
-    width: 131.3%;
-    height: auto;
-    filter: var(--drop-shadow-medium) drop-shadow(0 53px 21px rgb(0 0 0 / 1%));
-    border-radius: var(--radius-small);
-
-    @include media(">tablet") {
-      top: 4.7%;
-      left: -52.8%;
-      width: 148.1%;
-    }
-
-    @include media(">desktop") {
-      top: 7.9%;
-      left: -25.5%;
-      width: 120.1%;
-    }
+  @include media(">desktop") {
+    top: 7.9%;
+    left: -25.5%;
+    width: 120.1%;
   }
 }
 

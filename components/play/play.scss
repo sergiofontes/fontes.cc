@@ -1,7 +1,7 @@
 // `.video` link + centered `.play` badge, shared by `Work` and `Solution`. The link
 // owns the focus ring and drives the badge’s hover/focus scale.
 
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .video {
   position: relative;

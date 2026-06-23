@@ -1,4 +1,4 @@
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .work {
   scroll-margin-top: var(--gap);

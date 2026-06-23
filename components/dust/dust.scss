@@ -1,4 +1,4 @@
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 // Grain canvas; placement, width and blend come from `.hero_art`.
 .dust {

@@ -1,4 +1,4 @@
-@import "scaffold";
+@use "scaffold" as *;
 
 :root {
   --hero-max-height: 900px;

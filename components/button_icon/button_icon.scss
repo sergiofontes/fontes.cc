@@ -1,4 +1,4 @@
-@import "../../styles/scaffold";
+@use "../../styles/scaffold" as *;
 
 .button_icon {
   @include buttonless($radius: var(--radius-small));
