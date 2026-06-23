@@ -23,12 +23,11 @@
   // The outer gutter: --gap-delta until the grid centers, then half the slack.
   --work-gutter: max(var(--gap-delta), calc((100% - var(--container-max) - 2 * var(--gap)) / 2));
 
-  // Leading inset so the first image lines up with the content column. The colophon
-  // supplies this on desktop, so it resets to 0 there.
+  // Mobile slide is 100vw and keeps the inset, so it overruns the right edge — intended.
   --work-lead: calc(var(--work-gutter) + var(--gap));
-  --work-slide: calc((100% - var(--work-lead)) * .85);
-  --work-image-h: 24rem;
-  row-gap: calc(var(--gap) / 2);
+  --work-slide: min(100vw, 35.6rem); // ≤ 534px
+  --work-image-h: 29.6rem; // 444px
+  row-gap: var(--gap);
   align-items: start;
   padding-bottom: var(--spacing);
 
@@ -36,14 +35,13 @@
 
   @include media(">tablet") {
     --work-lead: calc(var(--work-gutter) + var(--work-col) + 2 * var(--gap));
-    --work-slide: calc((100% - var(--work-lead)) * .72);
-    --work-image-h: 26rem;
     padding-bottom: var(--spacing);
   }
 
   // Desktop: each image spans 6 columns + 5 gutters; the colophon takes the
   // 2-column heading area, so the leading inset is no longer needed.
   @include media(">desktop") {
+    row-gap: calc(var(--gap) / 2);
     --work-lead: 0;
     --work-slide: calc(6 * var(--work-col) + 5 * var(--gap));
     --work-image-h: 29.6rem; // 444px
@@ -168,8 +166,12 @@
 }
 
 .work_gallery {
-  padding-top: calc(var(--gap) / 2);
-  padding-bottom: calc(var(--gap) / 2);
+  padding-top: var(--gap);
+
+  @include media(">desktop") {
+    padding-top: calc(var(--gap) / 2);
+    padding-bottom: calc(var(--gap) / 2);
+  }
 }
 
 .work_slide {
@@ -203,6 +205,12 @@
   height: var(--work-image-h);
   overflow: hidden;
   border-radius: var(--radius-small);
+
+  // Mobile: scale with the slide to hold the 534×444 ratio.
+  @include media("<=tablet") {
+    height: auto;
+    aspect-ratio: 534 / 444;
+  }
 }
 
 // Composition stage: a 534×444 box pinned to the window height and centered, so the

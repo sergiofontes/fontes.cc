@@ -33,14 +33,14 @@ function Mockup({
   const src = `${base}${max > 1 ? `@${max}x` : ""}.png`;
   const [w, h] = MOCKUP_SIZES[name] || [4, 3];
 
-  // Height-pinned stage frames have a fixed per-breakpoint basis (stage 433/469/534);
-  // `fill` and video frames scale with the slide, so they get a slide-relative `sizes`.
+  // `sizes` ≈ each mockup’s render width per breakpoint: min(<%>vw, <%>·534px) mobile,
+  // the 534px cap on tablet, ~700px (fill) / 534px desktop.
   const sizes =
     width == null
-      ? "(min-width: 1201px) 700px, (min-width: 768px) 62vw, 78vw"
+      ? "(min-width: 1201px) 700px, (min-width: 768px) 534px, min(100vw, 534px)"
       : fill
-        ? `(min-width: 1201px) ${Math.round((width / 100) * 700)}px, (min-width: 768px) ${((width / 100) * 62).toFixed(1)}vw, ${((width / 100) * 78).toFixed(1)}vw`
-        : `(min-width: 1201px) ${Math.round((width / 100) * 534)}px, (min-width: 768px) ${Math.round((width / 100) * 469)}px, ${Math.round((width / 100) * 433)}px`;
+        ? `(min-width: 1201px) ${Math.round((width / 100) * 700)}px, (min-width: 768px) ${Math.round((width / 100) * 534)}px, min(${width}vw, ${Math.round((width / 100) * 534)}px)`
+        : `(min-width: 768px) ${Math.round((width / 100) * 534)}px, min(${width}vw, ${Math.round((width / 100) * 534)}px)`;
 
   return (
     <Image
