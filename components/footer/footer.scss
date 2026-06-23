@@ -28,7 +28,7 @@
 
     // Footer links sit inline within prose, so they stay underlined by default
     a {
-      @include underline($color: #{var(--color-subtitle)}, $thickness: 1px);
+      @include underline($color: #{var(--color-subtitle)}, $position: auto, $thickness: 1px);
       color: inherit;
 
       &:hover { text-decoration-color: var(--color-text); }
