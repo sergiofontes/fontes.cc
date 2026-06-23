@@ -153,9 +153,11 @@
   align-items: flex-start;
   overscroll-behavior-x: contain;
 
-  // Snap each image to the content column (matching the leading inset) instead
-  // of the full-bleed left edge.
+  // Snap each image to the content column (matching the leading inset) instead of
+  // the full-bleed edge; the mirrored right inset lets the last image rest with the
+  // same trailing gap (without it, mandatory snap stops short and hides it on mobile).
   scroll-padding-left: var(--work-lead);
+  scroll-padding-right: var(--work-lead);
 
   &:focus-visible { outline-offset: 2px; }
 
@@ -180,7 +182,15 @@
 
   // Trailing breathing room at the scroll end (kept off the track padding so it
   // doesn’t shrink the percentage basis the slide width derives from).
-  &:last-child { margin-right: var(--gap-out); }
+  &:last-child {
+    margin-right: var(--gap-out);
+
+    // The mobile slide is 100vw — wider than the snapport — so a start-snap pins its
+    // left edge and hides the trailing gap (WebKit even overruns the edge). End-snap
+    // rests it against the right inset instead, mirroring the leading gap. Tablet’s
+    // slide is narrower (start-snap is fine) and desktop has no snap.
+    @include media("<=tablet") { scroll-snap-align: end; }
+  }
 }
 
 // First image: inset to where the colophon would sit. On desktop the colophon
