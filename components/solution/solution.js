@@ -46,20 +46,18 @@ function Phone({ name, alt }) {
   );
 }
 
-// One backoffice screen of the setup carousel; only its number and alt differ.
+// One backoffice screen; it slides within the inert panel. Only its number and alt differ.
 function SetupSlide({ n, alt }) {
   return (
     <li className="solution_slide">
-      <figure className="solution_frame -setup">
-        <Media
-          name={`mockup_config_${n}`}
-          scales={[1, 2]}
-          width={1280}
-          height={874}
-          sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
-          alt={alt}
-        />
-      </figure>
+      <Media
+        name={`mockup_config_${n}`}
+        scales={[1, 2]}
+        width={1280}
+        height={874}
+        sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
+        alt={alt}
+      />
     </li>
   );
 }
@@ -97,30 +95,33 @@ function ConfigCarousel() {
 
   return (
     <>
-      <ul
-        className="solution_track carousel motion"
-        ref={trackRef}
-        tabIndex={0}
-        onScroll={sync}
-        aria-label="Online Catalog setup screens"
-      >
-        <SetupSlide
-          n={1}
-          alt="Online Catalog backoffice: General settings, sharing link, and WhatsApp orders."
-        />
-        <SetupSlide
-          n={2}
-          alt="Online Catalog backoffice: Store information, description, and address."
-        />
-        <SetupSlide
-          n={3}
-          alt="Online Catalog backoffice: Contact details and social networks."
-        />
-        <SetupSlide
-          n={4}
-          alt="Online Catalog backoffice: Appearance — catalog colors, logo, and cover image."
-        />
-      </ul>
+      {/* The lime panel stays inert; only the screens scroll within it. */}
+      <figure className="solution_frame -setup motion">
+        <ul
+          className="solution_track carousel"
+          ref={trackRef}
+          tabIndex={0}
+          onScroll={sync}
+          aria-label="Online Catalog setup screens"
+        >
+          <SetupSlide
+            n={1}
+            alt="Online Catalog backoffice: General settings, sharing link, and WhatsApp orders."
+          />
+          <SetupSlide
+            n={2}
+            alt="Online Catalog backoffice: Store information, description, and address."
+          />
+          <SetupSlide
+            n={3}
+            alt="Online Catalog backoffice: Contact details and social networks."
+          />
+          <SetupSlide
+            n={4}
+            alt="Online Catalog backoffice: Appearance — catalog colors, logo, and cover image."
+          />
+        </ul>
+      </figure>
 
       <aside className="solution_aside content_aside -center">
         <p className="note solution_note">
