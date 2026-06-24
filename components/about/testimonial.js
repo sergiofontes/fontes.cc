@@ -5,20 +5,19 @@ export default function Experience() {
     <figure id="testimonial" className="testimonial grid content">
       <blockquote>
         <p className="lead">
-          “I have been working with Sérgio for the past two years, and it’s been
-          a great opportunity to see his leadership and product design expertise
-          in action. He’s responsible for guiding the design team without
-          compromising any natural talent from his peers, not to mention his
-          vast experience within the design spectrum, always looking forward to
-          improving the company’s design process and strategy. His natural
-          skills go from CSS mastery (inspiring every designer to be a better
-          coder), architectural thinking, user’s best friend, and meme hunter.”
+          “Simply put, Sérgio is one of the best designers I've ever worked
+          with. His passion for design research, process and even front-end
+          development can raise up the quality of any project he's involved
+          with. His motivation can be contagious, pushing the team to do their
+          best and reach beyond that. Projects under his umbrella are sure to
+          reach their goals. We've had a long and productive partnership both at
+          Guava and VTEX and I wouldn't blink an eye before recommending him.”
         </p>
       </blockquote>
       <figcaption>
-        Filipe Soares
+        Lucas Marinho
         <br />
-        <small>Staff Product Designer @ VTEX</small>
+        <small>Engineering Manager @ VTEX</small>
         <div className="testimonial_logo">
           <Logo type="vtex" />
         </div>
