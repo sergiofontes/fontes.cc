@@ -6,7 +6,7 @@
 // Base value
 $base-mob         : 15px;
 $base             : 15px;
-$base-large       : 15px;
+$base-large       : 16px;
 
 // Mobile
 $columns-mob      : 4;
@@ -61,9 +61,6 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
     --columns     : #{$columns};
     --gap         : #{$gap};
     --gap-out     : #{$gap-out};
-  }
-
-  @include media(">desktoplarge") {
     --base        : #{$base-large};
   }
 }
