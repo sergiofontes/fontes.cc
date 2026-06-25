@@ -8,9 +8,9 @@
   grid-template-rows: 1fr auto;
   row-gap: calc(var(--gap) * 2);
   align-items: end;
-  height: 93vh; // env/svh fallbacks below keep the menu at the screen bottom on mobile
+  height: 94vh; // env/svh fallbacks below keep the menu at the screen bottom on mobile
   height: calc(90vh - env(safe-area-inset-bottom));
-  height: 93lvh;
+  height: 94lvh;
   min-height: var(--hero-min-height);
   padding-top: var(--gap);
   background-color: var(--color-cover);
@@ -51,7 +51,6 @@
   @include media(">desktop") {
     grid-template-rows: auto 1fr;
     height: 90vh;
-    max-height: var(--hero-max-height);
 
     .hero_intro { grid-row: 1; }
 
@@ -144,7 +143,6 @@
 .hero-case {
   grid-template-rows: 1fr auto auto;
   row-gap: var(--gap); // restore the grid's gap, which the home `.hero` doubles
-  max-height: var(--hero-max-height);
   padding-bottom: calc(var(--gap) * 2);
   overflow: hidden;
 
