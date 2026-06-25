@@ -33,7 +33,7 @@ export default function Why() {
       <div className="why_gallery content_body motion">
         <div className="why_board">
           <Image
-            className="why_image motion_item"
+            className="why_image"
             src={`${IMG}/discovery.png`}
             width={2772}
             height={1328}

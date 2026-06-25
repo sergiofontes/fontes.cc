@@ -33,7 +33,7 @@ export default function Solution() {
         </div>
 
         <a
-          className="solution_video video content_body motion"
+          className="solution_video video content_body"
           href={VIDEO_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -98,7 +98,7 @@ export default function Solution() {
           merchants promote their stores and attract new customers.
         </aside>
 
-        <div className="solution_pair content_body -templates motion">
+        <div className="solution_pair content_body -templates">
           <figure className="solution_frame -template">
             <Media
               name="stationary_2"
@@ -144,7 +144,7 @@ export default function Solution() {
 
       {/* Block 5 — store customization on mobile */}
       <div className="solution_custom grid content">
-        <div className="solution_pair -phones motion">
+        <div className="solution_pair -phones">
           <Phone
             name="mockup_plp"
             alt="The default catalog on a phone, showing the product list."
@@ -163,7 +163,7 @@ export default function Solution() {
 
       {/* Block 6 — responsive across devices */}
       <div className="solution_devices grid content">
-        <figure className="solution_frame -devices motion">
+        <figure className="solution_frame -devices">
           <ResponsiveDevices />
         </figure>
 
