@@ -60,7 +60,11 @@ export function SetupSlide({ n, alt }) {
         scales={[1, 2]}
         width={1280}
         height={874}
-        sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
+        // Phones cap at the 1200px variant (~2.4× at the ~510px render). A 130vw render
+        // at dpr 3 needs 1521px, which rounds up to the 1920px device size (~10 MB
+        // decoded) — and four such slides overran iOS Safari's per-tab memory budget,
+        // reloading the page. Tablet/desktop keep full density (ample memory there).
+        sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 400px"
         alt={alt}
       />
     </li>
