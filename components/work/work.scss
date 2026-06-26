@@ -254,7 +254,6 @@
   position: absolute;
   height: auto;
   filter: var(--drop-shadow-large);
-  will-change: filter;
 
   &.-medium { filter: var(--drop-shadow-medium); }
   &.-small { filter: var(--drop-shadow-small); }

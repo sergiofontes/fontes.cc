@@ -84,7 +84,6 @@ $color-setup: #dff8c3;
   .solution_media {
     height: auto; // keep each card’s native ratio
     filter: var(--drop-shadow-small);
-    will-change: filter;
   }
 }
 
@@ -183,7 +182,6 @@ $color-setup: #dff8c3;
   width: 131.3%;
   height: auto;
   filter: var(--drop-shadow-medium) drop-shadow(0 53px 21px rgb(0 0 0 / 1%));
-  will-change: filter;
   border-radius: var(--radius-small);
 
   @include media(">tablet") {
@@ -245,7 +243,6 @@ $color-setup: #dff8c3;
     width: 79%;
     height: auto;
     filter: var(--drop-shadow-medium);
-    will-change: filter;
     transform: translateX(-50%);
   }
 }
