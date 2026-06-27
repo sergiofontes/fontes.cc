@@ -227,13 +227,12 @@ $color-setup: #dff8c3;
   }
 }
 
-// The cell is a fixed-height window with no panel; the device is a fixed-width PNG that
-// overflows it — cut at the fold, and at the sides once the cell is narrower than the device.
+// The cell is a fixed-height gray panel (the Figma “frame”); the device PNG overflows it —
+// cut at the fold, and at the sides once the cell is narrower than the device.
 .solution_frame.-phone {
   height: 395px;
   overflow: hidden;
-  background: none;
-  border-radius: 0;
+  background-color: var(--color-surface-dim);
 
   .solution_media {
     position: absolute;
@@ -243,16 +242,17 @@ $color-setup: #dff8c3;
   }
 }
 
-// Each asset's canvas is sized so its device renders at the prototype's ~200px, and `top` drops
-// it to the Figma fold. (mockup_plp: canvas 216×442, device @ (6,1); custom: 289×588, device @ (21,4).)
-// Tablet uses fixed cells (Figma 168 / 234) so the left phone always crops while the right one
-// stays whole — the device is a fixed width, so proportional (grid-driven) cells wouldn't crop.
+// On mobile/desktop the device is a fixed-width PNG (canvas sized so it renders at the
+// prototype's ~200px); `top` drops it to the Figma fold. (mockup_plp: canvas 216×442, device
+// @ (6,1); custom: 289×588, device @ (21,4).) On tablet the cells instead take the Figma
+// 168 / 234 split proportionally and the device width is cell-relative, so the pair grows to
+// fill its grid span (3 / span 7) across the whole tablet range instead of stranding white space.
 .solution_pair.-phones > :first-child {
-  @include media(">tablet", "<=desktop") { flex: 0 0 168px; }
+  @include media(">tablet", "<=desktop") { flex: 168; }
 }
 
 .solution_pair.-phones > :last-child {
-  @include media(">tablet", "<=desktop") { flex: 0 0 234px; }
+  @include media(">tablet", "<=desktop") { flex: 234; }
 }
 
 .solution_frame.-phone:first-child .solution_media {
@@ -260,6 +260,8 @@ $color-setup: #dff8c3;
   width: 213px;
 
   @include media(">tablet") { top: 24px; }
+
+  @include media(">tablet", "<=desktop") { width: 126.8%; } // 1.268× its cell (Figma 200/168 device:cell)
 }
 
 .solution_frame.-phone:last-child .solution_media {
@@ -267,6 +269,8 @@ $color-setup: #dff8c3;
   width: 234px;
 
   @include media(">tablet") { top: 22px; }
+
+  @include media(">tablet", "<=desktop") { width: 100%; } // PNG fills the cell; baked margin gives the Figma side gap
 }
 
 // Mobile bleeds the pair off both edges: shift each device off-centre so the crop lands on the
