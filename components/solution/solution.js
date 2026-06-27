@@ -10,6 +10,57 @@ import Play from "../play";
 
 const VIDEO_URL = "https://www.youtube.com/watch?v=J0cINzc2ziE";
 
+// The six sharing cards, authored once. Block 2 renders them twice so the phone/tablet marquee
+// loops with no seam; the duplicate row is aria-hidden so the alt text is announced only once.
+function SharingCards() {
+  return (
+    <>
+      <Share
+        name="store_1"
+        width={208}
+        height={178}
+        transform="translate(0.08%, 2.56%) scale(1.06112)"
+        alt="A Slack message sharing the store’s catalog link, with a link preview of the storefront."
+      />
+      <Share
+        name="store_2"
+        width={209}
+        height={279}
+        transform="translate(0.08%, 2.74%) scale(1.06112)"
+        alt="An Instagram post promoting the store, with its logo and tagline over a burger photo."
+      />
+      <Share
+        name="store_3"
+        width={209}
+        height={427}
+        transform="translate(0.08%, 2.85%) scale(1.06112)"
+        alt="An Instagram story promoting the store, with its tagline and a button to visit the store."
+      />
+      <Share
+        name="product_3"
+        width={208}
+        height={427}
+        transform="translate(0.08%, 2.85%) scale(1.06112)"
+        alt="An Instagram story sharing a product — a burger with its price, description, and a button to order it."
+      />
+      <Share
+        name="product_2"
+        width={208}
+        height={279}
+        transform="translate(0.08%, 2.74%) scale(1.06112)"
+        alt="An Instagram post sharing a product, with its photo, price, and description."
+      />
+      <Share
+        name="product_1"
+        width={208}
+        height={195}
+        transform="translate(0.08%, 2.60%) scale(1.06112)"
+        alt="A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description."
+      />
+    </>
+  );
+}
+
 export default function Solution() {
   return (
     <section id="solution" className="solution">
@@ -57,50 +108,17 @@ export default function Solution() {
         </aside>
       </div>
 
-      {/* Block 2 — sharing across channels (full-bleed montage) */}
+      {/* Block 2 — sharing across channels (full-bleed; an endless marquee on phones & tablets,
+          a centered static row on desktop) */}
       <div className="solution_sharing motion">
-        <Share
-          name="store_1"
-          width={208}
-          height={178}
-          transform="translate(0.08%, 2.56%) scale(1.06112)"
-          alt="A Slack message sharing the store’s catalog link, with a link preview of the storefront."
-        />
-        <Share
-          name="store_2"
-          width={209}
-          height={279}
-          transform="translate(0.08%, 2.74%) scale(1.06112)"
-          alt="An Instagram post promoting the store, with its logo and tagline over a burger photo."
-        />
-        <Share
-          name="store_3"
-          width={209}
-          height={427}
-          transform="translate(0.08%, 2.85%) scale(1.06112)"
-          alt="An Instagram story promoting the store, with its tagline and a button to visit the store."
-        />
-        <Share
-          name="product_3"
-          width={208}
-          height={427}
-          transform="translate(0.08%, 2.85%) scale(1.06112)"
-          alt="An Instagram story sharing a product — a burger with its price, description, and a button to order it."
-        />
-        <Share
-          name="product_2"
-          width={208}
-          height={279}
-          transform="translate(0.08%, 2.74%) scale(1.06112)"
-          alt="An Instagram post sharing a product, with its photo, price, and description."
-        />
-        <Share
-          name="product_1"
-          width={208}
-          height={195}
-          transform="translate(0.08%, 2.60%) scale(1.06112)"
-          alt="A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description."
-        />
+        <div className="solution_marquee">
+          <div className="solution_set">
+            <SharingCards />
+          </div>
+          <div className="solution_set -clone" aria-hidden="true">
+            <SharingCards />
+          </div>
+        </div>
       </div>
 
       {/* Block 3 — printed & social templates */}

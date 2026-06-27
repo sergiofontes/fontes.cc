@@ -55,22 +55,59 @@ $color-setup: #dff8c3;
   @include media(">tablet") { grid-row: 2; }
 }
 
-// Block 2 — sharing montage (full-bleed, clipped at the viewport edges)
+// Block 2 — sharing montage (full-bleed, clipped at the viewport edges). On phones and tablets
+// it scrolls as an endless marquee; on desktop it’s a centered, static row.
 .solution_sharing {
   display: flex;
-  gap: var(--space-xl); // 30 — fixed across breakpoints (Figma)
   align-items: flex-start;
-  justify-content: center;
   padding-block: var(--space-xl); // 30
   overflow: hidden;
+
+  @include media(">desktop") { justify-content: center; }
+}
+
+// The track holds two identical rows; translating it by exactly -50% lands the clone where the
+// original sat, so the loop is seamless (`linear` + duplicated content hides the seam).
+.solution_marquee {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: solution-marquee 40s linear infinite;
+  }
+
+  // Desktop shows the row once, centered and still.
+  @include media(">desktop") {
+    justify-content: center;
+    width: 100%;
+    animation: none;
+  }
+}
+
+.solution_set {
+  display: flex;
+  align-items: flex-start;
+}
+
+// The clone only feeds the loop; desktop drops it and shows the cards a single time.
+.solution_set.-clone {
+  @include media(">desktop") { display: none; }
+}
+
+@keyframes solution-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 // Cards bake their corners and shadow into the PNG; the per-card `transform` (declared in
 // solution.js) regrows the silhouette so it fills the frame as the `filter` shadow used to.
-// The card is a fixed 196px at every breakpoint (Figma); narrow screens just reveal fewer.
+// The card is a fixed 196px at every breakpoint (Figma). Spacing is a trailing margin (not a
+// flex gap) so the two rows tile at a constant pitch and the -50% loop has no half-gap jump.
 .solution_frame.-share {
   flex-shrink: 0;
   width: 196px;
+  margin-inline: var(--space-md); // 30
   overflow: visible; // let the baked shadow fall outside the card bounds
   border-radius: 0; // rounding lives in the PNG, not the frame
 
