@@ -168,7 +168,9 @@
 }
 
 .work_gallery {
-  padding-top: var(--gap);
+  @include media("<=tablet") {
+    padding-top: var(--space-md);
+  }
 
   @include media(">desktop") {
     padding-top: calc(var(--gap) / 2);
@@ -321,13 +323,19 @@
 // Featured CTA — summary + “Read the case”; placed by DOM order above the gallery.
 .work_cta {
   display: flex;
-  grid-column: var(--content-start) / -1;
+  flex-direction: column;
+  grid-column: var(--content-start) / span var(--content-width);
   gap: var(--space-md);
   align-items: flex-start;
   width: 100%;
 
+  @include media(">tablet") {
+    flex-direction: row;
+    grid-column-end: span calc(var(--content-width) * 2);
+  }
+
   @include media(">desktop") {
-    grid-column: var(--content-start) / span calc(var(--content-width) * 2);
+    grid-column-end: span calc(var(--content-width) * 2);
   }
 }
 
