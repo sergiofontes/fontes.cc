@@ -61,32 +61,44 @@ export default function Solution() {
       <div className="solution_sharing motion">
         <Share
           name="store_1"
-          height={157}
+          width={208}
+          height={178}
+          transform="translate(0.08%, 2.56%) scale(1.06112)"
           alt="A Slack message sharing the store’s catalog link, with a link preview of the storefront."
         />
         <Share
           name="store_2"
-          height={257}
+          width={209}
+          height={279}
+          transform="translate(0.08%, 2.74%) scale(1.06112)"
           alt="An Instagram post promoting the store, with its logo and tagline over a burger photo."
         />
         <Share
           name="store_3"
-          height={405}
+          width={209}
+          height={427}
+          transform="translate(0.08%, 2.85%) scale(1.06112)"
           alt="An Instagram story promoting the store, with its tagline and a button to visit the store."
         />
         <Share
           name="product_3"
-          height={405}
+          width={208}
+          height={427}
+          transform="translate(0.08%, 2.85%) scale(1.06112)"
           alt="An Instagram story sharing a product — a burger with its price, description, and a button to order it."
         />
         <Share
           name="product_2"
-          height={257}
+          width={208}
+          height={279}
+          transform="translate(0.08%, 2.74%) scale(1.06112)"
           alt="An Instagram post sharing a product, with its photo, price, and description."
         />
         <Share
           name="product_1"
-          height={173}
+          width={208}
+          height={195}
+          transform="translate(0.08%, 2.60%) scale(1.06112)"
           alt="A Slack message sharing a product link, with a link preview showing the item’s photo, price, and description."
         />
       </div>
@@ -147,10 +159,14 @@ export default function Solution() {
         <div className="solution_pair -phones">
           <Phone
             name="mockup_plp"
+            width={216}
+            height={442}
             alt="The default catalog on a phone, showing the product list."
           />
           <Phone
             name="mockup_plp_custom"
+            width={289}
+            height={588}
             alt="A catalog customized with the merchant’s brand colors and banner."
           />
         </div>

@@ -5,46 +5,53 @@ import Image, { getImageProps } from "next/image";
 import ButtonDot from "../button_dot";
 import useSetupCarousel from "./use-setup-carousel";
 
-const IMG = "/images/work/catalog";
+const IMG = "/images/work/catalog"; // flat originals
+const IMG_SHADOW = "/images/work/shadow/catalog"; // embedded-shadow copy
 
 // Presentational helpers for the Solution section. Content (copy and `alt`) is authored as
 // markup at the call site in `solution.js`; these only frame and size the assets.
 // See AGENTS.md › Content lives in the markup.
 
-// Flat assets; framing (mask + radius) and the drop shadow are composed in CSS.
-export function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
+// Flat assets; framing (mask + radius) and the drop shadow are composed in CSS. `base` selects
+// the flat or embedded-shadow copy (see AGENTS.md › Images).
+export function Media({ name, base = IMG, scales = [1, 2, 3], alt = "", ...rest }) {
   const max = Math.max(...scales);
-  const src = `${IMG}/${name}${max > 1 ? `@${max}x` : ""}.png`;
+  const src = `${base}/${name}${max > 1 ? `@${max}x` : ""}.png`;
 
   return (
     <Image className="solution_media motion_item" src={src} alt={alt} {...rest} />
   );
 }
 
-// One shared store/product card; keeps its native height (Slack/IG post/IG story) to avoid CLS.
-export function Share({ name, height, alt }) {
+// One shared store/product card. `width`/`height` are the embedded-shadow PNG’s native size
+// (declared at the call site, avoids CLS); `transform` regrows + recenters the baked silhouette.
+export function Share({ name, width, height, transform, alt }) {
   return (
     <figure className="solution_frame -share">
       <Media
         name={`sharing_${name}`}
-        width={197}
+        base={IMG_SHADOW}
+        width={width}
         height={height}
         sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
+        style={{ transform }}
         alt={alt}
       />
     </figure>
   );
 }
 
-// One customization phone; only its mockup and alt differ.
-export function Phone({ name, alt }) {
+// One customization phone — a fixed-size device the cell crops (placement lives in solution.scss).
+// Only its mockup, intrinsic dimensions, and alt differ.
+export function Phone({ name, width, height, alt }) {
   return (
     <figure className="solution_frame -phone">
       <Media
         name={name}
-        width={247}
-        height={510}
-        sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
+        base={IMG_SHADOW}
+        width={width}
+        height={height}
+        sizes="234px"
         alt={alt}
       />
     </figure>
@@ -151,18 +158,23 @@ export function ResponsiveDevices() {
 
 Media.propTypes = {
   name: PropTypes.string.isRequired,
+  base: PropTypes.string,
   scales: PropTypes.arrayOf(PropTypes.number),
   alt: PropTypes.string,
 };
 
 Share.propTypes = {
   name: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  transform: PropTypes.string,
   alt: PropTypes.string.isRequired,
 };
 
 Phone.propTypes = {
   name: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
   alt: PropTypes.string.isRequired,
 };
 

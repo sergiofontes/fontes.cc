@@ -44,11 +44,7 @@
   top: 7.5%;
   display: block;
   width: 33.9%;
-  height: auto;
-  filter:
-    drop-shadow(0 2px 6px rgb(0 0 0 / 8%))
-    drop-shadow(0 14px 24px rgb(0 0 0 / 10%))
-    drop-shadow(0 40px 64px rgb(0 0 0 / 8%));
+  height: auto; // shadow baked into the PNG; placement corrected by each phone’s `transform`
 
   &.-left { left: 0; }
   &.-right { right: 0; }
@@ -58,6 +54,11 @@
     top: 0;
     z-index: 2;
     width: 39.9%;
+
+    // The centre phone (in flow) sets the group height. Its embedded-shadow canvas is
+    // proportionally a touch wider than the flat one, so its box is ~1.4% shorter; add it back
+    // (as % of the group width) to keep the group — and everything below — at its original height.
+    margin-block: 0 1.42%;
     margin-inline: auto;
   }
 }

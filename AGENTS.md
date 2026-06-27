@@ -31,7 +31,7 @@ Author content — visible copy, headings, summaries, credits, and image `alt` t
 - **Don’t** gather prose/`alt` text into a `cases`/`SHARING`-style array and render it through a `.map`. Presentational **helper components** that take content as props/children at the call site are encouraged (`Mockup`, `Slide`, `Media`, `Phone`); the anti-pattern is the separated *data array of content*, not props as such. A short identifier tied to chrome (a logo slug, a year) may stay an attribute, like `<Logo type="vtex" />`.
 - A behavior-only `.map` over a count or over DOM nodes is fine — it carries no content (e.g. the setup-carousel dots map `[0, 1, 2, 3]`; `Motion` maps observed groups).
 
-**Stays as data** (configuration/technical metadata, not body content): intrinsic image dimensions (`components/work/mockup-sizes.js`) and the `sizes`/`src` strings for `next/image`; per-page SEO/head metadata (`data/seo/*.json`); the small navigation link config in `components/nav/nav.js` (the `to`/`href`/`spy`/`sub` flags); and arrays consumed by a third-party API (e.g. the `Typewriter` `strings` in `components/hero/hero.js`).
+**Stays as data** (configuration/technical metadata, not body content): intrinsic image dimensions (authored as each mockup's `width`/`height` attributes at its call site) and the `sizes`/`src` strings for `next/image`; per-page SEO/head metadata (`data/seo/*.json`); the small navigation link config in `components/nav/nav.js` (the `to`/`href`/`spy`/`sub` flags); and arrays consumed by a third-party API (e.g. the `Typewriter` `strings` in `components/hero/hero.js`).
 
 ### Interactive controls
 
@@ -74,7 +74,7 @@ Several shared scaffolds live in their own component modules and are applied as 
 
 ### Images
 
-Raster art (mockups, covers) uses `next/image`: each call ships the sharpest source it has (the highest `@Nx`) and Next serves it as AVIF/WebP, lazy by default, sized via an explicit `sizes` that matches the element's render width per breakpoint; above-the-fold covers pass `priority`. The visual composition — positioning, masks, drop shadows — is done in CSS over flat or transparent PNGs, so the assets stay plain. `components/work/mockup-sizes.js` holds each mockup's intrinsic `[width, height]` (required by `next/image` for the aspect ratio).
+Raster art (mockups, covers) uses `next/image`: each call ships the sharpest source it has (the highest `@Nx`) and Next serves it as AVIF/WebP, lazy by default, sized via an explicit `sizes` that matches the element's render width per breakpoint; above-the-fold covers pass `priority`. The visual composition — positioning and masks — is done in CSS; drop shadows are usually CSS `filter`s over flat PNGs, but the Work preview mockups bake the shadow into the PNG itself (on a larger canvas) so it survives the masked silhouette with no runtime `filter`. Each Work mockup declares its intrinsic `width`/`height` (required by `next/image` for the aspect ratio) as attributes at its `components/work/work.js` call site — baked mockups use the PNG's native size, with `left`/`top`/`size` pre-corrected so the artwork lands where the flat version sat.
 
 ### SVGs and i18n
 

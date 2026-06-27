@@ -7,84 +7,85 @@ import Logo from "../logos/";
 import ButtonIcon from "../button_icon";
 import Play from "../play";
 import Handnote from "../../public/images/handnote_2.svg";
-import MOCKUP_SIZES from "./mockup-sizes";
 import useCarousel from "./use-carousel";
 
+// The mockups ship in two copies (see AGENTS.md › Images): the embedded-shadow set under
+// `shadow/` (what the site renders) and the original flat set. `flat` mockups — the ones with
+// no baked-shadow variant (the VTEX spec diagram, the video still) — render from the flat folders.
 const DIRS = {
+  previews: "/images/work/shadow/previews",
+  catalog: "/images/work/shadow/catalog",
+};
+const FLAT_DIRS = {
   previews: "/images/work/previews",
   catalog: "/images/work/catalog",
 };
 
-// A flat mockup positioned (in %) within a Slide's 534×444 frame; the layered shadow
-// comes from the `shadow` modifier. Each carries its own `alt`; continuity repeats pass
-// `alt=""`. Slide injects the frame's default `shadow`/`fill` when not set here.
+// A mockup floated (in %) within a Slide's 534×444 frame. `width`/`height` are the PNG's
+// intrinsic pixel size (drives the aspect ratio + reserves the box against CLS); `left`/`top`/
+// `size` place it as a share of the frame. Embedded-shadow PNGs bake the shadow into a larger
+// canvas, so a baked mockup's placement is pre-corrected to land its artwork where the flat one
+// sat. `flat` mockups (the VTEX spec diagram, the video still) render from the flat folders.
+// Each carries its own `alt`; continuity repeats pass `alt=""`. Slide injects the frame's `fill`.
 export function Mockup({
   name,
   dir = "previews",
+  flat = false,
   scales = [1, 2, 3],
+  width,
+  height,
   left,
   top,
-  width,
-  shadow,
+  size,
   fill,
   alt = "",
 }) {
-  const base = `${DIRS[dir]}/${name}`;
+  const base = `${(flat ? FLAT_DIRS : DIRS)[dir]}/${name}`;
   const max = Math.max(...scales);
   const src = `${base}${max > 1 ? `@${max}x` : ""}.png`;
-  const [w, h] = MOCKUP_SIZES[name] || [4, 3];
 
   // `sizes` ≈ each mockup’s render width per breakpoint: min(<%>vw, <%>·534px) mobile,
   // the 534px cap on tablet, ~700px (fill) / 534px desktop.
   const sizes =
-    width == null
+    size == null
       ? "(min-width: 1201px) 700px, (min-width: 768px) 534px, min(100vw, 534px)"
       : fill
-        ? `(min-width: 1201px) ${Math.round((width / 100) * 700)}px, (min-width: 768px) ${Math.round((width / 100) * 534)}px, min(${width}vw, ${Math.round((width / 100) * 534)}px)`
-        : `(min-width: 768px) ${Math.round((width / 100) * 534)}px, min(${width}vw, ${Math.round((width / 100) * 534)}px)`;
+        ? `(min-width: 1201px) ${Math.round((size / 100) * 700)}px, (min-width: 768px) ${Math.round((size / 100) * 534)}px, min(${size}vw, ${Math.round((size / 100) * 534)}px)`
+        : `(min-width: 768px) ${Math.round((size / 100) * 534)}px, min(${size}vw, ${Math.round((size / 100) * 534)}px)`;
 
   return (
     <Image
-      className={cn("work_mockup motion_item", {
-        "-small": shadow === "small",
-        "-medium": shadow === "medium",
-        "-flat": shadow === "none",
-      })}
+      className="work_mockup motion_item"
       src={src}
-      width={w}
-      height={h}
+      width={width}
+      height={height}
       sizes={sizes}
       style={
         left == null
           ? undefined
-          : { left: `${left}%`, top: `${top}%`, width: `${width}%` }
+          : { left: `${left}%`, top: `${top}%`, width: `${size}%` }
       }
       alt={alt}
     />
   );
 }
 
-// Forwards the frame's default shadow (a Mockup can still override its own) and `fill`
-// down to each Mockup, so the call site only states what differs per image.
-const withFrameDefaults = (children, shadow, fill) =>
+// Forwards the frame's `fill` down to each Mockup, so the call site only states what differs.
+const withFrameDefaults = (children, fill) =>
   Children.map(children, (child) =>
-    child
-      ? cloneElement(child, { shadow: child.props.shadow ?? shadow, fill })
-      : child,
+    child ? cloneElement(child, { fill }) : child,
   );
 
 // One gallery frame: mockups float on a `work_stage` clipped by the carousel window
 // (the prototype's 534×444 ratio).
-export function Slide({ bg, shadow, fill, children }) {
+export function Slide({ bg, fill, children }) {
   return (
     <li className="work_slide">
       <figure
         className={cn("work_frame", { "-fill": fill })}
         style={bg ? { background: bg } : undefined}
       >
-        <span className="work_stage">
-          {withFrameDefaults(children, shadow, fill)}
-        </span>
+        <span className="work_stage">{withFrameDefaults(children, fill)}</span>
       </figure>
     </li>
   );
@@ -129,18 +130,19 @@ export function Colophon({ activities, designers }) {
 Mockup.propTypes = {
   name: PropTypes.string.isRequired,
   dir: PropTypes.oneOf(["previews", "catalog"]),
+  flat: PropTypes.bool,
   scales: PropTypes.arrayOf(PropTypes.number),
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
   left: PropTypes.number,
   top: PropTypes.number,
-  width: PropTypes.number,
-  shadow: PropTypes.oneOf(["small", "medium", "large", "none"]),
+  size: PropTypes.number,
   fill: PropTypes.bool,
   alt: PropTypes.string,
 };
 
 Slide.propTypes = {
   bg: PropTypes.string,
-  shadow: PropTypes.oneOf(["small", "medium", "large", "none"]),
   fill: PropTypes.bool,
   children: PropTypes.node,
 };

@@ -249,18 +249,10 @@
   }
 }
 
-// Flat PNGs; `drop-shadow` follows the rounded silhouette where `box-shadow` couldn’t.
+// Every mockup bakes its shadow into the PNG, so none carry a runtime `filter`.
 .work_mockup {
   position: absolute;
   height: auto;
-  filter: var(--drop-shadow-large);
-
-  &.-medium { filter: var(--drop-shadow-medium); }
-  &.-small { filter: var(--drop-shadow-small); }
-
-  // Annotated diagrams (e.g. the VTEX product-card spec) opt out of the silhouette
-  // drop-shadow; per-mockup `shadow` in the gallery data drives the modifier.
-  &.-flat { filter: none; }
 }
 
 // Mockup entrance animation: see AGENTS.md › Reveal animation.
@@ -280,7 +272,6 @@
   width: 100%;
   height: 101%;
   object-fit: cover;
-  filter: none;
 }
 
 // Colophon (What I did / Designers) — desktop only. First item inside the track,

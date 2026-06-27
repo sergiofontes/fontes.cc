@@ -58,32 +58,24 @@ $color-setup: #dff8c3;
 // Block 2 — sharing montage (full-bleed, clipped at the viewport edges)
 .solution_sharing {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-xl); // 30 — fixed across breakpoints (Figma)
   align-items: flex-start;
   justify-content: center;
   padding-block: var(--space-xl); // 30
   overflow: hidden;
-
-  @include media(">tablet") { gap: var(--space-lg); }
-
-  @include media(">desktop") { gap: var(--space-xl); }
 }
 
-// Cards carry their own corners in the PNG, so `drop-shadow` (not `box-shadow`)
-// hugs the rounded silhouette.
+// Cards bake their corners and shadow into the PNG; the per-card `transform` (declared in
+// solution.js) regrows the silhouette so it fills the frame as the `filter` shadow used to.
+// The card is a fixed 196px at every breakpoint (Figma); narrow screens just reveal fewer.
 .solution_frame.-share {
   flex-shrink: 0;
-  width: 116px;
-  overflow: visible; // let the drop-shadow fall outside the card bounds
+  width: 196px;
+  overflow: visible; // let the baked shadow fall outside the card bounds
   border-radius: 0; // rounding lives in the PNG, not the frame
-
-  @include media(">tablet") { width: 156px; }
-
-  @include media(">desktop") { width: 196px; }
 
   .solution_media {
     height: auto; // keep each card’s native ratio
-    filter: var(--drop-shadow-small);
   }
 }
 
@@ -216,14 +208,18 @@ $color-setup: #dff8c3;
   @include media(">desktop") { flex-direction: row; }
 }
 
-// Block 5 — store customization (two phones side by side)
+// Block 5 — store customization. Two fixed-size iPhone mockups whose cells crop them per the
+// prototypes: centred (only the bottom cut) on desktop, a narrower-left cell on tablet (left
+// phone cropped, right whole), and pushed apart to bleed off both edges on mobile.
 .solution_pair.-phones {
   flex-direction: row;
   grid-column: 1 / -1; // full-bleed pair on mobile
+  gap: var(--space-md); // 15
 
   @include media(">tablet") {
     grid-row: 1;
     grid-column: 3 / span 7;
+    gap: var(--space-xl); // 30
   }
 
   @include media(">desktop") {
@@ -231,20 +227,53 @@ $color-setup: #dff8c3;
   }
 }
 
+// The cell is a fixed-height window with no panel; the device is a fixed-width PNG that
+// overflows it — cut at the fold, and at the sides once the cell is narrower than the device.
 .solution_frame.-phone {
-  aspect-ratio: 252 / 395;
-  background-color: var(--color-surface-dim);
+  height: 395px;
+  overflow: hidden;
+  background: none;
+  border-radius: 0;
 
-  // Phone render inset on the tinted panel; CSS shadow, frame clips it at the fold.
   .solution_media {
     position: absolute;
-    top: 6.6%;
     left: 50%;
-    width: 79%;
     height: auto;
-    filter: var(--drop-shadow-medium);
-    transform: translateX(-50%);
+    transform: translateX(-50%); // centre the device in its cell (tablet + desktop)
   }
+}
+
+// Each asset's canvas is sized so its device renders at the prototype's ~200px, and `top` drops
+// it to the Figma fold. (mockup_plp: canvas 216×442, device @ (6,1); custom: 289×588, device @ (21,4).)
+// Tablet uses fixed cells (Figma 168 / 234) so the left phone always crops while the right one
+// stays whole — the device is a fixed width, so proportional (grid-driven) cells wouldn't crop.
+.solution_pair.-phones > :first-child {
+  @include media(">tablet", "<=desktop") { flex: 0 0 168px; }
+}
+
+.solution_pair.-phones > :last-child {
+  @include media(">tablet", "<=desktop") { flex: 0 0 234px; }
+}
+
+.solution_frame.-phone:first-child .solution_media {
+  top: 14px;
+  width: 213px;
+
+  @include media(">tablet") { top: 24px; }
+}
+
+.solution_frame.-phone:last-child .solution_media {
+  top: 12px;
+  width: 234px;
+
+  @include media(">tablet") { top: 22px; }
+}
+
+// Mobile bleeds the pair off both edges: shift each device off-centre so the crop lands on the
+// outer side and a gap opens in the middle (matching the prototype).
+@include media("<=tablet") {
+  .solution_frame.-phone:first-child .solution_media { transform: translateX(calc(-50% - 21px)); }
+  .solution_frame.-phone:last-child .solution_media { transform: translateX(calc(-50% + 21px)); }
 }
 
 .solution_note.-custom {
