@@ -321,7 +321,6 @@
 // Featured CTA — summary + “Read the case”; placed by DOM order above the gallery.
 .work_cta {
   display: flex;
-  flex-direction: column;
   grid-column: var(--content-start) / -1;
   gap: var(--space-md);
   align-items: flex-start;

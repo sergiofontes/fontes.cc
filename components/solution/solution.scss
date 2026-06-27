@@ -21,6 +21,13 @@ $color-setup: #dff8c3;
   @include media(">desktop") { margin-top: var(--space-xl); }
 }
 
+.solution_templates {
+  row-gap: var(--space-xl);
+  margin-top: 0;
+
+  @include media(">tablet") { margin-top: var(--space-md); }
+}
+
 .solution_note {
   width: 100%;
   margin: 0;
@@ -134,8 +141,12 @@ $color-setup: #dff8c3;
 
 .solution_pair {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   width: 100%;
+
+  @include media(">tablet") {
+    gap: var(--space-xl);
+  }
 }
 
 .solution_pair > * { flex: 1; }
