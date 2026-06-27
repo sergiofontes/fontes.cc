@@ -205,18 +205,16 @@ $color-setup: #dff8c3;
 // the grid placement the track used to own.
 .solution_frame.-setup {
   grid-column: 1 / -1; // full-bleed on mobile
-  aspect-ratio: 390 / 360;
+  aspect-ratio: 533 / 444; // desktop proportion at every breakpoint, so the panel isn’t taller on mobile/tablet
   background-color: $color-setup;
 
   @include media(">tablet") {
     grid-row: 1;
     grid-column: 3 / span 7;
-    aspect-ratio: 432 / 444;
   }
 
   @include media(">desktop") {
     grid-column: var(--content-start) / span calc(var(--content-width) * 2);
-    aspect-ratio: 533 / 444;
   }
 }
 
