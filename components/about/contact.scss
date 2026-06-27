@@ -3,13 +3,19 @@
 .contact {
   padding-top: var(--space-md);
 
+  a { margin: 0; }
+
   .contact_label {
     display: block;
     margin-bottom: .25rem;
     color: var(--color-subtitle);
   }
 
-  a { margin: 0; }
+  @include media("<=desktop") {
+    .content_divisors {
+      margin-top: var(--space-sm);
+    }
+  }
 
   .lead {
     display: inline-block;
