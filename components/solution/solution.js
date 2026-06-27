@@ -156,7 +156,7 @@ export default function Solution() {
 
       {/* Block 5 — store customization on mobile */}
       <div className="solution_custom grid content">
-        <div className="solution_pair -phones">
+        <div className="solution_pair -phones motion">
           <Phone
             name="mockup_plp"
             width={216}
