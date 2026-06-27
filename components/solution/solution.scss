@@ -9,6 +9,13 @@ $color-setup: #dff8c3;
   scroll-margin-top: var(--gap);
 }
 
+// Heading and blocks share grid-row 1, so the sticky heading (`.content h2`) stays pinned
+// across every block instead of scrolling away after the first (mirrors the Work section).
+.solution_heading,
+.solution_blocks {
+  grid-row: 1;
+}
+
 .solution_sharing,
 .solution_templates,
 .solution_config,
