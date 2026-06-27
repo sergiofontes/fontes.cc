@@ -65,6 +65,15 @@ img {
   -webkit-user-drag: none;
 }
 
+// Baseline focus ring for every interactive element, so links without a component/page rule
+// (footer, skip link) still use the token and round like the controls. Controls tune
+// offset/width at higher specificity.
+:focus-visible {
+  border-radius: var(--radius-small);
+  outline: var(--border-focus) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
 // `_app` sets next/font’s `--font-*` here; `display: contents` re-roots `font-family`
 // to the variable fonts without adding a box.
 .global_fonts {

@@ -274,6 +274,22 @@
   object-fit: cover;
 }
 
+// The video link rides inside the scroll-clipped track, which crops an outset ring — and Safari
+// won’t paint an inset `outline` over the thumbnail. Draw the ring as an overlay pseudo-element
+// so it stays visible on top of the still, within the clip, and consistent across browsers.
+.work_slide .video:focus-visible {
+  outline: none;
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    content: "";
+    border: var(--border-focus) solid var(--color-focus-ring);
+    border-radius: var(--radius-small);
+  }
+}
+
 // Colophon (What I did / Designers) — desktop only. First item inside the track,
 // so it scrolls away with the carousel; sized to the 2-column heading area.
 .work_colophon {
