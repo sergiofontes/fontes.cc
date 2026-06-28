@@ -141,7 +141,7 @@
 
   @include media(">desktop") {
     grid-template-rows: auto auto 1fr;
-    padding-bottom: var(--space-3xl);
+    padding-bottom: var(--space-section);
   }
 }
 
@@ -162,7 +162,7 @@
 
   @include media(">desktop") {
     grid-row: 1;
-    margin-top: .266667rem;
+    margin-top: var(--space-baseline);
   }
 }
 

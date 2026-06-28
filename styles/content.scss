@@ -6,6 +6,9 @@
   --content-start: 2;
   --content-width: 4;
 
+  // Sticky heading offset clearing the fixed nav (logo height + gutter + breathing room).
+  --space-heading-top: calc(var(--logo-size) + var(--gap) + 1rem);
+
   @include media(">tablet") {
     --heading-start: 1;
     --heading-width: 2;
@@ -26,7 +29,7 @@
 
   h2 {
     position: sticky;
-    top: calc(var(--logo-size) + var(--gap) + 1rem);
+    top: var(--space-heading-top);
     margin-top: -.6875rem;
   }
 
@@ -48,12 +51,12 @@
 
     h2 {
       top: var(--gap);
-      margin-top: .266667rem;
+      margin-top: var(--space-baseline);
       white-space: normal;
     }
 
     h3 { margin-top: .4rem; }
-    p .label { margin-top: .266667rem; }
+    p .label { margin-top: var(--space-baseline); }
   }
 }
 

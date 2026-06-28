@@ -1,12 +1,12 @@
 @use "../../styles/scaffold" as *;
 
 .quote {
-  padding-bottom: var(--space-3xl);
+  padding-bottom: var(--space-section);
   scroll-margin-top: var(--gap);
 
   @include media(">tablet") { padding-bottom: var(--space-4xl); }
 
-  @include media(">desktop") { padding-bottom: var(--space-3xl); }
+  @include media(">desktop") { padding-bottom: var(--space-section); }
 }
 
 .quote_figure {

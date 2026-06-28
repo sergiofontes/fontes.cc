@@ -32,14 +32,17 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
 
 // Set all Sass variables as CSS properties.
 :root {
-  --space-xs      : 5px;
-  --space-sm      : 10px;
-  --space-md      : 15px;
-  --space-lg      : 20px;
-  --space-xl      : 30px;
-  --space-2xl     : 45px;
-  --space-3xl     : 90px;
-  --space-4xl     : 120px;
+  --space-xs      : calc(var(--base) / 3);
+  --space-sm      : calc(var(--base) * 2 / 3);
+  --space-md      : var(--base);
+  --space-lg      : calc(var(--base) * 4 / 3);
+  --space-xl      : calc(var(--base) * 2);
+  --space-2xl     : calc(var(--base) * 3);
+  --space-3xl     : calc(var(--base) * 6);
+  --space-4xl     : calc(var(--base) * 8);
+
+  --space-section : var(--space-3xl);  // vertical padding between major page sections
+  --space-baseline: .266667rem;        // optical nudge aligning a desktop title/label to the body baseline
 
   --base          : #{$base-mob};
   --column-max    : #{$column-max};

@@ -1,7 +1,7 @@
 @use "../../styles/scaffold" as *;
 
 .why {
-  padding-block: var(--space-3xl);
+  padding-block: var(--space-section);
   background-color: var(--color-surface-dim);
   scroll-margin-top: var(--gap);
 }

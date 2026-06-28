@@ -45,7 +45,7 @@
 
 .work_title {
   position: sticky;
-  top: calc(var(--logo-size) + var(--gap) + 1rem);
+  top: var(--space-heading-top);
   grid-row: 1;
   margin: -.75rem 0 0;
 
@@ -55,7 +55,7 @@
 
   @include media(">desktop") {
     top: var(--gap);
-    margin-top: .266667rem;
+    margin-top: var(--space-baseline);
   }
 }
 
