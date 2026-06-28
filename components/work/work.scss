@@ -97,12 +97,14 @@
 
 .work_subtitle {
   margin: 0;
+  text-wrap: balance;
+  width: 50%;
 }
 
 .work_note {
   position: absolute;
   bottom: calc(100% - .4rem);
-  left: calc(100% - .2rem);
+  left: 70%;
   display: none;
   width: 6.6rem;
   height: auto;
