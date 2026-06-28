@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-const IMG = "/images/work/catalog";
+// Embedded-shadow copy (see AGENTS.md › Images); each phone's `transform` regrows + recenters the baked silhouette.
+const IMG = "/images/work/shadow/catalog";
 
-// Each phone shows a different part of the catalog, so each gets its own alt.
-function Phone({ name, modifier, width, height, sizes, alt }) {
+function Phone({ name, modifier, width, height, sizes, transform, alt }) {
   return (
     <Image
       className={`what_phone motion_item ${modifier}`}
@@ -11,6 +11,7 @@ function Phone({ name, modifier, width, height, sizes, alt }) {
       width={width}
       height={height}
       sizes={sizes}
+      style={{ transform }}
       alt={alt}
     />
   );
@@ -24,25 +25,28 @@ export default function What() {
           <Phone
             name="mockup_about"
             modifier="-left"
-            width={247}
-            height={510}
+            width={289}
+            height={588}
             sizes="(min-width: 1201px) 245px, (min-width: 768px) 215px, 165px"
+            transform="translate(0.07%, 7.74%) scale(1.17004)"
             alt="The store’s profile in the catalog — its logo, tagline, address, and opening hours."
           />
           <Phone
             name="mockup_pdp"
             modifier="-center"
-            width={291}
-            height={600}
+            width={343}
+            height={695}
             sizes="(min-width: 1201px) 290px, (min-width: 768px) 255px, 190px"
+            transform="translate(0.06%, 8.10%) scale(1.1789)"
             alt="A product page in the catalog, with the item’s photo, price, description, and an add-to-cart button."
           />
           <Phone
             name="mockup_plp_custom"
             modifier="-right"
-            width={247}
-            height={510}
+            width={289}
+            height={588}
             sizes="(min-width: 1201px) 245px, (min-width: 768px) 215px, 165px"
+            transform="translate(0.07%, 7.74%) scale(1.17004)"
             alt="The catalog’s product list, with a search field, category filters, and items grouped by type."
           />
         </div>

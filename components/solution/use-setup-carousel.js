@@ -1,8 +1,5 @@
 import { useCallback, useRef, useState } from "react";
 
-// Dot-paged scroll-snap behavior for the Online Catalog setup screens: derives the active
-// slide from scroll position and scrolls to a given index. (The WorkCase carousel is
-// arrow-based via `useCarousel`; this is its dot-paged sibling.)
 export default function useSetupCarousel() {
   const trackRef = useRef(null);
   const [active, setActive] = useState(0);

@@ -5,53 +5,51 @@ import Image, { getImageProps } from "next/image";
 import ButtonDot from "../button_dot";
 import useSetupCarousel from "./use-setup-carousel";
 
-const IMG = "/images/work/catalog";
+const IMG = "/images/work/catalog"; // flat originals
+const IMG_SHADOW = "/images/work/shadow/catalog"; // embedded-shadow copy
 
-// Presentational helpers for the Solution section. Content (copy and `alt`) is authored as
-// markup at the call site in `solution.js`; these only frame and size the assets.
-// See AGENTS.md › Content lives in the markup.
-
-// Flat assets; framing (mask + radius) and the drop shadow are composed in CSS.
-export function Media({ name, scales = [1, 2, 3], alt = "", ...rest }) {
+// `base` selects the flat or embedded-shadow copy (see AGENTS.md › Images); framing lives in CSS.
+export function Media({ name, base = IMG, scales = [1, 2, 3], alt = "", ...rest }) {
   const max = Math.max(...scales);
-  const src = `${IMG}/${name}${max > 1 ? `@${max}x` : ""}.png`;
+  const src = `${base}/${name}${max > 1 ? `@${max}x` : ""}.png`;
 
   return (
     <Image className="solution_media motion_item" src={src} alt={alt} {...rest} />
   );
 }
 
-// One shared store/product card; keeps its native height (Slack/IG post/IG story) to avoid CLS.
-export function Share({ name, height, alt }) {
+// `width`/`height` are the embedded-shadow PNG’s native size (avoids CLS); `transform` regrows + recenters the baked silhouette.
+export function Share({ name, width, height, transform, alt }) {
   return (
     <figure className="solution_frame -share">
       <Media
         name={`sharing_${name}`}
-        width={197}
+        base={IMG_SHADOW}
+        width={width}
         height={height}
         sizes="(min-width: 1201px) 196px, (min-width: 768px) 156px, 116px"
+        style={{ transform }}
         alt={alt}
       />
     </figure>
   );
 }
 
-// One customization phone; only its mockup and alt differ.
-export function Phone({ name, alt }) {
+export function Phone({ name, width, height, alt }) {
   return (
     <figure className="solution_frame -phone">
       <Media
         name={name}
-        width={247}
-        height={510}
-        sizes="(min-width: 1201px) 220px, (min-width: 768px) 26vw, 37vw"
+        base={IMG_SHADOW}
+        width={width}
+        height={height}
+        sizes="234px"
         alt={alt}
       />
     </figure>
   );
 }
 
-// One backoffice screen; it slides within the inert panel. Only its number and alt differ.
 export function SetupSlide({ n, alt }) {
   return (
     <li className="solution_slide">
@@ -60,23 +58,21 @@ export function SetupSlide({ n, alt }) {
         scales={[1, 2]}
         width={1280}
         height={874}
-        sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 130vw"
+        // Phones cap at the 1200px variant: a 130vw render at dpr 3 would hit the 1920px source (~10 MB decoded),
+        // and four such slides overran iOS Safari's per-tab memory and reloaded the page. Tablet/desktop keep full density.
+        sizes="(min-width: 1201px) 860px, (min-width: 768px) 110vw, 400px"
         alt={alt}
       />
     </li>
   );
 }
 
-// Presentational shell for the setup carousel: the inert lime panel and the dot pager.
-// The screens are authored as `SetupSlide` children at the call site; behavior lives in
-// `useSetupCarousel`. The dots track the child count, paging via CSS scroll-snap.
 export function SetupCarousel({ note, children }) {
   const { trackRef, active, sync, goTo } = useSetupCarousel();
   const count = Children.count(children);
 
   return (
     <>
-      {/* The lime panel stays inert; only the screens scroll within it. */}
       <figure className="solution_frame -setup motion">
         <ul
           className="solution_track carousel"
@@ -109,8 +105,7 @@ export function SetupCarousel({ note, children }) {
   );
 }
 
-// Art-directed: portrait device stack on mobile/tablet, landscape on desktop.
-// `next/image` can't swap by media query, so `getImageProps` + `<picture>` do it.
+// Art-directed (portrait on mobile/tablet, landscape on desktop); next/image can't swap by media query, so getImageProps + <picture> do it.
 export function ResponsiveDevices() {
   const alt =
     "The Online Catalog adapting across desktop, tablet, and mobile devices.";
@@ -147,18 +142,23 @@ export function ResponsiveDevices() {
 
 Media.propTypes = {
   name: PropTypes.string.isRequired,
+  base: PropTypes.string,
   scales: PropTypes.arrayOf(PropTypes.number),
   alt: PropTypes.string,
 };
 
 Share.propTypes = {
   name: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  transform: PropTypes.string,
   alt: PropTypes.string.isRequired,
 };
 
 Phone.propTypes = {
   name: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
   alt: PropTypes.string.isRequired,
 };
 
@@ -169,6 +169,5 @@ SetupSlide.propTypes = {
 
 SetupCarousel.propTypes = {
   note: PropTypes.string.isRequired,
-  // The setup screens, authored as `SetupSlide` markup at the call site.
   children: PropTypes.node,
 };

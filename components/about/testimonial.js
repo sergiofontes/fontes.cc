@@ -22,6 +22,7 @@ export default function Experience() {
           <Logo type="vtex" />
         </div>
       </figcaption>
+      <span className="content_divisor -last"></span>
     </figure>
   );
 }

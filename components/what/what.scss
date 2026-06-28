@@ -10,10 +10,9 @@
   @include media(">tablet") { grid-row: 1; }
 }
 
-// Width-driven: the group keeps a constant ratio, so the prototype’s max heights are
-// enforced as max widths. Bleeds past the gutters on mobile (html clips overflow-x).
+// Ratio-locked group: the prototype’s max heights are enforced as max widths; bleeds past the gutters on mobile.
 .what_mockups {
-  // Entrance params for these mockups only (override the shared motion defaults).
+  // Entrance params for these mockups only (override the Motion defaults).
   --mk-x: 0;
   --mk-y: 50px;
   --mk-scale: .94;
@@ -38,17 +37,13 @@
   }
 }
 
-// Centre screen sits in flow (sets the group height); the flanks float over it.
+// Centre phone sits in flow and sets the group height; the flanks float over it.
 .what_phone {
   position: absolute;
   top: 7.5%;
   display: block;
   width: 33.9%;
-  height: auto;
-  filter:
-    drop-shadow(0 2px 6px rgb(0 0 0 / 8%))
-    drop-shadow(0 14px 24px rgb(0 0 0 / 10%))
-    drop-shadow(0 40px 64px rgb(0 0 0 / 8%));
+  height: auto; // shadow baked into the PNG; placement corrected by each phone’s `transform`
 
   &.-left { left: 0; }
   &.-right { right: 0; }
@@ -58,12 +53,14 @@
     top: 0;
     z-index: 2;
     width: 39.9%;
+
+    // Centre’s embedded-shadow canvas is ~1.4% shorter than the flat box;
+    // add it back so the group keeps its original height.
+    margin-block: 0 1.42%;
     margin-inline: auto;
   }
 }
 
-// Bespoke choreography: the centre phone rises first, then the flanks slide out from
-// behind it (it sits on top via `z-index`) once it has settled.
 @media (prefers-reduced-motion: no-preference) {
   .what_mockups.-ready .what_phone.-center {
     transition-delay: 0ms;
@@ -71,7 +68,7 @@
 
   .what_mockups.-ready .what_phone.-left,
   .what_mockups.-ready .what_phone.-right {
-    transition-delay: var(--mk-what-delay, 400ms); // after the centre settles (tunable)
+    transition-delay: var(--mk-what-delay, 400ms);
     scale: .9;
   }
 

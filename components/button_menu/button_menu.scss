@@ -33,7 +33,6 @@
     }
   }
 
-  // Hover (closed): bars spread apart.
   &:hover { gap: .75rem; }
 
   &:focus-visible { outline-offset: 0; }
@@ -44,7 +43,6 @@
     span { border-color: var(--color-subtle); }
   }
 
-  // Open: bars cross into an X
   &.-open {
     align-items: center;
 

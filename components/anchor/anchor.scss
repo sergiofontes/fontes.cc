@@ -14,8 +14,7 @@
   span { display: none; }
 }
 
-// SR-only “opens in a new tab” hint; the double selector beats `.anchor span`’s
-// `display: none` so it stays in the a11y tree.
+// Double selector beats `.anchor span`’s `display: none`, so this SR-only “new tab” hint stays in the a11y tree.
 .anchor .anchor_newtab {
   display: inline-block;
 

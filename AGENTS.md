@@ -1,144 +1,106 @@
 # Repository Guidelines
 
-This is the source for [fontes.cc](https://fontes.cc), Sérgio Fontes' personal portfolio site — a single-page Next.js app (pages router, plain JS).
+This is the source for [fontes.cc](https://fontes.cc), Sérgio Fontes’ personal portfolio — a single-page Next.js app (pages router, plain JS).
 
 ## Commands
 
-- `npm install` — install dependencies (requires Node.js >= 20.9.0)
-- `npm run dev` — start the dev server at `http://localhost:3000`
+- `npm install` — deps (Node.js >= 20.9.0)
+- `npm run dev` — dev server at `http://localhost:3000`
 - `npm run build` — production build
-- `npm start` — run the production build
-- `npx stylelint "**/*.scss"` — lint SCSS (no npm script is defined for this; config lives in `stylelint.config.js`)
+- `npm start` — run the build
+- `npx stylelint "**/*.scss"` — lint SCSS (no npm script; config in `stylelint.config.js`; recess property order enforced — vendor partials already error, ignore those)
 
-There is no test suite and no JS linter configured for this project.
+No test suite, no JS linter.
 
 ## Architecture
 
-The entire site is one page (`pages/index.js`), composed from section components rendered in order: `Nav`, `Hero`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (a list of per-project carousel rows, each a `WorkCase`), then `Footer`. The work-case pages (e.g. `pages/work/catalog.js`) open with `HeroCase` instead of `Hero`. `components/layout.js` is a thin wrapper that renders the “Skip to content” link (targeting the `#content` main landmark) and children; `pages/_document.js` holds the static `<head>` (favicons, theme color) shared across pages; fonts are self-hosted via `next/font/google` in `pages/_app.js`. Per-page and site-wide SEO/metadata live as thematic JSON in `data/seo/` (`site.json` defaults plus one file per page), consumed by the `components/seo` component which each page spreads (`<Seo {...seo} />`).
+The whole site is one page (`pages/index.js`): `Nav`, `Hero`, `AboutExperience`, `AboutTestimonial`, `AboutTraits`, `AboutContact`, `Work` (per-project carousel rows, each a `WorkCase`), `Footer`. Work-case pages (e.g. `pages/work/catalog.js`) open with `HeroCase` instead of `Hero`. `components/layout.js` wraps the “Skip to content” link (targets `#content`) and children; `pages/_document.js` holds the shared static `<head>` (favicons, theme color); fonts are self-hosted via `next/font/google` in `pages/_app.js`. SEO/metadata is thematic JSON in `data/seo/` (`site.json` defaults + one file per page), consumed by `components/seo` and spread per page (`<Seo {...seo} />`).
 
 ### Component convention
 
-Each component lives in its own folder under `components/`:
-- `index.js` — re-exports the default from the implementation file (`export { default } from './name'`)
-- `<name>.js` — the component. Class names are plain Lean BEM strings (`className="logo_experience"`), composed with the shared utility classes (`grid`, `content`, `content_column`/`content_columns`/`content_divisor`/`content_divisors`, and the `-last` modifier). Use `classnames` (aliased `cn`) only for conditional classes (e.g. `cn('nav', { open: isOpen })`); otherwise write the literal string.
-- `<name>.scss` — a **global** stylesheet (NOT a CSS Module), imported once in `pages/_app.js`.
+Each component is a folder under `components/`:
+- `index.js` — re-exports the default (`export { default } from './name'`)
+- `<name>.js` — the component. Class names are plain Lean BEM strings (`className="logo_experience"`) composed with the shared utilities (`grid`, `content`, `content_column`/`content_columns`/`content_divisor`/`content_divisors`, `-last`). Use `classnames` (aliased `cn`) only for conditional classes (`cn('nav', { open: isOpen })`).
+- `<name>.scss` — a **global** stylesheet (NOT a CSS Module), imported once in `pages/_app.js` (the only place Next allows global CSS).
 
 ### Content lives in the markup
 
-Author content — visible copy, headings, summaries, credits, and image `alt` text — **directly in the JSX where it renders**, never collected into a separate JS data array/object that gets `.map()`’d into markup elsewhere. A reader should find a section’s words by opening its component, not by cross-referencing a `const` at the top of the file. This keeps content where it renders and the JS minimal.
+Author content — copy, headings, summaries, credits, `alt` text — **in the JSX where it renders**, never gathered into a separate data array `.map()`’d into markup elsewhere. A reader should find a section’s words by opening its component.
 
-- **Do** spell each item out at its call site — see `components/about/*`, `components/what/what.js`, and `components/work/work.js` (every case is written as a `<CasePreview>` with literal `<Slide>`/`<Mockup>`/`<Colophon>` children, each `alt` and summary inline).
-- **Don’t** gather prose/`alt` text into a `cases`/`SHARING`-style array and render it through a `.map`. Presentational **helper components** that take content as props/children at the call site are encouraged (`Mockup`, `Slide`, `Media`, `Phone`); the anti-pattern is the separated *data array of content*, not props as such. A short identifier tied to chrome (a logo slug, a year) may stay an attribute, like `<Logo type="vtex" />`.
-- A behavior-only `.map` over a count or over DOM nodes is fine — it carries no content (e.g. the setup-carousel dots map `[0, 1, 2, 3]`; `Motion` maps observed groups).
+- **Do** spell each item out at its call site (`components/about/*`, `components/what/what.js`, `components/work/work.js`: every case a `<CasePreview>` with literal `<Slide>`/`<Mockup>`/`<Colophon>` children, `alt`/summary inline).
+- **Don’t** collect prose/`alt` into a `cases`/`SHARING`-style array rendered through `.map`. Presentational helpers taking content as props/children are fine (`Mockup`, `Slide`, `Media`, `Phone`); the anti-pattern is the separated *data array of content*. A short chrome identifier may stay an attribute (`<Logo type="vtex" />`).
+- A behavior-only `.map` over a count or DOM nodes is fine (setup-carousel dots `[0, 1, 2, 3]`; `Motion` over observed groups).
 
-**Stays as data** (configuration/technical metadata, not body content): intrinsic image dimensions (`components/work/mockup-sizes.js`) and the `sizes`/`src` strings for `next/image`; per-page SEO/head metadata (`data/seo/*.json`); the small navigation link config in `components/nav/nav.js` (the `to`/`href`/`spy`/`sub` flags); and arrays consumed by a third-party API (e.g. the `Typewriter` `strings` in `components/hero/hero.js`).
+**Stays as data** (config/technical metadata): intrinsic image `width`/`height` and `sizes`/`src` for `next/image`; SEO (`data/seo/*.json`); the nav link config in `components/nav/nav.js` (`to`/`href`/`spy`/`sub`); arrays consumed by a third-party API (the `Typewriter` `strings` in `components/hero/hero.js`).
 
 ### Interactive controls
 
-A small set of reusable controls lives under `components/`, each following the convention above (`index.js` + `<name>.js` + global `<name>.scss`). They take a `classes` prop (extra class names, composed via `cn`) and forward the rest of their props to the underlying element, so consumers can pass `aria-label`, `onClick`, etc. Defaults and prop shapes are declared with `PropTypes`/`defaultProps`, matching `components/anchor`.
+Reusable controls under `components/` follow the convention above and take a `classes` prop (extra classes via `cn`), forwarding the rest to the underlying element (`aria-label`, `onClick`, …). Defaults/prop shapes via `PropTypes` + default params (React 19 ignores `defaultProps` on function components), matching `components/anchor`.
 
-- `Button` — a link styled as a button (`<a>` with a trailing arrow icon). Props: `href`, `size` (`small` default, or `medium`), `disabled` (renders `aria-disabled` + `tabIndex={-1}` and drops `href` instead of using the non-interactive `disabled` attribute). `children` is the label.
-- `ButtonIcon` — a square 24px icon `<button type="button">` wrapping an icon. Props: `icon` (`arrow` default, or `plus`), `disabled`; `aria-label` is **required**.
-- `ButtonMenu` — the hamburger/close toggle (`<button type="button">` with two `<span>` bars that cross into an X). Props: `open` (drives the `-open` modifier and `aria-expanded`), `disabled`; `aria-label` is **required**. `Nav` consumes it via `classes="nav_button"`, which owns only the fixed placement while appearance/animation come from the component.
-- `ButtonDot` — a pagination dot (`<button type="button">` with a `::before` dot that grows on hover/focus/active). Props: `active` (drives the `-active` modifier); `aria-label` is **required**.
+- `Button` — link styled as a button (`<a>` + trailing arrow). `href`, `size` (`small`|`medium`), `disabled` (renders `aria-disabled` + `tabIndex={-1}`, drops `href`). `children` is the label.
+- `ButtonIcon` — 24px square icon `<button>`. `icon` (`arrow`|`plus`), `disabled`; `aria-label` required.
+- `ButtonMenu` — hamburger/close toggle (two `<span>` bars crossing into an X). `open` (drives `-open` + `aria-expanded`), `disabled`; `aria-label` required. `Nav` uses it via `classes="nav_button"` (placement only; appearance/animation in the component).
+- `ButtonDot` — pagination dot (`::before` dot grows on hover/focus/active). `active` (drives `-active`); `aria-label` required.
 
-Each control owns its `:hover`/`:active`/`:focus-visible` states (focus rings via `--color-focus-ring`/`--border-focus`), animates only `transform`/`opacity`, and guards transitions behind `@media (prefers-reduced-motion: no-preference)`. Shared tokens (`--radius-small`, `--button-size`, `--color-surface-dim`, `--color-subtle`) live in `styles/global.scss` and `styles/colors.scss`.
+Each control owns its `:hover`/`:active`/`:focus-visible` states (rings via `--color-focus-ring`/`--border-focus`). Shared tokens (`--radius-small`, `--button-size`, `--color-surface-dim`, `--color-subtle`) live in `styles/global.scss` / `styles/colors.scss`.
 
 ### Styling system (`styles/`)
 
-Every SCSS file starts with `@import "scaffold"`, which pulls in `utils.scss` (Sass mixins/functions: `rem()`, `clearfix`, `size`, `fontless`/`fontful`, `buttonless`, `underline`, focus-ring mixins) and the `include-media` vendor partial (copied into `styles/vendor/`) used for breakpoint queries like `@include media(">tablet")`.
+Every SCSS file starts with `@import "scaffold"` → `utils.scss` (Sass mixins/functions: `rem()`, `clearfix`, `size`, `fontless`/`fontful`, `buttonless`, `underline`, focus-ring mixins) + the `include-media` vendor partial (`styles/vendor/`) for breakpoint queries (`@include media(">tablet")`). Breakpoints: **mobile ≤767, tablet 768–1200, desktop >1200** (`styles/vendor/include-media.scss`).
 
-- `grid.scss` defines the responsive grid as CSS custom properties (`--columns`, `--gap`, `--gap-out`, `--column-max`, etc.), computed from Sass variables per breakpoint (mobile/tablet/desktop/desktoplarge/max) and consumed by the `.grid` class (a CSS grid with column count driven by `--columns`).
-- `content.scss` defines the `.content` layout container and its `.content_column`/`.content_columns`/`.content_divisor`/`.content_divisors` element classes plus the `-last` modifier, which position section content within the grid via `--heading-start/width` and `--content-start/width` custom properties (responsive per breakpoint). HTML-element targets (`h2`, `h3`, `p`) stay nested under `.content`; the element classes are written flat (`.content_column`, not `.content .column`).
-- `colors.scss`, `typography.scss`, `global.scss` provide design tokens and base/global rules; `pages/_app.js` is the single place that imports all of these plus every component stylesheet and `normalize.css`.
-
-When styling a new section, compose it with the `grid`/`content` utilities rather than inventing layout primitives, and `@import "scaffold"` for the shared mixins and breakpoints.
+- `grid.scss` — the responsive grid as custom properties (`--columns`, `--gap`, `--gap-out`, `--column-max`, …) computed per breakpoint (mobile/tablet/desktop/desktoplarge/max), consumed by `.grid`.
+- `content.scss` — the `.content` container + `.content_column`/`_columns`/`_divisor`/`_divisors` elements and `-last`, positioned via `--heading-start/width` and `--content-start/width`. HTML targets (`h2`, `h3`, `p`) stay nested under `.content`; element classes are flat (`.content_column`).
+- `colors.scss`, `typography.scss`, `global.scss` — design tokens and base rules. `pages/_app.js` imports all of these + every component stylesheet + `normalize.css`.
 
 #### Composing a section
 
-Reach for these classes **before** writing raw `grid-column`/breakpoint math — they already encode the responsive spans every section shares, so a new section rarely needs custom placement. Put the container class first, then the component's own BEM class, then modifiers (`class="experience_text content_body"`).
+Reach for these **before** raw `grid-column`/breakpoint math — they encode the responsive spans every section shares. Order: container class, then the component BEM class, then modifiers (`class="experience_text content_body"`).
 
-- Container: `grid content` on the `<section>`. The rotated/sticky `<h2>` is placed automatically by `.content`.
-- `content_body` — the wide body/media column (body copy, galleries, carousels). Spans the content column on mobile and widens on tablet/desktop.
-- `content_aside` — the narrow right-hand column (subtitle notes, colophon, logos). Add `-center` to vertically center it against its neighbouring media instead of top-aligning.
-- `content_media` — an always-full-bleed element (gutter to gutter, every breakpoint).
-- `content_rule` — the closing hairline; base spans wide (to the last content column), `-edge` runs to the trailing gutter.
+- `grid content` on the `<section>` — the rotated/sticky `<h2>` is placed automatically.
+- `content_body` — wide body/media column (copy, galleries, carousels).
+- `content_aside` — narrow right-hand column (notes, colophon, logos); add `-center` to vertically center against neighbouring media.
+- `content_media` — always full-bleed (gutter to gutter, every breakpoint).
+- `content_rule` — closing hairline; base spans to the last content column, `-edge` runs to the trailing gutter.
 
-Each utility owns its `grid-column` only — the component keeps its own `grid-row`, typography, and any single-breakpoint exception (e.g. a divider that goes full-bleed on mobile but narrows on desktop). When a placement genuinely diverges at one breakpoint, add a one-line `grid-column` override in the component scss (it wins on source order); don't fork the utility.
+Each utility owns its `grid-column` only; the component keeps its `grid-row`, typography, and any single-breakpoint exception (add a one-line `grid-column` override in the component scss — it wins on source order; don’t fork the utility). Custom grid children need `width: 100%` — `.grid` uses `justify-items: start`, so a child setting only `grid-column` collapses to content width (every `content` utility already sets it).
 
-Several shared scaffolds live in their own component modules and are applied as extra classes the same way: `hero` (the dark, full-height home cover; the case cover `HeroCase` wears its `hero` class for the shared look and layers `hero-case` on top — both live in the single `components/hero/hero.scss`, so `HeroCase` ships no stylesheet of its own), `carousel` (the horizontal scroll-snap track used by `Work` and `Solution`), and `play`/`video` (the centered play badge and its link wrapper, used by `Work` and `Solution`). Shared interactive-control states (press, focus ring, hover surface) live as grouped selectors in `components/button/button.scss`.
+Shared scaffolds applied as extra classes the same way: `hero` (dark full-height home cover; `HeroCase` wears `hero` + layers `hero-case` on top, both in `components/hero/hero.scss`, so `HeroCase` ships no stylesheet), `carousel` (horizontal scroll-snap track, `Work`/`Solution`), `play`/`video` (centered play badge + link wrapper, `Work`/`Solution`). Shared control states (press, focus ring, hover surface) are grouped selectors in `components/button/button.scss`.
 
 ### Reveal animation
 
-`components/motion` (`Motion`, rendered once per page) reveals mockups on first scroll-in. Mark a group `motion` and its animated children `motion_item`; `Motion` indexes each child with a `--i` custom property, adds `-ready`, then `-in` once the group enters the viewport. `motion.scss` transitions each `motion_item` from offset/scaled/transparent into place, staggered by `--i` and tuned through the `--mk-*` custom properties (tuned values inline as `var()` fallbacks; sections like `What` override them locally). Guarded behind `prefers-reduced-motion` and only armed by JS, so reduced-motion and no-JS render the mockups in place.
+`components/motion` (`Motion`, rendered once per page) reveals mockups on first scroll-in. Mark a group `motion` and its children `motion_item`; `Motion` indexes each child with `--i`, adds `-ready`, then `-in` on viewport entry. `motion.scss` transitions each `motion_item` from offset/scaled/transparent into place, staggered by `--i`, tuned via `--mk-*` (inline `var()` fallbacks; sections like `What` override locally). Guarded behind `prefers-reduced-motion` and armed only by JS, so reduced-motion and no-JS render in place.
 
 ### Images
 
-Raster art (mockups, covers) uses `next/image`: each call ships the sharpest source it has (the highest `@Nx`) and Next serves it as AVIF/WebP, lazy by default, sized via an explicit `sizes` that matches the element's render width per breakpoint; above-the-fold covers pass `priority`. The visual composition — positioning, masks, drop shadows — is done in CSS over flat or transparent PNGs, so the assets stay plain. `components/work/mockup-sizes.js` holds each mockup's intrinsic `[width, height]` (required by `next/image` for the aspect ratio).
+Raster art uses `next/image`: ship the sharpest source (highest `@Nx`), Next serves AVIF/WebP, lazy by default, with explicit `sizes` matching the render width per breakpoint; above-the-fold covers pass `priority`. Composition (positioning, masks) is CSS; drop shadows are usually CSS `filter`s over flat PNGs, but Work preview mockups bake the shadow into the PNG (larger canvas) so it survives the masked silhouette with no runtime `filter`. Each Work mockup declares intrinsic `width`/`height` at its `components/work/work.js` call site — baked mockups use the PNG’s native size with `left`/`top`/`size` pre-corrected so the artwork lands where the flat version sat.
 
 ### SVGs and i18n
 
-SVGs are imported directly as React components via `@svgr/webpack`. Under Next 16 (Turbopack by default) the loader is wired through `turbopack.rules` in `next.config.js`, with the legacy `webpack()` hook kept as a fallback. `next.config.js` also sets `i18n` to a single `en` locale (no actual translations exist).
+SVGs import directly as React components via `@svgr/webpack` — wired through `turbopack.rules` in `next.config.js` (Next 16, Turbopack default), with the legacy `webpack()` hook as fallback. SVGR is viewBox-only (`dimensions: false`) — give icons explicit CSS size or Safari collapses them to 0 in flex. `next.config.js` sets `i18n` to a single `en` locale (no real translations). Inline SVGs that carry meaning need `role="img"` + `aria-label` (a bare `aria-label` isn’t reliably announced without the role).
 
 ### Implementing a section from a Figma design
 
-A repeatable playbook for translating a Figma section into a faithful, code-fitting component. Followed end-to-end when rebuilding `AboutExperience`.
+Playbook for translating a Figma section into a faithful component (used rebuilding `AboutExperience`):
 
-**1 — Pull every breakpoint first.** Figma sections ship as separate frames per layout (e.g. `390` / `720` / `1280`). Use `get_design_context` on each frame; when a frame is too large to return, `get_metadata` on the parent to find the per-breakpoint child node IDs, then `get_screenshot` each. Read all three before writing anything — the responsive behavior (logos stacking vs. rowing, label rotation, divider span) only emerges from comparing frames.
-
-**2 — Map Figma frames to layout MODES, not widths.** Figma frame widths are NOT the project breakpoints. The project switches at `tablet: 767px` and `desktop: 1200px` (`styles/vendor/include-media.scss`), giving three modes: mobile `≤767`, tablet `768–1200`, desktop `>1200`. So a Figma “tablet” frame drawn at `720px` actually describes the project’s **mobile** range, and its “desktop” frame describes everything `>1200`. Treat the three frames as the three modes in order, and when verifying, screenshot at a width *inside* each project range (e.g. `390` / `980` / `1280`) — never at the literal Figma frame widths.
-
-**3 — Translate grid spans via line numbers.** Figma’s generated grid (`15px repeat(N,1fr) 15px`) and the project grid (`0/gap-delta repeat(--columns) 0/gap-delta`) share the same gutter-columns-gutter line structure, so a Figma `col-[6/span 6]` maps directly onto the project’s grid lines. Express placements with the `content.scss` custom properties where they line up (`grid-column: var(--content-start) / span calc(var(--content-width) * 2)`) and fall back to literal line numbers per breakpoint when a span has no clean token (`grid-column: 3 / span 7`). `/ -1` reaches the final line (full-bleed-to-gutter dividers).
-
-**4 — Custom grid children need `width: 100%`.** `.grid` sets `place-items: stretch start` → `justify-items: start`, so a direct grid child that only sets `grid-column` collapses to content width (an empty divider `<span>` renders as a zero-width, invisible line). Every shared `content` utility sets `width: 100%` for this reason; mirror it on any new grid child.
-
-**5 — Reuse before inventing.** Keep the shared `grid content` container and `<h2>` (they already give the rotated/sticky heading-to-body relationship across breakpoints). Reuse typography classes (`.label`), spacing tokens (`--space-lg`/`--space-xl`), and color tokens (`--color-subtitle`, `--color-text`) instead of hardcoding the px/hex values Figma emits. Name new classes in Lean BEM (`experience_logos`, `experience_logo`, `-current`).
-
-**6 — Assets.** Company/brand logos go through `components/logos` — add a `case` returning `<LogoX className="logo x" role="img" aria-label="X" />`. One-off marks/annotations (e.g. the handwritten “currently” note) are imported directly into the section component. Size logos by overriding `height` (auto width) scoped under the section, not by touching the global `.logo`.
-
-**7 — Accessibility.** Give meaningful inline SVGs `role="img"` + `aria-label` (a bare `aria-label` on an `<svg>` isn’t reliably announced without the role). Never put `aria-label` on a list item that wraps readable text — it overrides the children. Order the DOM so the screen-reader reading is correct (note → logo → period reads “currently, Stone, 2022–…”).
-
-**8 — Verify visually, then prove it.** `npx stylelint` the changed files (recess property order is enforced — vendor partials already error, ignore those). Drive the running dev server with Playwright (`npm i playwright` in a scratch dir, `chromium` already installed) to screenshot the `#section` element at the three mode widths, and assert: zero console/page errors, expected `role="img"` labels, and no NEW horizontal overflow. The page has pre-existing overflow at small widths from the hero — confirm a section isn’t the cause by `git stash`-ing the change and re-measuring `scrollWidth` on the baseline before blaming your code.
+1. **Pull every breakpoint first.** Figma ships separate frames per layout. `get_design_context` each; if too large, `get_metadata` on the parent for child node IDs, then `get_screenshot` each. Responsive behavior only emerges from comparing frames.
+2. **Map frames to MODES, not widths.** Figma frame widths ≠ project breakpoints. A Figma “720” frame describes the project’s **mobile** range; its “desktop” frame describes everything >1200. Verify by screenshotting *inside* each project range (e.g. 390/980/1280), never at the literal Figma widths.
+3. **Translate grid spans via line numbers.** Figma’s `15px repeat(N,1fr) 15px` and the project grid share the gutter-columns-gutter line structure, so a Figma `col-[6/span 6]` maps onto project grid lines. Use `content.scss` custom properties where they line up (`grid-column: var(--content-start) / span calc(var(--content-width) * 2)`), fall back to literal line numbers otherwise; `/ -1` reaches the final line.
+4. **Reuse before inventing.** Keep the `grid content` container and `<h2>`; reuse typography (`.label`), spacing (`--space-lg`/`--space-xl`), and color tokens (`--color-subtitle`, `--color-text`) instead of Figma’s raw px/hex. Name new classes in Lean BEM (`experience_logos`, `-current`).
+5. **Assets.** Brand logos go through `components/logos` — add a `case` returning `<LogoX className="logo x" role="img" aria-label="X" />`. One-off marks import directly into the section. Size logos by overriding `height` scoped under the section, not the global `.logo`.
+6. **DOM order for screen readers.** Order so the reading is correct (note → logo → period reads “currently, Stone, 2022–…”); never put `aria-label` on a list item wrapping readable text (it overrides the children).
+7. **Verify, then prove it.** `npx stylelint` the changed files. Drive the dev server with Playwright (chromium installed) to screenshot the `#section` at the three mode widths; assert zero console/page errors, expected `role="img"` labels, no NEW horizontal overflow. The hero has pre-existing overflow at small widths — `git stash` and re-measure `scrollWidth` on the baseline before blaming your change.
 
 ## Comments
 
-- Inline code comments capture only the non-obvious **why** — the reason a value, guard, or workaround exists. Keep them lean.
-- Don’t state the obvious (what the code plainly does), restate a class/role, or duplicate guidance that already lives in this file or `CLAUDE.md`.
-- Structural and architectural explanation — how modules fit together, conventions, the responsive system behind a section — belongs here (or in `CLAUDE.md`), not in inline comments. Reference it from code when useful (e.g. `// see AGENTS.md › Reveal animation`).
+Default to **no comment**. One earns its place only for a real technical particularity — a browser quirk, workaround, constraint, or the math behind a magic number — that a reader couldn’t infer from the code. Never comment the obvious, restate a class/role, label a section/block, or describe design intent. Keep survivors to one terse line. Source annotations next to a value (`// 79px`) and functional directives (`// stylelint-disable`) stay. Structural/architectural explanation belongs here or in `CLAUDE.md`, not inline (reference it from code when useful, e.g. `// see AGENTS.md › Reveal animation`).
 
 ## Front-end Guidelines
 
-UI rules relevant to this static, animation-heavy portfolio. MUST/SHOULD/NEVER.
+MUST/SHOULD/NEVER for this static, animation-heavy portfolio.
 
-### Animation
-- MUST: Honor `prefers-reduced-motion` (reduced variant or disable)
-- MUST: Animate only `transform`/`opacity`; NEVER layout props (`top`/`left`/`width`/`height`) or `transition: all`
-- MUST: Correct `transform-origin`; SVG transforms on a `<g>` wrapper with `transform-box: fill-box`
-- SHOULD: CSS > WAAPI > JS libs; animate to clarify cause/effect or add deliberate delight
-
-### Interaction & navigation
-- MUST: Full keyboard support; visible `:focus-visible` rings; NEVER `outline: none` without a replacement
-- MUST: Navigation via `<a>`/`next/link` (Cmd/Ctrl/middle-click); NEVER `<div onClick>`; Back/Forward restores scroll
-- MUST: Hit target ≥24px (≥44px mobile); `touch-action: manipulation`; SHOULD set `-webkit-tap-highlight-color`
-- NEVER: Disable zoom (`user-scalable=no`, `maximum-scale=1`)
-
-### Layout
-- MUST: Compose with the `grid`/`content` utilities; deliberate alignment, no accidental placement
-- MUST: Verify mobile/laptop/ultra-wide; respect safe areas (`env(safe-area-inset-*)`); no stray scrollbars/overflows
-- SHOULD: Optical alignment (±1px when perception beats geometry); flex/grid over JS measurement
-
-### Content & accessibility
-- MUST: Prefer native semantics (`button`/`a`/`label`) before ARIA; accurate `aria-label`, decorative `aria-hidden`
-- MUST: Hierarchical `<h1>`–`<h6>`, "Skip to content" link, `scroll-margin-top` on anchor targets, `<title>` matches context
-- MUST: Status cues not color-only; `…` (not `...`); non-breaking spaces in lockups (`⌘&nbsp;K`, brand names)
-- MUST: Resilient to long content (`text-overflow`/clamp, `break-word`)
-- SHOULD: Curly quotes (already used in copy); `text-wrap: balance` to avoid widows/orphans; `translate="no"` on brand/identifiers
-
-### Performance
-- MUST: Prevent CLS — explicit image dimensions; preload above-fold images, lazy-load the rest
-- MUST: Profile with CPU/network throttling; avoid reflow thrash (batch layout reads/writes)
-- SHOULD: Fonts self-hosted via `next/font/google` in `pages/_app.js` (auto preload + `font-display: swap` + size-adjusted fallbacks); each family is exposed on a `--font-body/title/hero` custom property and re-rooted on the `.global_fonts` wrapper
-
-### Design & theming
-- MUST: Meet contrast (prefer [APCA](https://apcacontrast.com/)); increase it on `:hover`/`:active`/`:focus`
-- SHOULD: `<meta name="theme-color">` matches background (set in `_document.js`); layered shadows; nested radii (child ≤ parent)
+- **Animation** — Honor `prefers-reduced-motion` (reduced variant or disable). Animate only `transform`/`opacity`, NEVER layout props or `transition: all`. Correct `transform-origin`; SVG transforms on a `<g>` with `transform-box: fill-box`. Prefer CSS > WAAPI > JS libs, to clarify cause/effect or add deliberate delight.
+- **Interaction & navigation** — Full keyboard support; visible `:focus-visible` rings (NEVER `outline: none` without a replacement). Navigate via `<a>`/`next/link` (Cmd/Ctrl/middle-click work), NEVER `<div onClick>`; Back/Forward restores scroll. Hit target ≥24px (≥44px mobile); `touch-action: manipulation`; set `-webkit-tap-highlight-color`. NEVER disable zoom.
+- **Layout** — Compose with `grid`/`content`; deliberate alignment. Verify mobile/laptop/ultra-wide; respect safe areas (`env(safe-area-inset-*)`); no stray scrollbars/overflows. Optical alignment (±1px), flex/grid over JS measurement.
+- **Content & accessibility** — Native semantics (`button`/`a`/`label`) before ARIA; accurate `aria-label`, decorative `aria-hidden`. Hierarchical `<h1>`–`<h6>`; “Skip to content”; `scroll-margin-top` on anchor targets; `<title>` matches context. Status cues not color-only; `…` not `...`; non-breaking spaces in lockups (`⌘&nbsp;K`, brand names). Resilient to long content (`text-overflow`/clamp, `break-word`). Curly quotes; `text-wrap: balance` against widows; `translate="no"` on brand/identifiers.
+- **Performance** — Prevent CLS (explicit image dimensions; preload above-fold, lazy-load the rest). Profile with CPU/network throttling; batch layout reads/writes. Fonts self-hosted via `next/font/google` in `pages/_app.js` (auto preload + `font-display: swap` + size-adjusted fallbacks); each family on `--font-body/title/hero`, re-rooted on `.global_fonts`.
+- **Design & theming** — Meet contrast (prefer [APCA](https://apcacontrast.com/)); raise it on `:hover`/`:active`/`:focus`. `<meta name="theme-color">` matches background (`_document.js`); layered shadows; nested radii (child ≤ parent).

@@ -58,6 +58,7 @@ $column-max       : math.div($container-max - ($gap * ($columns - 1)), $columns)
   }
 
   @include media(">desktop") {
+    --base        : #{$base-large};
     --columns     : #{$columns};
     --gap         : #{$gap};
     --gap-out     : #{$gap-out};

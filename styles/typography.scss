@@ -40,19 +40,19 @@ h3, h4, h5 { font-family: var(--font-title); }
 h2, h3 {
   margin-top: 0;
   margin-bottom: .67rem;
-  font-size: 1rem;
   font-weight: bold;
   line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .0667rem;
 }
 
 h2 {
-  font-family: var(--font-body);
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-size: .938rem;
+  font-weight: 800;
   color: var(--color-text-inverse);
   white-space: nowrap;
   mix-blend-mode: difference;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   span { @include fontless; }
 
   @include media(">tablet") {
@@ -61,8 +61,8 @@ h2 {
 }
 
 h3 {
-  font-size: .8rem;
-  font-weight: 800;
+  font-size: .813rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .0667rem;
 }
@@ -75,7 +75,7 @@ p {
 label,
 .label {
   font-family: var(--font-title);
-  font-size: .8rem;
+  font-size: .813rem;
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
@@ -105,8 +105,7 @@ small,
 blockquote,
 figure { margin: 0; }
 
-// Hang the opening quote into the margin so it optically aligns with the text.
-// Safari-only; the fallback indents `.lead` instead.
+// Hangs the opening quote into the margin (Safari-only; the @supports fallback indents `.lead`).
 blockquote { hanging-punctuation: first; }
 
 @supports not (hanging-punctuation: first) {

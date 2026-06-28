@@ -43,8 +43,6 @@
     font-size: 1rem;
   }
 
-  // The case sub-link stacks under its parent (Work) link; menu-only, so hidden
-  // once the desktop side-nav takes over.
   .nav_link.-sub {
     display: flex;
     flex-direction: column;
@@ -63,15 +61,13 @@
     height: 1.2rem;
     path { fill: var(--color-text-inverse); }
 
-    // SVGR drops width/height (next.config.js `dimensions: false`), leaving only a
-    // viewBox; Safari then collapses the SVG to 0 inside this flex box, so size it.
+    // SVGR drops width/height (`dimensions: false`), so Safari collapses the SVG to 0 in this flex box — size it.
     svg {
       width: 100%;
       height: 100%;
     }
   }
 
-  // The shared chevron points right; flip it for the back link.
   .nav_link.-back .nav_chevron { transform: rotate(180deg); }
 
   .nav_divisor {
@@ -122,8 +118,6 @@
     .nav_arrow { display: block; }
     .nav_button, .nav_divisor { display: none; }
 
-    // The back link returns to the top of the list (DOM order), dimmed, with its
-    // chevron hung in the left margin so the label lines up with the other links.
     .nav_link.-back {
       position: relative;
       opacity: .5;
@@ -192,7 +186,7 @@
     z-index: 11;
     width: 100vw;
 
-    // Full-height menu; env/svh fallbacks keep it clear of mobile UI chrome.
+    // svh/env fallbacks keep the full-height menu clear of mobile UI chrome.
     height: 100vh;
     height: calc(100vh - env(safe-area-inset-bottom));
     height: 100svh;
@@ -200,7 +194,6 @@
     background-color: var(--color-cover);
     mix-blend-mode: unset;
 
-    // In-page links stack at the top; the back link is pinned to the bottom.
     .nav_link.-back {
       order: 1;
       margin-top: auto;

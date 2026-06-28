@@ -28,7 +28,7 @@ $base: 16px !default;
   white-space: nowrap;
 }
 
-// Hide typography, to be seen with screen readers only
+// Visually hidden (SR-only).
 @mixin fontless {
   position: absolute;
   width: 1px;
@@ -42,7 +42,7 @@ $base: 16px !default;
   border: 0;
 }
 
-// Show hidden typography
+// Reveals a fontless element.
 @mixin fontful {
   position: static;
   width: auto;
@@ -98,11 +98,11 @@ $base: 16px !default;
   box-shadow: 0 0 0 $offset var(--color-focus-bkg), 0 0 0 ($border + $offset) var(--color-focus-ring);
 }
 
-// Focus ring with Safari fallback
 @mixin focus-ring-visible {
-  @media not all and (min-resolution: .001dpcm) { // Target only Safari browsers
-    @supports (-webkit-appearance: none) {        // Use `focus` instead of `focus-visible`
-      &:focus { @include focus-ring-outline; }    // due to Safari's lack of support
+  // Safari lacks :focus-visible, so detect it (min-resolution hack) and fall back to :focus.
+  @media not all and (min-resolution: .001dpcm) {
+    @supports (-webkit-appearance: none) {
+      &:focus { @include focus-ring-outline; }
     }
   }
   &:focus-visible { @include focus-ring-outline; }

@@ -29,11 +29,10 @@ export default function Why() {
         Stone is a Brazilian fintech focused on small and medium-sized businesses.
       </aside>
 
-      {/* Discovery board with two tilted “cover” decks, composed in CSS. */}
       <div className="why_gallery content_body motion">
         <div className="why_board">
           <Image
-            className="why_image motion_item"
+            className="why_image"
             src={`${IMG}/discovery.png`}
             width={2772}
             height={1328}

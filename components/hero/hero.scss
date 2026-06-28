@@ -1,6 +1,3 @@
-// Dark, full-height cover. `.hero` is the home cover and the scaffold the case
-// (`.hero-case`) reuses, layering its own grid and titling further down.
-
 @use "../../styles/scaffold" as *;
 
 .hero {
@@ -8,9 +5,9 @@
   grid-template-rows: 1fr auto;
   row-gap: calc(var(--gap) * 2);
   align-items: end;
-  height: 93vh; // env/svh fallbacks below keep the menu at the screen bottom on mobile
+  height: 94vh; // svh/env fallbacks below keep the menu at the screen bottom on mobile
   height: calc(90vh - env(safe-area-inset-bottom));
-  height: 93lvh;
+  height: 94lvh;
   min-height: var(--hero-min-height);
   padding-top: var(--gap);
   background-color: var(--color-cover);
@@ -51,7 +48,6 @@
   @include media(">desktop") {
     grid-template-rows: auto 1fr;
     height: 90vh;
-    max-height: var(--hero-max-height);
 
     .hero_intro { grid-row: 1; }
 
@@ -62,8 +58,6 @@
   }
 }
 
-// Faint cover art behind both heroes. Sits first in the DOM so the text paints on
-// top; `lighten` keeps the home title legible, `.hero-case_art` overrides size/blend.
 .hero_art {
   position: absolute;
   grid-row: 1;
@@ -139,12 +133,9 @@
   }
 }
 
-// Case cover (`HeroCase`): wears `.hero` for the shared look, then overrides the
-// grid and lays out its titling, summary, label, and category.
 .hero-case {
   grid-template-rows: 1fr auto auto;
-  row-gap: var(--gap); // restore the grid's gap, which the home `.hero` doubles
-  max-height: var(--hero-max-height);
+  row-gap: var(--gap); // restore the grid’s gap, which the home `.hero` doubles
   padding-bottom: calc(var(--gap) * 2);
   overflow: hidden;
 
@@ -154,7 +145,6 @@
   }
 }
 
-// Case art: the shared `.hero_art` placement, height-capped with an exclusion blend.
 .hero-case_art {
   width: auto;
   max-height: 45svh;
@@ -176,7 +166,6 @@
   }
 }
 
-// Category — desktop only.
 .hero-case_category {
   display: none;
 
@@ -221,7 +210,7 @@
   gap: var(--space-lg);
 }
 
-// Force case logos to white (survives gradient fills).
+// White logos survive the gradient fills.
 .hero-case .logo {
   height: auto;
   filter: brightness(0) invert(1);
