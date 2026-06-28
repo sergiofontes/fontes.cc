@@ -10,12 +10,9 @@ HeroCase.propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
   }).isRequired,
-  // The titling (logo + heading), summary, label, and category, authored at the call site.
   children: PropTypes.node,
 };
 
-// The case cover: the shared `hero` scaffold + the reconstructing Dust art. Its copy is
-// authored as markup by the page. See AGENTS.md › Content lives in the markup.
 export default function HeroCase({ image, children }) {
   return (
     <header id="cover" className="hero hero-case grid">

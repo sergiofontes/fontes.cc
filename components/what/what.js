@@ -1,11 +1,8 @@
 import Image from "next/image";
 
-// Renders the embedded-shadow copy (see AGENTS.md › Images). Each PNG bakes its shadow into a
-// larger canvas, so `transform` (declared per phone at the call site) regrows + recenters the
-// silhouette to sit exactly where the CSS `filter` shadow used to.
+// Embedded-shadow copy (see AGENTS.md › Images); each phone's `transform` regrows + recenters the baked silhouette.
 const IMG = "/images/work/shadow/catalog";
 
-// Each phone shows a different part of the catalog, so each gets its own alt.
 function Phone({ name, modifier, width, height, sizes, transform, alt }) {
   return (
     <Image

@@ -10,8 +10,7 @@ import Play from "../play";
 
 const VIDEO_URL = "https://www.youtube.com/watch?v=J0cINzc2ziE";
 
-// The six sharing cards, authored once. Block 2 renders them twice so the phone/tablet marquee
-// loops with no seam; the duplicate row is aria-hidden so the alt text is announced only once.
+// Block 2 renders these twice so the phone/tablet marquee loops seamlessly; the duplicate row is aria-hidden so alt is announced once.
 function SharingCards() {
   return (
     <>
@@ -64,7 +63,6 @@ function SharingCards() {
 export default function Solution() {
   return (
     <section id="solution" className="solution grid content">
-      {/* The heading and the blocks share grid-row 1, so it stays sticky across every block. */}
       <h2 className="content_heading solution_heading">Solution</h2>
 
       <div className="solution_blocks content_media">

@@ -8,8 +8,6 @@ import Symbol from "../../public/images/symbol.svg";
 import IconArrow from "../../public/images/icon_arrow.svg";
 import IconChevron from "../../public/images/icon_chevron.svg";
 
-// Home nav: in-page anchors (react-scroll). The last link is spied, flipping its arrow.
-// Work carries a `sub` page link to the case, surfaced only in the mobile menu.
 const HOME_LINKS = [
   { label: "Experience", to: "experience" },
   {
@@ -24,14 +22,12 @@ const HOME_LINKS = [
 const HOME_SYMBOL = { to: "hi", offset: 0 };
 
 Nav.propTypes = {
-  // Each link is either a page link (`href`) or an in-page scroll target (`to`).
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       to: PropTypes.string,
       href: PropTypes.string,
       spy: PropTypes.bool,
-      // Mobile-menu-only page link nested under this item (e.g. Work → a case).
       sub: PropTypes.shape({
         label: PropTypes.string.isRequired,
         href: PropTypes.string.isRequired,
@@ -49,8 +45,7 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
   const [isOpen, setIsOpen] = useState(false);
   const [atSpied, setAtSpied] = useState(false);
 
-  // react-scroll's positional spy can't activate a short final section, so track the
-  // spied section directly: active once its top crosses mid-viewport, or the page ends.
+  // react-scroll's positional spy can't activate a short final section, so track it directly: active once its top crosses mid-viewport (or the page ends).
   const spied = links.find((item) => item.spy);
   useEffect(() => {
     const target = spied?.to && document.getElementById(spied.to);
@@ -92,7 +87,6 @@ export default function Nav({ links = HOME_LINKS, symbol = HOME_SYMBOL }) {
     setIsOpen(false);
   };
 
-  // A page link is a normal anchor; a scroll target is a smooth react-scroll Link.
   const renderTarget = (item, children) =>
     item.href ? (
       <a href={item.href} onClick={handleCloseClick}>

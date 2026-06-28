@@ -4,16 +4,12 @@
   scroll-margin-top: var(--gap);
 }
 
-// Full-width cell the heading overlaps, so the sticky “Work” heading spans the section.
 .work_cases {
   grid-row: 1;
 }
 
-// Each case is its own nested grid so the carousel and colophon align to the shared
-// column lines; the full-bleed carousel widths derive from the live grid column.
 .work_case {
-  // One grid column = (track width − the 2 outer gutters − the gaps) ÷ columns,
-  // capped at --column-max so it matches the centered grid past the max width.
+  // One grid column = (track − 2 gutters − gaps) ÷ columns, capped at --column-max.
   --work-col:
     min(
       calc((100% - 2 * var(--gap-delta) - (var(--columns) + 1) * var(--gap)) / var(--columns)),
@@ -38,8 +34,7 @@
     padding-bottom: var(--spacing);
   }
 
-  // Desktop: each image spans 6 columns + 5 gutters; the colophon takes the
-  // 2-column heading area, so the leading inset is no longer needed.
+  // Desktop: image spans 6 columns + 5 gutters; the colophon takes the 2-column heading slot, so no leading inset.
   @include media(">desktop") {
     row-gap: calc(var(--gap) / 2);
     --work-lead: 0;
@@ -77,7 +72,6 @@
     grid-column: var(--content-start) / span 9;
   }
 
-  // Right edge aligns to the last column, like the gallery and divider.
   @include media(">desktop") {
     grid-column: var(--content-start) / span calc(var(--content-width) * 3);
   }
@@ -101,12 +95,10 @@
   // stylelint-enable
 }
 
-// Subtitle — the global `h3` supplies the look; only the margin reset is work-specific.
 .work_subtitle {
   margin: 0;
 }
 
-// Handwritten “check the case” note above the featured subtitle; dropped on mobile.
 .work_note {
   position: absolute;
   bottom: calc(100% - .4rem);
@@ -146,16 +138,12 @@
   transform: scaleX(-1);
 }
 
-// Carousel — full-bleed (`content_media`). The header pins to row 1; CTA, gallery, and
-// rule auto-flow after it, so a non-featured case (no CTA) collapses cleanly.
-
 .work_track {
   align-items: flex-start;
   overscroll-behavior-x: contain;
 
-  // Snap each image to the content column (matching the leading inset) instead of
-  // the full-bleed edge; the mirrored right inset lets the last image rest with the
-  // same trailing gap (without it, mandatory snap stops short and hides it on mobile).
+  // Snap to the content column; the mirrored right inset lets the last image
+  // keep its trailing gap (else mandatory snap hides it on mobile).
   scroll-padding-left: var(--work-lead);
   scroll-padding-right: var(--work-lead);
 
@@ -182,26 +170,21 @@
   flex: 0 0 var(--work-slide);
   scroll-snap-align: start;
 
-  // Trailing breathing room at the scroll end (kept off the track padding so it
-  // doesn’t shrink the percentage basis the slide width derives from).
+  // Trailing room kept off the track padding so it doesn’t shrink the % basis the slide width derives from.
   &:last-child {
     margin-right: var(--gap-out);
 
-    // The mobile slide is 100vw — wider than the snapport — so a start-snap pins its
-    // left edge and hides the trailing gap (WebKit even overruns the edge). End-snap
-    // rests it against the right inset instead, mirroring the leading gap. Tablet’s
-    // slide is narrower (start-snap is fine) and desktop has no snap.
+    // Mobile slide > snapport, so start-snap hides the trailing gap (WebKit
+    // overruns); end-snap rests it on the right inset instead.
     @include media("<=tablet") { scroll-snap-align: end; }
   }
 }
 
-// First image: inset to where the colophon would sit. On desktop the colophon
-// takes that slot (--work-lead is 0), so this is a no-op.
+// Inset to the colophon slot; no-op on desktop where --work-lead is 0.
 .work_colophon + .work_slide {
   margin-left: var(--work-lead);
 }
 
-// Placeholder box for cases whose gallery art isn’t built yet.
 .work_image {
   display: block;
   width: 100%;
@@ -210,7 +193,6 @@
   border-radius: var(--radius-small);
 }
 
-// Gallery frame — the window the composition is clipped to; inline `bg` shows in gaps.
 .work_frame {
   position: relative;
   width: 100%;
@@ -218,15 +200,12 @@
   overflow: hidden;
   border-radius: var(--radius-small);
 
-  // Mobile: scale with the slide to hold the 534×444 ratio.
   @include media("<=tablet") {
     height: auto;
     aspect-ratio: 534 / 444;
   }
 }
 
-// Composition stage: a 534×444 box pinned to the window height and centered, so the
-// mockups keep their proportions while the window crops the sides per breakpoint.
 .work_stage {
   position: absolute;
   top: 50%;
@@ -236,8 +215,6 @@
   transform: translate(-50%, -50%);
 }
 
-// Full-frame previews keep the frame at 534×444 and let the stage fill it, so the
-// mockup spacing tracks the frame width (not the height-pinned stage’s fixed width).
 .work_frame.-fill {
   height: auto;
   aspect-ratio: 534 / 444;
@@ -251,16 +228,12 @@
   }
 }
 
-// Every mockup bakes its shadow into the PNG, so none carry a runtime `filter`.
+// Mockups bake their shadow into the PNG, so none carry a runtime filter.
 .work_mockup {
   position: absolute;
   height: auto;
 }
 
-// Mockup entrance animation: see AGENTS.md › Reveal animation.
-
-// Video slide — thumbnail fills the frame; `.video` link + `Play` badge shared with
-// Solution. The stage drops the 534/444 letterbox so the image bleeds full-width.
 .work_frame.-video .work_stage {
   inset: 0;
   width: 100%;
@@ -276,9 +249,8 @@
   object-fit: cover;
 }
 
-// The video link rides inside the scroll-clipped track, which crops an outset ring — and Safari
-// won’t paint an inset `outline` over the thumbnail. Draw the ring as an overlay pseudo-element
-// so it stays visible on top of the still, within the clip, and consistent across browsers.
+// Safari won’t paint an inset outline over the thumbnail and the clipped track crops an
+// outset ring, so draw the focus ring as an overlay pseudo-element.
 .work_slide .video:focus-visible {
   outline: none;
 
@@ -292,8 +264,6 @@
   }
 }
 
-// Colophon (What I did / Designers) — desktop only. First item inside the track,
-// so it scrolls away with the carousel; sized to the 2-column heading area.
 .work_colophon {
   display: none;
 
@@ -320,7 +290,6 @@
   }
 }
 
-// Featured CTA — summary + “Read the case”; placed by DOM order above the gallery.
 .work_cta {
   display: flex;
   flex-direction: column;
@@ -343,11 +312,9 @@
   margin: 0;
 }
 
-// Each case closes with a `content_rule`; the final case’s divider reaches the edge.
 .work_case:last-child .content_rule { grid-column-end: -1; }
 
-// Mobile: the shared `content_rule` span overshoots the 4-col grid, so end on the
-// penultimate line instead (the last case still reaches the edge, above).
+// Mobile: the content_rule span overshoots the 4-col grid, so end on the penultimate line.
 @include media("<=tablet") {
   .work_case .content_rule {
     grid-column-end: -2;

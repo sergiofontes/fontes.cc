@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-// Horizontal scroll-snap carousel behavior shared by every WorkCase: tracks whether the
-// track sits at its start/end (to disable the arrows) and scrolls by one slide step.
 export default function useCarousel() {
   const trackRef = useRef(null);
   const [atStart, setAtStart] = useState(true);

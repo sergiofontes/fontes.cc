@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
-// Reveals each `.motion` group's `.motion_item` children on first scroll-in,
-// staggered per item via `--i`. See “Reveal animation” in AGENTS.md.
+// See AGENTS.md › Reveal animation.
 export default function Motion() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

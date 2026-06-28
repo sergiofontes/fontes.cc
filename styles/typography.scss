@@ -105,8 +105,7 @@ small,
 blockquote,
 figure { margin: 0; }
 
-// Hang the opening quote into the margin so it optically aligns with the text.
-// Safari-only; the fallback indents `.lead` instead.
+// Hangs the opening quote into the margin (Safari-only; the @supports fallback indents `.lead`).
 blockquote { hanging-punctuation: first; }
 
 @supports not (hanging-punctuation: first) {

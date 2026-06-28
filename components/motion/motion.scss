@@ -1,7 +1,6 @@
 @use "../../styles/scaffold" as *;
 
-// Motion scaffold — see “Reveal animation” in AGENTS.md. The `--mk-*` properties
-// carry the tuned values as fallbacks; the What section overrides them locally.
+// See AGENTS.md › Reveal animation. The `--mk-*` fallbacks are the tuned defaults; What overrides them locally.
 @media (prefers-reduced-motion: no-preference) {
   .motion.-ready .motion_item {
     opacity: 0;

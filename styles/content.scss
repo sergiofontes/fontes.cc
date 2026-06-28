@@ -24,7 +24,6 @@
   row-gap: calc(var(--gap) * 1.5);
   align-items: start;
 
-  // Rotation comes from `.content_heading`; here only the sticky offset + margin.
   h2 {
     position: sticky;
     top: calc(var(--logo-size) + var(--gap) + 1rem);
@@ -70,8 +69,6 @@
 .content_divisor,
 .content_divisors { border-bottom: 1px solid var(--color-text); }
 
-// `-last` closes a section’s final (or only) subsection, so its divider reaches the
-// screen edge at every breakpoint instead of stopping at the penultimate column.
 .content_divisor.-last,
 .content_divisors.-last { grid-column-end: -1; }
 
@@ -105,11 +102,6 @@
   .content_columns { grid-column-start: calc(var(--content-start) + var(--content-width)); }
 }
 
-// Shared section placements. Each owns its `grid-column` only; consumers keep
-// their own `grid-row`, typography, and any single-breakpoint exception.
-
-// Rotated gutter heading. Each consumer keeps its own sticky offset, `grid-row`,
-// `margin`, and `white-space`.
 .content_heading {
   z-index: 2;
   grid-column: var(--heading-start) / span var(--heading-width);
@@ -125,7 +117,6 @@
   grid-column: var(--content-start) / span var(--content-width);
   width: 100%;
 
-  // Space stacked paragraphs (no-op for media columns).
   p + p { margin-top: 1rem; }
 
   @include media(">tablet") {

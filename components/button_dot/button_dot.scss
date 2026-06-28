@@ -45,7 +45,6 @@
 
   &:focus-visible { outline-offset: 0; }
 
-  // Focus grows the dot like hover, keeping its active/inactive color
   &:focus-visible::before {
     width: 14px;
     height: 14px;

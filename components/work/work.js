@@ -6,11 +6,6 @@ import CasePreview, {
   Colophon,
 } from "./case_preview";
 
-// Each gallery slide is a 534×444 frame of mockup PNGs (shadow baked into the asset)
-// positioned in %; a Slide's `bg` shows through the gaps. Each mockup carries its own
-// intrinsic `width`/`height` and frame-relative `left`/`top`/`size`. Content (subtitles,
-// credits, summaries, alt text) lives here in the markup.
-// See AGENTS.md › Content lives in the markup.
 export default function Work() {
   return (
     <section id="work" className="work grid">
@@ -140,7 +135,6 @@ export default function Work() {
           </Slide>
 
           <Slide bg="#f5f5f5">
-            {/* annotated diagram (labels + leader lines), not a floating mockup */}
             <Mockup
               name="preview_vtex_specs"
               flat
@@ -151,7 +145,6 @@ export default function Work() {
               size={67.6}
               alt="An annotated breakdown of the web product card — labels pointing out the favourite, recurring-item and organic flags, the add-to-cart button, the price and promo tag, and the unit selector."
             />
-            {/* reads as smaller cards within the frame */}
             <Mockup
               name="preview_vtex_cards"
               width={645}
@@ -251,7 +244,6 @@ export default function Work() {
           </Slide>
 
           <Slide bg="#fff4cc" fill>
-            {/* the express-checkout cards read as smaller within the frame */}
             <Mockup
               name="preview_petplate_mockup_5"
               width={165}
@@ -291,7 +283,7 @@ export default function Work() {
           </Slide>
         </CasePreview>
 
-        {/* Guava — each frame repeats the previous window bleeding in for continuity. */}
+        {/* Each frame repeats the previous window bleeding in for continuity; the decorative repeats use alt="". */}
         <CasePreview
           logo="guava"
           name="Guava"
@@ -325,7 +317,6 @@ export default function Work() {
           </Slide>
 
           <Slide bg="#f2f7c3">
-            {/* repeats the previous frame’s work page bleeding in for continuity → decorative */}
             <Mockup
               name="preview_guava_1_mockup_2"
               width={542}
@@ -347,7 +338,6 @@ export default function Work() {
           </Slide>
 
           <Slide bg="#424242">
-            {/* repeats the previous frame’s about page bleeding in for continuity → decorative */}
             <Mockup
               name="preview_guava_2_mockup_3"
               width={542}

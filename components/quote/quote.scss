@@ -1,5 +1,3 @@
-// Pull quote, attribution, and a closing hairline on the shared `grid`.
-
 @use "../../styles/scaffold" as *;
 
 .quote {
@@ -43,7 +41,6 @@
   }
 }
 
-// Type from `.label`; the name just overrides the weight.
 .quote_name {
   font-style: normal; // reset the default italic on <cite>
   font-weight: 800;

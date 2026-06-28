@@ -1,33 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code (claude.ai/code) in this repo.
 
 @AGENTS.md
 
 ## Communication
 
-- I may prompt in pt-BR, but you'll always answer and write in en-US using a professional, direct tone
-
-### Writing style
-
-- Use “” (curly double quotes) instead of "" (straight double quotes).
-- Use ‘’ (curly single quotes) instead of '' (straight single quotes).
-- Exception: leave quotes exactly as written inside code — code snippets, fenced code blocks, inline code, file paths, and commands.
+- I may prompt in pt-BR; always answer and write in en-US, professional and direct.
+- Writing style: curly quotes “” and ‘’ instead of "" and '' — except inside code (snippets, fenced/inline code, paths, commands), where quotes stay as written.
 
 ## Git
 
-- NEVER run `git commit` without asking me first and getting explicit approval.
-- NEVER add Claude as a co-author. Do not append a `Co-Authored-By: Claude` trailer (or any Claude/Anthropic co-author line) to commit messages.
-- DON'T write descriptions on small commits
-
-## Comments
-
-- Inline comments: only the essential, non-obvious **why** — never the obvious or a restatement of the code.
-- Keep structural/architectural notes in `AGENTS.md` (or here), not inline. See AGENTS.md › Comments.
+- NEVER `git commit` without asking me first and getting explicit approval.
+- NEVER add a `Co-Authored-By: Claude`/Anthropic trailer.
+- No descriptions on small commits.
 
 ## Styling
 
-- If something can be done in CSS instead of JS, use CSS.
+- Prefer CSS over JS whenever a behavior can be done in CSS.
 - NEVER use Tailwind or any utility-class framework.
-- Write CSS in each component’s own **global** `*.scss` (NOT a CSS Module) plus the shared partials in `styles/`, and import every stylesheet once in `pages/_app.js` (Next.js only allows global CSS imports there).
-- Name classes with **Lean BEM** via the `lean-bem` skill — invoke it whenever writing, refactoring, or reviewing class names. Since styles are global, class names MUST be globally unique (`block_element`, `-modifier`); never leave a class that the markup or CSS doesn’t reference.
+- Name classes with **Lean BEM** via the `lean-bem` skill (invoke it when writing/refactoring/reviewing class names). Styles are global, so class names MUST be globally unique (`block_element`, `-modifier`); never leave a class the markup or CSS doesn’t reference.
+
+(Comments and the SCSS/component conventions live in AGENTS.md, above.)

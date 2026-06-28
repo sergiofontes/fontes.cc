@@ -26,7 +26,6 @@ ButtonIcon.defaultProps = {
 export default function ButtonIcon({ icon, href, disabled, classes, ...props }) {
   const Icon = ICONS[icon] || IconArrow;
 
-  // With an href it renders as a link (like `Button`); otherwise a plain button.
   if (href) {
     return (
       <a

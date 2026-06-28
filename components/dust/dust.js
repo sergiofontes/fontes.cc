@@ -33,16 +33,13 @@ const CONFIG = {
   reach: 0.05, // click push falloff distance (× dim)
   jitter: 0.1, // random chaos added on scatter (× dim)
   scatterMode: "radial", // radial | swirl | random
-  edgeFade: 0.12, // fraction of the box near each edge where grains fade to 0,
-  // so the canvas border is never exposed and the dust blends into the cover
+  edgeFade: 0.12, // fraction near each edge where grains fade to 0, so the border never shows
 };
 const COLOR = hexToRgb(CONFIG.colorHex);
 const MAX_SIDE = 760; // cap the larger backing dimension
 
-// Reconstructs the cover art from grey dust grains on a <canvas>: they gather into
-// the image on load, a click scatters them, then a spring pulls each grain home. A
-// static next/image underneath is the fallback (reduced motion, or until first
-// paint), so there is no flash and no CLS.
+// Rebuilds the cover art from grey dust on a <canvas>: grains gather on load, scatter on click, then spring home.
+// The static next/image underneath is the fallback (reduced motion / pre-paint), so there’s no flash or CLS.
 export default function Dust({
   src,
   width,
@@ -129,8 +126,7 @@ export default function Dust({
       offctx.drawImage(source, 0, 0, cw, ch);
       const data = offctx.getImageData(0, 0, cw, ch).data;
 
-      // Weight keep-odds by each pixel's "lit ink" (luminance × alpha), so grains land
-      // where the source is bright and thin out into its shadows (≈ CONFIG.count kept).
+      // Keep-odds weighted by each pixel's lit ink (luminance × alpha), so grains cluster where the source is bright (≈ CONFIG.count kept).
       let weight = 0;
       for (let i = 0; i < data.length; i += 4) {
         const a = data[i + 3];

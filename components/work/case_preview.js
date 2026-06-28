@@ -9,9 +9,8 @@ import Play from "../play";
 import Handnote from "../../public/images/handnote_2.svg";
 import useCarousel from "./use-carousel";
 
-// The mockups ship in two copies (see AGENTS.md › Images): the embedded-shadow set under
-// `shadow/` (what the site renders) and the original flat set. `flat` mockups — the ones with
-// no baked-shadow variant (the VTEX spec diagram, the video still) — render from the flat folders.
+// Mockups ship in two copies (see AGENTS.md › Images): the rendered embedded-shadow set under shadow/ and the flat set.
+// `flat` mockups with no baked variant (the VTEX spec diagram, the video still) render from FLAT_DIRS.
 const DIRS = {
   previews: "/images/work/shadow/previews",
   catalog: "/images/work/shadow/catalog",
@@ -21,12 +20,8 @@ const FLAT_DIRS = {
   catalog: "/images/work/catalog",
 };
 
-// A mockup floated (in %) within a Slide's 534×444 frame. `width`/`height` are the PNG's
-// intrinsic pixel size (drives the aspect ratio + reserves the box against CLS); `left`/`top`/
-// `size` place it as a share of the frame. Embedded-shadow PNGs bake the shadow into a larger
-// canvas, so a baked mockup's placement is pre-corrected to land its artwork where the flat one
-// sat. `flat` mockups (the VTEX spec diagram, the video still) render from the flat folders.
-// Each carries its own `alt`; continuity repeats pass `alt=""`. Slide injects the frame's `fill`.
+// A mockup floated (in %) within a Slide's 534×444 frame; `width`/`height` are the PNG's intrinsic size (aspect ratio + CLS).
+// Baked-shadow PNGs pre-correct `left`/`top`/`size` to land the artwork where the flat one sat; continuity repeats pass `alt=""`.
 export function Mockup({
   name,
   dir = "previews",
@@ -44,8 +39,7 @@ export function Mockup({
   const max = Math.max(...scales);
   const src = `${base}${max > 1 ? `@${max}x` : ""}.png`;
 
-  // `sizes` ≈ each mockup’s render width per breakpoint: min(<%>vw, <%>·534px) mobile,
-  // the 534px cap on tablet, ~700px (fill) / 534px desktop.
+  // `sizes` ≈ each mockup’s render width per breakpoint: min(<%>vw, <%>·534px) mobile, 534px tablet, ~700px (fill) / 534px desktop.
   const sizes =
     size == null
       ? "(min-width: 1201px) 700px, (min-width: 768px) 534px, min(100vw, 534px)"
@@ -76,8 +70,6 @@ const withFrameDefaults = (children, fill) =>
     child ? cloneElement(child, { fill }) : child,
   );
 
-// One gallery frame: mockups float on a `work_stage` clipped by the carousel window
-// (the prototype's 534×444 ratio).
 export function Slide({ bg, fill, children }) {
   return (
     <li className="work_slide">
@@ -91,7 +83,6 @@ export function Slide({ bg, fill, children }) {
   );
 }
 
-// A Slide whose frame is a link to a video, wrapped in the shared `.video` + `Play` badge.
 export function VideoSlide({ href, label, children }) {
   return (
     <li className="work_slide">
@@ -111,7 +102,6 @@ export function VideoSlide({ href, label, children }) {
   );
 }
 
-// The leading carousel slide: the credits for the case.
 export function Colophon({ activities, designers }) {
   return (
     <li className="work_colophon">
@@ -164,15 +154,10 @@ CasePreview.propTypes = {
   subtitle: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
   featured: PropTypes.bool,
-  // The featured summary + “Read the case” button, authored at the call site.
   cta: PropTypes.node,
-  // The colophon followed by the gallery Slides.
   children: PropTypes.node,
 };
 
-// Presentational shell: the case header + the scroll-snap carousel chrome. Content (the
-// colophon, slides, and CTA) is authored as markup at the call site; behavior lives in
-// `useCarousel`. See AGENTS.md › Content lives in the markup.
 export default function CasePreview({
   logo,
   name,

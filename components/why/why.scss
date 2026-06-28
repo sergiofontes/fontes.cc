@@ -24,7 +24,6 @@
   }
 }
 
-// Fixed height per breakpoint, so the board crops by width and the decks stay put.
 .why_gallery {
   position: relative;
   height: 310px;
@@ -34,7 +33,6 @@
   }
 }
 
-// Screenshot covers the board, anchored left so it crops on the right.
 .why_board {
   position: absolute;
   inset: 0;
@@ -50,7 +48,6 @@
   object-position: left center;
 }
 
-// Flat 16:9 covers, tilted via the prototype’s rotate+skew and shadowed in CSS.
 .why_cards {
   position: absolute;
   inset: 0;
@@ -68,7 +65,6 @@
   transform: rotate(-33.69deg) skewX(22.42deg);
   transform-origin: center;
 
-  // The lower card sits behind the upper one (matches the Figma stack).
   &.-vender {
     top: 48px;
     left: 9px;
