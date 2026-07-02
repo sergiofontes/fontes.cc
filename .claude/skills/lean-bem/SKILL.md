@@ -1,52 +1,47 @@
 ---
 name: lean-bem
-description: Apply the Lean BEM class-naming convention when writing, refactoring, or reviewing HTML, CSS, or SCSS. Lean BEM is a readability-focused adaptation of BEM where composed words use a single hyphen (.block-name), elements attach to their block with a single underscore (.block_element), and modifiers are standalone composable classes prefixed with a hyphen (-modifier). Use this skill whenever the user is naming CSS classes, building UI components, structuring a stylesheet, converting existing class names to Lean BEM, or auditing markup and styles for BEM compliance. Trigger it even when the user does not say "Lean BEM" by name but references BEM, block/element/modifier naming, or class names shaped like block_element or -modifier. If the user explicitly asks for classic Yandex BEM or getbem-style BEM instead, follow that and do not impose Lean BEM.
+description: Naming convention and CSS architecture rules for writing stylesheets and HTML class names with Lean BEM. Use when writing, reviewing, or refactoring CSS/HTML: naming classes, creating components, or organizing stylesheets in a project that follows Lean BEM (or BEM).
 ---
 
 # Lean BEM
 
-Lean BEM is a readability-focused adaptation of [BEM](https://en.bem.info/methodology/) (Block, Element, Modifier) created by Sérgio Fontes. BEM slices an interface into independent, reusable **blocks** built from **elements**, with **modifiers** describing appearance, state, or behavior. Lean BEM keeps that model but trims the punctuation so class names read cleaner.
+Lean BEM is a readability-driven, alternate naming convention to classic BEM. The interface is sliced into **independent blocks**, which are formed by **elements**; **modifiers** adjust the appearance, state, or behavior of either. Apply these rules whenever you write or review HTML class names and CSS.
 
-This skill covers the **naming convention only**. It does not impose the wider CSS architecture rules from the methodology (where to set geometry, nesting depth, and so on). Stay focused on how names are formed.
+## Naming scheme
 
-## The whole convention in one line
+| Entity | Pattern | Example |
+|---|---|---|
+| Block | `block` | `.button`, `.icon` |
+| Element | `block_element` | `.button_label`, `.icon_download` |
+| Modifier | `-modifier` | `.-big`, `.-disabled` |
 
-- **Composed words** inside any name use a single hyphen: `block-name`, `element-name`, `-modifier-name`.
-- **Elements** attach to their block with a single underscore: `block_element`.
-- **Modifiers** are standalone classes prefixed with a single hyphen, used alongside the block or element class: `-modifier`.
+Each separator has exactly one meaning:
 
-So instead of classic BEM:
+- A **single hyphen** (`-`) joins composed words: block `date-picker`, element `date-picker_nav-button`, modifier `-switch-theme`.
+- A **single underscore** (`_`) separates the block name from the element name; it has no other use.
+- A **leading hyphen** (`-`) marks a modifier: an extra class added next to the block or element class it modifies, never used by itself.
 
 ```html
-<!-- Yandex BEM -->
+<!-- Classic BEM -->
 <button class="button button__primary button__primary_disabled button_big">…</button>
-<!-- getbem -->
-<button class="button button__primary button__primary--disabled button--big">…</button>
-```
 
-Lean BEM is:
-
-```html
+<!-- Lean BEM -->
 <button class="button button_primary -disabled -big">…</button>
 ```
 
-## Syntax at a glance
-
-| Entity   | Pattern         | Example class    | Role                                              |
-| -------- | --------------- | ---------------- | ------------------------------------------------- |
-| Block    | `block-name`    | `.card`          | Independent, reusable component                   |
-| Element  | `block_element` | `.card_title`    | A part of a block, meaningless on its own         |
-| Modifier | `-modifier`     | `.-featured`     | A flag on a block or element, never used alone    |
+In the Lean BEM line, `button` is the block, `button_primary` is an element (a variant of the button), and `-disabled` and `-big` are modifiers. Watch the underscore when translating from classic BEM: there, a single underscore marks a *modifier* (`button_big`); in Lean BEM it marks an *element*, and modifiers are the leading-hyphen classes.
 
 ## Block
 
-An independent component that can be reused anywhere.
+An independent, reusable component.
 
-- Name it for **what it is**, not what it looks like. `button`, `icon`, `card` are good. `red`, `big`, `rounded` describe appearance and belong in a modifier instead.
-- Join composed words with a single hyphen: `.search-form`, `.nav-bar`.
-- Prefer the shortest clear name. Reach for `card` before `product-card` before `featured-product-card`. Extra words usually signal a modifier or a separate block.
+- Name it by **purpose**, answering “What is it?” (`button`, `icon`), never by state or appearance (`red`, `big` 🚫).
+- Prefer short names: `block` over `long-block` over `super-long-block`.
+- Blocks can be nested inside other blocks (see [Blocks inside blocks](#blocks-inside-blocks)).
+- A block **must not influence its environment**: never set external geometry or positioning on the main block selector. The parent positions it instead.
 
 ```html
+<!-- `button` block -->
 <button class="button">…</button>
 ```
 ```css
@@ -55,38 +50,47 @@ An independent component that can be reused anywhere.
 
 ## Element
 
-A part of a block that has no meaning on its own.
+A composite part of a block that can't be used separately from it.
 
-- Name it for its **purpose** inside the block (`label`, `title`, `item`), not its appearance.
-- The full class is `block_element`, joined by a **single** underscore: `.button_label`, `.card_title`.
-- Join composed words inside the element name with a hyphen: `.card_call-to-action`.
-- An element belongs to a block, never to another element. Element names therefore **never** chain into a hierarchy. `.card_body_title` is wrong even when the markup nests. Flatten it to `.card_title` (or treat the inner thing as its own block).
-- Elements can nest freely in the DOM; only the *names* stay flat. Keep CSS specificity low by styling each element class directly rather than nesting selectors.
+- Name it by **purpose**, answering “What is this?” (`item`, `text`, `label`), not by state or appearance.
+- The full class name is `block_element`, with a *single* underscore: `button_label` is the `label` element of the `button` block.
+- The class name always starts with the block name, no matter how deep the element's tag sits in the DOM. Elements belong to the block, never to another element, so names never chain: even if `element-two`'s tag is nested inside `element-one`'s, its class is `block_element-two`, not `block_element-one_element-two` 🚫.
+- Style every element with a flat, single-class selector. Elements nested in the DOM **must not** be nested in the stylesheet: `.button_label {…}` ✅, `.button .button_label {…}` 🚫. Flat selectors keep specificity low and overrides simple.
+- An element can sit on the same tag as its block when it names a variant of it (`class="button button_secondary"`); see [Element or modifier?](#element-or-modifier).
 
 ```html
-<button class="button">
+<!-- `button` block with its `secondary` variant element -->
+<button class="button button_secondary">
+  <!-- `label` element of the `button` block -->
   <span class="button_label">Download</span>
+  <!-- nested `icon` block with its `download` element -->
   <span class="icon icon_download"></span>
 </button>
 ```
 ```css
 .button {…}
+.button_secondary {…}
 .button_label {…}
-.icon_download {…} /* element of the separate `icon` block */
+.icon_download {…}
 ```
 
 ## Modifier
 
-A flag that changes the appearance, state, or behavior of a block or element.
+A class that defines the appearance, state, or behavior of a block or element.
 
-- Name it for appearance (`-big`, `-dark`), state (`-disabled`, `-focused`), or behavior (`-switch-theme`).
-- A modifier is a **standalone class** prefixed with a single hyphen, written *next to* the block or element class. It is composable: it can be added or removed without touching the base class. It must never appear on its own, because it only adjusts an existing entity rather than replacing it.
-- Join composed words after the leading hyphen with single hyphens: `-switch-theme`, `-top-aligned`.
-- In CSS, target a modifier by combining it with its base class so it only applies in context: `.button.-big {…}`, `.card_title.-muted {…}`. Do not separate them with a space (`.button .-big` is a descendant selector and will miss the target).
+- It describes appearance, such as `-big` or `-dark` (“What size? Which theme?”); state, such as `-disabled` or `-focused` (“How is it different from the others?”); or behavior, such as `-switch-theme` (“How does it respond to the user?”).
+- **It never stands alone**: a modifier changes an entity, it doesn't replace it. `class="button -big"` ✅, `class="-big"` 🚫.
+- In CSS, chain the modifier to the class it modifies, with no space between them:
+  - `.button.-big {…}` ✅ (block with modifier).
+  - `.button_primary.-disabled {…}` ✅ (element with modifier).
+  - `.button .-big {…}` 🚫: the space turns it into a descendant selector, which styles *any* inner entity carrying `-big` (like the icon below) instead of the button itself.
+- Modifier names are generic on purpose, so they can be reused across blocks with different styles (`.button.-big`, `.icon.-big`). That's also why each rule must be scoped to a parent class: a bare `.-big {…}` would leak into every block that uses the name.
 
 ```html
-<button class="button -big">
+<!-- `button` block with the `-big` modifier -->
+<button class="button button_secondary -big">
   <span class="button_label">Download</span>
+  <!-- the nested `icon` block carries its own `-big` -->
   <span class="icon icon_download -big"></span>
 </button>
 ```
@@ -95,75 +99,62 @@ A flag that changes the appearance, state, or behavior of a block or element.
 .icon.-big {…}
 ```
 
-## Lean BEM vs classic BEM
+### Element or modifier?
 
-The mistakes almost always come from muscle memory for classic BEM. Watch these swaps:
+Both can qualify a block, so choose by what the class expresses:
 
-| Concept           | Classic / getbem            | Lean BEM                       |
-| ----------------- | --------------------------- | ------------------------------ |
-| Element separator | `block__element` (double)   | `block_element` (single `_`)   |
-| Modifier form     | `block--mod`, `block_mod`   | standalone `-mod` class        |
-| Modifier in CSS   | `.block--mod`               | `.block.-mod`                  |
-| Composed words    | varies                      | single hyphen `-`              |
+- **Element**: a named variant that defines what the entity *is* (“What is this?”), like `button_primary` and `button_secondary`.
+- **Modifier**: a composable adjustment that can be added or removed without changing what the entity is, like `-big`, `-disabled`, and `-dark`.
 
-If you ever write `__` or `--` in a class name, you have slipped back into classic BEM. Lean BEM uses neither.
+A big, disabled primary button is `class="button button_primary -big -disabled"`.
 
-## Cheat sheet
+## CSS rules
 
+- Selectors target classes only, never tags, IDs, or attributes: `.button {…}` ✅; `button {…}`, `#button {…}`, `[type="submit"] {…}` 🚫.
+- Default to flat, single-class selectors. Reserve descendant selectors for a parent styling a nested block (typically to position it), and stop at two levels: `.page_container .header {…}` ✅, `.button .icon_download {…}` ✅, anything deeper 🚫.
+- Prefer composition over inheritance: build variations by combining block, element, and modifier classes in the markup, not by extending or duplicating rules in the stylesheet. Composition keeps code uncoupled and flexible.
+- Follow a consistent code formatting standard ([@mdo's Code Guide](http://codeguide.co/#css-syntax) is the suggested one).
+
+## Blocks inside blocks
+
+Nesting blocks is fine and expected. Blocks are functionally independent, so they can be moved around freely to compose UI patterns, which only works if a block never positions itself. **The parent sets the positioning of the blocks nested inside it.**
+
+```html
+<!-- `page` block -->
+<body class="page">
+  <!-- `container` element of the `page` block -->
+  <div class="page_container">
+    <!-- nested `header` block -->
+    <header class="header">…</header>
+    <!-- nested `footer` block -->
+    <footer class="footer">…</footer>
+  </div>
+</body>
 ```
-.block-name              ← block (purpose-named, hyphen for composed words)
-.block-name_element      ← element (single underscore, one level only)
-.-modifier               ← modifier (standalone, leading hyphen, used alongside)
-.block.-modifier         ← how a modifier is targeted in CSS
+```css
+/* The parent's element positions each nested block ✅ */
+.page_container .header { float: left; }
+.page_container .footer { float: right; }
 ```
-
-This is identical for plain CSS and SCSS. In SCSS, resist the `&__el` / `&--mod` nesting habit from classic BEM. Because Lean BEM modifiers are separate classes and element names are flat, prefer writing the full classes (`.card {…} .card_title {…} .card.-featured {…}`) over deep `&` nesting, which keeps specificity flat and selectors greppable.
-
----
-
-## Workflow: writing new components
-
-1. Identify the **block**: the independent thing (`card`, `nav-bar`). Name it for purpose.
-2. Identify its **elements**: parts that only make sense inside it. Name each `block_element`, flat.
-3. Identify **modifiers**: variations of state or appearance. Make each a standalone `-modifier` class.
-4. In markup, list the base class first, then any element class, then modifiers: `class="card card_body -featured"`.
-5. In CSS/SCSS, style each block and element class directly; target modifiers as combined selectors (`.card.-featured`).
-
-## Workflow: converting existing CSS to Lean BEM
-
-When given existing class names (any convention), translate by category:
-
-- Classic element `block__element` → `block_element` (collapse the double underscore).
-- Modifier suffixes `block--mod`, `block_mod`, `block__el--mod` → pull the modifier out into a standalone `-mod` class applied alongside the base. Example: `card__title--muted` becomes `card_title` plus a separate `-muted`.
-- Element chains `block__a__b` → flatten to `block_b` (the deepest meaningful part), or split off a new block if the inner part is reusable.
-- Appearance-named blocks (`.red-box`) → rename for purpose and move the look into a modifier (`.box.-danger` or similar).
-- Update both the markup and the selectors together, and convert modifier selectors to the combined form (`.block.-mod`). Show the before and after so the user can verify the mapping.
-
-State assumptions you make about which token is the block vs a modifier, since that judgment is semantic and the user may want to correct it.
-
-## Workflow: auditing for compliance
-
-Run the bundled linter to catch the mechanical violations fast, then review the semantic ones by eye.
-
-```bash
-python3 scripts/lint_lean_bem.py path/to/file.html path/to/file.css
+```css
+/* Never set positioning on the main block selector 🚫 */
+.header { float: left; }
 ```
 
-The linter flags syntax-level problems it can detect reliably: double-underscore elements (`__`), double-hyphen modifiers (`--`), and element-hierarchy chains (two or more underscores in one class). It reports the file, line, offending class, and a suggested fix.
+If `.header` floated itself, it would carry that positioning into every context where it's reused. Owned by `.page_container`, the positioning applies only there.
 
-It deliberately does **not** judge naming *meaning*, so after running it, check these by hand and report them:
+## Quick checklist
 
-- Blocks or elements named for appearance/state (`red`, `big`) instead of purpose.
-- Modifier classes used alone, with no block or element class beside them.
-- Modifier selectors written as descendants (`.block .-mod`) instead of combined (`.block.-mod`).
+When writing or reviewing code, verify:
 
-Present audit results as a list of findings (location, what is wrong, the fix), not a rewrite, unless the user asks you to apply the fixes.
+1. Class names describe purpose (`button`, `button_label`), not state or appearance (`red-button` 🚫).
+2. Element classes have exactly one underscore, block name first (`block_element`); elements never chain (`block_element-one_element-two` 🚫).
+3. Modifiers start with `-`, never appear alone in HTML, and are chained without a space in CSS (`.block.-modifier`, never `.block .-modifier`).
+4. No positioning on a main block selector; the parent positions nested blocks.
+5. Selectors target classes only; elements are styled flat; descendant selectors go at most two levels, reserved for a parent styling a nested block.
 
-## Common mistakes to avoid
+## Further reading
 
-- Writing `block__element` (double underscore). Use a single `_`.
-- Writing modifiers as suffixes (`block--big`, `block_big`). Modifiers are standalone `-big` classes.
-- Chaining elements (`menu_item_link`). Elements are one level: `menu_link`, or make `item` its own block.
-- Naming blocks/elements by looks (`.blue-button`). Name by purpose, push the look into a modifier.
-- Targeting modifiers with a space in CSS (`.button .-big`), which selects descendants. Combine them: `.button.-big`.
-- Applying a modifier class with no base class next to it.
+- [Lean BEM repository](https://github.com/sergiofontes/lean-bem)
+- [BEM Methodology](https://en.bem.info/methodology/)
+- [BEM For Beginners: Why You Need BEM](https://www.smashingmagazine.com/2018/06/bem-for-beginners/#the-basics-of-bem)
