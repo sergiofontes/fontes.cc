@@ -73,15 +73,15 @@ export default function What() {
         </p>
 
         <div className="what_kpis">
-          <h3 className="label what_kpis-label">First 30 days</h3>
+          <h3 className="label what_kpis-label">First 90 days</h3>
           <ul className="what_kpis-list">
             <li className="what_kpis-item">
-              <span className="what_kpis-value">10,000+</span>
+              <span className="what_kpis-value">8,500+</span>
               <span className="what_kpis-caption">active merchants</span>
             </li>
             <li className="what_kpis-item">
-              <span className="what_kpis-value">26,000+</span>
-              <span className="what_kpis-caption">new leads to merchants</span>
+              <span className="what_kpis-value">57,700+</span>
+              <span className="what_kpis-caption">orders sent via WhatsApp</span>
             </li>
           </ul>
         </div>
